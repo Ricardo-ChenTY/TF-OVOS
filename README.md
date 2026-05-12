@@ -12,6 +12,29 @@ an image and a fixed vocabulary, then writes exactly one prediction per image:
 
 The evaluator consumes the same prediction format for E1, E2, and E3.
 
+## Server Quickstart
+
+On a fresh Linux server:
+
+```bash
+git clone https://github.com/Ricardo-ChenTY/TF-OVCOS.git
+cd TF-OVCOS
+bash scripts/setup_conda.sh
+```
+
+Manual equivalent:
+
+```bash
+conda env create -f environment.yml
+conda activate tf-ovcos
+python -m pytest tests
+python scripts/smoke_test.py
+```
+
+This verifies the core benchmark harness with toy data and the debug adapter.
+Real GPU methods still need their own third-party repositories, CUDA-matched
+PyTorch wheels, model weights, and adapter implementations.
+
 ## Suggested Build Order
 
 1. **Core harness first**
