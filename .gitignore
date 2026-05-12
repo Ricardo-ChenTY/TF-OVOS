@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Local environments
+.venv/
+.conda/
+env/
+venv/
+
+# Benchmark data and generated artifacts
+data/raw/
+data/manifests/shards/
+runs/
+weights/
+external/
+
+# Large model/data files
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# OS/editor
+.git/
+.gitmeta/
+gitdir_test/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,27 @@
+vocabularies:
+  ovcamo_75: configs/vocab/ovcamo_75.txt
+  ovcamo_61_unseen: configs/vocab/ovcamo_61_unseen.txt
+
+datasets:
+  ovcamo_te:
+    manifest: data/manifests/ovcamo_te.jsonl
+    task: class-aware
+  camo_te:
+    manifest: data/manifests/camo_te.jsonl
+    task: mask-only
+  cod10k_te_camo:
+    manifest: data/manifests/cod10k_te_camo.jsonl
+    task: mask-only
+  nc4k:
+    manifest: data/manifests/nc4k.jsonl
+    task: mask-only
+
+prediction_schema:
+  required: [image_id, mask_path, label]
+  optional: [score, metadata]
+
+adapter_defaults:
+  image_size: 1024
+  mask_threshold: 0.5
+  min_component_area: 64
+  prompt_template: "a photo of a {}"

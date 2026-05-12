@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tf-ovcos"
+version = "0.1.0"
+description = "Benchmark harness for training-free open-vocabulary camouflaged object segmentation"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.23",
+  "pillow>=9.5",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.5"]
+tables = ["pandas>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
