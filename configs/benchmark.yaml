@@ -25,3 +25,5 @@ adapter_defaults:
   mask_threshold: 0.5
   min_component_area: 64
   prompt_template: "a photo of a {}"
+
+method_configs: configs/methods

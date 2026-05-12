@@ -29,11 +29,22 @@ conda env create -f environment.yml
 conda activate tf-ovcos
 python -m pytest tests
 python scripts/smoke_test.py
+python -m tf_ovcos.check_ready
 ```
 
 This verifies the core benchmark harness with toy data and the debug adapter.
 Real GPU methods still need their own third-party repositories, CUDA-matched
 PyTorch wheels, model weights, and adapter implementations.
+
+`python -m tf_ovcos.check_ready` reports which vocab, manifest, and adapter
+items are complete. Missing real data and planned adapters are expected before
+the GPU machine is provisioned.
+
+Create the ignored local workspace directories with:
+
+```bash
+bash scripts/prepare_workspace.sh
+```
 
 ## Suggested Build Order
 
@@ -83,6 +94,12 @@ python -m tf_ovcos.eval --manifest data/manifests/nc4k.jsonl --predictions runs/
 `debug_copy_gt` and `debug_empty` are pipeline smoke-test adapters, not paper
 methods. Real methods should be added under `src/tf_ovcos/adapters/` and
 registered in `tf_ovcos.run_method`.
+
+Current adapter status can be checked with:
+
+```bash
+python -m tf_ovcos.run_method --list-methods
+```
 
 ## Public Code Starting Points
 

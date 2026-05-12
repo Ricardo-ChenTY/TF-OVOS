@@ -10,6 +10,8 @@ from tf_ovcos.data import Prediction, Sample
 
 class MethodAdapter(ABC):
     name: str
+    runnable: bool = True
+    setup_hint: str = ""
 
     @abstractmethod
     def predict_one(self, sample: Sample, vocabulary: list[str], output_dir: Path) -> Prediction:
