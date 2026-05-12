@@ -30,6 +30,11 @@ The evaluator consumes the same prediction format for E1, E2, and E3.
    - proposal + naming: SAM-AMG + CLIP/SigLIP, DINOv2 + SAM + VLM
    - diffusion/reference rows last because setup/runtime is heavier
 
+Before requesting a large GPU machine, check the Chinese preparation checklist
+in `docs/gpu_request_checklist_zh.md`. It lists the dataset, vocabulary,
+manifest, storage, and first-baseline items that should be ready before moving
+to full GPU inference.
+
 ## Dataset Manifest
 
 Create one JSONL manifest per split:
