@@ -139,3 +139,42 @@ python -m tf_ovcos.eval \
   --task mask-only \
   --out runs/sam_amg_clip/nc4k/metrics.json
 ```
+
+## 7. 一键 Pipeline
+
+单个方法、单个数据集：
+
+```bash
+python -m tf_ovcos.run_benchmark \
+  --method debug_copy_gt \
+  --dataset ovcamo_te \
+  --limit 20 \
+  --num-shards 8 \
+  --skip-existing
+```
+
+单个方法跑 `configs/benchmark.yaml` 里的所有数据集：
+
+```bash
+python -m tf_ovcos.run_benchmark \
+  --method debug_copy_gt \
+  --num-shards 8 \
+  --skip-existing
+```
+
+小样本 smoke test 通过后，去掉 `--limit` 就是全量。
+
+汇总 E1/E2/E3/E4 风格结果表：
+
+```bash
+python -m tf_ovcos.summarize_results \
+  --method debug_copy_gt \
+  --out-dir runs/tables
+```
+
+每个 shard 会写：
+
+```text
+runs/<method>/<dataset>/shards/part-000/predictions.jsonl
+runs/<method>/<dataset>/shards/part-000/runtime.json
+```

@@ -2,12 +2,23 @@ from __future__ import annotations
 
 import argparse
 import json
+from dataclasses import asdict
 from pathlib import Path
 
 import numpy as np
 
-from tf_ovcos.data import iter_missing_predictions, load_manifest, load_predictions
-from tf_ovcos.metrics import ambiguity_rows, class_aware, compute_mask_metrics, load_binary_mask
+from tf_ovos.data import iter_missing_predictions, load_manifest, load_predictions
+from tf_ovos.metrics import (
+    SemanticResult,
+    accumulate_confusion,
+    ambiguity_rows,
+    class_aware,
+    compute_mask_metrics,
+    evaluate_semantic,
+    load_binary_mask,
+    load_label_map,
+    miou_from_confusion,
+)
 
 
 def mean_dict(rows: list[dict[str, float]]) -> dict[str, float]:
@@ -17,7 +28,14 @@ def mean_dict(rows: list[dict[str, float]]) -> dict[str, float]:
     return {key: float(np.mean([row[key] for row in rows])) for key in keys}
 
 
-def evaluate(manifest: Path, predictions_path: Path, task: str, threshold: float) -> dict[str, object]:
+def evaluate(
+    manifest: Path,
+    predictions_path: Path,
+    task: str,
+    threshold: float,
+    num_classes: int | None = None,
+    void_label: int = 255,
+) -> dict[str, object]:
     samples = load_manifest(manifest)
     predictions = load_predictions(predictions_path)
     missing = iter_missing_predictions(samples, predictions)
@@ -25,6 +43,28 @@ def evaluate(manifest: Path, predictions_path: Path, task: str, threshold: float
         preview = ", ".join(missing[:10])
         raise ValueError(f"Missing {len(missing)} predictions. First missing ids: {preview}")
 
+    if task == "semantic":
+        if num_classes is None:
+            raise ValueError("num_classes is required for task='semantic'")
+        gt_maps = [load_label_map(str(s.mask_path), void_label) for s in samples]
+        pred_maps = [load_label_map(str(predictions[s.image_id].mask_path), void_label) for s in samples]
+        result_obj: SemanticResult = evaluate_semantic(gt_maps, pred_maps, num_classes, void_label)
+        result: dict[str, object] = {
+            "num_samples": len(samples),
+            "task": task,
+            "num_classes": num_classes,
+            # Standard tier
+            "miou": result_obj.miou,
+            # Exploratory tier
+            "pixel_accuracy": result_obj.pixel_accuracy,
+            "mean_class_accuracy": result_obj.mean_class_accuracy,
+            "mcmr_05": result_obj.mcmr_05,
+            "mcmr_075": result_obj.mcmr_075,
+            "per_class_iou": result_obj.per_class_iou,
+        }
+        return result
+
+    # mask-only and class-aware (appendix hard-domain targets)
     mask_rows: list[dict[str, float]] = []
     class_rows: list[dict[str, float]] = []
     ambiguity_input: list[tuple[float, str | None, str | None]] = []
@@ -47,7 +87,7 @@ def evaluate(manifest: Path, predictions_path: Path, task: str, threshold: float
         if task == "class-aware":
             class_rows.append(class_aware(metrics, pred.label, sample.label))
 
-    result: dict[str, object] = {
+    result = {
         "num_samples": len(samples),
         "task": task,
         "mask_metrics": mean_dict(mask_rows),
@@ -59,15 +99,24 @@ def evaluate(manifest: Path, predictions_path: Path, task: str, threshold: float
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Evaluate TF-OVCOS predictions.")
+    parser = argparse.ArgumentParser(description="Evaluate TF-OVOS predictions.")
     parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--predictions", required=True, type=Path)
-    parser.add_argument("--task", choices=["class-aware", "mask-only"], required=True)
-    parser.add_argument("--threshold", type=float, default=0.5)
+    parser.add_argument("--task", choices=["semantic", "mask-only", "class-aware"], required=True)
+    parser.add_argument("--num-classes", type=int, help="Required for --task semantic")
+    parser.add_argument("--void-label", type=int, default=255)
+    parser.add_argument("--threshold", type=float, default=0.5, help="Binary mask threshold (mask-only/class-aware)")
     parser.add_argument("--out", type=Path)
     args = parser.parse_args()
 
-    result = evaluate(args.manifest, args.predictions, args.task, args.threshold)
+    result = evaluate(
+        args.manifest,
+        args.predictions,
+        args.task,
+        args.threshold,
+        num_classes=args.num_classes,
+        void_label=args.void_label,
+    )
     text = json.dumps(result, indent=2, ensure_ascii=False)
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)

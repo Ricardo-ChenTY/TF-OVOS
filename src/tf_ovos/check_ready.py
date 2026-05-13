@@ -7,8 +7,21 @@ from typing import Any
 
 import yaml
 
-from tf_ovcos.adapters.registry import ADAPTERS, adapter_info
-from tf_ovcos.data import _resolve_path, read_jsonl, read_vocab
+from tf_ovos.adapters.registry import ADAPTERS, adapter_info
+from tf_ovos.data import _resolve_path, read_jsonl, read_vocab
+
+# Expected class counts per vocabulary name.  Warn if mismatch.
+EXPECTED_VOCAB_COUNTS: dict[str, int] = {
+    "voc20": 20,
+    "context_59": 59,
+    "context_459": 459,
+    "ade20k_150": 150,
+    "ade20k_847": 847,
+    "coco_stuff_171": 171,
+    # Appendix camouflage targets
+    "ovcamo_75": 75,
+    "ovcamo_61_unseen": 61,
+}
 
 
 @dataclass(frozen=True)
@@ -46,7 +59,13 @@ def _check_vocab(rows: list[CheckRow], name: str, path: Path, expected_count: in
     _add(rows, "OK", f"vocab:{name}", f"{len(labels)} labels")
 
 
-def _check_manifest(rows: list[CheckRow], name: str, path: Path, task: str, vocab_labels: set[str] | None) -> None:
+def _check_manifest(
+    rows: list[CheckRow],
+    name: str,
+    path: Path,
+    task: str,
+    vocab_labels: set[str] | None,
+) -> None:
     if not path.exists():
         _add(rows, "WARN", f"manifest:{name}", f"Missing manifest: {path}")
         return
@@ -70,8 +89,10 @@ def _check_manifest(rows: list[CheckRow], name: str, path: Path, task: str, voca
             if value is None or not _resolve_path(value, base_dir).exists():
                 missing_paths.append(f"{image_id}:{key}")
         label = row.get("label")
+        # class-aware tasks require per-sample label strings.
         if task == "class-aware" and not label:
             missing_labels.append(image_id)
+        # semantic tasks encode labels in the map — no per-sample label required.
         if vocab_labels is not None and label and label not in vocab_labels:
             out_of_vocab.append(f"{image_id}:{label}")
 
@@ -113,29 +134,43 @@ def check_ready(root: Path, benchmark_config: Path) -> list[CheckRow]:
         _add(rows, "FAIL", "config", f"Could not load benchmark config: {benchmark_config}")
         return rows
 
-    expected_vocab_counts = {"ovcamo_75": 75, "ovcamo_61_unseen": 61}
     vocab_sets: dict[str, set[str]] = {}
     for name, rel_path in cfg.get("vocabularies", {}).items():
         path = root / rel_path
-        expected = expected_vocab_counts.get(name)
+        expected = EXPECTED_VOCAB_COUNTS.get(name)
         _check_vocab(rows, name, path, expected)
         if path.exists():
             labels = set(read_vocab(path))
             if labels and all("fill with" not in label.lower() for label in labels):
                 vocab_sets[name] = labels
 
-    class_vocab = vocab_sets.get("ovcamo_75") or vocab_sets.get("ovcamo_61_unseen")
     for name, dataset in cfg.get("datasets", {}).items():
         path = root / dataset["manifest"]
         task = dataset.get("task", "mask-only")
-        _check_manifest(rows, name, path, task, class_vocab if task == "class-aware" else None)
+        # For class-aware tasks, validate labels against the dataset's own vocab.
+        class_vocab: set[str] | None = None
+        if task == "class-aware":
+            vocab_path = dataset.get("vocab")
+            if vocab_path:
+                vname = Path(vocab_path).stem
+                class_vocab = vocab_sets.get(vname)
+        _check_manifest(rows, name, path, task, class_vocab)
+
+    # Also check dataset-level vocab files.
+    for name, dataset in cfg.get("datasets", {}).items():
+        vocab_path = dataset.get("vocab")
+        if vocab_path:
+            vname = Path(vocab_path).stem
+            path = root / vocab_path
+            expected = EXPECTED_VOCAB_COUNTS.get(vname)
+            _check_vocab(rows, f"dataset:{name}:vocab", path, expected)
 
     _check_method_configs(rows, root)
     return rows
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Check TF-OVCOS readiness before moving to a GPU server.")
+    parser = argparse.ArgumentParser(description="Check TF-OVOS readiness before moving to a GPU server.")
     parser.add_argument("--root", type=Path, default=Path("."))
     parser.add_argument("--config", type=Path, default=Path("configs/benchmark.yaml"))
     parser.add_argument("--strict", action="store_true", help="Exit nonzero on WARN or FAIL rows.")

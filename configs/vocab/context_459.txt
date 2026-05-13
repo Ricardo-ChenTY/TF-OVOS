@@ -1,0 +1,18 @@
+# PASCAL Context — full 459-class split
+# TODO: populate with the complete 459-class list from the official PASCAL
+# Context annotation release.  The list below is a stub; the benchmark will
+# WARN on startup until the file contains exactly 459 non-comment lines.
+#
+# Reference: Mottaghi et al., "The Role of Context for Object Detection and
+# Semantic Segmentation in the Wild", CVPR 2014.
+# Download: https://cs.stanford.edu/~roozbeh/pascal-context/
+accordion
+aeroplane
+airconditioner
+antenna
+artillery
+ashtray
+atrium
+avocado pear
+baby bed
+bag

@@ -5,11 +5,12 @@ from pathlib import Path
 
 from PIL import Image
 
-from tf_ovcos.adapters.base import MethodAdapter
-from tf_ovcos.data import Prediction, Sample, as_output_path
+from tf_ovos.adapters.base import MethodAdapter
+from tf_ovos.data import Prediction, Sample, as_output_path
 
 
 class CopyGroundTruthAdapter(MethodAdapter):
+    """Copies the GT mask/label-map as the prediction.  Perfect score on any task."""
     name = "debug_copy_gt"
     runnable = True
 
@@ -28,6 +29,7 @@ class CopyGroundTruthAdapter(MethodAdapter):
 
 
 class EmptyMaskAdapter(MethodAdapter):
+    """Outputs an all-zero mask/label-map.  Zero score on any task."""
     name = "debug_empty"
     runnable = True
 

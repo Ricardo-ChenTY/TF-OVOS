@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from tf_ovcos.data import as_output_path, read_jsonl, write_jsonl
+from tf_ovos.data import as_output_path, read_jsonl, write_jsonl
 
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".bmp", ".webp")
 MASK_EXTS = (".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff")
@@ -24,7 +24,13 @@ def collect_files(root: Path, exts: tuple[str, ...], recursive: bool) -> dict[st
     return files
 
 
-def load_label_map(path: Path | None, id_field: str, label_field: str) -> dict[str, str]:
+def load_label_map_files(root: Path | None, recursive: bool) -> dict[str, Path]:
+    if root is None:
+        return {}
+    return collect_files(root, MASK_EXTS, recursive)
+
+
+def load_label_map_source(path: Path | None, id_field: str, label_field: str) -> dict[str, str]:
     if path is None:
         return {}
     if path.suffix.lower() == ".jsonl":
@@ -66,7 +72,7 @@ def build_manifest(
 ) -> list[dict[str, Any]]:
     images = collect_files(image_dir, IMAGE_EXTS, recursive)
     masks = collect_files(mask_dir, MASK_EXTS, recursive)
-    labels = load_label_map(label_source, id_field, label_field)
+    labels = load_label_map_source(label_source, id_field, label_field)
 
     rows: list[dict[str, Any]] = []
     missing_masks: list[str] = []
@@ -98,11 +104,13 @@ def build_manifest(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Create a TF-OVCOS dataset manifest.")
+    parser = argparse.ArgumentParser(description="Create a TF-OVOS dataset manifest.")
     parser.add_argument("--image-dir", required=True, type=Path)
-    parser.add_argument("--mask-dir", required=True, type=Path)
+    parser.add_argument("--mask-dir", required=True, type=Path,
+                        help="Binary mask dir (mask-only/class-aware) or label-map dir (semantic).")
     parser.add_argument("--out", required=True, type=Path)
-    parser.add_argument("--label-source", type=Path)
+    parser.add_argument("--label-source", type=Path,
+                        help="Per-image class label file (skip for semantic task).")
     parser.add_argument("--id-field", default="image_id")
     parser.add_argument("--label-field", default="label")
     parser.add_argument("--recursive", action="store_true")

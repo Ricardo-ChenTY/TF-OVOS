@@ -2,14 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tf_ovcos.adapters.base import MethodAdapter
-from tf_ovcos.adapters.debug import CopyGroundTruthAdapter, EmptyMaskAdapter
-from tf_ovcos.adapters.planned import (
-    GroundingDinoSamAdapter,
-    ProxyClipAdapter,
-    SamAmgClipAdapter,
-    SclipAdapter,
-)
+from tf_ovos.adapters.base import MethodAdapter
+from tf_ovos.adapters.debug import CopyGroundTruthAdapter, EmptyMaskAdapter
+from tf_ovos.adapters.planned import PROPOSAL_PLANNED_ADAPTERS
 
 
 @dataclass(frozen=True)
@@ -23,10 +18,7 @@ class AdapterInfo:
 _ADAPTER_CLASSES: tuple[type[MethodAdapter], ...] = (
     CopyGroundTruthAdapter,
     EmptyMaskAdapter,
-    GroundingDinoSamAdapter,
-    SamAmgClipAdapter,
-    SclipAdapter,
-    ProxyClipAdapter,
+    *PROPOSAL_PLANNED_ADAPTERS,
 )
 
 ADAPTERS: dict[str, type[MethodAdapter]] = {adapter.name: adapter for adapter in _ADAPTER_CLASSES}

@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tf-ovcos"
+name = "tf-ovos"
 version = "0.1.0"
-description = "Benchmark harness for training-free open-vocabulary camouflaged object segmentation"
+description = "Benchmark harness for training-free open-vocabulary object segmentation (TF-OVOS)"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.23",

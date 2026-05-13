@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 from typing import Any
 
-from tf_ovcos.data import _resolve_path, as_output_path, load_manifest, read_jsonl, read_vocab, write_jsonl
+from tf_ovos.data import _resolve_path, as_output_path, load_manifest, read_jsonl, read_vocab, write_jsonl
 
 
 def find_prediction_files(shards_dir: Path) -> list[Path]:

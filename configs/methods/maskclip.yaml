@@ -1,0 +1,6 @@
+name: maskclip
+status: planned
+family: clip_dense_map
+strict_tf: true
+requires_gpu: true
+description: MaskCLIP dense-label baseline. Convert CLIP score maps into one mask-label prediction.

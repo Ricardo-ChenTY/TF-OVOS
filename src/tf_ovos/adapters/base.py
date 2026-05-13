@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Iterable
 
-from tf_ovcos.data import Prediction, Sample
+from tf_ovos.data import Prediction, Sample
 
 
 class MethodAdapter(ABC):
@@ -15,7 +15,12 @@ class MethodAdapter(ABC):
 
     @abstractmethod
     def predict_one(self, sample: Sample, vocabulary: list[str], output_dir: Path) -> Prediction:
-        """Return exactly one mask-category prediction for one image."""
+        """Return exactly one prediction for one image.
+
+        For semantic tasks the prediction mask_path should point to a label-map
+        PNG (H×W, pixel = class index).  For mask-only / class-aware tasks it
+        should point to a binary mask PNG.
+        """
 
     def predict_many(self, samples: Iterable[Sample], vocabulary: list[str], output_dir: Path) -> list[Prediction]:
         output_dir.mkdir(parents=True, exist_ok=True)

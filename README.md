@@ -101,6 +101,33 @@ Current adapter status can be checked with:
 python -m tf_ovcos.run_method --list-methods
 ```
 
+## Reproducible Pipeline
+
+Run one method on one or more configured datasets:
+
+```bash
+python -m tf_ovcos.run_benchmark \
+  --method debug_copy_gt \
+  --dataset ovcamo_te \
+  --limit 20 \
+  --num-shards 8 \
+  --skip-existing
+```
+
+For external E3 targets, omit `--dataset` to run every dataset in
+`configs/benchmark.yaml`. Drop `--limit` for full runs. Class-aware datasets use
+`ovcamo_61_unseen`; mask-only external datasets use `ovcamo_75`.
+
+Summarize E1/E2/E3/E4-style outputs after runs finish:
+
+```bash
+python -m tf_ovcos.summarize_results --method debug_copy_gt --out-dir runs/tables
+```
+
+Each shard writes `runtime.json` with wall-clock seconds and seconds/image. Real
+adapters can extend that file with peak memory, model calls, and module-specific
+metadata.
+
 ## Public Code Starting Points
 
 - MaskCLIP: <https://github.com/chongzhou96/MaskCLIP>

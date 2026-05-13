@@ -11,14 +11,14 @@ from typing import Any, Iterable
 class Sample:
     image_id: str
     image_path: Path
-    mask_path: Path
+    mask_path: Path       # binary mask (mask-only/class-aware) or label map (semantic)
     label: str | None = None
 
 
 @dataclass(frozen=True)
 class Prediction:
     image_id: str
-    mask_path: Path
+    mask_path: Path       # binary mask (mask-only/class-aware) or label map (semantic)
     label: str | None
     score: float | None = None
     metadata: dict[str, Any] | None = None

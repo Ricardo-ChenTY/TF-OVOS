@@ -1,0 +1,17 @@
+# ADE20K — full 847-class split
+# TODO: populate with the complete 847-class list from the official ADE20K
+# release.  The list below is a stub; the benchmark will WARN on startup
+# until the file contains exactly 847 non-comment lines.
+#
+# Reference: Zhou et al., "Scene Parsing through ADE20K Dataset", CVPR 2017.
+# Download: http://groups.csail.mit.edu/vision/datasets/ADE20K/
+wall
+building
+sky
+floor
+tree
+ceiling
+road
+bed
+windowpane
+grass

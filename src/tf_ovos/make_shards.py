@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 from typing import Any
 
-from tf_ovcos.data import _resolve_path, as_output_path, read_jsonl, write_jsonl
+from tf_ovos.data import _resolve_path, as_output_path, read_jsonl, write_jsonl
 
 
 def rewrite_manifest_row(row: dict[str, Any], source_base: Path, target_base: Path) -> dict[str, Any]:
