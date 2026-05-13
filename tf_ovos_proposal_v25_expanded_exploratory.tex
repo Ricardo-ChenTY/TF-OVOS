@@ -13,9 +13,10 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{adjustbox}
-\usepackage{microtype}
+\usepackage[final,protrusion=true,expansion=false]{microtype}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{longtable}
 
 \hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
 \setlength{\emergencystretch}{2em}
@@ -28,7 +29,7 @@
 \title{\textbf{TF-OVOS}: A Four-Part Evaluation Framework for \\
        Training-Free Open-Vocabulary Object Segmentation \\
        \vspace{0.3em}
-       \large{Proposal Draft v23 -- unified metrics and diagnostic readouts}}
+       \large{Proposal Draft v25 -- two-tier metrics with expanded exploratory set}}
 \author{Draft for Discussion}
 \date{\today}
 
@@ -54,49 +55,50 @@ Training-based rows are kept intentionally small. The main paper keeps only a fe
 
 \section{Evaluation Protocol}
 
-Following advisor feedback, the revised framework keeps \textbf{one common standard metric family} for E1--E3 whenever possible. Except for efficiency, the evaluations differ mainly by \emph{dataset difficulty and scenario}, not by inventing a new metric for each block. Standard semantic-segmentation targets use mIoU; additional readouts are recorded only to explain why methods fail.
+Following advisor feedback, the revised framework adopts a \textbf{two-tier metric design}.
+The \emph{standard tier} keeps \textbf{one common standard metric family} (mIoU) for E1--E3 whenever semantic labels are available, so the leaderboard, robustness, and cross-dataset comparisons all use the same primary number; the evaluations differ mainly by \emph{dataset difficulty and scenario}, not by inventing a new ranking metric for each block. The \emph{exploratory tier} records a broader set of readouts that are not used for ranking but are explicitly intended to surface where standard mIoU is silent --- naming vs.\ localization failures, ambiguity in large vocabularies, proposal recall, mask--category consistency, and stuff/thing skew. The exploratory tier is what the proposal expects to drive novelty: any new finding or method contribution must first appear as a pattern in these readouts before it is promoted into the main paper. The two tiers are reported separately so that the standard tier stays clean and comparable while the exploratory tier remains a discovery tool rather than a moving ranking target.
 
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Final E1--E4 evaluation protocol. E1--E3 use mIoU as the common primary metric whenever semantic labels are available. E4 is separated because it measures cost rather than segmentation quality.}
+\caption{Final E1--E4 evaluation protocol. E1--E3 share mIoU as the common \emph{standard} primary metric whenever semantic labels are available. The \emph{exploratory} column records additional readouts intended to find phenomena that mIoU alone cannot reveal; these are not used to rank methods. E4 is separated because it measures cost rather than segmentation quality.}
 \label{tab:evaluation-overview}
 \setlength{\tabcolsep}{3pt}
 \begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{0.15\textwidth} p{0.27\textwidth} p{0.20\textwidth} p{0.24\textwidth} p{0.13\textwidth}}
+\begin{tabular}{p{0.13\textwidth} p{0.24\textwidth} p{0.17\textwidth} p{0.30\textwidth} p{0.13\textwidth}}
 \toprule
-Evaluation & Scenario / dataset difficulty & Standard metric & Diagnostic / test readouts & Role \\
+Evaluation & Scenario / dataset difficulty & Standard metric (ranking) & Exploratory readouts (discovery, no ranking) & Role \\
 \midrule
 \textbf{E1 Standard OVOS effectiveness} &
 Mainstream open-vocabulary segmentation datasets with compact official vocabularies: PASCAL VOC-20, PASCAL Context-59, ADE20K-150, and COCO-Stuff-171. &
 mIoU on each dataset and average mIoU. &
-Per-class IoU, thing/stuff split when available, prediction coverage. &
+Per-class IoU, thing/stuff split, pixel accuracy, mean class accuracy, prediction coverage, frequency-stratified mIoU, head/mid/tail-frequency mIoU, small/medium/large object mIoU, confidence calibration (ECE / Brier), empty-prediction and over-segmentation rates. &
 Primary effectiveness leaderboard. \\
 \addlinespace[2pt]
 \textbf{E2 Vocabulary / category-ambiguity robustness} &
 Harder large-vocabulary versions of standard datasets: PASCAL Context-459 and ADE20K-847, paired with Context-59 and ADE20K-150. &
 mIoU on compact and large vocabularies. &
-Two proposal diagnostics: $\Delta_{\mathrm{vocab}}$ and MCMR@0.5; top mismatch pairs are qualitative evidence. &
+Proposal-defined diagnostic summaries $\Delta_{\mathrm{vocab}}$, MCMR@0.5/0.75, semantic-distance-weighted mismatch, hierarchical IoU, synonym-collapsed mIoU; prompt-sensitivity variance; vocabulary-size scaling curves (subsampled sizes); region-level Top-1/Top-3/Top-5 naming accuracy; top mismatch pairs, confusion communities, novel-vs-base class split; GT-region naming and GT-text localization probes. &
 Robustness to vocabulary difficulty. \\
 \addlinespace[2pt]
 \textbf{E3 Cross-dataset generalization} &
 Source-to-target comparison across the same standard semantic targets. Strict-TF methods use no source training; trained references use their official source training. &
 Target mIoU on VOC-20, Context-59, ADE20K-150, and COCO-Stuff-171. &
-Rank stability, worst-target mIoU, and source/target scores shown side by side. &
+Rank stability across targets, Kendall's $\tau$ / Spearman rank correlation between E1 and E3 rankings, worst-target mIoU, worst-class mIoU within target, source/target gap, per-target $\Delta$ vs.\ E1, per-target $\Delta$ MCMR, class-overlap-stratified mIoU (source-overlapping vs.\ source-novel classes), domain-shift sensitivity (mIoU drop vs.\ embedding-distance to source), transferability of MCMR@0.5. &
 Generalization comparison. \\
 \addlinespace[2pt]
 \textbf{E4 Efficiency comparison} &
 Same method rows under fixed hardware, input size, and adapter settings. &
 Not applicable. &
-Training time, offline cost, inference time, memory, trainable parameters, model calls. &
+Training time, offline cost, inference time, peak memory, trainable parameters, model calls, cost/mIoU trade-off, mIoU per GFLOP, mIoU per second, offline cost amortization curve, per-stage memory and latency breakdown. &
 Cost analysis. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
-\paragraph{Metric-unification rule.}
-E1, E2, and E3 all report mIoU as the primary quantitative metric on semantic targets. E2 becomes harder because the vocabulary is larger and more ambiguous; E3 becomes harder because the evaluation emphasizes source-to-target transfer. The proposed diagnostics are recorded to explain observed behavior, not to replace the standard metric.
+\paragraph{Two-tier metric rule.}
+E1, E2, and E3 all report mIoU as the primary quantitative metric on semantic targets, so the leaderboard remains comparable across scenarios. E2 becomes harder because the vocabulary is larger and more ambiguous; E3 becomes harder because the evaluation emphasizes source-to-target transfer. In parallel, a broader exploratory metric set is recorded on every run (see Section~\ref{sec:metrics}); these readouts do not change the ranking but are the channel through which the proposal expects to identify failure modes, justify novelty, and decide which patterns are worth a dedicated section in the paper. An exploratory readout is promoted into the main paper only after it reveals a stable, method-discriminating pattern across multiple datasets.
 
 \paragraph{Why this replaces the previous OVCOS-centered structure.}
 The previous draft was too narrow because OVCamo was both the task definition and the main target. The revised E1--E4 framework makes OVCamo one optional hard-domain transfer target, while the main topic becomes general training-free open-vocabulary object / semantic segmentation.
@@ -130,41 +132,91 @@ Hard-domain camouflaged-object datasets are useful for stress testing, but they 
 
 %==============================================================
 \section{Metrics}
+\label{sec:metrics}
 
-\paragraph{Common primary metric for E1--E3.}
-For all standard semantic-segmentation targets, the primary metric is mIoU. The same metric is used in E1, E2, and E3; the evaluations differ in dataset/vocabulary difficulty and transfer scenario. This follows the principle that a benchmark should not need a different main metric for every scenario.
+\paragraph{Two-tier philosophy.}
+The benchmark explicitly distinguishes two tiers of metrics. The \textbf{standard tier} is a single, common mIoU family used for E1--E3 ranking and reporting; it is what makes the leaderboard comparable. The \textbf{exploratory tier} is a broader set of readouts recorded on every run; it is what the proposal expects to use to find phenomena that mIoU cannot expose by itself. The two tiers serve different purposes and must not be conflated: the standard tier protects comparability, while the exploratory tier protects novelty. Concretely, the plan is to first run the standard metric on every method, and \emph{in the same evaluation pass} record the exploratory readouts, so any interesting pattern (a method that ranks well on mIoU but breaks under MCMR; a method whose mIoU is stable but whose stuff/thing split collapses; a method whose proposal-recall ceiling explains its mIoU floor) becomes available without re-running the pipeline.
+
+\paragraph{Common primary (standard) metric for E1--E3.}
+For all standard semantic-segmentation targets, the primary metric is mIoU. The same metric is used in E1, E2, and E3; the evaluations differ only in dataset/vocabulary difficulty and transfer scenario. A benchmark should not need a different main metric for every scenario.
+
+\paragraph{Exploratory metric set.}
+The exploratory tier is divided into three groups. (i) \emph{Standard supporting readouts} are well-known metrics from the segmentation literature that are not proposal-defined --- per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy, frequency-stratified mIoU (including head/mid/tail-frequency mIoU), small/medium/large object mIoU, BIoU, proposal Recall@\{0.5, 0.7\}, confidence calibration (ECE / Brier), empty-prediction and over-segmentation rates. They cost almost nothing to compute once mIoU is computed. (ii) \emph{Proposal-defined diagnostic summaries} are introduced by this work to surface vocabulary-driven and mask--category-driven failure modes that the standard tier averages away. The current set is $\Delta_{\mathrm{vocab}}$, MCMR@$\tau$, semantic-distance-weighted mismatch, hierarchical IoU, synonym-collapsed mIoU, prompt-sensitivity variance, vocabulary-size scaling curves, Kendall's $\tau$ rank correlation between E1 and E3, class-overlap-stratified mIoU, and domain-shift sensitivity. (iii) \emph{Probe-style measurements} isolate naming vs.\ localization failure with GT-region naming Top-1/Top-5, region-level Top-$k$ naming accuracy, GT-text localization IoU/BIoU, proposal-recall oracles, and MCC consistency before/after. Groups (ii) and (iii) are the channel through which novelty is expected to surface. None of the exploratory metrics is used to re-rank the leaderboard. They are reported in dedicated columns or appendix tables clearly separated from the standard-tier columns.
 
 \paragraph{Metric status.}
-The benchmark separates \emph{standard metrics used for reporting} from \emph{diagnostic readouts used for interpretation}. The only two proposal-defined diagnostic summaries are $\Delta_{\mathrm{vocab}}$ and MCMR@0.5. They are used in E2 to help interpret large-vocabulary robustness, not to replace mIoU.
+Table~\ref{tab:metric-status} lists every metric category with its tier, status, and intended use. The reader should be able to tell at a glance, for any number reported in the paper, whether it is a ranking number or an exploratory number.
 
-\begin{table}[!htbp]
-\centering
-\scriptsize
-\caption{Metric status and intended use. E1--E3 share mIoU as the standard metric on semantic targets. The proposal introduces only two compact diagnostic summaries for E2.}
-\label{tab:metric-status}
+{\scriptsize
 \setlength{\tabcolsep}{3pt}
-\begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{p{0.22\textwidth} p{0.26\textwidth} p{0.18\textwidth} p{0.28\textwidth}}
+\begin{longtable}{p{0.18\textwidth} p{0.30\textwidth} p{0.16\textwidth} p{0.27\textwidth}}
+\caption{Metric status and intended use. The benchmark uses a two-tier design: a single common standard metric for ranking E1--E3, and a broader exploratory set for finding phenomena and supporting novelty. Exploratory metrics never replace mIoU on the leaderboard. Rows are grouped by the evaluation block they primarily inform.}
+\label{tab:metric-status}\\
 \toprule
-Metric group & Examples & Status & Use \\
+Metric & Examples & Tier / status & Intended use \\
 \midrule
-Common standard metric & mIoU on VOC-20, Context-59/459, ADE20K-150/847, COCO-Stuff-171 & Primary reporting for E1--E3 & Unified effectiveness, robustness, and generalization comparison. \\
-Standard supporting readouts & Per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy & Spreadsheet / appendix & Help inspect where mIoU changes come from. \\
-Proposed diagnostic 1 & $\Delta_{\mathrm{vocab}}$ & New E2 diagnostic summary & Summarize the mIoU drop from compact to large official vocabularies. \\
-Proposed diagnostic 2 & MCMR@0.5 & New E2 diagnostic summary & Measure localized-region category mismatch after successful mask matching. \\
-Qualitative ambiguity evidence & Top mismatch pairs and confusion communities & Supporting analysis only & Illustrate systematic label confusions without hand-designed siblings. \\
-Hard-domain appendix metrics & IoU, $S_m$, $F^\omega_\beta$, $E_m$, MAE; OVCamo cIoU / c-metrics if class labels are used & Appendix / stress-test reporting & Evaluate camouflaged-object transfer where standard semantic mIoU is not aligned. \\
-Efficiency metrics & Training time, offline time, test time, memory, model calls & E4 cost reporting & Explain computational cost behind performance. \\
+\endfirsthead
+\multicolumn{4}{l}{\emph{Table~\ref{tab:metric-status} continued from previous page.}}\\
+\toprule
+Metric & Examples & Tier / status & Intended use \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\emph{Continued on next page.}}\\
+\endfoot
 \bottomrule
-\end{tabular}
-\end{adjustbox}
-\end{table}
+\endlastfoot
+\multicolumn{4}{l}{\textbf{Standard tier (used for E1/E2/E3 ranking)}} \\
+Common standard metric & mIoU on VOC-20, Context-59/459, ADE20K-150/847, COCO-Stuff-171 & \textbf{Standard}; primary reporting & Unified effectiveness, robustness, and generalization ranking. \\
+\midrule
+\multicolumn{4}{l}{\textbf{Exploratory tier --- E1 (effectiveness diagnostics)}} \\
+Per-class and split readouts & Per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy & Group (i); cheap & Inspect where mIoU changes come from. \\
+Frequency-stratified mIoU & Head/mid/tail-frequency class mIoU (tertile split by training-set frequency) & Group (i); cheap & Detect head-class-only methods; expose long-tail behavior. \\
+Object-scale stratified mIoU & Small / medium / large object mIoU (COCO-style scale bins) & Group (i); cheap & Reveal resolution and proposal-granularity bottlenecks. \\
+Confidence calibration & ECE, Brier score on confidence vs.\ pixel/region correctness & Group (i); cheap & TF methods rarely report calibration; potential novelty if systematically miscalibrated. \\
+Coverage / over-segmentation & Empty-prediction rate, over-segmentation rate, prediction coverage & Group (i); cheap & Detect silent failures and proposal-flooding behavior. \\
+\midrule
+\multicolumn{4}{l}{\textbf{Exploratory tier --- E2 (vocabulary / ambiguity diagnostics, primary novelty channel)}} \\
+$\Delta_{\mathrm{vocab}}$ & mIoU drop from compact $\to$ large official vocabulary (per-dataset and averaged) & \textbf{Group (ii)}; novelty-driving & Summarize vocabulary-robustness gap. \\
+MCMR@$\tau$ & MCMR@0.5 (primary), MCMR@0.75 (strict) & \textbf{Group (ii)}; novelty-driving & Localized-region category-mismatch rate; separates naming failure from localization failure. \\
+Semantic-distance-weighted mismatch & Mismatch weighted by CLIP/WordNet distance between $\hat{y}_i$ and $y_i$ & \textbf{Group (ii)}; novelty-driving & Distinguish ``near-miss'' (sofa $\to$ couch) from ``wild-miss'' (sofa $\to$ building). \\
+Hierarchical IoU & Partial credit when predicted label is a WordNet hypernym/hyponym of GT label & \textbf{Group (ii)}; novelty-driving & Test whether plain mIoU underestimates OV semantic ability. \\
+Synonym-collapsed mIoU & mIoU after collapsing synonym classes into single nodes & \textbf{Group (ii)}; novelty-driving & Quantify how much vocabulary-growth drop is real ambiguity vs.\ synonym competition. \\
+Prompt-sensitivity variance & mIoU std.\ across a fixed prompt-template set per method & \textbf{Group (ii)}; novelty-driving & Distinguish prompt-fragile CLIP-based methods from prompt-stable ones. \\
+Vocabulary-size scaling curve & mIoU at vocabulary sizes \{59, 150, 300, 459\} (Context) and \{150, 300, 500, 847\} (ADE) by random subsampling & \textbf{Group (ii)}; novelty-driving & Curve shape itself is a finding (linear / saturating / cliff). \\
+Region-level Top-$k$ naming & Top-1/Top-3/Top-5 accuracy on best-matched regions ($\mathrm{IoU}\ge 0.5$) & \textbf{Group (iii)}; probe & Separate ``does not know'' from ``knows but ranks wrong.'' \\
+GT-region naming probe & Top-1/Top-5 naming accuracy on GT-cropped regions & \textbf{Group (iii)}; probe & Isolate naming ability with localization removed. \\
+GT-text localization probe & IoU / BIoU when prompted with GT class name & \textbf{Group (iii)}; probe & Isolate localization ability with naming removed. \\
+Proposal-recall oracle & BestIoU and Recall@\{0.5, 0.7\} of class-agnostic proposals & \textbf{Group (iii)}; probe & Ceiling for proposal-based pipelines. \\
+MCC consistency probe & mIoU / MCMR before vs.\ after post-hoc mask--category re-ranking & \textbf{Group (iii)}; probe & Test whether consistency re-ranking helps. \\
+Qualitative ambiguity evidence & Top mismatch pairs, confusion communities, novel-vs-base class split & Qualitative & Illustrate systematic label confusions. \\
+\midrule
+\multicolumn{4}{l}{\textbf{Exploratory tier --- E3 (cross-dataset generalization diagnostics)}} \\
+Rank correlations & Kendall's $\tau$ and Spearman $\rho$ between E1 and E3 method rankings; cross-target rank stability & \textbf{Group (ii)}; novelty-driving & Hard evidence of generalization fragility. \\
+Class-overlap-stratified mIoU & Target-class mIoU split into source-overlapping vs.\ source-novel classes & \textbf{Group (ii)}; novelty-driving & Directly exposes trained-reference dependence on source vocabulary; favors TF rows on novel classes. \\
+Domain-shift sensitivity & mIoU drop vs.\ DINO/CLIP-embedding distance from source to target distribution & \textbf{Group (ii)}; novelty-driving & TF methods may show drop uncorrelated with distance --- a clean TF-vs-trained signature. \\
+Worst-class within target & Lowest per-class IoU within each target & Group (i) & Catches ``average is fine but one class collapsed'' patterns. \\
+Per-target $\Delta$ MCMR & MCMR@0.5 transferred from E1/E2 datasets to E3 targets & Group (ii) & Separate ``localization broke during transfer'' from ``naming broke.'' \\
+Source/target gap & Side-by-side source vs.\ target mIoU for trained refs & Group (i) & Contextualize trained-method generalization claims. \\
+\midrule
+\multicolumn{4}{l}{\textbf{E4 (efficiency)}} \\
+Core efficiency & Training time, offline preprocessing, inference time, peak memory, trainable parameters, model calls & Standard cost reporting & Explain cost behind performance. \\
+Normalized efficiency & mIoU per GFLOP, mIoU per second & Group (ii); novelty-supporting & Single normalized number for Pareto-frontier plots. \\
+Offline amortization curve & Per-image total cost as a function of evaluation set size $N$ & Group (ii); novelty-supporting & Fair treatment of diffusion-prototype methods (FreeDA, OVDiff). \\
+Per-stage breakdown & Memory and latency split across encoder / proposal / naming / post-processing stages & Group (i) & Identify the bottleneck stage per method. \\
+\midrule
+\multicolumn{4}{l}{\textbf{Appendix}} \\
+Hard-domain metrics & IoU, $S_m$, $F^\omega_\beta$, $E_m$, MAE; OVCamo cIoU / c-metrics & Appendix / stress test & Camouflaged-object transfer where standard semantic mIoU is not aligned. \\
+\end{longtable}
+}
 
-\paragraph{E1 standard metrics.}
-E1 reports mIoU on VOC-20, Context-59, ADE20K-150, COCO-Stuff-171, and their average. Per-class IoU, pixel accuracy, mean class accuracy, and thing/stuff breakdowns are recorded in the spreadsheet but are not required for the main table.
+\paragraph{Promotion rule.}
+An exploratory metric is promoted into the main paper only if it satisfies all three of the following: (a) it produces a stable ranking across at least two of \{VOC-20, Context-59/459, ADE-150/847, COCO-Stuff-171\}; (b) it discriminates between method families rather than only between random seeds; (c) it surfaces a failure mode that standard mIoU does not already make obvious. Exploratory metrics that fail this rule stay in the spreadsheet and appendix. This is what keeps the exploratory tier honest: it is allowed to be broad precisely because promotion is gated.
 
-\paragraph{E2 standard and diagnostic metrics.}
-E2 first reports the same standard metric, mIoU, on compact and large vocabularies. It then records two diagnostics.
+\paragraph{E1 standard and exploratory metrics.}
+E1 reports mIoU on VOC-20, Context-59, ADE20K-150, COCO-Stuff-171, and their average as the standard ranking number. In parallel, a set of cheap exploratory readouts is recorded so that E1 can answer not just \emph{which method ranks higher} but \emph{on what kinds of inputs the gap actually lives}. These include per-class IoU, pixel accuracy, mean class accuracy, thing/stuff mIoU, and \emph{frequency-stratified mIoU} (each dataset's classes are split into head/mid/tail tertiles by training-set frequency, and mIoU is reported on each tertile). \emph{Object-scale stratified mIoU} reports small/medium/large mIoU using COCO-style scale bins, surfacing resolution and proposal-granularity issues. \emph{Confidence calibration} is recorded as ECE and Brier score on each method's natural confidence output (where defined), since training-free methods rarely report calibration and systematic miscalibration is itself a candidate finding. \emph{Empty-prediction rate}, \emph{over-segmentation rate}, and \emph{prediction coverage} flag silent failure modes that average mIoU hides.
+
+\paragraph{E2 standard and exploratory metrics.}
+E2 first reports the same standard metric, mIoU, on compact and large vocabularies. In parallel, it records the two proposal-defined diagnostics.
 First, \textbf{vocabulary robustness drop} summarizes how much mIoU degrades when the label space expands from a compact official vocabulary to a larger official vocabulary:
 \begin{align}
 \Delta_{\mathrm{vocab}}^{\mathrm{Context}} &= \mathrm{mIoU}(\mathrm{Context}{\text -}59)-\mathrm{mIoU}(\mathrm{Context}{\text -}459),\\
@@ -175,17 +227,21 @@ A smaller $\Delta_{\mathrm{vocab}}$ means the method is more robust to larger an
 
 Second, \textbf{mask--category mismatch rate} measures how often a method localizes a region but assigns the wrong category name. For each ground-truth region $G_i$, let $\hat{M}_i$ be the best-matched predicted region and $\hat{y}_i$ its label. Then
 \begin{equation}
-\mathrm{MCMR@0.5}=
-\frac{\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge 0.5] \mathbf{1}[\hat{y}_i\ne y_i]}
-{\max\left(\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge 0.5],\epsilon\right)}.
+\mathrm{MCMR@}\tau=
+\frac{\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge \tau] \mathbf{1}[\hat{y}_i\ne y_i]}
+{\max\left(\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge \tau],\epsilon\right)}.
 \end{equation}
-A lower MCMR@0.5 means fewer category mismatches after successful localization. Frequent mismatch pairs $y_i\rightarrow\hat{y}_i$ are reported only as qualitative evidence, not as another metric.
+The primary threshold is $\tau=0.5$; $\tau=0.75$ is recorded as a stricter exploratory variant. A lower MCMR means fewer category mismatches after successful localization. Frequent mismatch pairs $y_i\rightarrow\hat{y}_i$ and confusion communities are reported only as qualitative evidence.
 
-\paragraph{E3 standard and diagnostic readouts.}
-E3 reports target mIoU on standard semantic targets, using the same metric as E1 and E2. To make the generalization behavior visible without adding another custom metric, the table also records source/training data, target average, worst-target mIoU, and optional rank stability in the spreadsheet. Source and target scores are shown side by side when trained references report source-domain performance.
+E2 additionally records several novelty-oriented exploratory readouts. \emph{Semantic-distance-weighted mismatch} reweights each MCMR error by the CLIP/WordNet distance between $\hat{y}_i$ and $y_i$, separating near-misses (e.g.\ \emph{sofa $\to$ couch}) from wild misses (e.g.\ \emph{sofa $\to$ building}). \emph{Hierarchical IoU} grants partial credit when the predicted label is a WordNet hypernym or hyponym of the GT label; it tests whether plain mIoU systematically underestimates open-vocabulary semantic ability. \emph{Synonym-collapsed mIoU} merges synonym classes (using WordNet synsets or a lightweight manual list on Context-459 / ADE-847) and recomputes mIoU; this isolates how much of the vocabulary-growth drop is genuine ambiguity versus synonym competition over a single visual concept. \emph{Prompt-sensitivity variance} runs each method with a fixed bank of prompt templates (e.g.\ ``a photo of \{X\}'', ``\{X\}'', ``a \{X\} in the scene'') and reports the std.\ of mIoU across templates --- discriminating prompt-fragile CLIP-based methods from prompt-stable detector- or VFM-based ones. \emph{Vocabulary-size scaling curves} subsample the large vocabularies at sizes \{59, 150, 300, 459\} on Context and \{150, 300, 500, 847\} on ADE, plotting mIoU against vocabulary size; the curve's shape (linear, saturating, cliff) is itself the finding. \emph{Region-level Top-$k$ naming accuracy} records, on each well-matched region ($\mathrm{IoU}\ge 0.5$), whether the GT label appears in the predicted Top-1, Top-3, or Top-5 names, separating ``does not know'' from ``knows but ranks wrong.''
+
+\paragraph{E3 standard and exploratory readouts.}
+E3 reports target mIoU on standard semantic targets, using the same metric as E1 and E2. To make the generalization behavior visible without adding another ranking metric, the table also records source/training data, target average, worst-target mIoU, \emph{worst-class mIoU within target} (the minimum per-class IoU within each target, catching "average is fine but one class collapsed" patterns), per-target $\Delta$ relative to E1, and the transferability of MCMR@0.5 from compact to larger vocabularies via \emph{per-target $\Delta$ MCMR}. Source and target scores are shown side by side when trained references report source-domain performance.
+
+E3 additionally records three novelty-oriented exploratory readouts. \emph{Rank correlations} compute Kendall's $\tau$ and Spearman's $\rho$ between the E1 method ranking and the E3 per-target rankings; low correlation is hard evidence of generalization fragility that mIoU averages hide. \emph{Class-overlap-stratified mIoU} splits each target's classes into a source-overlapping subset (classes present in or close to the trained reference's source vocabulary) and a source-novel subset, and reports mIoU on each; this directly exposes the trained-reference dependence on source vocabulary and provides a natural slot for strict-TF methods to show their advantage. \emph{Domain-shift sensitivity} computes a DINOv2 or CLIP image-embedding distance between each target dataset and the trained-reference source, then plots target-mIoU drop against this distance; strict-TF rows that show drop uncorrelated with distance produce a clean training-free signature.
 
 \paragraph{E4 cost metrics.}
-E4 reports training time, offline preprocessing time, inference time per image, peak GPU memory, trainable parameters, model calls, and module requirements. Offline prototype or diffusion stages are reported separately from per-image inference.
+E4 reports training time, offline preprocessing time, inference time per image, peak GPU memory, trainable parameters, model calls, and module requirements as the core cost numbers. Offline prototype or diffusion stages are reported separately from per-image inference. Three exploratory readouts make the cost analysis more informative. \emph{Normalized efficiency} reports mIoU per GFLOP and mIoU per second, giving a single number for Pareto-frontier plots over the standard mIoU. \emph{Offline cost amortization curves} plot per-image total cost (offline + online) as a function of evaluation-set size $N$; for diffusion-prototype methods (FreeDA, OVDiff) this gives a fair picture where small $N$ punishes them and large $N$ amortizes the offline stage. \emph{Per-stage memory and latency breakdown} splits each method's per-image cost across encoder / proposal / naming / post-processing stages, identifying the bottleneck stage and where future optimization would pay off most.
 
 \section{Methods and Adapter}
 
@@ -478,19 +534,44 @@ Trained references & & & & \\
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{Spreadsheet-only supporting readouts. These can be recorded during evaluation and promoted to the paper only if they reveal a clear pattern.}
+\caption{Spreadsheet-recorded exploratory readouts. Each method-dataset run produces all of these so they are available for offline analysis. They are promoted to the main paper only when they pass the promotion rule (cross-dataset stability, family-level discrimination, mIoU-orthogonal signal).}
 \label{tab:appendix-supporting-readouts}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{p{0.23\textwidth} p{0.44\textwidth} p{0.25\textwidth}}
 \toprule
 Readout & What to record & Possible use \\
 \midrule
+\textbf{E1 effectiveness diagnostics} & & \\
 Per-class behavior & Per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy. & Explain which classes or category types drive mIoU changes. \\
-Vocabulary ambiguity & MCMR@0.75, top mismatch pairs, confusion communities. & Support E2 category-ambiguity analysis. \\
-Proposal quality & BestIoU, Recall@0.5, Recall@0.7, number of proposals. & Explain whether proposal-based methods fail before naming. \\
-GT oracle diagnostics & GT-region naming Top-1/Top-5 and GT-text localization IoU / BIoU. & Separate recognition and localization failures. \\
+Frequency-stratified mIoU & Head/mid/tail mIoU using training-frequency tertiles. & Detect head-class-only methods; long-tail behavior. \\
+Object-scale stratified mIoU & Small/medium/large mIoU using COCO-style scale bins. & Reveal resolution / proposal-granularity issues. \\
+Confidence calibration & ECE, Brier score, reliability diagrams. & Test whether TF methods are systematically miscalibrated. \\
+Coverage / over-seg. rates & Empty-prediction rate, over-segmentation rate, prediction coverage. & Catch silent failures and proposal flooding. \\
+\midrule
+\textbf{E2 vocabulary / ambiguity diagnostics} & & \\
+Vocabulary ambiguity (core) & MCMR@0.5, MCMR@0.75, top mismatch pairs, confusion communities. & Core E2 analysis. \\
+Semantic-distance-weighted mismatch & Per-error weight by CLIP / WordNet distance between $\hat{y}_i$ and $y_i$. & Distinguish near-miss vs.\ wild-miss errors. \\
+Hierarchical IoU & Partial credit when $\hat{y}_i$ is a WordNet hyper/hyponym of $y_i$. & Test whether plain mIoU underestimates OV semantic ability. \\
+Synonym-collapsed mIoU & mIoU after merging WordNet-synset synonyms. & Quantify synonym competition vs.\ real ambiguity. \\
+Prompt-sensitivity variance & mIoU std.\ across a fixed prompt-template bank. & Separate prompt-fragile from prompt-stable methods. \\
+Vocabulary-size scaling curves & mIoU at \{59,150,300,459\} on Context, \{150,300,500,847\} on ADE. & Curve shape itself is a finding. \\
+Region-level Top-$k$ naming & Top-1/Top-3/Top-5 accuracy on regions with $\mathrm{IoU}\ge 0.5$. & Separate "does not know" from "knows but ranks wrong." \\
+GT oracle diagnostics & GT-region naming Top-1/Top-5; GT-text localization IoU / BIoU. & Separate naming and localization failures. \\
+Proposal quality & BestIoU, Recall@0.5, Recall@0.7, number of proposals. & Ceiling for proposal-based pipelines. \\
 MCC consistency & Before/after mIoU, before/after MCMR@0.5, qualitative examples. & Check whether post-hoc consistency reduces mismatch. \\
+\midrule
+\textbf{E3 generalization diagnostics} & & \\
+Rank correlations & Kendall's $\tau$, Spearman's $\rho$ between E1 and E3 rankings; cross-target rank stability. & Hard evidence of generalization fragility. \\
+Class-overlap stratified mIoU & Target mIoU split into source-overlapping vs.\ source-novel classes. & Expose trained-reference dependence on source vocabulary. \\
+Domain-shift sensitivity & mIoU drop vs.\ DINO / CLIP source-to-target embedding distance. & Identify clean training-free signatures. \\
+Worst-class within target & Minimum per-class IoU within each target. & Catch one-class collapses hidden by averages. \\
+Per-target $\Delta$ MCMR & MCMR@0.5 transferred from E1/E2 datasets to E3 targets. & Separate localization vs.\ naming transfer failures. \\
+\midrule
+\textbf{E4 efficiency exploratory} & & \\
 Efficiency details & Offline time, per-image inference time, memory, model calls, input resolution. & Build cost-performance analysis. \\
+Normalized efficiency & mIoU per GFLOP, mIoU per second. & Single number for Pareto-frontier plots. \\
+Offline amortization curve & Per-image total cost as a function of $N$ (eval-set size). & Fair treatment of diffusion-prototype methods. \\
+Per-stage breakdown & Memory and latency per encoder/proposal/naming/post-proc.\ stage. & Identify the bottleneck stage per method. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
