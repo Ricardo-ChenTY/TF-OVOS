@@ -1,0 +1,562 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{multirow}
+
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black}
+\setlength{\emergencystretch}{2em}
+\setlist[itemize]{leftmargin=1.2em,itemsep=1pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.2em,itemsep=1pt,topsep=2pt}
+
+\newcommand{\up}{\ensuremath{\uparrow}}
+\newcommand{\down}{\ensuremath{\downarrow}}
+
+\title{\textbf{TF-OVOS}: A Four-Part Evaluation Framework for \\
+       Training-Free Open-Vocabulary Object Segmentation \\
+       \vspace{0.3em}
+       \large{Proposal Draft v23 -- unified metrics and diagnostic readouts}}
+\author{Draft for Discussion}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%==============================================================
+\section{Core Idea}
+
+This proposal studies \textbf{training-free open-vocabulary object segmentation} (TF-OVOS). Given an image $I$ and a candidate vocabulary $\mathcal{C}$, a method predicts a set of mask--category pairs with optional confidence scores:
+\begin{equation}
+I+\mathcal{C}\rightarrow \mathcal{P}=\{(\hat{M}_k,\hat{y}_k,\hat{s}_k)\}_{k=1}^{K}, \qquad \hat{y}_k\in\mathcal{C}.
+\end{equation}
+For semantic-segmentation benchmarks, $\mathcal{P}$ is converted into a dense class map. For object-centric or hard-domain targets, the same output is converted into one or more foreground object masks. This makes OVCamo and other camouflaged-object datasets \emph{hard-domain targets} rather than the whole topic.
+
+\paragraph{Strict training-free setting.}
+The main rows are \textbf{training-free and MLLM/API-free}: no target-dataset training, no prompt tuning, no adapter training, no validation threshold tuning, no inference-time generative MLLM calls, and no closed-source API-VLMs. Frozen public models such as CLIP, SigLIP, GroundingDINO, DINOv2, SAM, and SAM2 are allowed.
+
+\paragraph{Compact trained references.}
+Training-based rows are kept intentionally small. The main paper keeps only a few general open-vocabulary segmentation references, such as OVSeg~\cite{ovseg2023}, SAN~\cite{san2023}, and ODISE~\cite{odise2023}. They are not strict-TF competitors; they provide context for effectiveness, source-to-target generalization, and efficiency.
+
+%==============================================================
+
+\section{Evaluation Protocol}
+
+Following advisor feedback, the revised framework keeps \textbf{one common standard metric family} for E1--E3 whenever possible. Except for efficiency, the evaluations differ mainly by \emph{dataset difficulty and scenario}, not by inventing a new metric for each block. Standard semantic-segmentation targets use mIoU; additional readouts are recorded only to explain why methods fail.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Final E1--E4 evaluation protocol. E1--E3 use mIoU as the common primary metric whenever semantic labels are available. E4 is separated because it measures cost rather than segmentation quality.}
+\label{tab:evaluation-overview}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.15\textwidth} p{0.27\textwidth} p{0.20\textwidth} p{0.24\textwidth} p{0.13\textwidth}}
+\toprule
+Evaluation & Scenario / dataset difficulty & Standard metric & Diagnostic / test readouts & Role \\
+\midrule
+\textbf{E1 Standard OVOS effectiveness} &
+Mainstream open-vocabulary segmentation datasets with compact official vocabularies: PASCAL VOC-20, PASCAL Context-59, ADE20K-150, and COCO-Stuff-171. &
+mIoU on each dataset and average mIoU. &
+Per-class IoU, thing/stuff split when available, prediction coverage. &
+Primary effectiveness leaderboard. \\
+\addlinespace[2pt]
+\textbf{E2 Vocabulary / category-ambiguity robustness} &
+Harder large-vocabulary versions of standard datasets: PASCAL Context-459 and ADE20K-847, paired with Context-59 and ADE20K-150. &
+mIoU on compact and large vocabularies. &
+Two proposal diagnostics: $\Delta_{\mathrm{vocab}}$ and MCMR@0.5; top mismatch pairs are qualitative evidence. &
+Robustness to vocabulary difficulty. \\
+\addlinespace[2pt]
+\textbf{E3 Cross-dataset generalization} &
+Source-to-target comparison across the same standard semantic targets. Strict-TF methods use no source training; trained references use their official source training. &
+Target mIoU on VOC-20, Context-59, ADE20K-150, and COCO-Stuff-171. &
+Rank stability, worst-target mIoU, and source/target scores shown side by side. &
+Generalization comparison. \\
+\addlinespace[2pt]
+\textbf{E4 Efficiency comparison} &
+Same method rows under fixed hardware, input size, and adapter settings. &
+Not applicable. &
+Training time, offline cost, inference time, memory, trainable parameters, model calls. &
+Cost analysis. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Metric-unification rule.}
+E1, E2, and E3 all report mIoU as the primary quantitative metric on semantic targets. E2 becomes harder because the vocabulary is larger and more ambiguous; E3 becomes harder because the evaluation emphasizes source-to-target transfer. The proposed diagnostics are recorded to explain observed behavior, not to replace the standard metric.
+
+\paragraph{Why this replaces the previous OVCOS-centered structure.}
+The previous draft was too narrow because OVCamo was both the task definition and the main target. The revised E1--E4 framework makes OVCamo one optional hard-domain transfer target, while the main topic becomes general training-free open-vocabulary object / semantic segmentation.
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\caption{Main dataset plan. E1--E3 use standard semantic-segmentation targets so that the primary metric can remain mIoU. Camouflaged-object datasets are kept as appendix hard-domain stress targets because their metrics are not fully aligned with standard OVSS mIoU.}
+\label{tab:datasets}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.18\textwidth} p{0.22\textwidth} p{0.31\textwidth} p{0.20\textwidth}}
+\toprule
+Dataset / split & Role & What it provides & Primary metric \\
+\midrule
+PASCAL VOC-20~\cite{pascalvoc2010} & E1 and E3 standard target & Object-centric semantic masks and 20 foreground classes. & mIoU. \\
+PASCAL Context-59~\cite{pascalcontext2014} & E1, E2 compact-vocabulary side, and E3 target & Scene semantic masks with object and stuff categories. & mIoU. \\
+PASCAL Context-459~\cite{pascalcontext2014} & E2 large-vocabulary side & Larger label space for vocabulary robustness and category-ambiguity analysis. & mIoU. \\
+ADE20K-150~\cite{ade20k2017} & E1, E2 compact-vocabulary side, and E3 target & Diverse scene parsing categories. & mIoU. \\
+ADE20K-847~\cite{ade20k2017} & E2 large-vocabulary side & Larger open-vocabulary label space. & mIoU. \\
+COCO-Stuff-171~\cite{cocostuff2018} & E1 and E3 standard target; common source for trained refs & Object and stuff semantic categories; frequently used by trained OVSS methods. & mIoU. \\
+\midrule
+OVCamo-TE~\cite{ovcoser2024}, CAMO-TE~\cite{camo2019}, COD10K-TE-Camo~\cite{cod10k2020}, NC4K~\cite{nc4k2021} & Appendix hard-domain transfer targets & Camouflaged-object masks; only OVCamo has aligned OVCOS class labels. & Mask-only metrics; OVCamo c-metrics optional. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Hard-domain target rule.}
+Hard-domain camouflaged-object datasets are useful for stress testing, but they are moved out of the core E1--E3 metric-unified tables because CAMO, COD10K, and NC4K do not provide the same open-vocabulary semantic label space. They are reported as appendix transfer targets with mask-only metrics. This keeps the main benchmark clean while preserving a place to test whether standard OVOS performance transfers to difficult object domains.
+
+%==============================================================
+\section{Metrics}
+
+\paragraph{Common primary metric for E1--E3.}
+For all standard semantic-segmentation targets, the primary metric is mIoU. The same metric is used in E1, E2, and E3; the evaluations differ in dataset/vocabulary difficulty and transfer scenario. This follows the principle that a benchmark should not need a different main metric for every scenario.
+
+\paragraph{Metric status.}
+The benchmark separates \emph{standard metrics used for reporting} from \emph{diagnostic readouts used for interpretation}. The only two proposal-defined diagnostic summaries are $\Delta_{\mathrm{vocab}}$ and MCMR@0.5. They are used in E2 to help interpret large-vocabulary robustness, not to replace mIoU.
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\caption{Metric status and intended use. E1--E3 share mIoU as the standard metric on semantic targets. The proposal introduces only two compact diagnostic summaries for E2.}
+\label{tab:metric-status}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.22\textwidth} p{0.26\textwidth} p{0.18\textwidth} p{0.28\textwidth}}
+\toprule
+Metric group & Examples & Status & Use \\
+\midrule
+Common standard metric & mIoU on VOC-20, Context-59/459, ADE20K-150/847, COCO-Stuff-171 & Primary reporting for E1--E3 & Unified effectiveness, robustness, and generalization comparison. \\
+Standard supporting readouts & Per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy & Spreadsheet / appendix & Help inspect where mIoU changes come from. \\
+Proposed diagnostic 1 & $\Delta_{\mathrm{vocab}}$ & New E2 diagnostic summary & Summarize the mIoU drop from compact to large official vocabularies. \\
+Proposed diagnostic 2 & MCMR@0.5 & New E2 diagnostic summary & Measure localized-region category mismatch after successful mask matching. \\
+Qualitative ambiguity evidence & Top mismatch pairs and confusion communities & Supporting analysis only & Illustrate systematic label confusions without hand-designed siblings. \\
+Hard-domain appendix metrics & IoU, $S_m$, $F^\omega_\beta$, $E_m$, MAE; OVCamo cIoU / c-metrics if class labels are used & Appendix / stress-test reporting & Evaluate camouflaged-object transfer where standard semantic mIoU is not aligned. \\
+Efficiency metrics & Training time, offline time, test time, memory, model calls & E4 cost reporting & Explain computational cost behind performance. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{E1 standard metrics.}
+E1 reports mIoU on VOC-20, Context-59, ADE20K-150, COCO-Stuff-171, and their average. Per-class IoU, pixel accuracy, mean class accuracy, and thing/stuff breakdowns are recorded in the spreadsheet but are not required for the main table.
+
+\paragraph{E2 standard and diagnostic metrics.}
+E2 first reports the same standard metric, mIoU, on compact and large vocabularies. It then records two diagnostics.
+First, \textbf{vocabulary robustness drop} summarizes how much mIoU degrades when the label space expands from a compact official vocabulary to a larger official vocabulary:
+\begin{align}
+\Delta_{\mathrm{vocab}}^{\mathrm{Context}} &= \mathrm{mIoU}(\mathrm{Context}{\text -}59)-\mathrm{mIoU}(\mathrm{Context}{\text -}459),\\
+\Delta_{\mathrm{vocab}}^{\mathrm{ADE}} &= \mathrm{mIoU}(\mathrm{ADE}{\text -}150)-\mathrm{mIoU}(\mathrm{ADE}{\text -}847),\\
+\Delta_{\mathrm{vocab}} &= \frac{1}{2}\left(\Delta_{\mathrm{vocab}}^{\mathrm{Context}}+\Delta_{\mathrm{vocab}}^{\mathrm{ADE}}\right).
+\end{align}
+A smaller $\Delta_{\mathrm{vocab}}$ means the method is more robust to larger and more ambiguous vocabularies. This summary uses existing dataset splits and standard mIoU; it does not create new labels.
+
+Second, \textbf{mask--category mismatch rate} measures how often a method localizes a region but assigns the wrong category name. For each ground-truth region $G_i$, let $\hat{M}_i$ be the best-matched predicted region and $\hat{y}_i$ its label. Then
+\begin{equation}
+\mathrm{MCMR@0.5}=
+\frac{\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge 0.5] \mathbf{1}[\hat{y}_i\ne y_i]}
+{\max\left(\sum_i \mathbf{1}[\mathrm{IoU}(\hat{M}_i,G_i)\ge 0.5],\epsilon\right)}.
+\end{equation}
+A lower MCMR@0.5 means fewer category mismatches after successful localization. Frequent mismatch pairs $y_i\rightarrow\hat{y}_i$ are reported only as qualitative evidence, not as another metric.
+
+\paragraph{E3 standard and diagnostic readouts.}
+E3 reports target mIoU on standard semantic targets, using the same metric as E1 and E2. To make the generalization behavior visible without adding another custom metric, the table also records source/training data, target average, worst-target mIoU, and optional rank stability in the spreadsheet. Source and target scores are shown side by side when trained references report source-domain performance.
+
+\paragraph{E4 cost metrics.}
+E4 reports training time, offline preprocessing time, inference time per image, peak GPU memory, trainable parameters, model calls, and module requirements. Offline prototype or diffusion stages are reported separately from per-image inference.
+
+\section{Methods and Adapter}
+
+The benchmark uses explicit method rows rather than only family names. Final inclusion still requires a code/weight check, but the proposal fixes the intended roster below.
+
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\caption{Concrete method roster and OVOS adapters. Rows marked backup are included if public code/weights are stable enough; otherwise they move to appendix with an implementation note.}
+\label{tab:families}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.17\textwidth} p{0.40\textwidth} p{0.22\textwidth} p{0.17\textwidth}}
+\toprule
+Family & E1/E2 rows & Default E3 rows & Unified OVOS adapter \\
+\midrule
+CLIP-only / attention-edited OVSS &
+MaskCLIP~\cite{maskclip2022}, CLIP-DIY~\cite{clipdiy2024}, SCLIP~\cite{sclip2024}, NACLIP~\cite{naclip2025}; backup: CLIPtrase~\cite{cliptrase2024}, SC-CLIP~\cite{scclip2025}, ResCLIP~\cite{resclip2025} &
+MaskCLIP, SCLIP, NACLIP, ResCLIP &
+Convert class score maps into dense predictions or connected-component masks with fixed thresholds. \\
+\addlinespace[2pt]
+CLIP + VFM OVSS &
+ProxyCLIP~\cite{proxyclip2024}, CorrCLIP~\cite{corrclip2025}, Trident~\cite{trident2024}; backup: CASS~\cite{cass2025} &
+ProxyCLIP, CorrCLIP, Trident &
+Use VFM-refined patch correlations or SAM/DINO spatial priors before dense-map or mask selection. \\
+\addlinespace[2pt]
+Diffusion / reference-based OVSS &
+OVDiff~\cite{ovdiff2024}, FreeDA~\cite{freeda2024} &
+FreeDA; OVDiff if code/runtime is feasible &
+Use diffusion-generated or diffusion-augmented visual prototypes to match regions with text classes. \\
+\addlinespace[2pt]
+OV detection + SAM &
+GroundingDINO~\cite{groundingdino2023} + SAM~\cite{sam2023}; GroundingDINO + SAM2~\cite{sam22024} &
+GroundingDINO + SAM2 &
+Prompt the detector with class names, convert boxes into masks with SAM/SAM2, and resolve overlaps by score. \\
+\addlinespace[2pt]
+Class-agnostic proposal + VLM naming &
+SAM-AMG + CLIP/SigLIP~\cite{clip2021,siglip2023}; DINOv2~\cite{dinov22023} + SAM + CLIP/SigLIP; MCC consistency diagnostic &
+SAM-AMG + SigLIP; DINOv2 + SAM + SigLIP &
+Generate proposals and name proposals with a frozen VLM. MCC is evaluated only as a post-hoc diagnostic probe. \\
+\addlinespace[2pt]
+Compact trained references &
+OVSeg~\cite{ovseg2023}, SAN~\cite{san2023}, ODISE~\cite{odise2023} &
+OVSeg, SAN, ODISE &
+Not strict-TF. Used as compact context for E1/E3/E4, not as primary benchmark rows. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Adapter rule.}
+Every method is converted to either a dense class map or a set of $(\hat{M},\hat{y},\hat{s})$ pairs using pre-declared thresholds, prompts, resize sizes, SAM settings, and post-processing. Constants are fixed before target evaluation and are not tuned per method or per dataset. MCC re-ranking is reported only as a post-hoc consistency diagnostic rather than as a primary leaderboard method or a new method family.
+
+%==============================================================
+
+\section{Main Tables}
+
+\subsection{E1: Standard OVOS Effectiveness}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{E1 standard open-vocabulary object/semantic segmentation effectiveness. Strict-TF rows use no target training. The standard metric is mIoU across all columns. Numeric entries are filled after running the fixed adapters.}
+\label{tab:e1-effectiveness}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c c c c c}
+\toprule
+Method & Type & Strict TF? & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 mIoU\up & COCO-Stuff mIoU\up & Avg.\up \\
+\midrule
+\multicolumn{8}{l}{\textbf{CLIP-only / attention-edited OVSS}} \\
+MaskCLIP & CM & Yes & & & & & \\
+CLIP-DIY & CM & Yes & & & & & \\
+SCLIP & CM & Yes & & & & & \\
+NACLIP & CM & Yes & & & & & \\
+CLIPtrase & CM & Yes & & & & & \\
+SC-CLIP & CM & Yes & & & & & \\
+ResCLIP & CM & Yes & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{CLIP + VFM OVSS}} \\
+ProxyCLIP & VM & Yes & & & & & \\
+CorrCLIP & VM & Yes & & & & & \\
+Trident & VM & Yes & & & & & \\
+CASS & VM & Yes & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{Diffusion / reference-based OVSS}} \\
+OVDiff & DM & Yes & & & & & \\
+FreeDA & DM & Yes & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{OV detection + SAM}} \\
+GroundingDINO + SAM & DS & Yes & & & & & \\
+GroundingDINO + SAM2 & DS & Yes & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{Class-agnostic proposal + VLM naming}} \\
+SAM-AMG + CLIP & PN & Yes & & & & & \\
+SAM-AMG + SigLIP & PN & Yes & & & & & \\
+DINOv2 + SAM + CLIP & PN & Yes & & & & & \\
+DINOv2 + SAM + SigLIP & PN & Yes & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{Compact training-based references (not strict TF)}} \\
+OVSeg & Trained & No & & & & & \\
+SAN & Trained & No & & & & & \\
+ODISE & Trained & No & & & & & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{E2: Vocabulary and Category-Ambiguity Robustness}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{E2 vocabulary and category-ambiguity robustness. The first four numeric columns are standard mIoU under compact and large official vocabularies. The final columns are diagnostic readouts, not replacement ranking metrics.}
+\label{tab:e2-ambiguity}
+\setlength{\tabcolsep}{2.5pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c c c c p{0.22\textwidth}}
+\toprule
+Method & Ctx-59 mIoU\up & Ctx-459 mIoU\up & ADE-150 mIoU\up & ADE-847 mIoU\up & $\Delta_{\mathrm{vocab}}$\down & MCMR@0.5\down & Top mismatch pairs \\
+\midrule
+MaskCLIP & & & & & & & \\
+CLIP-DIY & & & & & & & \\
+SCLIP & & & & & & & \\
+NACLIP & & & & & & & \\
+ResCLIP & & & & & & & \\
+ProxyCLIP & & & & & & & \\
+CorrCLIP & & & & & & & \\
+Trident & & & & & & & \\
+OVDiff / FreeDA & & & & & & & \\
+GroundingDINO + SAM2 & & & & & & & \\
+SAM-AMG + SigLIP & & & & & & & \\
+DINOv2 + SAM + SigLIP & & & & & & & \\
+OVSeg / SAN / ODISE (ref.) & & & & & & & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{E3: Cross-Dataset Generalization}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{E3 cross-dataset generalization. E3 uses the same standard metric as E1 and E2: target mIoU. Scenario difficulty comes from source-to-target transfer and dataset variation, not a different quality metric.}
+\label{tab:e3-generalization}
+\setlength{\tabcolsep}{2.5pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l p{0.22\textwidth} c c c c c c}
+\toprule
+Method & Source / training data & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 mIoU\up & COCO-Stuff mIoU\up & Avg.\up & Worst\up \\
+\midrule
+\multicolumn{8}{l}{\textbf{Strict training-free rows}} \\
+MaskCLIP & None & & & & & & \\
+CLIP-DIY & None & & & & & & \\
+SCLIP & None & & & & & & \\
+NACLIP & None & & & & & & \\
+ResCLIP & None & & & & & & \\
+ProxyCLIP & None & & & & & & \\
+CorrCLIP & None & & & & & & \\
+Trident & None & & & & & & \\
+FreeDA & None; offline diffusion prototypes only & & & & & & \\
+GroundingDINO + SAM2 & None & & & & & & \\
+SAM-AMG + SigLIP & None & & & & & & \\
+DINOv2 + SAM + SigLIP & None & & & & & & \\
+\midrule
+\multicolumn{8}{l}{\textbf{Compact training-based references}} \\
+OVSeg & Official released weights / COCO-style source & & & & & & \\
+SAN & Official released weights / COCO-Stuff source & & & & & & \\
+ODISE & Official released weights / COCO source & & & & & & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{E3 reporting rule.}
+For the main E3 table, every method is evaluated with official target vocabularies and target mIoU. Hard-domain camouflaged-object transfer is still useful, but it is reported in the appendix because those targets require mask-only metrics and would break the unified E1--E3 metric structure.
+
+\subsection{E4: Efficiency Comparison}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{E4 efficiency comparison. Exact numbers are filled after running every method on the same GPU, input size, and adapter settings. Training-based methods are intentionally limited to compact references.}
+\label{tab:e4-efficiency}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c p{0.17\textwidth} c c p{0.36\textwidth}}
+\toprule
+Method & Training? & Train source & Train time & Test cost & Major modules / notes \\
+\midrule
+MaskCLIP & No & None & 0 & report & CLIP dense label extraction baseline. \\
+CLIP-DIY & No & None & 0 & report & CLIP patch inference plus unsupervised localization prior. \\
+SCLIP & No & None & 0 & report & CLIP with correlative self-attention. \\
+NACLIP & No & None & 0 & report & CLIP neighbour-aware attention adaptation. \\
+CLIPtrase & No & None & 0 & report & CLIP self-attention / dense inference modification. \\
+SC-CLIP & No & None & 0 & report & Self-calibrated CLIP; no target training. \\
+ResCLIP & No & None & 0 & report & Residual cross-correlation attention and semantic feedback refinement. \\
+ProxyCLIP & No & None & 0 & report & CLIP plus VFM proxy attention. \\
+CorrCLIP & No & None & 0 & report & CLIP with patch correlation reconstruction. \\
+Trident & No & None & 0 & report & CLIP + DINO + SAM high-resolution training-free pipeline. \\
+CASS & No & None & 0 & report & CLIP with VFM spectral object-context distillation at inference. \\
+OVDiff & No & None & offline synth. & report & Diffusion-generated support/prototype stage; no target training. \\
+FreeDA & No & None & offline proto. & report & Offline diffusion-augmented prototype generation. \\
+GroundingDINO + SAM2 & No & None & 0 & report & Open-set detector plus SAM2 mask generation. \\
+SAM-AMG + SigLIP & No & None & 0 & report & Class-agnostic SAM proposals plus SigLIP naming. \\
+DINOv2 + SAM + SigLIP & No & None & 0 & report & DINOv2-guided proposals plus SigLIP naming. \\
+OVSeg & Yes & COCO-style source & report & report & Mask-adapted CLIP trained reference. \\
+SAN & Yes & COCO-Stuff source & report & report & Side adapter trained reference. \\
+ODISE & Yes & COCO source & report & report & Diffusion-based open-vocabulary panoptic trained reference. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\subsection{Diagnostic Probes}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Failure-source diagnostic probes. These are not model ablations and are not separate benchmark tasks. They explain whether errors come from naming, localization, proposal recall, or mask--category consistency.}
+\label{tab:diagnostic-probes}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.22\textwidth} p{0.40\textwidth} p{0.18\textwidth} p{0.16\textwidth}}
+\toprule
+Diagnostic probe & Setting & Reported quantities & Ranking use \\
+\midrule
+GT-region naming diagnostic & Classify ground-truth regions with CLIP/SigLIP; localization is removed. & Top-1 / Top-5 naming accuracy & Diagnostic only \\
+GT-text localization diagnostic & Segment or localize using the ground-truth class prompt; recognition is removed. & IoU / BIoU / mask metrics & Diagnostic only \\
+Proposal-recall diagnostic & Choose the proposal with highest GT IoU from SAM-AMG or DINOv2+SAM; naming is removed. & Oracle IoU / BIoU & Diagnostic only \\
+MCC consistency diagnostic & Compare the same proposal+naming pipeline with and without post-hoc mask--category consistency re-ranking. & Pair-consistency gain / failure cases & Diagnostic only \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+%==============================================================
+\clearpage
+
+\section*{A Appendix Tables}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Appendix hard-domain transfer stress test. These targets are not used to define the unified E1--E3 main metric because they require object-mask metrics rather than standard semantic mIoU.}
+\label{tab:appendix-hard-domain}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c c c c c}
+\toprule
+Method & OVCamo cIoU\up & OVCamo mask\up & CAMO mask\up & COD10K-Camo mask\up & NC4K mask\up & Hard avg\up & Notes \\
+\midrule
+MaskCLIP & & & & & & & \\
+SCLIP & & & & & & & \\
+NACLIP & & & & & & & \\
+ProxyCLIP & & & & & & & \\
+Trident & & & & & & & \\
+FreeDA & & & & & & & \\
+GroundingDINO + SAM2 & & & & & & & \\
+SAM-AMG + SigLIP & & & & & & & \\
+DINOv2 + SAM + SigLIP & & & & & & & \\
+OVSeg / SAN / ODISE (ref.) & & & & & & & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\paragraph{Hard-domain mask score.}
+The hard-domain mask columns are filled with the standard camouflaged-object metric suite: IoU, $S_m$, $F^\omega_\beta$, $E_m$, and MAE. The compact table may show one representative mask score or an average after all numbers are available, while the spreadsheet keeps the full suite. OVCamo cIoU is reported only when the class-aware OVCamo vocabulary is used.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{E2 qualitative mismatch summary supporting MCMR@0.5. These entries are explanatory evidence, not additional benchmark metrics.}
+\label{tab:appendix-ambiguity-graph}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c p{0.34\textwidth}}
+\toprule
+Method group & Localized pairs & Mismatch pairs & MCMR@0.5 & Example mismatch pairs / communities \\
+\midrule
+Dense-map TF methods & & & & \\
+Detector+SAM TF methods & & & & \\
+Proposal+naming TF methods & & & & \\
+MCC consistency diagnostics & & & & \\
+Trained references & & & & \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Spreadsheet-only supporting readouts. These can be recorded during evaluation and promoted to the paper only if they reveal a clear pattern.}
+\label{tab:appendix-supporting-readouts}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.23\textwidth} p{0.44\textwidth} p{0.25\textwidth}}
+\toprule
+Readout & What to record & Possible use \\
+\midrule
+Per-class behavior & Per-class IoU, thing/stuff mIoU, pixel accuracy, mean class accuracy. & Explain which classes or category types drive mIoU changes. \\
+Vocabulary ambiguity & MCMR@0.75, top mismatch pairs, confusion communities. & Support E2 category-ambiguity analysis. \\
+Proposal quality & BestIoU, Recall@0.5, Recall@0.7, number of proposals. & Explain whether proposal-based methods fail before naming. \\
+GT oracle diagnostics & GT-region naming Top-1/Top-5 and GT-text localization IoU / BIoU. & Separate recognition and localization failures. \\
+MCC consistency & Before/after mIoU, before/after MCMR@0.5, qualitative examples. & Check whether post-hoc consistency reduces mismatch. \\
+Efficiency details & Offline time, per-image inference time, memory, model calls, input resolution. & Build cost-performance analysis. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Per-method exclusion or demotion grounds for rows outside the strict TF leaderboard.}
+\label{tab:appendix-exclusion}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l c c c c p{0.34\textwidth}}
+\toprule
+Method & Task training? & Prompt/adapt. training? & MLLM call? & API-VLM? & Main reason \\
+\midrule
+OVSeg & Yes & Yes & No & No & Kept as compact trained reference only. \\
+SAN & Yes & Yes & No & No & Kept as compact trained reference only. \\
+ODISE & Yes & Yes & No & No & Kept as compact trained reference only. \\
+OVCoser & Yes & Yes & No & No & OVCOS-specific; moved to hard-domain related work / appendix. \\
+SuCLIP & Yes & Yes & No & No & OVCOS-specific; moved to hard-domain related work / appendix. \\
+COCUS / cascaded VLM OVCOS & Yes & Yes & No & No & Related hard-domain work; not part of general OVOS main rows. \\
+DSS / Discover-Segment-Select & No & No & Yes & No & Uses inference-time MLLM mask selection; related work only. \\
+GenSAM / ProMaC & No & No & Yes & No & Inference-time generative MLLM; related work only. \\
+API-VLM + SAM & No & No & Depends & Yes & Closed-source API; not reproducible under strict protocol. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\clearpage
+\begin{thebibliography}{99}
+\small
+\bibitem{revisitovs2025} Qiming Huang, Han Hu, and Jianbo Jiao. Revisit the Open Nature of Open Vocabulary Semantic Segmentation. ICLR, 2025.
+\bibitem{ovparts2023} Meng Wei, Xiaoyu Yue, Wenwei Zhang, Shu Kong, Xihui Liu, and Jiangmiao Pang. OV-PARTS: Towards Open-Vocabulary Part Segmentation. NeurIPS Datasets and Benchmarks, 2023.
+\bibitem{ovdg2026} Dong Zhao, Qi Zang, Nan Pu, Wenjing Li, Nicu Sebe, and Zhun Zhong. Open-Vocabulary Domain Generalization in Urban-Scene Segmentation. arXiv, 2026.
+\bibitem{pascalvoc2010} Mark Everingham et al. The PASCAL Visual Object Classes (VOC) Challenge. IJCV, 2010.
+\bibitem{pascalcontext2014} Roozbeh Mottaghi et al. The Role of Context for Object Detection and Semantic Segmentation in the Wild. CVPR, 2014.
+\bibitem{ade20k2017} Bolei Zhou et al. Scene Parsing through ADE20K Dataset. CVPR, 2017.
+\bibitem{cocostuff2018} Holger Caesar, Jasper Uijlings, and Vittorio Ferrari. COCO-Stuff: Thing and Stuff Classes in Context. CVPR, 2018.
+\bibitem{clip2021} Alec Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML, 2021.
+\bibitem{siglip2023} Xiaohua Zhai et al. Sigmoid Loss for Language Image Pre-Training. ICCV, 2023.
+\bibitem{dinov22023} Maxime Oquab et al. DINOv2: Learning Robust Visual Features without Supervision. TMLR, 2024.
+\bibitem{sam2023} Alexander Kirillov et al. Segment Anything. ICCV, 2023.
+\bibitem{sam22024} Nikhila Ravi et al. SAM 2: Segment Anything in Images and Videos. arXiv, 2024.
+\bibitem{groundingdino2023} Shilong Liu et al. Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection. ECCV, 2024.
+\bibitem{maskclip2022} Chong Zhou, Chen Change Loy, and Bo Dai. Extract Free Dense Labels from CLIP. ECCV, 2022.
+\bibitem{clipdiy2024} Monika Wysoczanska, Michael Ramamonjisoa, Tomasz Trzcinski, and Oriane Simeoni. CLIP-DIY: CLIP Dense Inference Yields Open-Vocabulary Semantic Segmentation For-Free. WACV, 2024.
+\bibitem{sclip2024} Feng Wang, Jieru Mei, and Alan Yuille. SCLIP: Rethinking Self-Attention for Dense Vision-Language Inference. ECCV, 2024.
+\bibitem{naclip2025} Sina Hajimiri, Ismail Ben Ayed, and Jose Dolz. Pay Attention to Your Neighbours: Training-Free Open-Vocabulary Semantic Segmentation. WACV, 2025.
+\bibitem{cliptrase2024} Tong Shao, Zhuotao Tian, Hang Zhao, and Jingyong Su. Explore the Potential of CLIP for Training-Free Open Vocabulary Semantic Segmentation. ECCV, 2024.
+\bibitem{scclip2025} Sule Bai, Yong Liu, Yifei Han, Haoji Zhang, and Yansong Tang. Self-Calibrated CLIP for Training-Free Open-Vocabulary Segmentation. arXiv, 2024/2025.
+\bibitem{resclip2025} Yiwen Yang et al. ResCLIP: Residual Attention for Training-free Dense Vision-language Inference. CVPR, 2025.
+\bibitem{proxyclip2024} Mengcheng Lan et al. ProxyCLIP: Proxy Attention Improves CLIP for Open-Vocabulary Segmentation. ECCV, 2024.
+\bibitem{corrclip2025} Dengke Zhang, Fagui Liu, and Quan Tang. CorrCLIP: Reconstructing Patch Correlations in CLIP for Open-Vocabulary Semantic Segmentation. ICCV, 2025.
+\bibitem{trident2024} Yuheng Shi, Minjing Dong, and Chang Xu. Harnessing Vision Foundation Models for High-Performance, Training-Free Open Vocabulary Segmentation. arXiv, 2024.
+\bibitem{cass2025} Chanyoung Kim, Dayun Ju, Woojung Han, Minchul Yang, and Seong Jae Hwang. Distilling Spectral Graph for Object-Context Aware Open-Vocabulary Semantic Segmentation. CVPR, 2025.
+\bibitem{ovdiff2024} Laurynas Karazija, Iro Laina, Andrea Vedaldi, and Christian Rupprecht. Diffusion Models for Open-Vocabulary Segmentation. ECCV, 2024.
+\bibitem{freeda2024} Luca Barsellotti, Roberto Amoroso, Marcella Cornia, Lorenzo Baraldi, and Rita Cucchiara. Training-Free Open-Vocabulary Segmentation with Offline Diffusion-Augmented Prototype Generation. CVPR, 2024.
+\bibitem{ovseg2023} Feng Liang et al. Open-Vocabulary Semantic Segmentation with Mask-Adapted CLIP. CVPR, 2023.
+\bibitem{san2023} Mengde Xu, Zheng Zhang, Fangyun Wei, Han Hu, Xiang Bai. Side Adapter Network for Open-Vocabulary Semantic Segmentation. CVPR, 2023.
+\bibitem{odise2023} Jiarui Xu et al. Open-Vocabulary Panoptic Segmentation with Text-to-Image Diffusion Models. CVPR, 2023.
+\bibitem{ovcoser2024} Youwei Pang, Xiaoqi Zhao, Jiaming Zuo, Lihe Zhang, and Huchuan Lu. Open-Vocabulary Camouflaged Object Segmentation. ECCV, 2024.
+\bibitem{suclip2025} Ren et al. Seeing the Unseen: A Semantic Alignment and Context-Aware Prompt Framework for Open-Vocabulary Camouflaged Object Segmentation. ICCV, 2025.
+\bibitem{camo2019} Trung-Nghia Le, Tam V. Nguyen, Zhongliang Nie, Minh-Triet Tran, and Akihiro Sugimoto. Anabranch Network for Camouflaged Object Segmentation. CVIU, 2019.
+\bibitem{cod10k2020} Deng-Ping Fan et al. Camouflaged Object Detection. CVPR, 2020.
+\bibitem{nc4k2021} Yunqiu Lv et al. Simultaneously Localize, Segment and Rank the Camouflaged Objects. CVPR, 2021.
+\end{thebibliography}
+
+\end{document}
