@@ -13,6 +13,9 @@ class MethodAdapter(ABC):
     runnable: bool = True
     setup_hint: str = ""
 
+    def configure(self, **kwargs: object) -> None:
+        """Receive optional runner context such as task or num_classes."""
+
     @abstractmethod
     def predict_one(self, sample: Sample, vocabulary: list[str], output_dir: Path) -> Prediction:
         """Return exactly one prediction for one image.

@@ -12,6 +12,11 @@ env/
 venv/
 
 # Benchmark data and generated artifacts
+data/downloads/
+data/logs/
+data/manifests/*.jsonl
+data/manifests/appendix/*.jsonl
+data/processed/
 data/raw/
 data/manifests/shards/
 runs/

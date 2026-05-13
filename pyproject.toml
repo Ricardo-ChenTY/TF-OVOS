@@ -16,6 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "ruff>=0.5"]
 tables = ["pandas>=2.0"]
+clip = ["torch>=2.0", "torchvision", "open_clip_torch>=3.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

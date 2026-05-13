@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from tf_ovos.adapters.base import MethodAdapter
 from tf_ovos.adapters.debug import CopyGroundTruthAdapter, EmptyMaskAdapter
+from tf_ovos.adapters.maskclip import MaskClipAdapter
 from tf_ovos.adapters.planned import PROPOSAL_PLANNED_ADAPTERS
 
 
@@ -19,6 +20,7 @@ _ADAPTER_CLASSES: tuple[type[MethodAdapter], ...] = (
     CopyGroundTruthAdapter,
     EmptyMaskAdapter,
     *PROPOSAL_PLANNED_ADAPTERS,
+    MaskClipAdapter,
 )
 
 ADAPTERS: dict[str, type[MethodAdapter]] = {adapter.name: adapter for adapter in _ADAPTER_CLASSES}

@@ -68,6 +68,8 @@ def run_dataset(
             vocab=vocab,
             out_dir=shards_dir / shard_path.stem,
             skip_existing=skip_existing,
+            task=task,
+            num_classes=num_classes,
         )
 
     predictions_path = dataset_root / "predictions.jsonl"
