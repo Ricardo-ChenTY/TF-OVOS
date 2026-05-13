@@ -70,7 +70,9 @@ def decode_ade_segmentation(seg_path: Path) -> np.ndarray:
 
 
 def convert_label_map(raw_map: np.ndarray, raw_to_vocab: dict[int, int], void_label: int = VOID_LABEL) -> np.ndarray:
-    label_map = np.full(raw_map.shape, void_label, dtype=np.uint8)
+    max_vocab_idx = max(raw_to_vocab.values()) if raw_to_vocab else 0
+    dtype = np.uint16 if (max_vocab_idx > 254 or void_label > 255) else np.uint8
+    label_map = np.full(raw_map.shape, void_label, dtype=dtype)
     for raw_id in np.unique(raw_map):
         if raw_id == 0:
             continue
@@ -127,7 +129,10 @@ def build_ade20k_manifest(
 
         label_map = convert_label_map(decode_ade_segmentation(seg_path), raw_to_vocab)
         mask_path = mask_dir / f"{image_id.replace('/', '__')}.png"
-        Image.fromarray(label_map, mode="L").save(mask_path)
+        if label_map.dtype == np.uint16:
+            Image.fromarray(label_map, mode="I;16").save(mask_path)
+        else:
+            Image.fromarray(label_map, mode="L").save(mask_path)
         rows.append(
             {
                 "image_id": image_id,

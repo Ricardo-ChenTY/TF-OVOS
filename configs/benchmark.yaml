@@ -50,14 +50,14 @@ datasets:
     vocab: configs/vocab/context_459.txt
     task: semantic
     num_classes: 459
-    void_label: 255
+    void_label: 65535   # uint16 label maps; 255 is a valid class index
 
   ade20k847_val:
     manifest: data/manifests/ade20k847_val.jsonl
     vocab: configs/vocab/ade20k_847.txt
     task: semantic
     num_classes: 847
-    void_label: 255
+    void_label: 65535   # uint16 label maps; 255 is a valid class index
 
   # ── Appendix hard-domain targets (mask-only / class-aware) ────────────────
   ovcamo_te:

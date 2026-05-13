@@ -34,9 +34,13 @@ MANIFESTS = ROOT / "data" / "manifests"
 MANIFESTS.mkdir(parents=True, exist_ok=True)
 
 
-def _save_label_map(arr: np.ndarray, path: Path) -> None:
+def _save_label_map(arr: np.ndarray, path: Path, *, void: int = 255) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(arr.astype(np.uint8)).save(path)
+    if void > 255 or int(arr.max()) > 254:
+        # uint16 PNG — used for >255-class datasets (context459, ade20k847)
+        Image.fromarray(arr.astype(np.uint16), mode="I;16").save(path)
+    else:
+        Image.fromarray(arr.astype(np.uint8)).save(path)
 
 
 def _write_jsonl(rows: list[dict], path: Path) -> None:
@@ -94,58 +98,84 @@ def prepare_voc20() -> None:
 
 # ── PASCAL Context → context59_val / context459_val ──────────────────────────
 
+def _read_context_labels(labels_txt: Path) -> dict[int, str]:
+    """Parse labels.txt → {category_id: name}. Line format: '<id>: <name>'."""
+    mapping: dict[int, str] = {}
+    for line in labels_txt.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        idx, _, name = line.partition(":")
+        try:
+            mapping[int(idx.strip())] = name.strip().lower().replace(" ", "")
+        except ValueError:
+            continue
+    return mapping
+
+
 def prepare_context(num_classes: int) -> None:
     """
-    PASCAL Context 59 or 459.
-    Requires: pip install detail
-    Raw annotations: trainval.json + VOC 2010 JPEGImages.
-    Label map convention: class 0 = background (void), 1-N = N classes.
-    Remap: 1-N → 0-(N-1),  0 → 255.
+    PASCAL Context 59 or 459. Reads .mat LabelMap files directly with scipy.
+    Raw LabelMap: uint16, pixel = category ID from labels.txt (0 = background/void).
+    Vocab is matched by normalising names (lowercase, no spaces).
+    Remap: matched category → vocab index (0-based),  unmatched/0 → 255.
     """
-    try:
-        from detail import Detail  # type: ignore[import]
-    except ImportError:
-        raise ImportError(
-            "The 'detail' package is required for PASCAL Context.\n"
-            "Install with:  pip install detail"
-        )
+    import scipy.io as sio  # type: ignore[import]
 
     ctx_dir = RAW / "pascal_context"
+    mat_dir = ctx_dir / "trainval"
+    labels_txt = ctx_dir / "labels.txt"
     img_dir = RAW / "VOCdevkit" / "VOC2010" / "JPEGImages"
-    annotation_file = ctx_dir / "trainval.json"
+    val_list = RAW / "VOCdevkit" / "VOC2010" / "ImageSets" / "Main" / "val.txt"
 
-    if not annotation_file.exists():
-        raise FileNotFoundError(
-            f"Annotations not found at {annotation_file}. Run: bash scripts/dl_context.sh"
-        )
-    if not img_dir.exists():
-        raise FileNotFoundError(
-            f"VOC 2010 images not found at {img_dir}. Run: bash scripts/dl_context.sh"
-        )
+    for p, label in [(mat_dir, "trainval/"), (labels_txt, "labels.txt"),
+                     (img_dir, "VOC2010 images"), (val_list, "VOC2010 val split")]:
+        if not p.exists():
+            raise FileNotFoundError(f"Missing {label} at {p}. Run: bash scripts/dl_context.sh")
 
-    tag = f"ctx{num_classes}"
+    # Build category_id → vocab_index map using our vocab file
+    vocab_path = ROOT / "configs" / "vocab" / (
+        "context_59.txt" if num_classes == 59 else "context_459.txt"
+    )
+    vocab = [ln.strip().lower().replace(" ", "") for ln in
+             vocab_path.read_text(encoding="utf-8").splitlines()
+             if ln.strip() and not ln.startswith("#")]
+
+    cat_id_to_name = _read_context_labels(labels_txt)
+    vocab_index: dict[str, int] = {name: i for i, name in enumerate(vocab)}
+
+    # For context59, only keep categories whose normalised name is in vocab
+    cat_to_vocab: dict[int, int] = {}
+    for cat_id, name in cat_id_to_name.items():
+        norm = name.lower().replace(" ", "")
+        if norm in vocab_index:
+            cat_to_vocab[cat_id] = vocab_index[norm]
+
     out_dir = RAW / f"context{num_classes}_labels"
     manifest_path = MANIFESTS / f"context{num_classes}_val.jsonl"
 
-    d = Detail(str(annotation_file), str(img_dir), num_classes)
-    image_ids = d.getImgs(phase="val")
+    val_ids = {ln.strip() for ln in val_list.read_text().splitlines() if ln.strip()}
+
+    void = 65535 if num_classes > 255 else 255
+    dtype = np.uint16 if num_classes > 255 else np.uint8
 
     rows = []
-    for info in image_ids:
-        img_id = info["id"]
-        filename = info["file_name"]  # e.g. "2008_000015.jpg"
-        stem = Path(filename).stem
-
-        label_map = d.getMask(info, dtype="numpy")  # H×W, values 0..num_classes
-        label = np.full_like(label_map, 255, dtype=np.uint8)
-        mask = (label_map >= 1) & (label_map <= num_classes)
-        label[mask] = label_map[mask] - 1
-
+    for mat_path in sorted(mat_dir.glob("*.mat")):
+        stem = mat_path.stem
+        if stem not in val_ids:
+            continue
+        img_path = img_dir / f"{stem}.jpg"
+        if not img_path.exists():
+            continue
+        raw = sio.loadmat(str(mat_path))["LabelMap"].astype(np.int32)
+        label = np.full(raw.shape, void, dtype=dtype)
+        for cat_id, vocab_idx in cat_to_vocab.items():
+            label[raw == cat_id] = vocab_idx
         dst = out_dir / f"{stem}.png"
-        _save_label_map(label, dst)
+        _save_label_map(label, dst, void=void)
         rows.append({
             "image_id": stem,
-            "image_path": _rel(img_dir / filename, MANIFESTS),
+            "image_path": _rel(img_path, MANIFESTS),
             "mask_path": _rel(dst, MANIFESTS),
         })
 
@@ -205,7 +235,10 @@ def prepare_ade20k847() -> None:
       data/raw/ADE20K_2021_17_01/images/ADE/validation/<scene>/<scene>_<n>.jpg
       data/raw/ADE20K_2021_17_01/images/ADE/validation/<scene>/<scene>_<n>_seg.png
     """
+    # Handle both flat and nested extraction (Kaggle adds an extra folder)
     ade847 = RAW / "ADE20K_2021_17_01"
+    if (ade847 / "ADE20K_2021_17_01").exists():
+        ade847 = ade847 / "ADE20K_2021_17_01"
     val_root = ade847 / "images" / "ADE" / "validation"
 
     if not val_root.exists():
@@ -217,32 +250,21 @@ def prepare_ade20k847() -> None:
             f"  3. Extract to {RAW}"
         )
 
-    out_dir = RAW / "ade20k847_labels"
-    rows = []
-    for seg_path in sorted(val_root.rglob("*_seg.png")):
-        stem = seg_path.name.replace("_seg.png", "")
-        img_path = seg_path.parent / f"{stem}.jpg"
-        if not img_path.exists():
-            continue
-        raw = np.array(Image.open(seg_path))
-        # ADE20K seg PNGs encode class as (R/10)*256 + G; R channel = class//10, G = class%10
-        # In the 2021 release, the seg PNG is a paletted or RGB file.
-        if raw.ndim == 3:
-            raw_class = (raw[:, :, 0].astype(np.uint16) // 10) * 256 + raw[:, :, 1]
-        else:
-            raw_class = raw.astype(np.uint16)
-        label = np.full(raw_class.shape, 255, dtype=np.uint8)
-        mask = (raw_class >= 1) & (raw_class <= 847)
-        label[mask] = (raw_class[mask] - 1).astype(np.uint8)
-        dst = out_dir / f"{stem}.png"
-        _save_label_map(label, dst)
-        rows.append({
-            "image_id": stem,
-            "image_path": _rel(img_path, MANIFESTS),
-            "mask_path": _rel(dst, MANIFESTS),
-        })
+    from tf_ovos.make_ade20k_manifest import build_ade20k_manifest
+    from tf_ovos.data import write_jsonl
 
-    _write_jsonl(rows, MANIFESTS / "ade20k847_val.jsonl")
+    vocab = ROOT / "configs" / "vocab" / "ade20k_847.txt"
+    out_dir = RAW / "ade20k847_labels"
+    manifest_path = MANIFESTS / "ade20k847_val.jsonl"
+
+    rows = build_ade20k_manifest(
+        root=ade847,
+        split="validation",
+        vocab=vocab,
+        out=manifest_path,
+        mask_dir=out_dir,
+    )
+    write_jsonl(rows, manifest_path)
     print(f"  label maps → {out_dir.relative_to(ROOT)}")
 
 
