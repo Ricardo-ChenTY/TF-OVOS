@@ -349,7 +349,7 @@ SAN & Trained & No & 93.95 & 52.43 & 27.56 & 41.93 & 54.98 \\
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E2 vocabulary and category-ambiguity robustness. The first four numeric columns are standard mIoU under compact and large official vocabularies. The final columns are diagnostic readouts, not replacement ranking metrics.}
+\caption{E2 vocabulary and category-ambiguity robustness. The first four numeric columns are standard mIoU under compact and large official vocabularies. MCMR@0.5 is reported only for rows with saved prediction-map artifacts; log-only rows are kept for vocabulary-drop context and marked explicitly.}
 \label{tab:e2-ambiguity}
 \setlength{\tabcolsep}{2.5pt}
 \begin{adjustbox}{max width=\textwidth}
@@ -362,19 +362,19 @@ MaskCLIP-Attn & 8.35 & 1.25 & 1.82 & 0.50 & 4.21 & 0.825 & local high-collapse b
 MaskCLIP-Attn-Slide & 11.87 & 1.94 & 4.61 & 1.44 & 6.55 & 0.505 & sliding improves mIoU, not large-vocab silence \\
 SCLIP & 34.14 & 6.68 & 16.46 & 5.67 & 19.12 & 0.489 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 NACLIP & 38.36 & 7.79 & 19.12 & 6.01 & 21.84 & 0.512 & see Table~\ref{tab:appendix-ambiguity-graph} \\
-CLIPtrase & 34.58 & 9.95 & 17.04 & 5.89 & 17.82 & -- & log metrics only \\
-SC-CLIP & 40.21 & 8.34 & 20.06 & 7.46 & 22.44 & -- & log metrics only \\
+CLIPtrase & 34.58 & 9.95 & 17.04 & 5.89 & 17.82 & needs maps & log metrics only; no saved prediction maps \\
+SC-CLIP & 40.21 & 8.34 & 20.06 & 7.46 & 22.44 & needs maps & log metrics only; no saved prediction maps \\
 ResCLIP & 36.85 & 7.70 & 18.07 & 6.49 & 20.37 & 0.501 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 ProxyCLIP & 39.31 & 8.41 & 19.59 & 6.90 & 21.80 & 0.557 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 CorrCLIP & 48.68 & 11.88 & 26.96 & 8.67 & 27.54 & 0.579 & strongest mIoU, still high large-vocab mismatch \\
-Trident & 40.99 & 8.97 & 20.91 & 7.45 & 22.73 & -- & log metrics only \\
-CASS & 40.27 & 8.38 & 20.32 & 7.19 & 22.52 & -- & log metrics only \\
-FreeDA & 43.42 & 4.27 & 23.19 & 3.93 & 29.21 & -- & diffusion-reference log metrics only \\
+Trident & 40.99 & 8.97 & 20.91 & 7.45 & 22.73 & needs maps & log metrics only; no saved prediction maps \\
+CASS & 40.27 & 8.38 & 20.32 & 7.19 & 22.52 & needs maps & log metrics only; no saved prediction maps \\
+FreeDA & 43.42 & 4.27 & 23.19 & 3.93 & 29.21 & needs maps & diffusion-reference log metrics only \\
 SAM-AMG + CLIP & 17.84 & 4.00 & 12.59 & 5.04 & 10.70 & 0.600 & proposal naming remains ambiguity-limited \\
 SAM-AMG + SigLIP & 19.66 & 4.97 & 15.34 & 7.24 & 11.39 & 0.552 & better naming, same large-vocab stress \\
 DINOv2 + SAM + CLIP & 16.55 & 3.79 & 11.77 & 5.00 & 9.77 & 0.620 & proposal prior helps masks, not fine labels \\
 DINOv2 + SAM + SigLIP & 18.48 & 4.84 & 14.75 & 7.08 & 10.66 & 0.552 & proposal prior plus stronger naming \\
-SAN (ref.) & 52.43 & 12.75 & 27.56 & 10.24 & 24.00 & -- & trained-reference log metrics only \\
+SAN (ref.) & 52.43 & 12.75 & 27.56 & 10.24 & 24.00 & needs conversion & Detectron2 RLE outputs need conversion before MCMR \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -453,6 +453,33 @@ SAM-AMG + SigLIP & No & None & 0 & 5.236 s/img & Class-agnostic SAM proposals pl
 DINOv2 + SAM + CLIP & No & None & 0 & 3.507 s/img & DINOv2-guided proposals plus CLIP naming. \\
 DINOv2 + SAM + SigLIP & No & None & 0 & 4.341 s/img & DINOv2-guided proposals plus SigLIP naming. \\
 SAN & Yes & COCO-Stuff source & released weights & 0.043 s/img & Side adapter trained reference. \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+
+\subsection{Promoted Exploratory Observations}
+
+\paragraph{Reporting choice.}
+The exploratory metrics are not mixed into the E1--E3 leaderboard, but the strongest stable readouts are promoted here as observation evidence. This keeps the main ranking comparable while making the paper story explicit: the current results already expose failure modes that plain mIoU averages hide.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Exploratory observations promoted from the current completed readouts. These rows are intended as observation candidates for the main text, not as replacement ranking metrics.}
+\label{tab:promoted-observations}
+\setlength{\tabcolsep}{3pt}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{0.22\textwidth} p{0.33\textwidth} p{0.37\textwidth}}
+\toprule
+Observation candidate & Main-table anchor & Exploratory evidence / paper role \\
+\midrule
+High mIoU does not imply large-vocabulary coverage. & CorrCLIP is the strongest strict TF row in E1 (49.22 avg.) and E2, but its large-vocabulary mIoU is still 11.88 on Context-459 and 8.67 on ADE-847. & CorrCLIP has zero-IoU class rates of 44.2\% on Context-459 and 49.9\% on ADE-847; its $\Delta_{\mathrm{vocab}}$ is 27.54 and MCMR@0.5 is 0.579. This supports an observation about class silence under vocabulary expansion. \\
+Small components remain a universal weak point. & The same methods that rank well in E1 still lose fine structures under component-level readouts. & Weighted component IoU for CorrCLIP falls from 0.370 (large) to 0.113 (medium) to 0.018 (small); SCLIP similarly falls from 0.257 to 0.063 to 0.012. This gives an object-size observation beyond per-dataset mIoU. \\
+Localization and naming failures separate cleanly. & E2 reports MCMR next to mIoU, and Table~\ref{tab:diagnostic-probes} isolates naming, localization, and proposal ceilings. & CorrCLIP averages 0.487 GT-region naming Top-1, 0.403 GT-text localization IoU, 0.605 proposal-oracle IoU, and 0.635 proposal Recall@0.5. The gap says errors are not only poor masks; naming remains a bottleneck even when localization is partially controlled. \\
+Proposal+naming pipelines improve localization ceilings but not category assignment enough. & PN rows in E1 are below dense CLIP/VFM rows despite using strong class-agnostic masks. & Group-level diagnostics show proposal+naming TF methods have higher proposal Recall@0.5 proxy than dense-map TF methods (0.557 vs. 0.416), but worse MCMR@0.5 proxy (0.345 vs. 0.297). This supports a mask-good/name-hard observation. \\
+Efficiency changes the practical ranking. & E4 shows that runtime is not monotonic with E1 quality. & CorrCLIP reaches 49.22 avg. at 0.193 s/img, Trident reaches 43.31 at 0.080 s/img, while CASS is 42.25 at 2.207 s/img and SAM-AMG+SigLIP is 28.85 at 5.236 s/img. This gives a Pareto-style observation without changing the main metric. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
