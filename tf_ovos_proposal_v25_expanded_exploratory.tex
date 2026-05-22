@@ -494,16 +494,13 @@ MCC consistency diagnostic & Compare the same proposal+naming pipeline with and 
 \toprule
 Method & OVCamo cIoU\up & OVCamo mask\up & CAMO mask\up & COD10K-Camo mask\up & NC4K mask\up & Hard avg\up & Notes \\
 \midrule
-MaskCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-SCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-NACLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-ProxyCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-Trident & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-FreeDA & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-GroundingDINO + SAM2 & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-SAM-AMG + SigLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-DINOv2 + SAM + SigLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
-OVSeg / SAN / ODISE (ref.) & pending & pending & pending & pending & pending & pending & Reference context pending. \\
+MaskCLIP & 0.007 & 0.030 & 0.073 & 0.040 & 0.073 & 0.054 & complete in current Table10 run. \\
+MaskCLIP-Attn & 0.000 & 0.011 & 0.000 & 0.000 & 0.000 & 0.003 & complete in current Table10 run. \\
+MaskCLIP-Attn-Slide & 0.000 & 0.011 & 0.000 & 0.000 & 0.000 & 0.003 & complete in current Table10 run. \\
+SAM-AMG + CLIP & 0.000 & 0.011 & 0.000 & running & running & running & current Table10 method. \\
+SAM-AMG + SigLIP & running & running & running & running & running & running & queued after SAM-AMG + CLIP. \\
+DINOv2 + SAM + CLIP & running & running & running & running & running & running & queued after SAM-AMG + SigLIP. \\
+DINOv2 + SAM + SigLIP & running & running & running & running & running & running & queued last in Table10. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -523,10 +520,10 @@ The hard-domain mask columns are filled with the standard camouflaged-object met
 Method group & Localized pairs & Mismatch pairs & MCMR@0.5 & Example mismatch pairs / communities \\
 \midrule
 Dense-map TF methods & 413463 & 149030 & 0.2972 & Large-vocabulary class-silence and thing/stuff communities; row aggregates completed dense-map runs. \\
-Detector+SAM TF methods & pending & pending & pending & Artifact gap until detector+SAM masks are materialized under the fixed protocol. \\
+Detector+SAM TF methods & not reported & not reported & not reported & Not in the current completed fixed-protocol artifact set. \\
 Proposal+naming TF methods & 275642 & 115342 & 0.3454 & Higher proposal recall (0.5570) but persistent naming mismatch under fine vocabularies. \\
-MCC consistency diagnostics & pending & pending & pending & Needs saved before/after re-ranking artifacts rather than proxy dense maps. \\
-Trained references & pending & pending & pending & Compact references are kept as context, not primary strict-TF rows. \\
+MCC consistency diagnostics & artifact gap & artifact gap & artifact gap & Needs saved before/after re-ranking artifacts rather than proxy dense maps. \\
+Trained references & context only & context only & context only & Compact references are kept as context, not primary strict-TF rows. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
