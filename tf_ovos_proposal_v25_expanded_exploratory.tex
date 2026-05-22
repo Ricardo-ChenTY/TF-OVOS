@@ -304,7 +304,7 @@ Every method is converted to either a dense class map or a set of $(\hat{M},\hat
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E1 standard open-vocabulary object/semantic segmentation effectiveness. Strict-TF rows use no target training. The standard metric is mIoU across all columns. Filled entries are the current completed-run snapshot; pending cells mark methods not yet completed under the fixed protocol.}
+\caption{E1 standard open-vocabulary object/semantic segmentation effectiveness. Strict-TF rows use no target training. The standard metric is mIoU across all columns. Rows shown are the current completed or log-complete snapshot; methods without comparable fixed-protocol results are demoted to implementation-gap notes rather than left as main-table placeholders.}
 \label{tab:e1-effectiveness}
 \setlength{\tabcolsep}{3pt}
 \begin{adjustbox}{max width=\textwidth}
@@ -316,26 +316,20 @@ Method & Type & Strict TF? & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 mIoU\
 MaskCLIP & CM & Yes & 37.79 & 8.15 & 1.88 & 4.35 & 13.04 \\
 MaskCLIP-Attn & CM & Yes & 37.73 & 8.35 & 1.82 & 4.08 & 13.00 \\
 MaskCLIP-Attn-Slide & CM & Yes & 49.58 & 11.87 & 4.61 & 7.76 & 18.46 \\
-CLIP-DIY & CM & Yes & pending & pending & pending & pending & pending \\
 SCLIP & CM & Yes & 77.47 & 34.14 & 16.46 & 22.86 & 37.73 \\
 NACLIP & CM & Yes & 77.98 & 38.36 & 19.12 & 25.98 & 40.36 \\
-CLIPtrase & CM & Yes & pending & pending & pending & pending & pending \\
-SC-CLIP & CM & Yes & pending & pending & pending & pending & pending \\
+CLIPtrase & CM & Yes & 81.20 & 34.58 & 17.04 & 24.06 & 39.22 \\
+SC-CLIP & CM & Yes & 84.28 & 40.21 & 20.06 & 26.62 & 42.77 \\
 ResCLIP & CM & Yes & 78.51 & 36.85 & 18.07 & 23.59 & 39.26 \\
 \midrule
 \multicolumn{8}{l}{\textbf{CLIP + VFM OVSS}} \\
 ProxyCLIP & VM & Yes & 81.64 & 39.31 & 19.59 & 26.68 & 41.80 \\
 CorrCLIP & VM & Yes & 89.01 & 48.68 & 26.96 & 32.22 & 49.22 \\
-Trident & VM & Yes & pending & pending & pending & pending & pending \\
-CASS & VM & Yes & pending & pending & pending & pending & pending \\
+Trident & VM & Yes & 83.70 & 40.99 & 20.91 & 27.62 & 43.31 \\
+CASS & VM & Yes & 87.73 & 40.27 & 20.32 & 26.67 & 42.25 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Diffusion / reference-based OVSS}} \\
-OVDiff & DM & Yes & pending & pending & pending & pending & pending \\
-FreeDA & DM & Yes & pending & pending & pending & pending & pending \\
-\midrule
-\multicolumn{8}{l}{\textbf{OV detection + SAM}} \\
-GroundingDINO + SAM & DS & Yes & pending & pending & pending & pending & pending \\
-GroundingDINO + SAM2 & DS & Yes & pending & pending & pending & pending & pending \\
+FreeDA & DM & Yes & 86.19 & 43.42 & 23.19 & 28.80 & 45.40 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Class-agnostic proposal + VLM naming}} \\
 SAM-AMG + CLIP & PN & Yes & 65.99 & 17.84 & 12.59 & 12.36 & 27.20 \\
@@ -344,9 +338,7 @@ DINOv2 + SAM + CLIP & PN & Yes & 60.60 & 16.55 & 11.77 & 12.16 & 25.27 \\
 DINOv2 + SAM + SigLIP & PN & Yes & 59.47 & 18.48 & 14.75 & 14.66 & 26.84 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Compact training-based references (not strict TF)}} \\
-OVSeg & Trained & No & pending & pending & pending & pending & pending \\
-SAN & Trained & No & pending & pending & pending & pending & pending \\
-ODISE & Trained & No & pending & pending & pending & pending & pending \\
+SAN & Trained & No & 93.95 & 52.43 & 27.56 & 41.93 & 54.98 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -368,20 +360,21 @@ Method & Ctx-59 mIoU\up & Ctx-459 mIoU\up & ADE-150 mIoU\up & ADE-847 mIoU\up & 
 MaskCLIP & 8.15 & 1.22 & 1.88 & 0.49 & 4.16 & 0.805 & local high-collapse baseline \\
 MaskCLIP-Attn & 8.35 & 1.25 & 1.82 & 0.50 & 4.21 & 0.825 & local high-collapse baseline \\
 MaskCLIP-Attn-Slide & 11.87 & 1.94 & 4.61 & 1.44 & 6.55 & 0.505 & sliding improves mIoU, not large-vocab silence \\
-CLIP-DIY & pending & pending & pending & pending & pending & pending & pending \\
 SCLIP & 34.14 & 6.68 & 16.46 & 5.67 & 19.12 & 0.489 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 NACLIP & 38.36 & 7.79 & 19.12 & 6.01 & 21.84 & 0.512 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+CLIPtrase & 34.58 & 9.95 & 17.04 & 5.89 & 17.82 & -- & log metrics only \\
+SC-CLIP & 40.21 & 8.34 & 20.06 & 7.46 & 22.44 & -- & log metrics only \\
 ResCLIP & 36.85 & 7.70 & 18.07 & 6.49 & 20.37 & 0.501 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 ProxyCLIP & 39.31 & 8.41 & 19.59 & 6.90 & 21.80 & 0.557 & see Table~\ref{tab:appendix-ambiguity-graph} \\
 CorrCLIP & 48.68 & 11.88 & 26.96 & 8.67 & 27.54 & 0.579 & strongest mIoU, still high large-vocab mismatch \\
-Trident & pending & pending & pending & pending & pending & pending & pending \\
-OVDiff / FreeDA & pending & pending & pending & pending & pending & pending & pending \\
-GroundingDINO + SAM2 & pending & pending & pending & pending & pending & pending & pending \\
+Trident & 40.99 & 8.97 & 20.91 & 7.45 & 22.73 & -- & log metrics only \\
+CASS & 40.27 & 8.38 & 20.32 & 7.19 & 22.52 & -- & log metrics only \\
+FreeDA & 43.42 & 4.27 & 23.19 & 3.93 & 29.21 & -- & diffusion-reference log metrics only \\
 SAM-AMG + CLIP & 17.84 & 4.00 & 12.59 & 5.04 & 10.70 & 0.600 & proposal naming remains ambiguity-limited \\
 SAM-AMG + SigLIP & 19.66 & 4.97 & 15.34 & 7.24 & 11.39 & 0.552 & better naming, same large-vocab stress \\
 DINOv2 + SAM + CLIP & 16.55 & 3.79 & 11.77 & 5.00 & 9.77 & 0.620 & proposal prior helps masks, not fine labels \\
 DINOv2 + SAM + SigLIP & 18.48 & 4.84 & 14.75 & 7.08 & 10.66 & 0.552 & proposal prior plus stronger naming \\
-OVSeg / SAN / ODISE (ref.) & pending & pending & pending & pending & pending & pending & pending \\
+SAN (ref.) & 52.43 & 12.75 & 27.56 & 10.24 & 24.00 & -- & trained-reference log metrics only \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -404,24 +397,23 @@ Method & Source / training data & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 
 MaskCLIP & None & 37.79 & 8.15 & 1.88 & 4.35 & 13.04 & 1.88 \\
 MaskCLIP-Attn & None & 37.73 & 8.35 & 1.82 & 4.08 & 13.00 & 1.82 \\
 MaskCLIP-Attn-Slide & None & 49.58 & 11.87 & 4.61 & 7.76 & 18.46 & 4.61 \\
-CLIP-DIY & None & pending & pending & pending & pending & pending & pending \\
 SCLIP & None & 77.47 & 34.14 & 16.46 & 22.86 & 37.73 & 16.46 \\
 NACLIP & None & 77.98 & 38.36 & 19.12 & 25.98 & 40.36 & 19.12 \\
+CLIPtrase & None & 81.20 & 34.58 & 17.04 & 24.06 & 39.22 & 17.04 \\
+SC-CLIP & None & 84.28 & 40.21 & 20.06 & 26.62 & 42.77 & 20.06 \\
 ResCLIP & None & 78.51 & 36.85 & 18.07 & 23.59 & 39.26 & 18.07 \\
 ProxyCLIP & None & 81.64 & 39.31 & 19.59 & 26.68 & 41.80 & 19.59 \\
 CorrCLIP & None & 89.01 & 48.68 & 26.96 & 32.22 & 49.22 & 26.96 \\
-Trident & None & pending & pending & pending & pending & pending & pending \\
-FreeDA & None; offline diffusion prototypes only & pending & pending & pending & pending & pending & pending \\
-GroundingDINO + SAM2 & None & pending & pending & pending & pending & pending & pending \\
+Trident & None & 83.70 & 40.99 & 20.91 & 27.62 & 43.31 & 20.91 \\
+CASS & None & 87.73 & 40.27 & 20.32 & 26.67 & 42.25 & 20.32 \\
+FreeDA & None; offline diffusion prototypes only & 86.19 & 43.42 & 23.19 & 28.80 & 45.40 & 23.19 \\
 SAM-AMG + CLIP & None & 65.99 & 17.84 & 12.59 & 12.36 & 27.20 & 12.36 \\
 SAM-AMG + SigLIP & None & 65.60 & 19.66 & 15.34 & 14.81 & 28.85 & 14.81 \\
 DINOv2 + SAM + CLIP & None & 60.60 & 16.55 & 11.77 & 12.16 & 25.27 & 11.77 \\
 DINOv2 + SAM + SigLIP & None & 59.47 & 18.48 & 14.75 & 14.66 & 26.84 & 14.66 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Compact training-based references}} \\
-OVSeg & Official released weights / COCO-style source & pending & pending & pending & pending & pending & pending \\
-SAN & Official released weights / COCO-Stuff source & pending & pending & pending & pending & pending & pending \\
-ODISE & Official released weights / COCO source & pending & pending & pending & pending & pending & pending \\
+SAN & Official released weights / COCO-Stuff source & 93.95 & 52.43 & 27.56 & 41.93 & 54.98 & 27.56 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -435,7 +427,7 @@ For the main E3 table, every method is evaluated with official target vocabulari
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E4 efficiency comparison. Test cost is the current completed-run average seconds per image over the available fixed-protocol targets. Training-based methods are intentionally limited to compact references.}
+\caption{E4 efficiency comparison. Test cost is the current completed/log-complete average seconds per image over fixed-protocol targets when timing is available. Training-based methods are intentionally limited to compact references.}
 \label{tab:e4-efficiency}
 \setlength{\tabcolsep}{3pt}
 \begin{adjustbox}{max width=\textwidth}
@@ -446,26 +438,21 @@ Method & Training? & Train source & Train time & Test cost & Major modules / not
 MaskCLIP & No & None & 0 & 0.680 s/img & CLIP dense label extraction baseline. \\
 MaskCLIP-Attn & No & None & 0 & 0.030 s/img & Attention-edited MaskCLIP local adapter. \\
 MaskCLIP-Attn-Slide & No & None & 0 & 0.319 s/img & Sliding-window attention-edited MaskCLIP adapter. \\
-CLIP-DIY & No & None & 0 & pending & CLIP patch inference plus unsupervised localization prior. \\
 SCLIP & No & None & 0 & 0.115 s/img & CLIP with correlative self-attention. \\
 NACLIP & No & None & 0 & 0.883 s/img & CLIP neighbour-aware attention adaptation. \\
-CLIPtrase & No & None & 0 & pending & CLIP self-attention / dense inference modification. \\
-SC-CLIP & No & None & 0 & pending & Self-calibrated CLIP; no target training. \\
+CLIPtrase & No & None & 0 & 0.166 s/img & CLIP self-attention / dense inference modification. \\
+SC-CLIP & No & None & 0 & 0.154 s/img & Self-calibrated CLIP; no target training. \\
 ResCLIP & No & None & 0 & 1.179 s/img & Residual cross-correlation attention and semantic feedback refinement. \\
 ProxyCLIP & No & None & 0 & 0.167 s/img & CLIP plus VFM proxy attention. \\
 CorrCLIP & No & None & 0 & 0.193 s/img & CLIP with patch correlation reconstruction. \\
-Trident & No & None & 0 & pending & CLIP + DINO + SAM high-resolution training-free pipeline. \\
-CASS & No & None & 0 & pending & CLIP with VFM spectral object-context distillation at inference. \\
-OVDiff & No & None & offline synth. & pending & Diffusion-generated support/prototype stage; no target training. \\
-FreeDA & No & None & offline proto. & pending & Offline diffusion-augmented prototype generation. \\
-GroundingDINO + SAM2 & No & None & 0 & pending & Open-set detector plus SAM2 mask generation. \\
+Trident & No & None & 0 & 0.080 s/img & CLIP + DINO + SAM high-resolution training-free pipeline. \\
+CASS & No & None & 0 & 2.207 s/img & CLIP with VFM spectral object-context distillation at inference. \\
+FreeDA & No & None & offline proto. & log-only & Offline diffusion-augmented prototype generation. \\
 SAM-AMG + CLIP & No & None & 0 & 4.124 s/img & Class-agnostic SAM proposals plus CLIP naming. \\
 SAM-AMG + SigLIP & No & None & 0 & 5.236 s/img & Class-agnostic SAM proposals plus SigLIP naming. \\
 DINOv2 + SAM + CLIP & No & None & 0 & 3.507 s/img & DINOv2-guided proposals plus CLIP naming. \\
 DINOv2 + SAM + SigLIP & No & None & 0 & 4.341 s/img & DINOv2-guided proposals plus SigLIP naming. \\
-OVSeg & Yes & COCO-style source & pending & pending & Mask-adapted CLIP trained reference. \\
-SAN & Yes & COCO-Stuff source & pending & pending & Side adapter trained reference. \\
-ODISE & Yes & COCO source & pending & pending & Diffusion-based open-vocabulary panoptic trained reference. \\
+SAN & Yes & COCO-Stuff source & released weights & 0.043 s/img & Side adapter trained reference. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
