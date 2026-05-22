@@ -304,7 +304,7 @@ Every method is converted to either a dense class map or a set of $(\hat{M},\hat
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E1 standard open-vocabulary object/semantic segmentation effectiveness. Strict-TF rows use no target training. The standard metric is mIoU across all columns. Numeric entries are filled after running the fixed adapters.}
+\caption{E1 standard open-vocabulary object/semantic segmentation effectiveness. Strict-TF rows use no target training. The standard metric is mIoU across all columns. Filled entries are the current completed-run snapshot; pending cells mark methods not yet completed under the fixed protocol.}
 \label{tab:e1-effectiveness}
 \setlength{\tabcolsep}{3pt}
 \begin{adjustbox}{max width=\textwidth}
@@ -313,38 +313,40 @@ Every method is converted to either a dense class map or a set of $(\hat{M},\hat
 Method & Type & Strict TF? & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 mIoU\up & COCO-Stuff mIoU\up & Avg.\up \\
 \midrule
 \multicolumn{8}{l}{\textbf{CLIP-only / attention-edited OVSS}} \\
-MaskCLIP & CM & Yes & & & & & \\
-CLIP-DIY & CM & Yes & & & & & \\
-SCLIP & CM & Yes & & & & & \\
-NACLIP & CM & Yes & & & & & \\
-CLIPtrase & CM & Yes & & & & & \\
-SC-CLIP & CM & Yes & & & & & \\
-ResCLIP & CM & Yes & & & & & \\
+MaskCLIP & CM & Yes & 37.79 & 8.15 & 1.88 & 4.35 & 13.04 \\
+MaskCLIP-Attn & CM & Yes & 37.73 & 8.35 & 1.82 & 4.08 & 13.00 \\
+MaskCLIP-Attn-Slide & CM & Yes & 49.58 & 11.87 & 4.61 & 7.76 & 18.46 \\
+CLIP-DIY & CM & Yes & pending & pending & pending & pending & pending \\
+SCLIP & CM & Yes & 77.47 & 34.14 & 16.46 & 22.86 & 37.73 \\
+NACLIP & CM & Yes & 77.98 & 38.36 & 19.12 & 25.98 & 40.36 \\
+CLIPtrase & CM & Yes & pending & pending & pending & pending & pending \\
+SC-CLIP & CM & Yes & pending & pending & pending & pending & pending \\
+ResCLIP & CM & Yes & 78.51 & 36.85 & 18.07 & 23.59 & 39.26 \\
 \midrule
 \multicolumn{8}{l}{\textbf{CLIP + VFM OVSS}} \\
-ProxyCLIP & VM & Yes & & & & & \\
-CorrCLIP & VM & Yes & & & & & \\
-Trident & VM & Yes & & & & & \\
-CASS & VM & Yes & & & & & \\
+ProxyCLIP & VM & Yes & 81.64 & 39.31 & 19.59 & 26.68 & 41.80 \\
+CorrCLIP & VM & Yes & 89.01 & 48.68 & 26.96 & 32.22 & 49.22 \\
+Trident & VM & Yes & pending & pending & pending & pending & pending \\
+CASS & VM & Yes & pending & pending & pending & pending & pending \\
 \midrule
 \multicolumn{8}{l}{\textbf{Diffusion / reference-based OVSS}} \\
-OVDiff & DM & Yes & & & & & \\
-FreeDA & DM & Yes & & & & & \\
+OVDiff & DM & Yes & pending & pending & pending & pending & pending \\
+FreeDA & DM & Yes & pending & pending & pending & pending & pending \\
 \midrule
 \multicolumn{8}{l}{\textbf{OV detection + SAM}} \\
-GroundingDINO + SAM & DS & Yes & & & & & \\
-GroundingDINO + SAM2 & DS & Yes & & & & & \\
+GroundingDINO + SAM & DS & Yes & pending & pending & pending & pending & pending \\
+GroundingDINO + SAM2 & DS & Yes & pending & pending & pending & pending & pending \\
 \midrule
 \multicolumn{8}{l}{\textbf{Class-agnostic proposal + VLM naming}} \\
-SAM-AMG + CLIP & PN & Yes & & & & & \\
-SAM-AMG + SigLIP & PN & Yes & & & & & \\
-DINOv2 + SAM + CLIP & PN & Yes & & & & & \\
-DINOv2 + SAM + SigLIP & PN & Yes & & & & & \\
+SAM-AMG + CLIP & PN & Yes & 65.99 & 17.84 & 12.59 & 12.36 & 27.20 \\
+SAM-AMG + SigLIP & PN & Yes & 65.60 & 19.66 & 15.34 & 14.81 & 28.85 \\
+DINOv2 + SAM + CLIP & PN & Yes & 60.60 & 16.55 & 11.77 & 12.16 & 25.27 \\
+DINOv2 + SAM + SigLIP & PN & Yes & 59.47 & 18.48 & 14.75 & 14.66 & 26.84 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Compact training-based references (not strict TF)}} \\
-OVSeg & Trained & No & & & & & \\
-SAN & Trained & No & & & & & \\
-ODISE & Trained & No & & & & & \\
+OVSeg & Trained & No & pending & pending & pending & pending & pending \\
+SAN & Trained & No & pending & pending & pending & pending & pending \\
+ODISE & Trained & No & pending & pending & pending & pending & pending \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -363,19 +365,23 @@ ODISE & Trained & No & & & & & \\
 \toprule
 Method & Ctx-59 mIoU\up & Ctx-459 mIoU\up & ADE-150 mIoU\up & ADE-847 mIoU\up & $\Delta_{\mathrm{vocab}}$\down & MCMR@0.5\down & Top mismatch pairs \\
 \midrule
-MaskCLIP & & & & & & & \\
-CLIP-DIY & & & & & & & \\
-SCLIP & & & & & & & \\
-NACLIP & & & & & & & \\
-ResCLIP & & & & & & & \\
-ProxyCLIP & & & & & & & \\
-CorrCLIP & & & & & & & \\
-Trident & & & & & & & \\
-OVDiff / FreeDA & & & & & & & \\
-GroundingDINO + SAM2 & & & & & & & \\
-SAM-AMG + SigLIP & & & & & & & \\
-DINOv2 + SAM + SigLIP & & & & & & & \\
-OVSeg / SAN / ODISE (ref.) & & & & & & & \\
+MaskCLIP & 8.15 & 1.22 & 1.88 & 0.49 & 4.16 & 0.805 & local high-collapse baseline \\
+MaskCLIP-Attn & 8.35 & 1.25 & 1.82 & 0.50 & 4.21 & 0.825 & local high-collapse baseline \\
+MaskCLIP-Attn-Slide & 11.87 & 1.94 & 4.61 & 1.44 & 6.55 & 0.505 & sliding improves mIoU, not large-vocab silence \\
+CLIP-DIY & pending & pending & pending & pending & pending & pending & pending \\
+SCLIP & 34.14 & 6.68 & 16.46 & 5.67 & 19.12 & 0.489 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+NACLIP & 38.36 & 7.79 & 19.12 & 6.01 & 21.84 & 0.512 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+ResCLIP & 36.85 & 7.70 & 18.07 & 6.49 & 20.37 & 0.501 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+ProxyCLIP & 39.31 & 8.41 & 19.59 & 6.90 & 21.80 & 0.557 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+CorrCLIP & 48.68 & 11.88 & 26.96 & 8.67 & 27.54 & 0.579 & strongest mIoU, still high large-vocab mismatch \\
+Trident & pending & pending & pending & pending & pending & pending & pending \\
+OVDiff / FreeDA & pending & pending & pending & pending & pending & pending & pending \\
+GroundingDINO + SAM2 & pending & pending & pending & pending & pending & pending & pending \\
+SAM-AMG + CLIP & 17.84 & 4.00 & 12.59 & 5.04 & 10.70 & 0.600 & proposal naming remains ambiguity-limited \\
+SAM-AMG + SigLIP & 19.66 & 4.97 & 15.34 & 7.24 & 11.39 & 0.552 & better naming, same large-vocab stress \\
+DINOv2 + SAM + CLIP & 16.55 & 3.79 & 11.77 & 5.00 & 9.77 & 0.620 & proposal prior helps masks, not fine labels \\
+DINOv2 + SAM + SigLIP & 18.48 & 4.84 & 14.75 & 7.08 & 10.66 & 0.552 & proposal prior plus stronger naming \\
+OVSeg / SAN / ODISE (ref.) & pending & pending & pending & pending & pending & pending & pending \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -395,23 +401,27 @@ OVSeg / SAN / ODISE (ref.) & & & & & & & \\
 Method & Source / training data & VOC-20 mIoU\up & Context-59 mIoU\up & ADE-150 mIoU\up & COCO-Stuff mIoU\up & Avg.\up & Worst\up \\
 \midrule
 \multicolumn{8}{l}{\textbf{Strict training-free rows}} \\
-MaskCLIP & None & & & & & & \\
-CLIP-DIY & None & & & & & & \\
-SCLIP & None & & & & & & \\
-NACLIP & None & & & & & & \\
-ResCLIP & None & & & & & & \\
-ProxyCLIP & None & & & & & & \\
-CorrCLIP & None & & & & & & \\
-Trident & None & & & & & & \\
-FreeDA & None; offline diffusion prototypes only & & & & & & \\
-GroundingDINO + SAM2 & None & & & & & & \\
-SAM-AMG + SigLIP & None & & & & & & \\
-DINOv2 + SAM + SigLIP & None & & & & & & \\
+MaskCLIP & None & 37.79 & 8.15 & 1.88 & 4.35 & 13.04 & 1.88 \\
+MaskCLIP-Attn & None & 37.73 & 8.35 & 1.82 & 4.08 & 13.00 & 1.82 \\
+MaskCLIP-Attn-Slide & None & 49.58 & 11.87 & 4.61 & 7.76 & 18.46 & 4.61 \\
+CLIP-DIY & None & pending & pending & pending & pending & pending & pending \\
+SCLIP & None & 77.47 & 34.14 & 16.46 & 22.86 & 37.73 & 16.46 \\
+NACLIP & None & 77.98 & 38.36 & 19.12 & 25.98 & 40.36 & 19.12 \\
+ResCLIP & None & 78.51 & 36.85 & 18.07 & 23.59 & 39.26 & 18.07 \\
+ProxyCLIP & None & 81.64 & 39.31 & 19.59 & 26.68 & 41.80 & 19.59 \\
+CorrCLIP & None & 89.01 & 48.68 & 26.96 & 32.22 & 49.22 & 26.96 \\
+Trident & None & pending & pending & pending & pending & pending & pending \\
+FreeDA & None; offline diffusion prototypes only & pending & pending & pending & pending & pending & pending \\
+GroundingDINO + SAM2 & None & pending & pending & pending & pending & pending & pending \\
+SAM-AMG + CLIP & None & 65.99 & 17.84 & 12.59 & 12.36 & 27.20 & 12.36 \\
+SAM-AMG + SigLIP & None & 65.60 & 19.66 & 15.34 & 14.81 & 28.85 & 14.81 \\
+DINOv2 + SAM + CLIP & None & 60.60 & 16.55 & 11.77 & 12.16 & 25.27 & 11.77 \\
+DINOv2 + SAM + SigLIP & None & 59.47 & 18.48 & 14.75 & 14.66 & 26.84 & 14.66 \\
 \midrule
 \multicolumn{8}{l}{\textbf{Compact training-based references}} \\
-OVSeg & Official released weights / COCO-style source & & & & & & \\
-SAN & Official released weights / COCO-Stuff source & & & & & & \\
-ODISE & Official released weights / COCO source & & & & & & \\
+OVSeg & Official released weights / COCO-style source & pending & pending & pending & pending & pending & pending \\
+SAN & Official released weights / COCO-Stuff source & pending & pending & pending & pending & pending & pending \\
+ODISE & Official released weights / COCO source & pending & pending & pending & pending & pending & pending \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -425,7 +435,7 @@ For the main E3 table, every method is evaluated with official target vocabulari
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E4 efficiency comparison. Exact numbers are filled after running every method on the same GPU, input size, and adapter settings. Training-based methods are intentionally limited to compact references.}
+\caption{E4 efficiency comparison. Test cost is the current completed-run average seconds per image over the available fixed-protocol targets. Training-based methods are intentionally limited to compact references.}
 \label{tab:e4-efficiency}
 \setlength{\tabcolsep}{3pt}
 \begin{adjustbox}{max width=\textwidth}
@@ -433,25 +443,29 @@ For the main E3 table, every method is evaluated with official target vocabulari
 \toprule
 Method & Training? & Train source & Train time & Test cost & Major modules / notes \\
 \midrule
-MaskCLIP & No & None & 0 & report & CLIP dense label extraction baseline. \\
-CLIP-DIY & No & None & 0 & report & CLIP patch inference plus unsupervised localization prior. \\
-SCLIP & No & None & 0 & report & CLIP with correlative self-attention. \\
-NACLIP & No & None & 0 & report & CLIP neighbour-aware attention adaptation. \\
-CLIPtrase & No & None & 0 & report & CLIP self-attention / dense inference modification. \\
-SC-CLIP & No & None & 0 & report & Self-calibrated CLIP; no target training. \\
-ResCLIP & No & None & 0 & report & Residual cross-correlation attention and semantic feedback refinement. \\
-ProxyCLIP & No & None & 0 & report & CLIP plus VFM proxy attention. \\
-CorrCLIP & No & None & 0 & report & CLIP with patch correlation reconstruction. \\
-Trident & No & None & 0 & report & CLIP + DINO + SAM high-resolution training-free pipeline. \\
-CASS & No & None & 0 & report & CLIP with VFM spectral object-context distillation at inference. \\
-OVDiff & No & None & offline synth. & report & Diffusion-generated support/prototype stage; no target training. \\
-FreeDA & No & None & offline proto. & report & Offline diffusion-augmented prototype generation. \\
-GroundingDINO + SAM2 & No & None & 0 & report & Open-set detector plus SAM2 mask generation. \\
-SAM-AMG + SigLIP & No & None & 0 & report & Class-agnostic SAM proposals plus SigLIP naming. \\
-DINOv2 + SAM + SigLIP & No & None & 0 & report & DINOv2-guided proposals plus SigLIP naming. \\
-OVSeg & Yes & COCO-style source & report & report & Mask-adapted CLIP trained reference. \\
-SAN & Yes & COCO-Stuff source & report & report & Side adapter trained reference. \\
-ODISE & Yes & COCO source & report & report & Diffusion-based open-vocabulary panoptic trained reference. \\
+MaskCLIP & No & None & 0 & 0.680 s/img & CLIP dense label extraction baseline. \\
+MaskCLIP-Attn & No & None & 0 & 0.030 s/img & Attention-edited MaskCLIP local adapter. \\
+MaskCLIP-Attn-Slide & No & None & 0 & 0.319 s/img & Sliding-window attention-edited MaskCLIP adapter. \\
+CLIP-DIY & No & None & 0 & pending & CLIP patch inference plus unsupervised localization prior. \\
+SCLIP & No & None & 0 & 0.115 s/img & CLIP with correlative self-attention. \\
+NACLIP & No & None & 0 & 0.883 s/img & CLIP neighbour-aware attention adaptation. \\
+CLIPtrase & No & None & 0 & pending & CLIP self-attention / dense inference modification. \\
+SC-CLIP & No & None & 0 & pending & Self-calibrated CLIP; no target training. \\
+ResCLIP & No & None & 0 & 1.179 s/img & Residual cross-correlation attention and semantic feedback refinement. \\
+ProxyCLIP & No & None & 0 & 0.167 s/img & CLIP plus VFM proxy attention. \\
+CorrCLIP & No & None & 0 & 0.193 s/img & CLIP with patch correlation reconstruction. \\
+Trident & No & None & 0 & pending & CLIP + DINO + SAM high-resolution training-free pipeline. \\
+CASS & No & None & 0 & pending & CLIP with VFM spectral object-context distillation at inference. \\
+OVDiff & No & None & offline synth. & pending & Diffusion-generated support/prototype stage; no target training. \\
+FreeDA & No & None & offline proto. & pending & Offline diffusion-augmented prototype generation. \\
+GroundingDINO + SAM2 & No & None & 0 & pending & Open-set detector plus SAM2 mask generation. \\
+SAM-AMG + CLIP & No & None & 0 & 4.124 s/img & Class-agnostic SAM proposals plus CLIP naming. \\
+SAM-AMG + SigLIP & No & None & 0 & 5.236 s/img & Class-agnostic SAM proposals plus SigLIP naming. \\
+DINOv2 + SAM + CLIP & No & None & 0 & 3.507 s/img & DINOv2-guided proposals plus CLIP naming. \\
+DINOv2 + SAM + SigLIP & No & None & 0 & 4.341 s/img & DINOv2-guided proposals plus SigLIP naming. \\
+OVSeg & Yes & COCO-style source & pending & pending & Mask-adapted CLIP trained reference. \\
+SAN & Yes & COCO-Stuff source & pending & pending & Side adapter trained reference. \\
+ODISE & Yes & COCO source & pending & pending & Diffusion-based open-vocabulary panoptic trained reference. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -493,16 +507,16 @@ MCC consistency diagnostic & Compare the same proposal+naming pipeline with and 
 \toprule
 Method & OVCamo cIoU\up & OVCamo mask\up & CAMO mask\up & COD10K-Camo mask\up & NC4K mask\up & Hard avg\up & Notes \\
 \midrule
-MaskCLIP & & & & & & & \\
-SCLIP & & & & & & & \\
-NACLIP & & & & & & & \\
-ProxyCLIP & & & & & & & \\
-Trident & & & & & & & \\
-FreeDA & & & & & & & \\
-GroundingDINO + SAM2 & & & & & & & \\
-SAM-AMG + SigLIP & & & & & & & \\
-DINOv2 + SAM + SigLIP & & & & & & & \\
-OVSeg / SAN / ODISE (ref.) & & & & & & & \\
+MaskCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+SCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+NACLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+ProxyCLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+Trident & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+FreeDA & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+GroundingDINO + SAM2 & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+SAM-AMG + SigLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+DINOv2 + SAM + SigLIP & pending & pending & pending & pending & pending & pending & Table10 appendix still running. \\
+OVSeg / SAN / ODISE (ref.) & pending & pending & pending & pending & pending & pending & Reference context pending. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -521,11 +535,11 @@ The hard-domain mask columns are filled with the standard camouflaged-object met
 \toprule
 Method group & Localized pairs & Mismatch pairs & MCMR@0.5 & Example mismatch pairs / communities \\
 \midrule
-Dense-map TF methods & & & & \\
-Detector+SAM TF methods & & & & \\
-Proposal+naming TF methods & & & & \\
-MCC consistency diagnostics & & & & \\
-Trained references & & & & \\
+Dense-map TF methods & 413463 & 149030 & 0.2972 & Large-vocabulary class-silence and thing/stuff communities; row aggregates completed dense-map runs. \\
+Detector+SAM TF methods & pending & pending & pending & Artifact gap until detector+SAM masks are materialized under the fixed protocol. \\
+Proposal+naming TF methods & 275642 & 115342 & 0.3454 & Higher proposal recall (0.5570) but persistent naming mismatch under fine vocabularies. \\
+MCC consistency diagnostics & pending & pending & pending & Needs saved before/after re-ranking artifacts rather than proxy dense maps. \\
+Trained references & pending & pending & pending & Compact references are kept as context, not primary strict-TF rows. \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
