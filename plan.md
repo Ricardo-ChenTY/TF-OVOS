@@ -1,236 +1,555 @@
-# TF-OVOS Benchmark — Execution Plan
+# TF-OVOS Proposal Completion Plan
 
-Goal: fill in the complete E1–E4 tables for the paper.
+Goal: finish every method row in the proposal main tables first, with a
+reproducible route from method adapters / official-repo runs to E1-E4 tables
+and diagnostic probes. Appendix hard-domain transfer runs are deferred until
+the main tables are filled or every blocker is documented.
 
----
+The proposal uses a two-tier rule:
 
-## Target Tables
+- Standard tier: E1-E3 are ranked by mIoU on semantic targets.
+- Exploratory tier: supporting diagnostics are recorded in parallel, but do not
+  replace the leaderboard metric.
 
-### E1 — Effectiveness (mIoU, standard tier)
+Strict TF rows must use frozen public models only: no target-dataset training,
+no prompt tuning on validation data, no adapter training, no closed-source API
+VLM calls, and no inference-time generative MLLM calls.
 
-| Method | Family | VOC20 | Ctx-59 | ADE-150 | COCO-171 | **mean** |
-|--------|--------|-------|--------|---------|----------|----------|
-| MaskCLIP-lite | clip_dense | 37.8 | 8.1 | 1.9 | 0.2 | — |
-| **MaskCLIP** | clip_dense | | | | | |
-| NACLIP | clip_dense | | | | | |
-| SCLIP | clip_dense | | | | | |
-| CorrCLIP | clip_vfm | | | | | |
-| ResClip | clip_dense | | | | | |
-| CLIP-DIY | clip_dense | | | | | |
-| CLIPtrase | clip_dense | | | | | |
-| CASS | clip_vfm | | | | | |
-| FreeDA | diffusion | | | | | |
-| OVDiff | diffusion | | | | | |
-| Trident | clip_vfm | | | | | |
-| DINOv2+SAM+CLIP | proposal | | | | | |
-| DINOv2+SAM+SigLIP | proposal | | | | | |
-| SAM-AMG+SigLIP | proposal | | | | | |
-| GroundingDINO+SAM2 | detector_sam | | | | | |
-| *OVSeg† | trained_ref | | | | | |
-| *SAN† | trained_ref | | | | | |
-| *ODISE† | trained_ref | | | | | |
+Full-scope override:
 
-† trained reference, not strict TF — included for comparison only.
+- The rows in the proposal tables are main-scope rows, not optional rows.
+- E1, E2, E3, E4, and diagnostics should be filled for every row whenever the
+  required code/artifacts exist.
+- Rows that cannot be run must have a concrete blocker and source note.
+- Appendix transfer starts only after E1-E4 and diagnostics are complete.
 
----
+Main-scope rows:
 
-### E2 — Vocabulary Robustness
+| Family | Rows |
+|--------|------|
+| CLIP-only / attention-edited | MaskCLIP, CLIP-DIY, SCLIP, NACLIP, CLIPtrase, SC-CLIP, ResCLIP |
+| CLIP + VFM | ProxyCLIP, CorrCLIP, Trident, CASS |
+| Diffusion / reference-based | OVDiff, FreeDA |
+| OV detection + SAM | GroundingDINO + SAM, GroundingDINO + SAM2 |
+| Class-agnostic proposal + VLM naming | SAM-AMG + CLIP, SAM-AMG + SigLIP, DINOv2 + SAM + CLIP, DINOv2 + SAM + SigLIP |
+| Compact training-based references | OVSeg, SAN, ODISE |
 
-| Method | Ctx-59 | Ctx-459 | **Δ_ctx** | ADE-150 | ADE-847 | **Δ_ade** | **Δ_vocab** | MCMR@0.5 |
-|--------|--------|---------|-----------|---------|---------|-----------|-------------|----------|
-| MaskCLIP-lite | 8.1 | | | 1.9 | | | | 0.0 |
-| MaskCLIP | | | | | | | | |
-| NACLIP | | | | | | | | |
-| … (all methods) | | | | | | | | |
+Main-table run waves:
 
-Δ_vocab = avg(Δ_ctx + Δ_ade).  Lower is better (robust to larger vocab).
-
----
-
-### E3 — Cross-Dataset Generalization
-
-Trained on: VOC20 + Ctx-59 + ADE-150 + COCO-171 (E1 splits).
-Tested on: unseen subsets / held-out splits.
-
-| Method | VOC20→Ctx | Ctx→ADE | ADE→COCO | **avg-worst** |
-|--------|-----------|---------|----------|---------------|
-| MaskCLIP-lite | | | | |
-| … | | | | |
-
-*(Exact transfer protocol TBD once E1 numbers are in.)*
+1. Freeze current official E1 and finish official E2 for ProxyCLIP/CorrCLIP.
+2. Implement/run proposal and detector rows: SAM-AMG + CLIP, SAM-AMG + SigLIP, GroundingDINO + SAM, GroundingDINO + SAM2, DINOv2 + SAM + CLIP, DINOv2 + SAM + SigLIP.
+3. Implement/run missing CLIP/VFM rows: MaskCLIP, CLIP-DIY, CLIPtrase, SC-CLIP, Trident, CASS.
+4. Implement/run diffusion rows: OVDiff, FreeDA, with offline synthesis/prototype time separated from test cost.
+5. Fill trained references: OVSeg, SAN, ODISE, using official inference when practical or exact-protocol published values.
+6. Run diagnostic probes: GT-region naming, GT-text localization, proposal recall, and MCC consistency.
+7. Run isolated E4 timing on the same GPU after method settings are frozen.
+8. Export E1/E2/E3/E4/diagnostic tables, then decide appendix scope.
 
 ---
 
-### E4 — Efficiency
+## Current Snapshot
 
-Measured automatically via `runtime.json` written by `run_method.py`.
+Already usable:
 
-| Method | img/s (V100) | GPU mem (GB) | FLOPs (G) |
-|--------|-------------|--------------|-----------|
-| MaskCLIP-lite | | | |
-| … | | | |
+- Benchmark harness, manifests, sharding, evaluator, and runtime JSON path.
+- MaskCLIP-lite adapter results:
+  - E1: `voc20`, `context59`, `ade20k150`, `coco_stuff171`
+  - E2: `context459`, `ade20k847`
+- Official MMSeg-style E1 datafix results:
+  - Complete: SCLIP, NACLIP, ResCLIP, ProxyCLIP on VOC20 / Context59 / ADE20K / COCO-Stuff171.
+  - Complete: CorrCLIP on VOC20 / Context59 / ADE20K / COCO-Stuff171.
+- Official E2 large-vocabulary queue:
+  - Running in tmux session `official_e2_queue`.
+  - Order: ProxyCLIP Context459, ProxyCLIP ADE847, CorrCLIP Context459, CorrCLIP ADE847.
+  - ProxyCLIP uses its official E2 class files/config conventions.
+  - CorrCLIP uses official CorrCLIP dataset classes and region masks, with the
+    same official E2 class files copied from ProxyCLIP because CorrCLIP ships the
+    dataset classes but not E2 cfg files.
+- Analysis watcher writes:
+  - `runs/analysis/official_best_metrics.csv`
+  - `runs/analysis/official_log_metrics.csv`
+  - `runs/analysis/proposal_novelty_metrics.csv`
+  - `runs/analysis/candidate_signals.csv`
 
----
+Important interpretation:
 
-## Implementation Roadmap
-
-### Phase 1 — CLIP-dense family (all share ViT-B/16 backbone, ~1 day each)
-
-These methods differ only in *how* patch tokens are processed before cosine similarity.
-They can reuse `MaskClipAdapter._encode_text` and `_preprocess`.
-
-1. **MaskCLIP (attention surgery)** — `adapters/maskclip.py` upgrade
-   - In `_encode_patch_tokens`: for the last N layers, replace key-query attention
-     with key-key self-similarity (MaskCLIP §3.2).
-   - Expected: VOC20 ~50%, ADE150 ~15%.
-   - Paper: Zhou et al., ECCV 2022.
-
-2. **NACLIP** — new `adapters/naclip.py`
-   - After getting patch tokens, smooth each token with its spatial neighbours
-     (3×3 or 5×5 Gaussian-weighted sum) before cosine similarity.
-   - Expected: ADE150 ~17%, Ctx59 ~18%.
-   - Paper: Hajimiri et al., ECCV 2024.
-
-3. **SCLIP** — new `adapters/sclip.py`
-   - Replace standard self-attention in last layer with *correlative* self-attention:
-     Q←value, K←value, V←value (removes position bias).
-   - Expected: ADE150 ~18%.
-   - Paper: Wang et al., ECCV 2024.
-
-4. **ResClip** — new `adapters/resclip.py`
-   - Add residual connections from early ViT layers to late layers before
-     computing dense similarity (multi-scale aggregation).
-   - Paper: Chen et al., NeurIPS 2024.
-
-5. **CLIP-DIY** — new `adapters/clip_diy.py`
-   - Patch-level CLIP + GrabCut-style iterative refinement using attention maps.
-   - Paper: Wysoczańska et al., WACV 2024.
-
-6. **CLIPtrase** — new `adapters/cliptrase.py`
-   - Use GradCAM traces on CLIP text tokens to generate dense maps.
-   - Paper: Shao et al., ECCV 2024.
+- Official-repo E1 numbers can fill proposal E1 standard rows immediately.
+- Adapter-native rows are still needed for proposal methods that are not covered
+  by official MMSeg logs and for diagnostics requiring unified prediction JSONL,
+  top-k scores, proposal masks, or per-stage runtime.
 
 ---
 
-### Phase 2 — VFM-augmented CLIP (DINO/SAM backbone, ~2 days each)
+## Completion Definition
 
-7. **CorrCLIP** — new `adapters/corrclip.py`
-   - Compute patch-patch correlation from DINOv2 features, reweight CLIP similarity.
-   - Deps: `dinov2` (Facebook), `open_clip`.
-   - Paper: Sun et al., 2024.
+The proposal is "run through" when the following artifacts exist.
 
-8. **CASS** — new `adapters/cass.py`
-   - Spectral clustering on DINOv2 patch features → segment proposals → CLIP naming.
-   - Deps: `dinov2`, `open_clip`, `scipy` (for eigendecomposition).
-   - Paper: CASS, 2024.
+1. E1 standard table:
+   - VOC20, Context59, ADE20K-150, COCO-Stuff171 mIoU for every kept method row.
 
-9. **Trident** — new `adapters/trident.py`
-   - CLIP + DINOv2 + SAM multi-scale feature fusion, training-free.
-   - Deps: `dinov2`, `segment_anything`, `open_clip`.
-   - Paper: Trident, 2024.
+2. E2 vocabulary robustness table:
+   - Context59 vs Context459 and ADE150 vs ADE847 mIoU.
+   - Delta_vocab for every method where compact/large pairs are complete.
+   - MCMR@0.5 and top mismatch pairs for methods with region or prediction artifacts.
 
----
+3. E3 generalization table:
+   - Target mIoU on the same standard targets.
+   - Rank stability / worst-target / worst-class readouts from completed E1-style runs.
+   - Hard-domain appendix runs only after the main semantic tables are stable.
 
-### Phase 3 — Proposal-based (SAM/detector generates masks, VLM names them, ~2 days each)
+4. E4 efficiency table:
+   - seconds/image, peak GPU memory, model calls, and per-stage runtime where available.
+   - Official logs may seed partial values, but final E4 should use isolated reruns.
 
-10. **DINOv2 + SAM + CLIP** — `adapters/dinov2_sam_clip.py`
-    - SAM AMG generates ~100 masks per image.
-    - For each mask, crop + CLIP encode → argmax over vocab.
-    - Merge by majority vote into semantic label map.
-    - Deps: `segment_anything`, `dinov2`, `open_clip`.
-
-11. **DINOv2 + SAM + SigLIP** — `adapters/dinov2_sam_siglip.py`
-    - Same as above but swap CLIP for SigLIP (better zero-shot naming).
-    - Deps: `transformers` (HF SigLIP).
-
-12. **SAM-AMG + SigLIP** — `adapters/sam_amg_siglip.py`
-    - Pure SAM AMG (no DINOv2 guidance) + SigLIP naming.
-    - Simpler variant; tests SAM mask quality independently.
-
-13. **GroundingDINO + SAM2** — `adapters/groundingdino_sam2.py`
-    - For each vocab class, run GroundingDINO to get bounding boxes.
-    - Feed boxes into SAM2 to get fine masks.
-    - Merge all class masks into semantic label map.
-    - Deps: `groundingdino`, `sam2`.
+5. Paper-ready CSV/Markdown outputs:
+   - `runs/tables/e1_standard.csv`
+   - `runs/tables/e2_vocab.csv`
+   - `runs/tables/e3_generalization.csv`
+   - `runs/tables/e4_efficiency.csv`
+   - `runs/tables/exploratory_diagnostics.csv`
 
 ---
 
-### Phase 4 — Diffusion-based (slower, run last)
+## Priority Order
 
-14. **FreeDA** — `adapters/freeda.py`
-    - Offline: extract Stable Diffusion cross-attention maps per class.
-    - Online: match to test image via prototype matching.
-    - Deps: `diffusers`, `transformers`.
+### P0 - Freeze Current Official E1
 
-15. **OVDiff** — `adapters/ovdiff.py`
-    - Use diffusion inpainting score as class likelihood at each pixel.
-    - Deps: `diffusers`.
+Purpose: finish the standard table backbone before implementing more adapters.
 
----
+Tasks:
 
-### Phase 5 — Trained references (run from official repos or use published numbers)
+1. Keep the completed CorrCLIP datafix logs as canonical:
+   - Context59 uses the missing-region-mask fallback for one official archive miss.
+   - COCO-Stuff171 uses the official labelTrainIds convention.
+2. Refresh analysis:
+   ```bash
+   /data/tianyi/conda_envs/tf-ovos/bin/python scripts/analyze_official_results.py
+   ```
+3. Validate that `official_best_metrics.csv` has 20 rows:
+   - methods: SCLIP, NACLIP, ResCLIP, ProxyCLIP, CorrCLIP
+   - datasets: VOC20, Context59, ADE20K, COCO-Stuff171
+4. Mark old bad COCO logs as invalid and keep datafix rows as canonical.
 
-16. **OVSeg** — use official inference code + published weights.
-17. **SAN** — use official inference code + published weights.
-18. **ODISE** — use official inference code + published weights.
+Exit criteria:
 
-These are not strict TF methods; they appear in a separate section of Table 1
-as upper-bound references.
+- E1 official standard table has 5 x 4 complete rows.
+- `proposal_novelty_metrics.csv` has artifact-completeness rows for every saved prediction directory that exists.
 
----
+### P0.5 - Official E2 Large-Vocab Overnight Pass
 
-## Dataset Coverage per Phase
+Purpose: fill the proposal E2 backbone while staying inside official MMSeg
+method implementations.
 
-| Phase | E1 datasets | E2 datasets | Appendix |
-|-------|------------|-------------|----------|
-| After Phase 1 | voc20, ctx59, ade150, coco171 | ctx459, ade847 | ovcamo, camo, cod10k, nc4k |
-| After Phase 2 | same | same | same |
-| After Phase 3 | same | same | same |
-| After Phase 4 | same | same | same |
-
-Run order per method:
-```bash
-python -m tf_ovos.run_benchmark --method <name> \
-    --dataset voc20_val --dataset context59_val \
-    --dataset ade20k150_val --dataset coco_stuff171_val \
-    --dataset context459_val --dataset ade20k847_val \
-    --num-shards 4
-```
-
----
-
-## Dependencies to Install (cumulative)
+Running command:
 
 ```bash
-# Phase 1 (already done)
-pip install open-clip-torch scipy
-
-# Phase 2
-pip install git+https://github.com/facebookresearch/dinov2.git
-
-# Phase 3
-pip install segment-anything
-pip install git+https://github.com/facebookresearch/sam2.git
-pip install groundingdino-py
-pip install transformers  # for SigLIP
-
-# Phase 4
-pip install diffusers accelerate
+tmux new-session -d -s official_e2_queue \
+  'cd /data/tianyi/TF-OVCOS && bash scripts/run_official_e2_queue.sh >> runs/logs/official_e2_queue_driver.log 2>&1'
 ```
+
+Tasks:
+
+1. Generate local official-style E2 data trees:
+   - Context459: VOC2010 `JPEGImages`, `annotations_detectron2/pc459_val`, and `ImageSets/SegmentationContext/val.txt`.
+   - ADE847: ADE validation image tree, `annotations_detectron2/validation`, and `validation.txt`.
+2. Preserve official E2 prompt class files:
+   - `cls_context459.txt`
+   - `cls_ade20k847.txt`
+3. Run only methods with official E2 support in code:
+   - ProxyCLIP: official E2 cfg pattern.
+   - CorrCLIP: official dataset classes + official region masks; generated cfg only wires paths and class files.
+4. Refresh analysis after the queue finishes:
+   ```bash
+   /data/tianyi/conda_envs/tf-ovos/bin/python scripts/analyze_official_results.py
+   ```
+
+Exit criteria:
+
+- `official_best_metrics.csv` includes ProxyCLIP/CorrCLIP rows for `context459` and `ade847`.
+- Analysis marks these rows as `phase2_e2`.
+- SCLIP/NACLIP/ResCLIP E2 are not added until their official repos have verified compatible E2 dataset support.
+
+### P1 - Full Main-Table Row Inventory
+
+Purpose: fill every row explicitly listed in the proposal main tables.
+
+Strict-TF rows:
+
+| Family | Rows | Source path |
+|--------|------|-------------|
+| CLIP-only / attention-edited | MaskCLIP, CLIP-DIY, SCLIP, NACLIP, CLIPtrase, SC-CLIP, ResCLIP | official repo when available; otherwise adapter |
+| CLIP + VFM | ProxyCLIP, CorrCLIP, Trident, CASS | official repo when available; otherwise adapter |
+| Diffusion / reference-based | OVDiff, FreeDA | official repo or adapter; offline stage noted in E4 |
+| OV detection + SAM | GroundingDINO + SAM, GroundingDINO + SAM2 | adapter |
+| Proposal + VLM naming | SAM-AMG + CLIP, SAM-AMG + SigLIP, DINOv2 + SAM + CLIP, DINOv2 + SAM + SigLIP | adapter |
+
+Non-strict reference rows:
+
+- OVSeg
+- SAN
+- ODISE
+
+Exit criteria:
+
+- Every main-table row has E1/E2/E3/E4/diagnostic slots.
+- Every row has an implementation route or a documented blocker.
+- No row above is treated as appendix-only.
+
+### P2 - Adapter Contract Pass
+
+Purpose: make remaining methods run through one benchmark interface.
+
+For each adapter, implement:
+
+1. `src/tf_ovcos/adapters/<method>.py`
+2. registration in `tf_ovcos.run_method`
+3. one smoke command on 20 images
+4. full benchmark command
+5. runtime fields:
+   - wall seconds
+   - seconds/image
+   - peak GPU memory if sampled
+   - model-call counts where natural
+   - proposal count / selected mask count for proposal methods
+
+Required output format:
+
+```json
+{"image_id": "xxx", "mask_path": "pred_masks/xxx.png", "label": "class name", "score": 0.73}
+```
+
+Additional optional artifacts for exploratory metrics:
+
+- `proposal_masks/`
+- `topk_labels.jsonl`
+- `score_maps/` or compact per-region score arrays
+- `runtime.json`
+- `stage_runtime.json`
+
+Smoke test rule:
+
+```bash
+python -m tf_ovcos.run_benchmark \
+  --method <method> \
+  --dataset voc20_val \
+  --limit 20 \
+  --num-shards 1 \
+  --skip-existing
+```
+
+Full E1/E2 command:
+
+```bash
+python -m tf_ovcos.run_benchmark \
+  --method <method> \
+  --dataset voc20_val \
+  --dataset context59_val \
+  --dataset ade20k150_val \
+  --dataset coco_stuff171_val \
+  --dataset context459_val \
+  --dataset ade20k847_val \
+  --num-shards 4 \
+  --skip-existing
+```
+
+Exit criteria:
+
+- Every implemented adapter can run `--limit 20` and produce valid masks,
+  labels, metrics, and runtime JSON.
+
+### P3 - Run Proposal / Detector Rows
+
+Purpose: fill the rows currently empty in the proposal table and generate the
+diagnostic artifacts that dense official logs cannot provide.
+
+Run order:
+
+1. SAM-AMG + CLIP
+   - simplest class-agnostic proposal + CLIP naming row.
+   - produces proposal masks, top-k naming artifacts, and proposal-recall diagnostics.
+
+2. SAM-AMG + SigLIP
+   - same proposal backbone, stronger naming model.
+   - compares directly against CLIP naming.
+
+3. GroundingDINO + SAM
+   - detector-driven row.
+   - prompt with all vocabulary labels, use fixed thresholds, then SAM masks.
+
+4. GroundingDINO + SAM2
+   - detector-driven row with SAM2 masks.
+   - compares SAM vs SAM2 mask refinement.
+
+5. DINOv2 + SAM + CLIP
+   - DINOv2-guided proposal/ranking plus CLIP naming.
+
+6. DINOv2 + SAM + SigLIP
+   - stronger proposal/naming row.
+   - use DINOv2 features for proposal guidance or ranking, then SigLIP naming.
+
+Exit criteria:
+
+- E1/E2/E3 complete for all six proposal/detector rows.
+- MCMR@0.5, proposal Recall@0.5/0.7, GT-region naming, and top mismatch pairs are computed where artifacts exist.
+
+### P4 - Add Missing Dense / VFM / Diffusion Rows
+
+Purpose: complete important proposal rows not covered by current official logs.
+
+Run order:
+
+1. MaskCLIP attention-surgery adapter
+   - replaces MaskCLIP-lite baseline with the actual method row.
+
+2. CLIP-DIY
+   - CLIP patch inference plus unsupervised localization prior.
+
+3. CLIPtrase
+   - CLIP self-attention / dense inference modification.
+
+4. SC-CLIP
+   - verify exact official method/source before running.
+
+5. Trident adapter or official-repo run
+   - CLIP + DINO + SAM high-resolution training-free pipeline.
+
+6. CASS
+   - CLIP with VFM spectral object-context distillation at inference.
+
+7. OVDiff
+   - diffusion support/prototype stage; no target training.
+
+8. FreeDA
+   - offline diffusion-augmented prototype generation.
+
+Exit criteria:
+
+- E1/E2/E3 rows exist for every dense, VFM, and diffusion method in the table.
+- E4 records offline synthesis/prototype time separately from test cost.
+- Diagnostics are computed when a method emits masks, regions, top-k labels, or proposals.
+
+### P5 - Trained References
+
+Purpose: provide context rows without confusing them with strict TF methods.
+
+Rows:
+
+- OVSeg
+- SAN
+- ODISE
+
+Allowed sources:
+
+1. official inference with released weights, preferred when setup is practical.
+2. published numbers, only when the exact target dataset/protocol matches.
+
+Reporting rule:
+
+- Mark `strict_tf = No`.
+- Keep source/training data visible.
+- Do not use trained references to define the main TF ranking.
+
+Exit criteria:
+
+- E1/E3/E4 table has compact trained-reference context rows or documented missing protocol.
+
+### P6 - Main-Table Diagnostics
+
+Purpose: fill the failure-source diagnostic probes before appendix.
+
+Diagnostics:
+
+1. GT-region naming diagnostic
+   - classify ground-truth regions with CLIP/SigLIP.
+   - localization is removed.
+   - report Top-1 / Top-5 naming accuracy.
+
+2. GT-text localization diagnostic
+   - segment or localize using the ground-truth class prompt.
+   - recognition is removed.
+   - report IoU / BIoU / mask metrics.
+
+3. Proposal-recall diagnostic
+   - choose the proposal with highest GT IoU from SAM-AMG or DINOv2+SAM.
+   - naming is removed.
+   - report oracle IoU / BIoU.
+
+4. MCC consistency diagnostic
+   - compare the same proposal+naming pipeline with and without post-hoc mask-category consistency reranking.
+   - report pair-consistency gain and representative failure cases.
+
+Exit criteria:
+
+- `runs/tables/exploratory_diagnostics.csv` has rows for every diagnostic/method combination with required artifacts.
+- All diagnostic rows are marked `diagnostic_only`.
+
+### P7 - Final E4 Reruns
+
+Purpose: produce fair cost numbers after method settings are frozen.
+
+Run each kept method on the same GPU with:
+
+- fixed input resolution / resize policy
+- fixed batch size
+- no concurrent GPU jobs
+- peak memory sampler
+- stage timers where possible
+
+Collect:
+
+- inference seconds/image
+- peak GPU memory
+- trainable parameters
+- training flag
+- train source
+- train time or report-only note
+- offline preprocessing time
+- model calls
+- per-stage latency
+
+Exit criteria:
+
+- E4 table does not mix partial official-log timing with isolated final timing.
+- Every method row has a populated E4 record or a concrete blocker.
+
+### P8 - Appendix Transfer
+
+Purpose: run transfer/stress targets only after the main E1-E4 and diagnostic
+tables are stable.
+
+Appendix hard-domain transfer:
+
+- OVCamo-TE
+- CAMO-TE
+- COD10K-TE-Camo
+- NC4K
+
+Appendix metrics:
+
+- IoU
+- S_m
+- F_beta^w
+- E_m
+- MAE
+- OVCamo class-aware metrics when labels are aligned.
+
+Exit criteria:
+
+- hard-domain results are clearly separated from E1-E4 semantic mIoU tables.
 
 ---
 
-## Current Status
+## Dataset Matrix
 
-- [x] Benchmark harness (E1–E4 pipeline, metrics, manifests)
-- [x] All 6 datasets downloaded and manifests generated
-- [x] MaskCLIP-lite: E1 complete (VOC20=37.8, Ctx59=8.1, ADE150=1.9, COCO171=0.2)
-- [ ] MaskCLIP (surgery): E1 + E2
-- [ ] NACLIP, SCLIP, ResClip, CLIP-DIY, CLIPtrase: E1 + E2
-- [ ] CorrCLIP, CASS, Trident: E1 + E2
-- [ ] DINOv2+SAM+CLIP/SigLIP, SAM-AMG+SigLIP, GDino+SAM2: E1 + E2
-- [ ] FreeDA, OVDiff: E1 + E2
-- [ ] Appendix datasets: all methods
-- [ ] E3 cross-dataset analysis
-- [ ] E4 efficiency table (auto-collected, just needs aggregation)
-- [ ] summarize_results → CSV → paper tables
+### E1 Standard
+
+| Dataset | Manifest / official name | Role |
+|---------|--------------------------|------|
+| VOC20 | `voc20_val` / `voc20` | compact object semantic target |
+| Context59 | `context59_val` / `context59` | compact scene semantic target |
+| ADE20K-150 | `ade20k150_val` / `ade20k` | compact scene semantic target |
+| COCO-Stuff171 | `coco_stuff171_val` / `coco_stuff164k` | object + stuff semantic target |
+
+### E2 Vocabulary Robustness
+
+| Compact | Large | Required result |
+|---------|-------|-----------------|
+| Context59 | Context459 | mIoU compact, mIoU large, Delta_ctx |
+| ADE20K-150 | ADE20K-847 | mIoU compact, mIoU large, Delta_ade |
+
+### Appendix Transfer
+
+| Dataset | Role |
+|---------|------|
+| OVCamo-TE | class-aware hard-domain target where labels align |
+| CAMO-TE | mask-only hard-domain target |
+| COD10K-TE-Camo | mask-only hard-domain target |
+| NC4K | mask-only hard-domain target |
+
+---
+
+## Method Checklist
+
+| Method | Priority | Current state | Next action |
+|--------|----------|---------------|-------------|
+| MaskCLIP-lite | done | E1/E2 adapter results exist | keep as baseline, not final MaskCLIP row |
+| SCLIP | P0 | official E1 complete | use official E1; add E2 only if official config can scale vocab |
+| NACLIP | P0 | official E1 complete | use official E1; add E2 only if official config can scale vocab |
+| ResCLIP | P0 | official E1 complete | use official E1; add E2 only if official config can scale vocab |
+| ProxyCLIP | P0.5 | official E1 complete; E2 queue running | collect Context459/ADE847 E2 |
+| CorrCLIP | P0.5 | official E1 complete; E2 queue running | collect Context459/ADE847 E2 |
+| MaskCLIP | P4 | not implemented | implement real attention-surgery adapter |
+| CLIP-DIY | P4 | not implemented | implement or run official route |
+| CLIPtrase | P4 | not implemented | implement or run official route |
+| SC-CLIP | P4 | not implemented | verify source, then implement or run official route |
+| SAM-AMG + CLIP | P3 | not implemented | first proposal/naming adapter |
+| SAM-AMG + SigLIP | P3 | not implemented | second proposal/naming adapter |
+| GroundingDINO + SAM | P3 | not implemented | detector/SAM adapter |
+| GroundingDINO + SAM2 | P3 | not implemented | detector/SAM2 adapter |
+| DINOv2 + SAM + CLIP | P3 | not implemented | DINO-guided proposal/naming adapter |
+| DINOv2 + SAM + SigLIP | P3 | not implemented | DINO-guided proposal/naming adapter |
+| Trident | P4 | not implemented | adapter or official-repo run |
+| CASS | P4 | not implemented | adapter or official-repo run |
+| OVDiff | P4 | not implemented | diffusion row; track offline synthesis separately |
+| FreeDA | P4 | not implemented | diffusion row; track offline prototypes separately |
+| OVSeg | P5 | not run | official inference or published aligned numbers |
+| SAN | P5 | not run | official inference or published aligned numbers |
+| ODISE | P5 | not run | official inference or published aligned numbers |
+
+---
+
+## Table-Building Commands
+
+After each run batch:
+
+```bash
+python -m tf_ovcos.summarize_results --out-dir runs/tables
+/data/tianyi/conda_envs/tf-ovos/bin/python scripts/analyze_official_results.py
+```
+
+Before paper table export:
+
+```bash
+python -m tf_ovcos.summarize_results \
+  --out-dir runs/tables \
+  --include-e1 \
+  --include-e2 \
+  --include-e3 \
+  --include-e4
+```
+
+If a CLI flag above is not implemented yet, implement the exporter before
+adding more method rows; table generation should not be a manual spreadsheet
+step.
+
+---
+
+## Risk Controls
+
+- Never tune thresholds on target validation metrics. Thresholds, prompts,
+  SAM settings, and resize sizes are fixed before full evaluation.
+- Keep official-repo results and adapter-native results separate in filenames
+  and tables until protocols are verified.
+- For COCO-Stuff official methods, use the official labelTrainIds convention
+  already fixed in `scripts/prepare_official_mmseg_configs.py`.
+- For CorrCLIP, preserve the downloaded official region masks and the missing
+  Context59 zero-mask fallback note.
+- For exploratory metrics, record broad readouts, but promote only patterns that
+  are stable across at least two datasets and distinguish method families.
+
+---
+
+## Immediate Next Steps
+
+1. Let `official_e2_queue` finish and confirm ProxyCLIP/CorrCLIP E2 logs.
+2. Refresh analysis and freeze official E1 + available official E2 rows.
+3. Implement/run `SAM-AMG + CLIP`, then `SAM-AMG + SigLIP`.
+4. Implement/run `GroundingDINO + SAM`, then `GroundingDINO + SAM2`.
+5. Implement/run `DINOv2 + SAM + CLIP`, then `DINOv2 + SAM + SigLIP`.
+6. Implement/run `MaskCLIP`, `CLIP-DIY`, `CLIPtrase`, `SC-CLIP`, `Trident`, `CASS`.
+7. Implement/run `OVDiff` and `FreeDA`, with offline stage cost separated.
+8. Add trained references or document published-number compatibility.
+9. Run diagnostic probes.
+10. Run isolated E4 timing pass.
+11. Export E1/E2/E3/E4/diagnostic tables.
+12. Decide appendix transfer scope.

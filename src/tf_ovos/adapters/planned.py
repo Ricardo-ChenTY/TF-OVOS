@@ -88,14 +88,7 @@ GroundingDinoSam2Adapter = planned_adapter(
 )
 
 # ── Class-agnostic proposal + VLM naming ───────────────────────────────────
-SamAmgClipAdapter = planned_adapter(
-    "sam_amg_clip",
-    "SAM-AMG+CLIP needs Segment Anything, CLIP scoring, model weights, and proposal-ranking code.",
-)
-SamAmgSiglipAdapter = planned_adapter(
-    "sam_amg_siglip",
-    "SAM-AMG+SigLIP needs Segment Anything, SigLIP scoring, model weights, and proposal-ranking code.",
-)
+# SamAmgClipAdapter and SamAmgSiglipAdapter are implemented in sam_amg_clip.py / sam_amg_siglip.py
 Dinov2SamClipAdapter = planned_adapter(
     "dinov2_sam_clip",
     "DINOv2+SAM+CLIP needs DINOv2 spatial priors, SAM proposals, CLIP naming, and ranking code.",
@@ -141,8 +134,6 @@ PROPOSAL_PLANNED_ADAPTERS: tuple[type[PlannedAdapter], ...] = (
     FreeDaAdapter,
     GroundingDinoSamAdapter,
     GroundingDinoSam2Adapter,
-    SamAmgClipAdapter,
-    SamAmgSiglipAdapter,
     Dinov2SamClipAdapter,
     Dinov2SamSiglipAdapter,
     Dinov2SamClipMccAdapter,

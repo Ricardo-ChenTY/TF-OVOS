@@ -59,11 +59,23 @@ def _runtime_summary(method_root: Path, dataset_name: str) -> dict[str, Any]:
     runtimes = [row for row in runtimes if row is not None]
     total_samples = sum(int(row.get("num_samples", 0)) for row in runtimes)
     total_time = sum(float(row.get("wall_time_sec", 0.0)) for row in runtimes)
+    peak_memory_values = [
+        float(row["peak_memory_mb"])
+        for row in runtimes
+        if row.get("peak_memory_mb") is not None
+    ]
+    model_call_values = [
+        int(row["model_calls"])
+        for row in runtimes
+        if row.get("model_calls") is not None
+    ]
     return {
         "runtime_shards": len(runtimes),
         "runtime_num_samples": total_samples,
         "runtime_wall_time_sec": total_time,
         "runtime_sec_per_image": total_time / total_samples if total_samples else None,
+        "runtime_peak_memory_mb": max(peak_memory_values) if peak_memory_values else None,
+        "runtime_model_calls": sum(model_call_values) if model_call_values else None,
     }
 
 
@@ -147,6 +159,37 @@ def collect_method(method: str, cfg: dict[str, Any], run_root: Path) -> dict[str
     e3_row["avg_mIoU"] = sum(e3_miou_values) / len(e3_miou_values) if e3_miou_values else None
     e3_row["worst_mIoU"] = min(e3_miou_values) if e3_miou_values else None
 
+    # --- E4: test-time cost / efficiency ---
+    e4_rows: list[dict[str, Any]] = []
+    for row in dataset_rows:
+        quality_metric = "mIoU" if row.get("miou") is not None else "IoU"
+        quality_value = row.get("miou")
+        if quality_value is None:
+            quality_value = row.get("mask_metrics.IoU")
+        sec_per_image = row.get("runtime_sec_per_image")
+        e4_rows.append(
+            {
+                "method": method,
+                "dataset": row["dataset"],
+                "task": row["task"],
+                "quality_metric": quality_metric,
+                "quality_value": quality_value,
+                "num_samples": row.get("num_samples"),
+                "runtime_shards": row.get("runtime_shards"),
+                "runtime_num_samples": row.get("runtime_num_samples"),
+                "runtime_wall_time_sec": row.get("runtime_wall_time_sec"),
+                "runtime_sec_per_image": sec_per_image,
+                "runtime_peak_memory_mb": row.get("runtime_peak_memory_mb"),
+                "runtime_model_calls": row.get("runtime_model_calls"),
+                "quality_per_second": (
+                    float(quality_value) / float(sec_per_image)
+                    if quality_value is not None and sec_per_image
+                    else None
+                ),
+                "note": "Runtime is collected from shard runtime.json; use isolated reruns for final paper-grade hardware numbers.",
+            }
+        )
+
     # Appendix: hard-domain mask-only targets
     appendix_row: dict[str, Any] = {"method": method}
     for ds in APPENDIX_DATASETS:
@@ -163,6 +206,7 @@ def collect_method(method: str, cfg: dict[str, Any], run_root: Path) -> dict[str
         "e2": e2_row,
         "e2_ambiguity": e2_ambiguity_rows,
         "e3": e3_row,
+        "e4": e4_rows,
         "appendix": appendix_row,
     }
 
@@ -183,6 +227,7 @@ def main() -> None:
     e2_rows: list[dict[str, Any]] = []
     e2_ambiguity_rows: list[dict[str, Any]] = []
     e3_rows: list[dict[str, Any]] = []
+    e4_rows: list[dict[str, Any]] = []
     appendix_rows: list[dict[str, Any]] = []
 
     for method in methods:
@@ -192,6 +237,7 @@ def main() -> None:
         e2_rows.append(collected["e2"])
         e2_ambiguity_rows.extend(collected["e2_ambiguity"])
         e3_rows.append(collected["e3"])
+        e4_rows.extend(collected["e4"])
         appendix_rows.append(collected["appendix"])
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
@@ -203,6 +249,7 @@ def main() -> None:
                 "e2": e2_rows,
                 "e2_ambiguity": e2_ambiguity_rows,
                 "e3": e3_rows,
+                "e4": e4_rows,
                 "appendix": appendix_rows,
             },
             indent=2,
@@ -216,6 +263,7 @@ def main() -> None:
     _write_csv(e2_rows, args.out_dir / "e2_vocab_robustness.csv")
     _write_csv(e2_ambiguity_rows, args.out_dir / "e2_ambiguity.csv")
     _write_csv(e3_rows, args.out_dir / "e3_generalization.csv")
+    _write_csv(e4_rows, args.out_dir / "e4_cost.csv")
     _write_csv(appendix_rows, args.out_dir / "appendix_hard_domain.csv")
     print(f"Wrote summaries to {args.out_dir}")
 

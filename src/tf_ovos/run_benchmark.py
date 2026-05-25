@@ -55,6 +55,7 @@ def run_dataset(
     evaluate_predictions: bool,
     num_classes: int | None = None,
     void_label: int = 255,
+    prediction_label_offset: int = 0,
 ) -> dict[str, Path]:
     dataset_root = run_root / method / dataset_name
     manifest_shards_dir = dataset_root / "manifest_shards"
@@ -92,6 +93,7 @@ def run_dataset(
             threshold=0.5,
             num_classes=num_classes,
             void_label=void_label,
+            prediction_label_offset=prediction_label_offset,
         )
         metrics_path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"Wrote metrics to {metrics_path}")
@@ -133,6 +135,7 @@ def main() -> None:
         vocab = args.vocab or _dataset_vocab(cfg, dataset)
         num_classes = dataset.get("num_classes")
         void_label = dataset.get("void_label", 255)
+        prediction_label_offset = int(dataset.get("prediction_label_offset", 0))
         manifest = Path(dataset["manifest"])
         if args.limit is not None:
             manifest = _write_limited_manifest(
@@ -153,6 +156,7 @@ def main() -> None:
             evaluate_predictions=not args.no_eval,
             num_classes=num_classes,
             void_label=void_label,
+            prediction_label_offset=prediction_label_offset,
         )
 
 

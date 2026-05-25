@@ -349,36 +349,40 @@ SAN & Trained & No & 93.95 & 52.43 & 27.56 & 41.93 & 54.98 \\
 \begin{table}[H]
 \centering
 \scriptsize
-\caption{E2 vocabulary and category-ambiguity robustness. The first four numeric columns are standard mIoU under compact and large official vocabularies. MCMR@0.5 is reported only for rows with saved prediction-map artifacts; log-only rows are kept for vocabulary-drop context and marked explicitly.}
+\caption{E2 vocabulary and category-ambiguity robustness. The first four numeric columns are standard mIoU under compact and large official vocabularies. ZIoU is the zero-IoU class-collapse rate over finite per-class IoU entries in each large vocabulary; lower means broader class coverage. MCMR@0.5 is reported only for rows with saved prediction-map artifacts.}
 \label{tab:e2-ambiguity}
-\setlength{\tabcolsep}{2.5pt}
+\setlength{\tabcolsep}{1.6pt}
 \begin{adjustbox}{max width=\textwidth}
-\begin{tabular}{l c c c c c c p{0.22\textwidth}}
+\begin{tabular}{l c c c c c c c c p{0.18\textwidth}}
 \toprule
-Method & Ctx-59 mIoU\up & Ctx-459 mIoU\up & ADE-150 mIoU\up & ADE-847 mIoU\up & $\Delta_{\mathrm{vocab}}$\down & MCMR@0.5\down & Top mismatch pairs \\
+Method & Ctx-59 mIoU\up & Ctx-459 mIoU\up & Ctx459 ZIoU\%\down & ADE-150 mIoU\up & ADE-847 mIoU\up & ADE847 ZIoU\%\down & $\Delta_{\mathrm{vocab}}$\down & MCMR@0.5\down & Top mismatch pairs \\
 \midrule
-MaskCLIP & 8.15 & 1.22 & 1.88 & 0.49 & 4.16 & 0.805 & local high-collapse baseline \\
-MaskCLIP-Attn & 8.35 & 1.25 & 1.82 & 0.50 & 4.21 & 0.825 & local high-collapse baseline \\
-MaskCLIP-Attn-Slide & 11.87 & 1.94 & 4.61 & 1.44 & 6.55 & 0.505 & sliding improves mIoU, not large-vocab silence \\
-SCLIP & 34.14 & 6.68 & 16.46 & 5.67 & 19.12 & 0.489 & see Table~\ref{tab:appendix-ambiguity-graph} \\
-NACLIP & 38.36 & 7.79 & 19.12 & 6.01 & 21.84 & 0.512 & see Table~\ref{tab:appendix-ambiguity-graph} \\
-CLIPtrase & 34.58 & 9.95 & 17.04 & 5.89 & 17.82 & needs maps & log metrics only; no saved prediction maps \\
-SC-CLIP & 40.21 & 8.34 & 20.06 & 7.46 & 22.44 & needs maps & log metrics only; no saved prediction maps \\
-ResCLIP & 36.85 & 7.70 & 18.07 & 6.49 & 20.37 & 0.501 & see Table~\ref{tab:appendix-ambiguity-graph} \\
-ProxyCLIP & 39.31 & 8.41 & 19.59 & 6.90 & 21.80 & 0.557 & see Table~\ref{tab:appendix-ambiguity-graph} \\
-CorrCLIP & 48.68 & 11.88 & 26.96 & 8.67 & 27.54 & 0.579 & strongest mIoU, still high large-vocab mismatch \\
-Trident & 40.99 & 8.97 & 20.91 & 7.45 & 22.73 & needs maps & log metrics only; no saved prediction maps \\
-CASS & 40.27 & 8.38 & 20.32 & 7.19 & 22.52 & needs maps & log metrics only; no saved prediction maps \\
-FreeDA & 43.42 & 4.27 & 23.19 & 3.93 & 29.21 & needs maps & diffusion-reference log metrics only \\
-SAM-AMG + CLIP & 17.84 & 4.00 & 12.59 & 5.04 & 10.70 & 0.600 & proposal naming remains ambiguity-limited \\
-SAM-AMG + SigLIP & 19.66 & 4.97 & 15.34 & 7.24 & 11.39 & 0.552 & better naming, same large-vocab stress \\
-DINOv2 + SAM + CLIP & 16.55 & 3.79 & 11.77 & 5.00 & 9.77 & 0.620 & proposal prior helps masks, not fine labels \\
-DINOv2 + SAM + SigLIP & 18.48 & 4.84 & 14.75 & 7.08 & 10.66 & 0.552 & proposal prior plus stronger naming \\
-SAN (ref.) & 52.43 & 12.75 & 27.56 & 10.24 & 24.00 & needs conversion & Detectron2 RLE outputs need conversion before MCMR \\
+MaskCLIP & 8.15 & 1.22 & -- & 1.88 & 0.49 & -- & 4.16 & 0.805 & local high-collapse baseline \\
+MaskCLIP-Attn & 8.35 & 1.25 & -- & 1.82 & 0.50 & -- & 4.21 & 0.825 & local high-collapse baseline \\
+MaskCLIP-Attn-Slide & 11.87 & 1.94 & -- & 4.61 & 1.44 & -- & 6.55 & 0.505 & sliding improves mIoU, not large-vocab silence \\
+SCLIP & 34.14 & 6.68 & 39.7 & 16.46 & 5.67 & 39.2 & 19.12 & 0.489 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+NACLIP & 38.36 & 7.79 & 38.6 & 19.12 & 6.01 & 37.2 & 21.84 & 0.512 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+CLIPtrase & 34.58 & 9.95 & -- & 17.04 & 5.89 & -- & 17.82 & needs maps & log metrics only; no saved prediction maps \\
+SC-CLIP & 40.21 & 8.34 & 41.5 & 20.06 & 7.46 & 40.8 & 22.44 & needs maps & log metrics only; MCMR maps running \\
+ResCLIP & 36.85 & 7.70 & 39.4 & 18.07 & 6.49 & 39.1 & 20.37 & 0.501 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+ProxyCLIP & 39.31 & 8.41 & 42.4 & 19.59 & 6.90 & 42.0 & 21.80 & 0.557 & see Table~\ref{tab:appendix-ambiguity-graph} \\
+CorrCLIP & 48.68 & 11.88 & 44.2 & 26.96 & 8.67 & 49.9 & 27.54 & 0.579 & strongest mIoU, highest collapse \\
+Trident & 40.99 & 8.97 & 44.2 & 20.91 & 7.45 & 47.1 & 22.73 & needs maps & log metrics only; MCMR maps running \\
+CASS & 40.27 & 8.38 & 43.2 & 20.32 & 7.19 & 44.7 & 22.52 & needs maps & log metrics only; MCMR maps running \\
+FreeDA & 43.42 & 4.27 & -- & 23.19 & 3.93 & -- & 29.21 & needs maps & diffusion-reference log metrics only \\
+SAM-AMG + CLIP & 17.84 & 4.00 & -- & 12.59 & 5.04 & -- & 10.70 & 0.600 & proposal naming remains ambiguity-limited \\
+SAM-AMG + SigLIP & 19.66 & 4.97 & -- & 15.34 & 7.24 & -- & 11.39 & 0.552 & better naming, same large-vocab stress \\
+DINOv2 + SAM + CLIP & 16.55 & 3.79 & -- & 11.77 & 5.00 & -- & 9.77 & 0.620 & proposal prior helps masks, not fine labels \\
+DINOv2 + SAM + SigLIP & 18.48 & 4.84 & -- & 14.75 & 7.08 & -- & 10.66 & 0.552 & proposal prior plus stronger naming \\
+SAN (ref.) & 52.43 & 12.75 & -- & 27.56 & 10.24 & -- & 24.00 & needs conversion & Detectron2 RLE outputs need conversion before MCMR \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
+
+
+\paragraph{E2 coverage-collapse readout.}
+The ZIoU columns are promoted into the main E2 table because they expose the mIoU--coverage mismatch directly: several high-mIoU large-vocabulary rows still leave roughly 40--50\% of finite classes at zero IoU. In particular, CorrCLIP has the best large-vocabulary mIoU among strict TF rows with collapse readouts, but also the highest ADE-847 ZIoU rate.
 
 \subsection{E3: Cross-Dataset Generalization}
 

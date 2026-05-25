@@ -1,20 +1,19 @@
-# PASCAL Context — full 459-class split
 accordion
 aeroplane
-airconditioner
+air conditioner
 antenna
 artillery
 ashtray
 atrium
-babycarriage
+baby carriage
 bag
 ball
 balloon
-bambooweaving
+bamboo weaving
 barrel
-baseballbat
+baseball bat
 basket
-basketballbackboard
+basketball backboard
 bathtub
 bed
 bedclothes
@@ -24,16 +23,16 @@ bench
 bicycle
 binoculars
 bird
-birdcage
-birdfeeder
-birdnest
+bird cage
+bird feeder
+bird nest
 blackboard
 board
 boat
 bone
 book
 bottle
-bottleopener
+bottle opener
 bowl
 box
 bracelet
@@ -45,29 +44,29 @@ bucket
 building
 bus
 cabinet
-cabinetdoor
+cabinet door
 cage
 cake
 calculator
 calendar
 camel
 camera
-cameralens
+camera lens
 can
 candle
-candleholder
+candle holder
 cap
 car
 card
 cart
 case
-casetterecorder
-cashregister
+casette recorder
+cash register
 cat
 cd
-cdplayer
+cd player
 ceiling
-cellphone
+cell phone
 cello
 chain
 chair
@@ -79,18 +78,18 @@ clippers
 clock
 closet
 cloth
-clothestree
+clothes tree
 coffee
-coffeemachine
+coffee machine
 comb
 computer
 concrete
 cone
 container
-controlbooth
+control booth
 controller
 cooker
-copyingmachine
+copying machine
 coral
 cork
 corkscrew
@@ -105,10 +104,10 @@ crutch
 cup
 curtain
 cushion
-cuttingboard
+cutting board
 dais
 disc
-disccase
+disc case
 dishwasher
 dock
 dog
@@ -116,42 +115,42 @@ dolphin
 door
 drainer
 dray
-drinkdispenser
-drinkingmachine
+drink dispenser
+drinking machine
 drop
 drug
 drum
-drumkit
+drum kit
 duck
 dumbbell
 earphone
 earrings
 egg
-electricfan
-electriciron
-electricpot
-electricsaw
-electronickeyboard
+electric fan
+electric iron
+electric pot
+electric saw
+electronic keyboard
 engine
 envelope
 equipment
 escalator
-exhibitionbooth
+exhibition booth
 extinguisher
 eyeglass
 fan
 faucet
-faxmachine
+fax machine
 fence
-ferriswheel
-fireextinguisher
-firehydrant
-fireplace
+ferris wheel
+fire extinguisher
+fire hydrant
+fire place
 fish
-fishtank
+fish tank
 fishbowl
-fishingnet
-fishingpole
+fishing net
+fishing pole
 flag
 flagstaff
 flame
@@ -173,14 +172,14 @@ frog
 fruit
 funnel
 furnace
-gamecontroller
-gamemachine
-gascylinder
-gashood
-gasstove
-giftbox
+game controller
+game machine
+gas cylinder
+gas hood
+gas stove
+gift box
 glass
-glassmarble
+glass marble
 globe
 glove
 goal
@@ -192,11 +191,11 @@ guardrail
 guitar
 gun
 hammer
-handcart
+hand cart
 handle
 handrail
 hanger
-harddiskdrive
+hard disk drive
 hat
 hay
 headphone
@@ -206,32 +205,32 @@ helmet
 holder
 hook
 horse
-horse-drawncarriage
-hot-airballoon
+horse-drawn carriage
+hot-air balloon
 hydrovalve
 ice
-inflatorpump
+inflator pump
 ipod
 iron
-ironingboard
+ironing board
 jar
 kart
 kettle
 key
 keyboard
-kitchenrange
+kitchen range
 kite
 knife
-knifeblock
+knife block
 ladder
-laddertruck
+ladder truck
 ladle
 laptop
 leaves
 lid
-lifebuoy
+life buoy
 light
-lightbulb
+light bulb
 lighter
 line
 lion
@@ -243,11 +242,11 @@ mannequin
 map
 mask
 mat
-matchbook
+match book
 mattress
 menu
 metal
-meterbox
+meter box
 microphone
 microwave
 mirror
@@ -259,8 +258,8 @@ mop
 motorbike
 mountain
 mouse
-mousepad
-musicalinstrument
+mouse pad
+musical instrument
 napkin
 net
 newspaper
@@ -268,19 +267,19 @@ oar
 ornament
 outlet
 oven
-oxygenbottle
+oxygen bottle
 pack
 pan
 paper
-paperbox
-papercutter
+paper box
+paper cutter
 parachute
 parasol
 parterre
 patio
 pelage
 pen
-pencontainer
+pen container
 pencil
 person
 photo
@@ -300,9 +299,9 @@ playground
 pliers
 plume
 poker
-pokerchip
+poker chip
 pole
-pooltable
+pool table
 postcard
 poster
 pot
@@ -317,16 +316,16 @@ radio
 rail
 rake
 ramp
-rangehood
+range hood
 receiver
 recorder
-recreationalmachines
-remotecontrol
+recreational machines
+remote control
 road
 robot
 rock
 rocket
-rockinghorse
+rocking horse
 rope
 rug
 ruler
@@ -343,18 +342,18 @@ screwdriver
 sculpture
 scythe
 sewer
-sewingmachine
+sewing machine
 shed
 sheep
 shell
 shelves
 shoe
-shoppingcart
+shopping cart
 shovel
 sidecar
 sidewalk
 sign
-signallight
+signal light
 sink
 skateboard
 ski
@@ -370,8 +369,8 @@ sofa
 spanner
 spatula
 speaker
-speedbump
-spicecontainer
+speed bump
+spice container
 spoon
 sprayer
 squirrel
@@ -379,7 +378,7 @@ stage
 stair
 stapler
 stick
-stickynote
+sticky note
 stone
 stool
 stove
@@ -388,11 +387,11 @@ stretcher
 sun
 sunglass
 sunshade
-surveillancecamera
+surveillance camera
 swan
 sweeper
-swimring
-swimmingpool
+swim ring
+swimming pool
 swing
 switch
 table
@@ -402,7 +401,7 @@ tap
 tape
 tarp
 telephone
-telephonebooth
+telephone booth
 tent
 tire
 toaster
@@ -412,11 +411,11 @@ tool
 toothbrush
 towel
 toy
-toycar
+toy car
 track
 train
 trampoline
-trashbin
+trash bin
 tray
 tree
 tricycle
@@ -430,30 +429,30 @@ tweezers
 typewriter
 umbrella
 unknown
-vacuumcleaner
-vendingmachine
-videocamera
-videogameconsole
-videoplayer
-videotape
+vacuum cleaner
+vending machine
+video camera
+video game console
+video player
+video tape
 violin
 wakeboard
 wall
 wallet
 wardrobe
-washingmachine
+washing machine
 watch
 water
-waterdispenser
-waterpipe
-waterskateboard
+water dispenser
+water pipe
+water skate board
 watermelon
 whale
 wharf
 wheel
 wheelchair
 window
-windowblinds
+window blinds
 wineglass
 wire
 wood

@@ -1,4 +1,3 @@
-# PASCAL Context — 59-class split (most frequent semantic categories)
 aeroplane
 bag
 bed
@@ -35,7 +34,7 @@ light
 motorbike
 mountain
 mouse
-person
+people
 plate
 platform
 pottedplant

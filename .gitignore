@@ -4,6 +4,8 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .ruff_cache/
+.cache/
+.claude/
 
 # Local environments
 .venv/
@@ -11,17 +13,12 @@ __pycache__/
 env/
 venv/
 
-# Benchmark data and generated artifacts
-data/downloads/
-data/logs/
-data/manifests/*.jsonl
-data/manifests/appendix/*.jsonl
-data/processed/
-data/raw/
-data/manifests/shards/
+# Benchmark data and generated artifacts (too many files for git to track)
+data/
 runs/
 weights/
 external/
+third_party/
 
 # Large model/data files
 *.pth
@@ -33,6 +30,7 @@ external/
 *.tar
 *.tar.gz
 *.7z
+*.bak
 
 # OS/editor
 .git/

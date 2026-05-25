@@ -1,5 +1,3 @@
-# ADE20K — 150-class split (standard benchmark split)
-# Reference: Zhou et al., "Scene Parsing through ADE20K Dataset", CVPR 2017.
 wall
 building
 sky
@@ -12,7 +10,7 @@ windowpane
 grass
 cabinet
 sidewalk
-person
+people
 earth
 door
 table
@@ -44,7 +42,7 @@ base
 box
 column
 signboard
-chest of drawers
+chestofdrawers
 counter
 sand
 sink
@@ -56,15 +54,15 @@ path
 stairs
 runway
 case
-pool table
+pooltable
 pillow
-screen door
+screendoor
 stairway
 river
 bridge
 bookcase
 blind
-coffee table
+coffeetable
 toilet
 flower
 book
@@ -73,12 +71,12 @@ bench
 countertop
 stove
 palm
-kitchen island
+kitchenisland
 computer
-swivel chair
+swivelchair
 boat
 bar
-arcade machine
+arcademachine
 hovel
 bus
 towel
@@ -89,9 +87,9 @@ chandelier
 awning
 streetlight
 booth
-television receiver
+televisionreceiver
 airplane
-dirt track
+dirttrack
 apparel
 pole
 land
@@ -105,11 +103,11 @@ stage
 van
 ship
 fountain
-conveyer belt
+conveyerbelt
 canopy
 washer
 plaything
-swimming pool
+swimmingpool
 stool
 barrel
 basket
@@ -123,7 +121,7 @@ ball
 food
 step
 tank
-trade name
+tradename
 microwave
 pot
 animal
@@ -136,15 +134,15 @@ sculpture
 hood
 sconce
 vase
-traffic light
+trafficlight
 tray
 ashcan
 fan
 pier
-crt screen
+crtscreen
 plate
 monitor
-bulletin board
+bulletinboard
 shower
 radiator
 glass

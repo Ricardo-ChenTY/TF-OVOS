@@ -43,6 +43,10 @@ datasets:
     task: semantic
     num_classes: 171
     void_label: 255
+    # TF-OVOS standard masks are 0-based. COCO predictions produced by the
+    # official-style pipelines follow the mmseg labelTrainIds convention and
+    # must be shifted back before standard evaluation.
+    prediction_label_offset: -1
 
   # E2 large-vocabulary counterparts
   context459_val:

@@ -1,5 +1,5 @@
 name: dinov2_sam_clip
-status: planned
+status: implemented
 family: proposal_naming
 strict_tf: true
 requires_gpu: true

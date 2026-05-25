@@ -35,6 +35,7 @@ def evaluate(
     threshold: float,
     num_classes: int | None = None,
     void_label: int = 255,
+    prediction_label_offset: int = 0,
 ) -> dict[str, object]:
     samples = load_manifest(manifest)
     predictions = load_predictions(predictions_path)
@@ -48,6 +49,11 @@ def evaluate(
             raise ValueError("num_classes is required for task='semantic'")
         gt_maps = [load_label_map(str(s.mask_path), void_label) for s in samples]
         pred_maps = [load_label_map(str(predictions[s.image_id].mask_path), void_label) for s in samples]
+        if prediction_label_offset:
+            pred_maps = [
+                np.clip(pred.astype(np.int32) + prediction_label_offset, 0, num_classes - 1)
+                for pred in pred_maps
+            ]
         result_obj: SemanticResult = evaluate_semantic(gt_maps, pred_maps, num_classes, void_label)
         result: dict[str, object] = {
             "num_samples": len(samples),
@@ -61,6 +67,7 @@ def evaluate(
             "mcmr_05": result_obj.mcmr_05,
             "mcmr_075": result_obj.mcmr_075,
             "per_class_iou": result_obj.per_class_iou,
+            "prediction_label_offset": prediction_label_offset,
         }
         return result
 
@@ -105,6 +112,7 @@ def main() -> None:
     parser.add_argument("--task", choices=["semantic", "mask-only", "class-aware"], required=True)
     parser.add_argument("--num-classes", type=int, help="Required for --task semantic")
     parser.add_argument("--void-label", type=int, default=255)
+    parser.add_argument("--prediction-label-offset", type=int, default=0)
     parser.add_argument("--threshold", type=float, default=0.5, help="Binary mask threshold (mask-only/class-aware)")
     parser.add_argument("--out", type=Path)
     args = parser.parse_args()
@@ -116,6 +124,7 @@ def main() -> None:
         args.threshold,
         num_classes=args.num_classes,
         void_label=args.void_label,
+        prediction_label_offset=args.prediction_label_offset,
     )
     text = json.dumps(result, indent=2, ensure_ascii=False)
     if args.out:

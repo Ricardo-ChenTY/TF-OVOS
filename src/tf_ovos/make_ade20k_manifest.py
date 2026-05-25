@@ -16,7 +16,7 @@ ADE_IMAGE_RE = re.compile(r"^ADE_(?:train|val)_\d+$")
 
 
 def _normalize_label(label: str) -> str:
-    label = label.strip().lower().replace("_", " ")
+    label = label.strip().lower().replace("_", " ").replace("\'", "")
     label = re.sub(r"\s+", " ", label)
     return label
 

@@ -143,6 +143,9 @@ def prepare_context(num_classes: int) -> None:
 
     cat_id_to_name = _read_context_labels(labels_txt)
     vocab_index: dict[str, int] = {name: i for i, name in enumerate(vocab)}
+    # Official Context-59 uses "people" while labels.txt names the raw category "person".
+    if "people" in vocab_index and "person" not in vocab_index:
+        vocab_index["person"] = vocab_index["people"]
 
     # For context59, only keep categories whose normalised name is in vocab
     cat_to_vocab: dict[int, int] = {}
