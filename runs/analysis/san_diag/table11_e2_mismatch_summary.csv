@@ -1,0 +1,8 @@
+method_group,localized_pairs,mismatch_pairs_proxy,MCMR@0.5_proxy,GT_region_top1_proxy,proposal_recall_at_0.5_proxy,example_mismatch_pairs_or_communities,status
+Dense-map TF methods,,,,,,,artifact_gap
+Detector+SAM TF methods,,,,,,,artifact_gap
+Proposal+naming TF methods,,,,,,,artifact_gap
+CLIP + VFM TF methods,,,,,,,artifact_gap
+Diffusion/reference TF methods,,,,,,,artifact_gap
+MCC consistency diagnostics,,,,,,,artifact_gap
+Trained references,55292,17145,0.31806692428814953,0.42132524935687143,0.5227486566536895,see table11_e2_mismatch_pairs.csv,computed_proxy_from_dense_label_maps

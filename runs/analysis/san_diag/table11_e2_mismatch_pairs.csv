@@ -1,0 +1,81 @@
+method,dataset,kind,gt_class_id,gt_class,pred_class_id,pred_class,count
+san,context459,gt_region_top1_confusion,188,ground,353,sidewalk,284
+san,context459,gt_region_top1_confusion,188,ground,323,road,226
+san,context459,gt_region_top1_confusion,444,water,111,dock,198
+san,context459,gt_region_top1_confusion,43,building,345,shed,178
+san,context459,gt_region_top1_confusion,414,track,315,rail,159
+san,context459,gt_region_top1_confusion,302,pole,359,sky,156
+san,context459,gt_region_top1_confusion,430,unknown,439,wall,128
+san,context459,gt_region_top1_confusion,188,ground,333,sand,125
+san,context459,gt_region_top1_confusion,157,floor,329,rug,123
+san,context459,gt_region_top1_confusion,302,pole,419,tree,116
+san,context459,gt_region_top1_confusion,302,pole,43,building,110
+san,context459,gt_region_top1_confusion,188,ground,315,rail,110
+san,context459,gt_region_top1_confusion,188,ground,186,grass,107
+san,context459,gt_region_top1_confusion,43,building,439,wall,103
+san,context459,gt_region_top1_confusion,430,unknown,396,table,102
+san,context459,gt_region_top1_confusion,439,wall,85,concrete,98
+san,context459,gt_region_top1_confusion,188,ground,331,runway,94
+san,context459,gt_region_top1_confusion,43,building,419,tree,94
+san,context459,gt_region_top1_confusion,430,unknown,71,chair,84
+san,context459,gt_region_top1_confusion,307,pottedplant,292,plant,79
+san,context459,proposal_oracle_confusion,188,ground,353,sidewalk,291
+san,context459,proposal_oracle_confusion,188,ground,323,road,226
+san,context459,proposal_oracle_confusion,444,water,111,dock,203
+san,context459,proposal_oracle_confusion,43,building,345,shed,190
+san,context459,proposal_oracle_confusion,414,track,315,rail,162
+san,context459,proposal_oracle_confusion,188,ground,333,sand,131
+san,context459,proposal_oracle_confusion,157,floor,329,rug,125
+san,context459,proposal_oracle_confusion,302,pole,419,tree,117
+san,context459,proposal_oracle_confusion,430,unknown,284,photo,110
+san,context459,proposal_oracle_confusion,43,building,439,wall,109
+san,context459,proposal_oracle_confusion,439,wall,85,concrete,103
+san,context459,proposal_oracle_confusion,188,ground,315,rail,101
+san,context459,proposal_oracle_confusion,188,ground,186,grass,94
+san,context459,proposal_oracle_confusion,188,ground,331,runway,93
+san,context459,proposal_oracle_confusion,302,pole,43,building,88
+san,context459,proposal_oracle_confusion,430,unknown,439,wall,85
+san,context459,proposal_oracle_confusion,302,pole,359,sky,85
+san,context459,proposal_oracle_confusion,430,unknown,71,chair,85
+san,context459,proposal_oracle_confusion,307,pottedplant,292,plant,84
+san,context459,proposal_oracle_confusion,430,unknown,396,table,80
+san,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",260
+san,ade847,gt_region_top1_confusion,255,pier,0,wall,243
+san,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",141
+san,ade847,gt_region_top1_confusion,255,pier,1,"building, edifice",140
+san,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,135
+san,ade847,gt_region_top1_confusion,255,pier,2,sky,112
+san,ade847,gt_region_top1_confusion,20,door,64,double door,104
+san,ade847,gt_region_top1_confusion,255,pier,3,tree,104
+san,ade847,gt_region_top1_confusion,78,"streetlight, street lamp",1,"building, edifice",103
+san,ade847,gt_region_top1_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",96
+san,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,94
+san,ade847,gt_region_top1_confusion,255,pier,12,grass,92
+san,ade847,gt_region_top1_confusion,39,"signboard, sign",1,"building, edifice",90
+san,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",87
+san,ade847,gt_region_top1_confusion,308,"wall socket, wall plug, electric outlet, electrical outlet, outlet, electric receptacle",0,wall,86
+san,ade847,gt_region_top1_confusion,56,pillow,7,bed,82
+san,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",81
+san,ade847,gt_region_top1_confusion,0,wall,107,"booth, cubicle, stall, kiosk",76
+san,ade847,gt_region_top1_confusion,255,pier,4,"road, route",70
+san,ade847,gt_region_top1_confusion,23,"painting, picture",0,wall,68
+san,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",261
+san,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",186
+san,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",122
+san,ade847,proposal_oracle_confusion,20,door,64,double door,115
+san,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",112
+san,ade847,proposal_oracle_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",103
+san,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,95
+san,ade847,proposal_oracle_confusion,255,pier,12,grass,93
+san,ade847,proposal_oracle_confusion,255,pier,3,tree,92
+san,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,88
+san,ade847,proposal_oracle_confusion,255,pier,2,sky,81
+san,ade847,proposal_oracle_confusion,56,pillow,7,bed,80
+san,ade847,proposal_oracle_confusion,0,wall,107,"booth, cubicle, stall, kiosk",79
+san,ade847,proposal_oracle_confusion,308,"wall socket, wall plug, electric outlet, electrical outlet, outlet, electric receptacle",0,wall,76
+san,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",75
+san,ade847,proposal_oracle_confusion,82,"light, light source",686,spotlights,72
+san,ade847,proposal_oracle_confusion,17,table,68,"chest of drawers, chest, bureau, dresser",69
+san,ade847,proposal_oracle_confusion,255,pier,0,wall,66
+san,ade847,proposal_oracle_confusion,255,pier,6,ceiling,65
+san,ade847,proposal_oracle_confusion,39,"signboard, sign",1,"building, edifice",65

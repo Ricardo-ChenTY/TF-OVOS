@@ -1,0 +1,19 @@
+method,ctx459_ziou_pct,ade847_ziou_pct,mcmr05_e2_avg,status
+MaskCLIP,64.1,64.7,0.843,filled from existing artifacts
+MaskCLIP-Attn,63.4,64.7,0.858,filled from existing artifacts
+MaskCLIP-Attn-Slide,50.5,38.5,0.541,filled from existing artifacts
+SCLIP,39.7,39.2,0.489,filled from existing artifacts
+NACLIP,38.6,37.2,0.512,filled from existing artifacts
+CLIPtrase,54.2,61.8,0.455,ZIoU map-proxy; MCMR from dense-map diagnostics
+SC-CLIP,41.5,40.8,0.531,filled from existing artifacts
+ResCLIP,39.4,39.1,0.501,filled from existing artifacts
+ProxyCLIP,42.4,42.0,0.557,filled from existing artifacts
+CorrCLIP,44.2,49.9,0.579,filled from existing artifacts
+Trident,44.2,47.1,0.583,filled from existing artifacts
+CASS,43.2,44.7,0.543,filled from existing artifacts
+FreeDA,68.4,72.7,0.476,filled from existing artifacts
+SAM-AMG + CLIP,42.5,45.3,0.776,filled from existing artifacts
+SAM-AMG + SigLIP,41.8,38.9,0.713,filled from existing artifacts
+DINOv2 + SAM + CLIP,42.5,44.7,0.776,filled from existing artifacts
+DINOv2 + SAM + SigLIP,41.2,38.7,0.711,filled from existing artifacts
+SAN (ref.),31.6,51.3,0.318,ZIoU from log; MCMR from converted SAN maps
