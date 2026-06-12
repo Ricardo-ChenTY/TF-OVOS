@@ -1,0 +1,98 @@
+[
+  {
+    "group": "E1 compact",
+    "subtitle": "VOC-20",
+    "dataset": "voc20",
+    "manifest": "voc20_val",
+    "image_id": "2007_003530",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_003530.jpg",
+    "target_label": 14,
+    "target_name": "person",
+    "area": 32896,
+    "score": 3.2602
+  },
+  {
+    "group": "E1 compact",
+    "subtitle": "Ctx-59",
+    "dataset": "context59",
+    "manifest": "context59_val",
+    "image_id": "2008_001547",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_001547.jpg",
+    "target_label": 36,
+    "target_name": "people",
+    "area": 16368,
+    "score": 3.4543
+  },
+  {
+    "group": "E1 compact",
+    "subtitle": "ADE-150",
+    "dataset": "ade20k",
+    "manifest": "ade20k150_val",
+    "image_id": "ADE_val_00001374",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001374.jpg",
+    "target_label": 22,
+    "target_name": "painting",
+    "area": 10024,
+    "score": 3.5994
+  },
+  {
+    "group": "E1 compact",
+    "subtitle": "COCO",
+    "dataset": "coco_stuff164k",
+    "manifest": "coco_stuff171_val",
+    "image_id": "000000032570",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/coco_stuff171/val2017/000000032570.jpg",
+    "target_label": 144,
+    "target_name": "shelf",
+    "area": 1187,
+    "score": 3.5991
+  },
+  {
+    "group": "E2 large-vocab",
+    "subtitle": "Ctx-459",
+    "dataset": "context459",
+    "manifest": "context459_val",
+    "image_id": "2010_000246",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_000246.jpg",
+    "target_label": 430,
+    "target_name": "unknown",
+    "area": 386,
+    "score": 2.0973
+  },
+  {
+    "group": "E2 large-vocab",
+    "subtitle": "ADE-847",
+    "dataset": "ade847",
+    "manifest": "ade20k847_val",
+    "image_id": "home_or_hotel/attic/ADE_val_00001048",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/ADE20K_2021_17_01/ADE20K_2021_17_01/images/ADE/validation/home_or_hotel/attic/ADE_val_00001048.jpg",
+    "target_label": 478,
+    "target_name": "light bulb",
+    "area": 515,
+    "score": 2.099
+  },
+  {
+    "group": "Diagnostics",
+    "subtitle": "MCMR",
+    "dataset": "context459",
+    "manifest": "context459_val",
+    "image_id": "2010_003701",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_003701.jpg",
+    "target_label": 359,
+    "target_name": "sky",
+    "area": 82357,
+    "score": 2.697
+  },
+  {
+    "group": "Diagnostics",
+    "subtitle": "Small comp.",
+    "dataset": "ade20k",
+    "manifest": "ade20k150_val",
+    "image_id": "ADE_val_00000129",
+    "image_path": "/data/tianyi/TF-OVCOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000129.jpg",
+    "target_label": 148,
+    "target_name": "clock",
+    "area": 84,
+    "score": 2.074
+  }
+]
