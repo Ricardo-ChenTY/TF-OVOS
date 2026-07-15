@@ -322,6 +322,499 @@ was actually changed in the artifact tree. The `known_bad_artifact`
 mitigation above is no longer needed since the underlying data is now
 correct.
 
+### 2.2 FreeDA's own official Context-459 log looks internally truncated — new finding, NOT fixed, needs an author decision
+
+**Triggered by the author's follow-up question**: "check why the two ZIoU
+pipelines disagree, and specifically whether FreeDA/CLIPtrase's Context-459/
+ADE-847 artifacts have the same convention bug as COCO-Stuff." They don't
+have the same bug — this is a different and, for Context-459, more serious
+problem, sitting inside FreeDA's own official log rather than in this
+repo's code.
+
+**The "two pipelines":** `runs/analysis/table9_diagnostic_probes.csv`'s
+`zero_iou_class_rate` (built from our own confusion-matrix reconstruction of
+the saved `runs/artifacts/official_predictions/freeda/{context459,ade847}/`
+PNGs) disagrees sharply with `e2_vocab_robustness_filled.csv`'s
+`context459_ziou`/`ade847_ziou` (for FreeDA, sourced entirely differently —
+`build_e2_filled_table.py`'s `parse_freeda_log()` regex-parses per-class
+`'IoU.<name>'` values straight out of FreeDA's own official eval log,
+`runs/freeda/context459/log.txt` and `runs/freeda/ade847/log.txt`):
+
+| dataset | our reconstruction (zero_iou_class_rate) | FreeDA's own log (context459/ade847_ziou) |
+|---|---|---|
+| context459 | 21.7% | 68.4% |
+| ade847 | 34.0% | 72.7% |
+
+**Sanity check ruling out "these are just two legitimately different
+methodologies":** on the two *other* datasets in the same table
+(Context-59, ADE-150 — smaller vocabularies), our reconstructed mIoU matches
+FreeDA's own log mIoU *exactly* (43.42% = 43.42%, 23.19% = 23.19%). The
+saved artifact PNGs are provably the same predictions FreeDA's own log
+scored on those two datasets. Only Context-459 (8.97% ours vs 4.27% their
+log — almost 2x) and, more mildly, ADE-847 (6.39% ours vs 3.93% their log)
+diverge.
+
+**Root cause, isolated by comparing per-class IoU by name (matched against
+`configs/vocab/context_459.txt`, 459/459 names align 1:1, ruling out a
+class-ordering/crosswalk bug like §2.1):** 316 of 459 classes match our
+reconstruction within 0.5 percentage points (`cat` 83.80% = 83.80%, `dog`
+73.96% = 73.96%, `horse` 75.97% = 75.97%, etc. — real agreement, not
+coincidence). But **the remaining 143 classes, uninterrupted from `monkey`
+onward in the vocabulary's alphabetical order (index 255 of 459 — 204
+classes, 44% of the vocabulary), all show exactly `'IoU.<name>': 0.0` and
+`'Acc.<name>': nan` in FreeDA's own log** — including extremely common,
+easy classes that cannot plausibly score zero in a real evaluation:
+`person` (log: 0.00, ours: 29.9%), `sky` (log: 0.00, ours: 80.8%), `water`
+(log: 0.00, ours: 53.9%), `road`, `table`, `train`, `sofa`. A method
+scoring *zero*, not just low, on "sky" and "person" over 5105 images is not
+a real result — it is what you'd see if per-class accumulators for
+everything past some internal cutoff were never populated (consistent with
+`Acc: nan`, mmseg's own "this class's denominator was zero" marker) while
+the *overall* `aAcc`/`mIoU` summary the log prints was computed some other
+way that still reflects real predictions for those classes (matching our
+independent reconstruction more closely). One plausible mechanism —
+**not confirmed, offered as a hypothesis, not a diagnosis** — is an 8-bit
+(0-255) label-map data type inside FreeDA's own inference/eval code
+silently overflowing for the classes whose internal index exceeds 255;
+Context-459 has 459 classes (over that threshold), Context-59/ADE-150
+(59/150 classes) do not. This does not fully explain ADE-847 (847 classes,
+also over 255, but only the *last* ~12 classes — all genuinely obscure
+compound-word categories like "adding machine, totalizer, totaliser" — show
+the same zero/nan pattern, which is also consistent with those 12 simply
+never occurring in ADE-847's 2000 validation images). No crash, traceback,
+or warning appears anywhere in either log file, and each log has exactly
+one evaluation block — whatever is happening is silent and internal to
+FreeDA's own metric bookkeeping, not a visible crash we could point to.
+
+**What this means for the paper, concretely:**
+- `e2_vocab_robustness_filled.csv`'s FreeDA row — `context459_miou=4.27`,
+  `context459_ziou=68.4`, `ade847_miou=3.93`, `ade847_ziou=72.7` — is very
+  likely **understating FreeDA's real Context-459 performance** (and to a
+  lesser extent ADE-847), because it is sourced from a log whose own
+  internal per-class bookkeeping looks broken for a large chunk of the
+  vocabulary. Our own reconstruction (mIoU 8.97% / ZIoU 21.7% for
+  Context-459) is not automatically "the truth" either — it's a different,
+  independently-computed number that at least doesn't have the "sky/person
+  score exactly zero" implausibility problem.
+- If Table 1/Table 2's own headline FreeDA Context-459/ADE-847 mIoU numbers
+  are drawn from this same log (needs checking against whatever produced
+  the manuscript's actual printed table — I did not find a third,
+  independent source for these two cells in `official_best_metrics.csv` to
+  adjudicate), they would inherit the same understatement.
+- Obs 4 / Obs 6's ZIoU-based narrative, and E-12's cross-method comparison,
+  both **currently include this same distorted FreeDA Context-459/ADE-847
+  ZIoU number** (68.4%/72.7%) rather than the reconstruction (21.7%/34.0%).
+  This is the item the author's checklist said blocks finalizing those two
+  write-ups.
+
+**Deliberately not "fixed" this session** — unlike §2.1, this is not a bug
+in this repo's own code that a verified crosswalk can correct; it requires
+either (a) finding and understanding the actual defect in FreeDA's own
+inference/eval code (out of scope without their source in front of me, and
+risky to guess at), or (b) an author-level decision to treat our own
+artifact-reconstructed numbers as authoritative for FreeDA on Context-459/
+ADE-847 instead of the official log, which changes what "official" means
+for this one method/dataset pair and should not be made unilaterally.
+**Action needed: author decision on which number to use before Obs 4/Obs 6/
+E-12 can be finalized for FreeDA's Context-459/ADE-847 cells specifically.**
+
+**Decision made (author, this session): use our own reconstruction, not
+FreeDA's own log.** Implemented in `scripts/build_e2_filled_table.py`:
+`compute_map_miou_ziou()` (new function, factored out of the existing
+`compute_map_ziou()` so it also returns mIoU) is now called for FreeDA on
+context459/ade847 specifically, while context59/ade20k keep using
+`parse_freeda_log()` since those are verified correct there. The row's
+`note` field now discloses this substitution explicitly rather than
+silently diverging from how every other dataset in FreeDA's row is
+sourced. New values (this table's own union-based ZIoU convention, i.e.
+directly comparable to CLIPtrase's already-existing "map-proxy" ZIoU in
+the same table, not table9's stricter GT-only convention):
+
+| | Context-459 | ADE-847 |
+|---|---|---|
+| mIoU: old (log) → new (recon) | 4.27 → 8.97 | 3.93 → 6.39 |
+| ZIoU: old (log) → new (recon) | 68.4% → 41.2% | 72.7% → 40.9% |
+
+Verified in isolation (`compute_map_miou_ziou('freeda', 'context459')` etc.
+run directly) — could not yet run the full `build_e2_filled_table.py`
+end-to-end because it currently depends on `official_scclip_context459.log`
+etc., which the §2.3 GPU re-run has temporarily moved aside mid-flight;
+will re-run the full script once that finishes (§2.3) to regenerate
+`e2_vocab_robustness_filled.csv`/`.md`/`.tex` cleanly with both fixes
+together. CLIPtrase does not show this same pattern — its Context-459/Context-59
+log-vs-reconstruction gaps are smaller (5-6pp) and in a different direction
+in places, consistent with ordinary log-vs-reconstruction noise rather than
+a truncation artifact, and does not block anything.
+
+**Update, same session, immediately after: the direction is now reversed and
+resolved (§2.3 below).** The follow-up audit found that for 8 *other*
+methods, it is our own reconstruction that is broken, not their official
+logs, via a completely different, fully-explained mechanism (an mmseg
+library bug, not a per-method log quirk). §2.3 supersedes the "author
+decision needed" framing above for those 8 methods — their official-log
+numbers should simply be trusted, and our own table9/E-11/E-12 numbers for
+them on Context-459/ADE-847 should be treated as unreliable until re-run.
+FreeDA remains the one genuine case requiring an author decision, since
+neither its log nor its export pipeline shares the mechanism found in §2.3.
+
+### 2.3 Systemic 8-bit PNG export bug corrupts 8 methods' saved predictions on Context-459/ADE-847 — RESOLVED (2026-07-15)
+
+**Update: fully fixed, re-run completed, all 16 cells verified.** mmseg's
+`IoUMetric` patched to save 16-bit when `num_classes > 255`; all 8 affected
+methods (sclip, naclip, resclip, proxyclip, corrclip, scclip, trident,
+cass) re-run on both datasets. Confirmed via PNG IHDR bytes: all 16
+artifact directories now bitdepth=16. Confirmed mIoU for all 16 cells
+matches the pre-existing Table 2 values exactly (6.68/5.67, 7.79/6.01,
+7.70/6.49, 8.41/6.90, 11.88/8.67, 8.34/7.46, 8.97/7.45, 8.38/7.19) —
+expected, since mIoU is computed before the uint8 cast and was never
+affected; only our own downstream reconstruction was.
+
+**table9/table11/table12 fully regenerated against the corrected data.**
+`zero_iou_class_rate`/`mcmr_at_05` for all 8 methods on both datasets now
+land in normal ranges (MCMR 0.28-0.48, ZIoU 16-43%) instead of the
+corrupted ~0.98 MCMR collapse — consistent with these methods' behavior on
+every other dataset.
+
+**Appendix D.1 (`table11_e2_mismatch_summary.csv`) pooled MCMR@0.5, before
+(corrupted, includes §2.1's COCO-Stuff fix but not this one) → after (this
+fix applied):**
+
+| method group | MCMR@0.5_pooled before | MCMR@0.5_pooled after |
+|---|---|---|
+| Dense-map TF methods | 0.350 | **0.279** |
+| CLIP + VFM TF methods | 0.400 | **0.319** |
+| Diffusion/reference TF methods (FreeDA only) | 0.319 | 0.319 (unaffected by this fix; see §2.2 for FreeDA's separate, already-applied correction) |
+| Trained references | 0.302 | 0.302 (unaffected, SAN was never in scope) |
+
+**Note for whoever reconciles this against the submitted PDF:** the
+manuscript's own printed Appendix D.1 table uses coarser/differently-named
+groups ("Dense-map, Training-Free": 413463/149030/0.2972; "Proposal+naming,
+Training-Free": 275642/115342/0.3454) that don't map 1:1 onto this
+session's CSV group names — those printed numbers are a stale snapshot
+from earlier in this project's history, predating both this fix and
+§2.1's. Use the CSV's own group names/numbers above as the current source
+of truth and match them to whichever manuscript table cells they
+correspond to; I do not have the `.tex` source to make that mapping myself.
+
+### 2.3-original (superseded): systemic 8-bit PNG export bug corrupts 8 methods' saved predictions on Context-459/ADE-847 — confirmed root cause, NOT yet fixed, requires a GPU re-run
+
+**Triggered by extending the FreeDA check to all 11 "own-official-log"
+methods**, to answer the author's question about auditing Table 1/2's full
+provenance. Built a script reconstructing mIoU from the saved artifact PNGs
+for all 11 methods on Context-459/ADE-847 and compared each against that
+method's own official log mIoU (`runs/analysis/ziou_audit_results.csv`):
+
+| method | Context-459 (log → our recon, ratio) | ADE-847 (log → our recon, ratio) |
+|---|---|---|
+| sclip | 6.68 → 3.26 (0.49) | 5.67 → 2.72 (0.48) |
+| naclip | 7.79 → 3.75 (0.48) | 6.01 → 3.00 (0.50) |
+| resclip | 7.70 → 3.71 (0.48) | 6.49 → 3.16 (0.49) |
+| proxyclip | 8.41 → 4.08 (0.49) | 6.90 → 3.45 (0.50) |
+| corrclip | 11.88 → 5.42 (0.46) | 8.67 → 4.21 (0.49) |
+| scclip | 8.34 → 4.02 (0.48) | 7.46 → 3.58 (0.48) |
+| trident | 8.97 → 4.34 (0.48) | 7.45 → 3.54 (0.48) |
+| cass | 8.38 → 4.07 (0.49) | 7.19 → 3.48 (0.48) |
+| cliptrase | (log-parse artifact, ignore — see below) | (ditto) |
+| freeda | 4.27 → 8.97 (2.10, see §2.2) | 3.93 → 6.39 (1.63, see §2.2) |
+| san | 12.75 → 12.75 (1.00) | 10.24 → 9.03 (0.88) |
+
+Eight methods (sclip, naclip, resclip, proxyclip, corrclip, scclip, trident,
+cass) show an almost perfectly uniform **0.46-0.50 ratio** — our own
+reconstruction is essentially exactly *half* of each method's own reported
+mIoU, on *both* large-vocabulary datasets, for every one of them. That
+uniformity across 8 independently-implemented methods is itself strong
+evidence of a shared mechanical cause rather than 8 coincidental
+method-specific issues. (The `cliptrase` row in the raw audit script showed
+nonsense values of ~995/~589 — that is a scaling bug in my own one-off audit
+script, not a real number; ignore it, it does not reflect anything about
+CLIPtrase.)
+
+**Root cause, found and directly verified, not guessed:**
+- Context-459's and ADE-847's GT label maps are correctly saved as **16-bit**
+  PNGs (`data/raw/context459_labels/*.png`, `data/raw/ade20k847_labels/*.png`
+  — verified via the raw PNG IHDR chunk, `struct.unpack('>IIBB', data[16:26])`,
+  bitdepth=16), because 459/847 classes exceed what 8 bits (256 values) can
+  represent.
+- The **saved prediction artifacts** for exactly the 8 methods above,
+  on both context459 and ade847, are **8-bit** PNGs (same IHDR check,
+  bitdepth=8, confirmed for all 16 method/dataset cells individually).
+  cliptrase, freeda, and san's saved predictions are correctly 16-bit on
+  both datasets — they are not affected by this bug (freeda has its own,
+  separate problem, §2.2).
+- The exact cause: all 8 affected methods are evaluated through standard
+  mmsegmentation's own `IoUMetric.process()`
+  (`mmseg/evaluation/metrics/iou_metric.py` in this repo's `tf-ovos` conda
+  env). Reading that method directly: it computes `intersect_and_union()`
+  (i.e. the real per-class IoU numbers that go into each method's own log)
+  from the full-precision `pred_label` tensor *first*, then, only for the
+  separate "save a PNG to `--work-dir`" step, does
+  `output = Image.fromarray(pred_label.cpu().numpy().astype(np.uint8))`
+  unconditionally — this line does not check `num_classes` at all. For any
+  dataset with more than 256 classes, this silently wraps/truncates every
+  predicted index >= 256 when the PNG is written. **The official log's
+  mIoU is computed before this cast and is unaffected; only the saved PNG
+  used for all of this repo's own downstream re-analysis is corrupted.**
+  This is a real, verifiable bug in mmsegmentation's own shipped library
+  code, not something specific to any of the 8 methods' own logic, and not
+  something introduced by this repo's harness.
+- CLIPtrase (336x336 fixed-resolution custom export), FreeDA, and SAN all
+  use their own bespoke prediction-saving code rather than mmseg's shared
+  `IoUMetric`, which is exactly why they don't show this pattern (verified:
+  no `IoUMetric` reference anywhere in `third_party/official_methods/
+  {CLIPtrase,FreeDA,SAN*}`).
+
+**What this means, concretely:**
+- **Table 1/Table 2's own headline mIoU numbers for these 8 methods on
+  Context-459/ADE-847 are unaffected and correct** — they come from
+  `official_best_metrics.csv`/mmengine-log-parsing, both computed before the
+  uint8 cast happens. No paper-facing mIoU number needs to change because
+  of this.
+- **Every diagnostic this repo computed from its own saved artifact PNGs,
+  for these 8 methods, on these two datasets specifically, is unreliable**:
+  `table9_diagnostic_probes.csv`'s naming/localization/MCMR/ZIoU rows,
+  `table11_e2_mismatch_summary.csv`'s pooled numbers for the "Dense-map" and
+  "CLIP + VFM" groups (insofar as they draw on these 8 methods' Context-459/
+  ADE-847 cells), the E-11 candidate-only rescoring, and the E-12
+  never-predicted-class-rate — all for these 16 (8 methods x 2 datasets)
+  cells only. All other cells (these methods on voc20/context59/ade20k/
+  coco_stuff164k, where <=255 classes means 8-bit is correct and lossless;
+  and cliptrase/freeda/san on every dataset) are unaffected.
+- This directly resolves the "SCLIP/CorrCLIP ZIoU goes the *opposite*
+  direction from FreeDA" puzzle the author raised: it isn't a denominator
+  convention disagreement (that's a real, separate, smaller effect — see
+  the note on `compute_map_ziou`'s union-based denominator above) so much as
+  it is this corruption making our own reconstruction's ZIoU look
+  artificially *high* for these 8 methods (more corrupted, "wrong-looking"
+  predictions -> more classes reading as zero-IoU) while FreeDA's own log
+  being truncated makes *its* official ZIoU look artificially high instead.
+  Two different bugs, both inflating ZIoU, just on different sides of the
+  log-vs-reconstruction comparison.
+
+**Not fixed this session — this one needs a GPU re-run, not a script fix.**
+Confirmed still-present and usable: `scripts/run_official_e2_queue.sh` (for
+sclip/naclip/resclip/proxyclip/corrclip), `scripts/run_scclip_queue.sh`, and
+`scripts/run_trident_cass_queue.sh` are the exact queues that produced these
+artifacts, and their underlying configs/checkpoints appear intact. Fixing
+this properly requires: (1) patching or monkey-patching
+`IoUMetric.process()`'s PNG-save step to use 16-bit (`mode="I;16"` or
+equivalent) instead of casting to `uint8` when `num_classes > 255`, (2)
+clearing each queue script's "skip if output already exists" checks for the
+context459/ade847 runs specifically (their current completion checks would
+otherwise skip re-generating output that already "exists," just wrong), and
+(3) re-running inference for 8 methods x 2 datasets — real GPU time, not a
+quick fix. A full independent verification agent (`codex exec`) was
+dispatched to confirm the scope and locate these scripts; it correctly
+found and confirmed the root cause (matching my own direct verification)
+but did not finish writing its own report before exiting, so its findings
+were spot-checked and confirmed directly rather than taken on trust.
+**Action needed: author decision on whether to invest the GPU time to
+re-run these 16 cells with a fixed export before finalizing any Context-459/
+ADE-847 diagnostic conclusions (Obs 4/Obs 6/E-11/E-12) for these 8 methods,
+or to scope those write-ups to explicitly exclude them / rely only on the
+already-correct official-log mIoU and ZIoU for these cells.**
+
+### 2.4 ZIoU: the paper's written formula (Eq. 7) doesn't match what's actually computed, though all 18 Table 2 rows agree with each other
+
+**Triggered by the author asking, after the above two ZIoU-disagreement
+investigations, whether our own ZIoU definition even matches the official
+one.** Good catch — there is a real mismatch, but not the one that might be
+feared: it's not that Table 2's 18 rows are internally inconsistent with
+each other.
+
+**Checked all three code paths that actually produce a ZIoU number
+anywhere in this repo:**
+1. `src/tf_ovos/metrics.py`'s `miou_from_confusion()` (this repo's own main
+   harness, backing the 7 `local_json`-sourced rows: MaskCLIP variants,
+   SAM-AMG, DINOv2+SAM) — denominator is `present = (TP+FP+FN) > 0`, i.e.
+   **union-based** (a class counts as "valid" if it has *either* GT or
+   prediction support, not GT alone).
+2. mmsegmentation's own `IoUMetric.intersect_and_union` (backing the 8
+   `official_best`/`mmengine`-sourced rows' log numbers, via each method's
+   own official eval run) — same **union-based** convention; this is
+   mmseg's own standard, used across the field.
+3. `compute_map_ziou()` in `scripts/build_e2_filled_table.py` (backing
+   CLIPtrase's existing "ZIoU map-proxy" row and now FreeDA's corrected
+   Context-459/ADE-847 row per §2.2) — also **union-based**.
+
+**All three agree with each other.** Every one of Table 2's 18 rows uses
+the same union-based denominator, so the table is internally self-consistent
+— no row's ZIoU needs to change to match another row's convention, and the
+FreeDA fix in §2.2 (built on `compute_map_ziou`) already uses the same
+convention as the other 17 rows.
+
+**What doesn't match: the paper's own written formula.** Eq. 7 defines
+ZIoU's denominator as "$\mathcal{C}_{\mathrm{valid}}$ contains only classes
+with valid ground-truth support" — i.e., GT-only, not union-based. This is
+exactly the *stricter* definition this repo's own diagnostic pipeline
+(`generate_diagnostic_tables.py`'s `valid_class_mask = total_gt_per_class >
+0`, feeding `table9_diagnostic_probes.csv`'s `zero_iou_class_rate` and
+everything downstream of it: E-12, the naming/localization probes) actually
+implements — table9's own convention is the odd one out, not Table 2's.
+Table 9/E-12's numbers were never compared against Table 2's ZIoU column
+directly before this session, which is why this had gone unnoticed: two
+different metrics, computed by two different pipelines for two different
+tables, happen to share a name ("ZIoU"/"zero-IoU rate") and a similar
+formula shape, but differ in exactly the GT-only-vs-union-based way Eq. 7
+describes for one of them and not the other.
+
+**Recommendation: fix the wording, not the numbers.** Union-based is the
+more standard convention (matches mmseg's own shipped metric class and this
+repo's own main harness) and is already what all 18 rows of the published
+Table 2 use consistently — recomputing 18 rows to match a stricter GT-only
+definition would be a large, unnecessary undertaking for a wording
+discrepancy. Simplest fix: adjust Eq. 7's prose (something like "classes
+with either predicted or ground-truth support" instead of "classes with
+valid ground-truth support") so the written definition matches what
+Table 2 actually reports. This is a manuscript-text-only fix — no code or
+CSV changes needed. Table 9/E-12's *own* stricter GT-only convention is a
+legitimate, deliberately different diagnostic choice (it measures whether
+classes that genuinely appear ever get recognized, versus Table 2's
+broader measure that also penalizes hallucinated-class predictions) and
+does not need to change either — it just should not be assumed to be "the
+same ZIoU" as Table 2's when comparing the two directly, since they answer
+subtly different questions by design once this difference is understood.
+
+### 2.5 ProxyCLIP/CorrCLIP/Trident crash bug on Context-459/ADE-847 — real crash and cosmetic log-label bug, FIXED; published numbers were never actually wrong (correction below supersedes the initial framing)
+
+**[Correction, same session, right after the fixes below were applied]: the
+initial framing of this finding — "evaluated against the wrong vocabulary,
+a fixed-protocol violation" — overstated the practical impact. Verified
+directly: re-running all three methods with the corrected
+`custom_datasets.py` produced mIoU/aAcc/mAcc identical to the decimal
+against the pre-fix values (ProxyCLIP 8.41/6.90, CorrCLIP 11.88/8.67,
+Trident 8.97/7.45 — unchanged). Traced why: each method's generated eval
+config sets `model = dict(name_path='./configs/cls_context459.txt', ...)`
+— the actual CLIP zero-shot text prompts are read from that file directly,
+completely independent of the `dataset_type`'s registered
+`METAINFO['classes']`. The dataset class's METAINFO is used only for
+mmseg's own internal GT-index bookkeeping and for labeling the per-class
+result table in the log — not for constructing the prompts the model is
+actually scored against. `cls_context459.txt`/`cls_ade20k847.txt` (the
+`name_path` targets) were correct all along. So: real crash, real
+fix, cosmetic log-label bug also fixed — but Table 2's ProxyCLIP/CorrCLIP/
+Trident numbers were never wrong and do not need to change. No action
+needed on Table 2 or Figure 2 for these three methods. Leaving the original
+writeup below intact for the record of the (partially mistaken, now
+corrected) reasoning trail, same as done for §2.1's own history.**
+
+**Original writeup (root cause of the crash and log-label issue, still
+accurate for those two things specifically):**
+
+**The most serious finding of this whole investigation — a genuine
+fixed-protocol violation, not just a diagnostic-table bug.** Found while
+debugging why the §2.3 GPU re-run's ProxyCLIP/CorrCLIP context459/ade847
+jobs failed outright (`KeyError: 'ADE20K847Dataset is already registered in
+dataset at custom_datasets'`).
+
+**Root cause:** `third_party/official_methods/{ProxyCLIP,CorrCLIP}/
+custom_datasets.py` (byte-identical files) each define `ADE20K847Dataset`,
+`PascalContext459Dataset`, and `MyLoadAnnotations` **twice**. The first
+(original, lines 173-410) hardcodes each method's own default candidate
+vocabulary inline (e.g. `"airconditioner"`, `"babycarriage"` — no spaces,
+ProxyCLIP's own naming convention). The second block, clearly marked by an
+inline comment `# TF-OVCOS E2 dataset extensions` (line 412 before the
+fix), loads the class list from this benchmark's own vocab files via a
+`_tfovos_classes("cls_ade20k847.txt")` helper — and those files are
+byte-identical to `configs/vocab/ade20k_847.txt`/`context_459.txt` (the
+correct, fixed-protocol vocabulary every other method uses). mmengine's
+registry raises on the second, duplicate registration attempt rather than
+silently overwriting, so `import custom_datasets` was always going to
+crash — **except it hadn't crashed before, because these two methods'
+Context-459/ADE-847 jobs had been marked "already complete" and skipped by
+the queue script's `done_log()` check ever since their one and only
+successful run, and were never re-invoked until this session forced a
+fresh re-run for the §2.3 fix.**
+
+**That one successful run predates the fix.** `custom_datasets.py`'s
+mtime is 2026-05-19T02:42 (when the TF-OVCOS-specific override block was
+appended); the original `official_proxyclip_context459_e2.log` (backed up
+as `.bak_pre_16bit_fix`) has an internal timestamp of 2026-05-14T21:18 —
+**four days before** the override block existed. Directly confirmed via
+the log's own printed class names: it used `"airconditioner"` and
+`"babycarriage"` (ProxyCLIP's own default vocabulary), not `"air
+conditioner"` / `"baby carriage"` (this benchmark's actual candidate
+vocabulary, confirmed against `configs/vocab/context_459.txt`). CorrCLIP's
+backed-up original log shows the identical pattern. **This means the
+Table 2 numbers currently in the manuscript for ProxyCLIP and CorrCLIP on
+Context-459/ADE-847 (ProxyCLIP: mIoU 8.41/6.90, ZIoU 42.4%/42.0%; CorrCLIP:
+mIoU 11.88/8.67, ZIoU 44.2%/49.9%) were evaluated against each method's own
+non-benchmark candidate list, not the shared fixed-protocol vocabulary —
+a direct violation of this paper's own core methodology (Section 3.1: "the
+protocol's candidate names"; Table 4's checklist: "one fixed vocabulary
+per run card").** Scope is exactly these 2 methods x 2 datasets — the
+other two dataset classes these files define (`PascalVOC20Dataset`,
+`COCOObjectDataset`, `PascalContext60Dataset`, `PascalContext59Dataset`)
+are each defined once, not duplicated, so Table 1's VOC-20/Context-59/
+ADE-150/COCO-Stuff numbers for these two methods are unaffected.
+
+**Fixed this session:** removed the first (default, non-benchmark) block
+in both files — lines 173-410, comprising the wrong `ADE20K847Dataset`,
+`PascalContext459Dataset`, and their copy of `MyLoadAnnotations` — keeping
+only the `_tfovos_classes`-based versions. Backed up both original files
+first (`custom_datasets.py.bak_pre_dup_registration_fix`). Verified: both
+files now `import custom_datasets` cleanly with no registry error, and
+`ADE20K847Dataset.METAINFO['classes']` / `PascalContext459Dataset.METAINFO
+['classes']` now read `'building, edifice'`, `'air conditioner'` (with the
+space) — i.e. now genuinely match `configs/vocab/ade20k_847.txt`/
+`context_459.txt`. Re-launched `scripts/run_official_e2_queue.sh`, which
+correctly detected the two failed logs (containing `Traceback`) as
+incomplete and is re-running ProxyCLIP and CorrCLIP on Context-459/ADE-847
+against the corrected vocabulary now (in progress as of this writing —
+NACLIP/ADE-847 was also unexpectedly re-triggered by the same queue
+invocation for a reason not yet diagnosed; harmless, just extra GPU time,
+since NACLIP was never in scope for this particular bug).
+
+**[Superseded by the correction at the top of this subsection.] No action
+needed on Table 2/Figure 2 for ProxyCLIP/CorrCLIP** — confirmed the
+re-run's mIoU/aAcc/mAcc are identical to the pre-fix values, because the
+model's actual CLIP prompts come from `name_path` (`cls_context459.txt`),
+not the dataset class's METAINFO. The fix's real value was unblocking the
+crash and correcting the per-class log labels, not correcting any
+evaluation number.
+
+**Update, same session: found and fixed a THIRD method with the identical
+problem — Trident — while auditing every other method for the same class
+of bug (prompted by the author explicitly asking to check the rest before
+anything else surfaced).** Trident's `custom_datasets.py` is byte-identical
+to ProxyCLIP/CorrCLIP's *original, pre-fix* file (confirmed via diff) —
+same hardcoded default vocabulary, `"airconditioner"`/`"babycarriage"` (no
+spaces) — but critically, Trident's file was **never patched with the
+TF-OVCOS override block at all** (no duplicate registration, hence no
+crash — it just silently ran to completion on the wrong vocabulary, both
+in whatever produced the currently-published Table 2 numbers and in this
+session's own just-finished §2.3 rerun). Root cause pinpointed exactly:
+`scripts/prepare_trident_cass_configs.py`'s `main()` calls
+`patch_cass_e2_support()` for CASS but has **no equivalent call for
+Trident** — a plain omission when the CASS patch function was written.
+Fixed by copying the already-corrected ProxyCLIP `custom_datasets.py` into
+Trident's directory (verified their first 172 lines were already
+byte-identical, so this only replaces the part that needed replacing) —
+backed up the original first
+(`custom_datasets.py.bak_pre_missing_tfovos_patch`). Verified: imports
+cleanly, `air conditioner` (with space) now present, 459/847 classes.
+Moved Trident's just-completed (wrong-vocabulary) Context-459/ADE-847 logs
+and artifact PNGs aside and relaunched `scripts/run_trident_cass_queue.sh`
+in a separate tmux session (`ovos_trident_repair`) to redo those two cells
+correctly.
+
+**Full audit of every other training-free method for the same class of
+bug, done directly rather than assumed:** checked SCLIP, NACLIP, ResCLIP,
+SC-CLIP, CASS, CLIPtrase, FreeDA, and SAN — for each, either inspected
+`custom_datasets.py` for duplicate class registrations (none found beyond
+the three above) and/or directly checked the actual loaded vocabulary (or,
+for CLIPtrase/FreeDA/SAN, the class names appearing in their own official
+logs) for the `"air conditioner"`/`"airconditioner"` tell. **All eight are
+clean — already using the correct, spaced, fixed-protocol vocabulary.**
+CLIPtrase's own `configs/dataset_cfg.py` hardcodes the correct vocabulary
+directly (with spaces) for its `PC459`/`ADEfull` entries, so it was never
+at risk. **Confirmed scope: exactly 3 methods (ProxyCLIP, CorrCLIP,
+Trident) had this crash/log-label bug on Context-459/ADE-847. As the
+correction above explains, this never actually changed any evaluated
+number — Table 2's mIoU/ZIoU for these three methods were correct before
+and after. Nothing in Table 1, Table 2, or Table 3 needs a numeric change
+because of this bug. The value of the fix was unblocking the crash and
+the per-class log labels, confirmed nowhere else has the same bug.**
+
 ## 3. Verified against source data (from the earlier PDF review) — all subsections now resolved, see 3.1-3.5
 
 These were flagged from reading the PDF alone; now cross-checked against
@@ -532,38 +1025,50 @@ solid.
 
 ### 3.5 ZIoU / mIoU relationship (Obs 4) and cross-family ratio ordering (Obs 6) — Spearman ρ now computed, confirms the concern
 
-Computed Spearman ρ(ZIoU, mIoU) across all 18 training-free methods from
-`e2_vocab_robustness_filled.csv`:
+**[Updated, same session, after the §2.2 FreeDA decision]: recomputed with
+FreeDA's corrected Context-459/ADE-847 ZIoU/mIoU (41.2%/8.97, 40.9%/6.39,
+replacing the broken log's 68.4%/4.27, 72.7%/3.93). This is not just a
+number update — it removes the one example the original write-up leaned on.**
 
-| Pair | ρ | p-value | n |
-|---|---|---|---|
-| Context-459 | -0.364 | 0.138 | 18 |
-| ADE-847 | -0.194 | 0.440 | 18 |
-| Pooled (both) | -0.322 | 0.055 | 36 |
+| Pair | ρ (old, broken FreeDA) | ρ (corrected) | p (old) | p (corrected) | n |
+|---|---|---|---|---|---|
+| Context-459 | -0.364 | -0.306 | 0.138 | 0.217 | 18 |
+| ADE-847 | -0.194 | -0.090 | 0.440 | 0.723 | 18 |
+| Pooled (both) | -0.322 | -0.238 | 0.055 | 0.162 | 36 |
 
-The correlation is in the expected direction (higher ZIoU associated with
-lower mIoU) but **weak and not statistically significant at either
-individual dataset** (p=0.14 and p=0.44), only borderline significant
-pooled (p=0.055, n=36). This is quantitative confirmation of the original
-finding: Obs 4's claim that "the zero-IoU rate, not the surviving per-class
-IoU, tracks the collapse" overstates how tight this relationship actually
-is. Sorting methods by Context-459 ZIoU makes the exceptions concrete:
-CLIPtrase sits at #4 highest ZIoU (54.2%) *and* has the 2nd-highest
-Context-459 mIoU (9.95, behind only CorrCLIP) among all 18 methods — high
-class-silence and high overall accuracy simultaneously, the opposite of
-what "ZIoU tracks the collapse" implies. FreeDA is the one case that fits
-the narrative cleanly (highest ZIoU, 4th-lowest mIoU).
+The correlation was already "weak, not significant per-dataset" before;
+with FreeDA corrected it is **weaker still, and the pooled correlation is
+no longer even borderline significant** (p=0.162, was p=0.055). Sorting
+methods by Context-459 ZIoU with FreeDA's corrected value: **FreeDA drops
+out of the top 8 entirely** (new top of the list: MaskCLIP 64.1, MaskCLIP-
+Attn 63.4, CLIPtrase 54.2, MaskCLIP-Attn-Slide 50.5, CorrCLIP/Trident 44.2,
+CASS 43.2, SAM-AMG+CLIP 42.5 — FreeDA's corrected 41.2 lands around
+16th-17th place, not 1st). **The claim "FreeDA is the one case that fits
+the narrative cleanly (highest ZIoU, 4th-lowest mIoU)" is now false and
+must be removed, not just re-numbered** — FreeDA was the single example
+the original Obs 4 write-up could point to as clean confirmation of "ZIoU
+tracks the collapse," and that example no longer exists.
+
+CLIPtrase's part of the finding is unaffected by this (CLIPtrase's own
+numbers didn't change): it still sits at #3 highest ZIoU (54.2%, moved up
+one rank now that FreeDA dropped out of the top spot) **and** has the
+2nd-highest Context-459 mIoU (9.95, behind only CorrCLIP) among all 18
+methods — high class-silence and high overall accuracy simultaneously,
+still the clearest counter-example to "ZIoU tracks the collapse."
 
 **Action: soften Obs 4 to something like "ZIoU and mIoU are correlated in
-the expected direction but the relationship is not tight (Spearman
-ρ≈-0.32 to -0.36, not significant per-dataset) — CLIPtrase in particular
+the expected direction but the relationship is weak and not significant
+(Spearman ρ≈-0.24 to -0.31, pooled p=0.16) — CLIPtrase in particular
 combines high class silence with above-average overall accuracy, showing
 that a method can silence a large share of classes while still performing
-well on the classes it does cover."** This pairs naturally with the E-11
-finding in §5.4 — both point the same direction: Obs 4's headline claim
-about vocabulary size was cleaner in the write-up than in the underlying
-numbers, and the paper is more defensible citing the precise, hedged
-versions of both than the original strong claims.
+well on the classes it does cover." Do not cite FreeDA as a confirming
+example anymore — with the corrected numbers it is an unremarkable,
+middle-of-the-pack case, not an example of anything.** This pairs naturally
+with the E-11 finding in §5.4 — both point the same direction: Obs 4's
+headline claim about vocabulary size was cleaner in the write-up than in
+the underlying numbers, and the paper is more defensible citing the
+precise, hedged version (built only on CLIPtrase, not FreeDA) than the
+original strong claim.
 
 Obs 6's ratio-ordering claim was not re-checked this session beyond the
 original review (still open, same finding as before: CASS vs Trident and
@@ -586,6 +1091,10 @@ NACLIP vs ProxyCLIP break the claimed ordering).
 | E-11 | Candidate-only vocabulary expansion (rescoring) | **Done.** Real result, changes Obs. 4's framing (SAN/FreeDA finding). See §5.4. |
 | E-12 | No-prediction class rate (ZIoU refinement) | **Done — real, notable finding.** See §5.5: the 8 vanilla dense/VFM methods share a nearly-identical never-predicted rate regardless of architecture; CLIPtrase/FreeDA/SAN fail via a different broad-but-imprecise pattern instead. |
 | — | CLIPtrase/FreeDA COCO-Stuff normalization fix | **Done, fixed, and verified this session.** See §2.1: the crosswalk built earlier was correct, the bug was applying it without first subtracting 1; corrected predictions are now live in the artifact tree, all diagnostic tables regenerated, and the exact Appendix D.1 pooled-number deltas are recorded. |
+| — | FreeDA's own Context-459/ADE-847 official log looks internally truncated | **DONE — fully resolved and regenerated.** See §2.2: FreeDA's own log is internally truncated (204/459 Context-459 classes read an implausible exact `IoU=0.0`/`Acc=nan`, including "person"/"sky"/"water"). Author decision: use our own reconstruction instead (verified to match FreeDA's own log exactly on the two unaffected datasets, Context-59/ADE-150). `scripts/build_e2_filled_table.py` now does this automatically; final regenerated values confirmed in `e2_vocab_robustness_filled.csv`: Context-459 mIoU 4.27→8.97, ZIoU 68.4%→41.2%; ADE-847 mIoU 3.93→6.39, ZIoU 72.7%→40.9%; ∆vocab 29.21→25.62. Table 2's FreeDA row and Figure 2's FreeDA cells need updating with these. |
+| — | 8-bit PNG export bug corrupts 8 methods' saved Context-459/ADE-847 predictions | **DONE — fully resolved, GPU re-run completed and verified.** See §2.3: sclip/naclip/resclip/proxyclip/corrclip/scclip/trident/cass all route through mmsegmentation's own `IoUMetric.process()`, which unconditionally cast predictions to `uint8` before saving the PNG artifact, silently corrupting any class index >=256. Patched to save 16-bit; all 16 cells (8 methods x 2 datasets) re-run and verified 16-bit; mIoU unchanged (as expected — never affected). table9/table11/table12 regenerated: MCMR/ZIoU for these 8 methods now sane (0.28-0.48 MCMR, was ~0.98). Appendix D.1 pooled MCMR@0.5 changes: Dense-map TF methods 0.350→0.279, CLIP+VFM TF methods 0.400→0.319 (exact CSV group names — see §2.3 for the caveat about mapping onto the manuscript's own differently-grouped Table 9). |
+| — | ZIoU written formula (Eq. 7) vs. actual union-based computation | **Documented, fix is text-only.** See §2.4: all 18 of Table 2's rows already agree with each other (union-based denominator, matching mmseg's own standard convention); only the manuscript's Eq. 7 prose needs adjusting to describe what's actually computed. No numbers change. |
+| — | ProxyCLIP/CorrCLIP/Trident crash on Context-459/ADE-847 (custom_datasets.py) | **Found, root-caused, FIXED, and impact-corrected this session.** See §2.5: ProxyCLIP/CorrCLIP had a duplicate-class-registration bug; Trident's `custom_datasets.py` was simply never patched with the benchmark's vocab override at all (`prepare_trident_cass_configs.py` patches CASS but has no equivalent Trident call). Initially looked like a fixed-protocol violation (dataset METAINFO showed each method's own non-benchmark class names) — **but verified this doesn't actually affect any reported number**: the real CLIP text prompts come from each config's `name_path` (pointing at the correct `cls_context459.txt`/`cls_ade20k847.txt`), independent of the dataset class's METAINFO, which is only used for internal GT-index bookkeeping and log-table labels. Confirmed empirically: re-run mIoU/aAcc/mAcc identical to the pre-fix values for all three methods. Net effect of the fix: unblocked a real crash and corrected cosmetic log labels; Table 1/2/3 need no numeric changes from this. SCLIP/NACLIP/ResCLIP/SC-CLIP/CASS/CLIPtrase/FreeDA/SAN individually checked and confirmed to never have had this bug. |
 | — | Manuscript-text-only items (broken ref, `ZUoU` typo, undefined `Catastrophic ZIoU`, abstract wording, Eq. 8 description, Obs 4/5/6 rewrites) | **Cannot be done here** — no `.tex` source in this repository. See §5.2/5.3/5.6/5.7/5.8. |
 
 ## 5. Second-pass external review (2026-07-13, later same day) — cross-checked against repo
