@@ -72,8 +72,8 @@ METHOD_GROUPS = {
     "cliptrase": "Dense-map TF methods",
     "naclip": "Dense-map TF methods",
     "resclip": "Dense-map TF methods",
-    "proxyclip": "Proposal+naming TF methods",
-    "corrclip": "Proposal+naming TF methods",
+    "proxyclip": "CLIP + VFM TF methods",
+    "corrclip": "CLIP + VFM TF methods",
     "trident": "CLIP + VFM TF methods",
     "cass": "CLIP + VFM TF methods",
     "freeda": "Diffusion/reference TF methods",
@@ -190,6 +190,12 @@ def _analyse_method_dataset(
     oracle_confusions: Counter[tuple[int, int]] = Counter()
     processed = missing = 0
     biou_regions = 0
+    # Dataset-level confusion accumulator (distinct from the per-image
+    # pair_counts below): lets us separate "this class was never predicted
+    # anywhere in the whole dataset" from "it was predicted somewhere but
+    # never overlapped the true region", which the plain zero-IoU rate
+    # conflates. See plan.md #5.5.
+    dataset_confusion = np.zeros((spec.num_classes, spec.num_classes), dtype=np.int64)
 
     for sample in samples:
         pred_path = _prediction_path(pred_dir, sample.image_id)
@@ -217,6 +223,7 @@ def _analyse_method_dataset(
             spec.num_classes * gt_flat_good + pred_flat_good,
             minlength=spec.num_classes * spec.num_classes,
         ).reshape(spec.num_classes, spec.num_classes)
+        dataset_confusion += pair_counts
 
         for gt_id in np.flatnonzero(gt_counts):
             gt_total = int(gt_counts[gt_id])
@@ -266,6 +273,34 @@ def _analyse_method_dataset(
             return None
         return float((localized - matched) / localized)
 
+    # Dataset-level class coverage: split the plain zero-IoU rate into
+    # "never predicted anywhere" vs "predicted somewhere but never on the
+    # true region", using the full dataset_confusion matrix rather than
+    # per-image counts.
+    total_gt_per_class = dataset_confusion.sum(axis=1)
+    total_pred_per_class = dataset_confusion.sum(axis=0)
+    tp_per_class = np.diag(dataset_confusion)
+    valid_class_mask = total_gt_per_class > 0
+    union_per_class = total_gt_per_class + total_pred_per_class - tp_per_class
+    iou_per_class = np.divide(
+        tp_per_class, union_per_class, out=np.zeros_like(union_per_class, dtype=np.float64), where=union_per_class > 0
+    )
+    zero_iou_mask = valid_class_mask & (iou_per_class == 0)
+    never_predicted_mask = valid_class_mask & (total_pred_per_class == 0)
+    predicted_but_zero_iou_mask = zero_iou_mask & ~never_predicted_mask
+    n_valid_classes = int(valid_class_mask.sum())
+
+    # Union-based variant (denominator = classes with GT OR prediction
+    # support, i.e. (TP+FP+FN) > 0), matching Table 2's own convention
+    # (src/tf_ovos/metrics.py's miou_from_confusion, mmseg's IoUMetric, and
+    # build_e2_filled_table.py's compute_map_ziou all agree on this -- see
+    # plan.md 2.4). The GT-only zero_iou_class_rate above is a stricter,
+    # deliberately different diagnostic used by table9/E-12 and must not be
+    # substituted for Table 2's ZIoU without this union-based recomputation.
+    valid_class_mask_union = union_per_class > 0
+    zero_iou_mask_union = valid_class_mask_union & (iou_per_class == 0)
+    n_valid_classes_union = int(valid_class_mask_union.sum())
+
     summary = {
         "method": method,
         "method_group": METHOD_GROUPS.get(method, "other"),
@@ -274,6 +309,12 @@ def _analyse_method_dataset(
         "expected_images": len(samples),
         "missing_images": missing,
         "gt_class_regions": total_regions,
+        "n_valid_classes": n_valid_classes,
+        "zero_iou_class_rate": float(zero_iou_mask.sum()) / max(n_valid_classes, 1),
+        "n_valid_classes_union": n_valid_classes_union,
+        "zero_iou_class_rate_union": float(zero_iou_mask_union.sum()) / max(n_valid_classes_union, 1),
+        "never_predicted_class_rate": float(never_predicted_mask.sum()) / max(n_valid_classes, 1),
+        "predicted_but_zero_iou_class_rate": float(predicted_but_zero_iou_mask.sum()) / max(n_valid_classes, 1),
         "gt_region_naming_top1": naming_top1_hits / max(total_regions, 1),
         "gt_region_naming_top5": None,
         "gt_text_localization_iou": _safe_mean(gt_text_ious),
@@ -281,6 +322,10 @@ def _analyse_method_dataset(
         "proposal_oracle_iou": _safe_mean(oracle_ious),
         "proposal_recall_at_05": localized_05 / max(total_regions, 1),
         "proposal_recall_at_075": localized_075 / max(total_regions, 1),
+        "localized_pairs_at_05": localized_05,
+        "mismatch_pairs_at_05": localized_05 - matched_05,
+        "localized_pairs_at_075": localized_075,
+        "mismatch_pairs_at_075": localized_075 - matched_075,
         "mcmr_at_05": _mcmr(localized_05, matched_05),
         "mcmr_at_075": _mcmr(localized_075, matched_075),
         "biou_regions": biou_regions,
@@ -342,17 +387,21 @@ def _table11_rows(summaries: list[dict[str, object]]) -> list[dict[str, object]]
             localized = [float(v["proposal_recall_at_05"]) for v in vals if v["proposal_recall_at_05"] is not None]
             mcmr = [float(v["mcmr_at_05"]) for v in vals if v["mcmr_at_05"] is not None]
             top1 = [float(v["gt_region_naming_top1"]) for v in vals if v["gt_region_naming_top1"] is not None]
+            # Pooled counts: sum raw localized/mismatch pairs across (method, dataset)
+            # cells so that mismatch_pairs / localized_pairs reproduces MCMR@0.5
+            # exactly (Eq. 8). Do NOT total gt_class_regions here -- that is the
+            # count of ALL GT regions, not just the ones localized at IoU>=0.5,
+            # and mixing the two produced a family-level MCMR that could not be
+            # reconstructed from the printed pair counts.
+            localized_pairs = int(sum(int(v["localized_pairs_at_05"]) for v in vals))
+            mismatch_pairs = int(sum(int(v["mismatch_pairs_at_05"]) for v in vals))
             rows.append(
                 {
                     "method_group": group,
-                    "localized_pairs": int(sum(int(v["gt_class_regions"]) for v in vals)),
-                    "mismatch_pairs_proxy": int(
-                        sum(
-                            round(float(v["mcmr_at_05"] or 0.0) * int(v["gt_class_regions"]))
-                            for v in vals
-                        )
-                    ),
-                    "MCMR@0.5_proxy": _safe_mean(mcmr),
+                    "localized_pairs": localized_pairs,
+                    "mismatch_pairs": mismatch_pairs,
+                    "MCMR@0.5_pooled": (mismatch_pairs / localized_pairs) if localized_pairs else None,
+                    "MCMR@0.5_mean_of_cells": _safe_mean(mcmr),
                     "GT_region_top1_proxy": _safe_mean(top1),
                     "proposal_recall_at_0.5_proxy": _safe_mean(localized),
                     "example_mismatch_pairs_or_communities": "see table11_e2_mismatch_pairs.csv",
@@ -364,8 +413,9 @@ def _table11_rows(summaries: list[dict[str, object]]) -> list[dict[str, object]]
                 {
                     "method_group": group,
                     "localized_pairs": "",
-                    "mismatch_pairs_proxy": "",
-                    "MCMR@0.5_proxy": "",
+                    "mismatch_pairs": "",
+                    "MCMR@0.5_pooled": "",
+                    "MCMR@0.5_mean_of_cells": "",
                     "GT_region_top1_proxy": "",
                     "proposal_recall_at_0.5_proxy": "",
                     "example_mismatch_pairs_or_communities": "",
@@ -484,6 +534,9 @@ def main() -> None:
             "proposal_oracle_iou",
             "proposal_recall_at_05",
             "mcmr_at_05",
+            "zero_iou_class_rate",
+            "never_predicted_class_rate",
+            "predicted_but_zero_iou_class_rate",
             "diagnostic_source",
             "artifact_gap",
         ],
@@ -495,8 +548,9 @@ def main() -> None:
         [
             "method_group",
             "localized_pairs",
-            "mismatch_pairs_proxy",
-            "MCMR@0.5_proxy",
+            "mismatch_pairs",
+            "MCMR@0.5_pooled",
+            "MCMR@0.5_mean_of_cells",
             "GT_region_top1_proxy",
             "proposal_recall_at_0.5_proxy",
             "status",

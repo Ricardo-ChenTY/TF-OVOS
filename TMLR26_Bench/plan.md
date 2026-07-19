@@ -1622,3 +1622,221 @@ each × 1 compact dataset).
 
 Artifacts: `runs/tuning_ablation/{scclip,naclip}_context59/` (configs,
 logs, and predictions for all 11 runs).
+
+## 10. Third-pass external review (2026-07-17) — Table 2 / Table 9 MCMR and ZIoU are stale and used two silently different aggregation conventions; both now root-caused, fixed, and cross-verified
+
+**Superseded: §3.4's "e2_vocab_robustness_filled.csv — confirmed correct, no
+action needed" was wrong.** That check only confirmed internal consistency
+at the time; it never compared against the manuscript's actual printed
+Table 2 numbers or audited where those numbers came from. This section
+does both and finds real, fixable problems.
+
+### 10.1 Table 9's family-level MCMR pooled every dataset, not just E2 — FIXED
+
+`table11_e2_mismatch_summary.csv` is captioned as an E2 (Context-459 +
+ADE-847) summary, but `scripts/run_missing_mcmr_artifacts_queue.sh:133`
+explicitly ran `generate_diagnostic_tables.py` with
+`--datasets voc20 context59 ade20k coco_stuff164k context459 ade847` — all
+six datasets — and `_table11_rows()` pools whatever it's given with no
+per-table dataset filter. This silently diluted the family MCMR with
+compact-vocabulary cells (where these methods have much lower MCMR),
+producing family values *below every individual member's own Table 2
+value* (e.g. Dense-map pooled 0.279, but the lowest member, CLIPtrase, is
+0.455 — a mathematical impossibility for a legitimate weighted average of
+values all ≥0.455). Verified arithmetically: 63920/229049 = 0.2791,
+matching the file exactly, confirming this is the mechanism.
+
+**Fix:** regenerate restricted to `--datasets context459 ade847`. Done
+this session; see `runs/analysis/table11_e2_mismatch_summary.csv`
+(regenerated 2026-07-17).
+
+### 10.2 Table 2's MCMR@0.5 column traces to an orphaned, unreproducible May-26 snapshot that predates the §2.3 uint8 fix
+
+`runs/analysis/e2_missing_data_audit.csv` (committed 2026-05-26 in
+`545b23d "Complete E2 diagnostics table"`) contains exactly the MCMR@0.5
+values printed in the manuscript's Table 2 (SCLIP 0.489, NACLIP 0.512,
+ResCLIP 0.501, SC-CLIP 0.531, ProxyCLIP 0.557, CorrCLIP 0.579, Trident
+0.583, CASS 0.543; CLIPtrase 0.455, SAN 0.318, FreeDA 0.476 also match).
+**No script anywhere in the repository generates this file — checked the
+original May-26 commit too: the only script it added,
+`scripts/build_e2_filled_table.py`, only ever wrote
+`e2_vocab_robustness_filled.csv`, never `e2_missing_data_audit.csv`.** It
+was a one-off manual/ad-hoc audit snapshot, not a repeatable pipeline —
+Option "re-run the same pipeline that produced Table 2" is not available,
+confirmed by direct inspection, not by absence of search results alone.
+
+Cross-checked table9_diagnostic_probes.csv's current (2026-07-17, post
+§2.3 uint8-fix, freshly re-verified) per-method MCMR against this file for
+all 9 dense/VFM methods plus 3 controls:
+
+| method | table9 (ctx459+ade847)/2, today | e2_missing_data_audit.csv (5/26) | diff |
+|---|---|---|---|
+| SCLIP | 0.3318 | 0.489 | −0.157 |
+| NACLIP | 0.3446 | 0.512 | −0.167 |
+| ResCLIP | 0.3356 | 0.501 | −0.165 |
+| SC-CLIP | 0.3625 | 0.531 | −0.169 |
+| ProxyCLIP | 0.3965 | 0.557 | −0.161 |
+| CorrCLIP | 0.4210 | 0.579 | −0.158 |
+| Trident | 0.4318 | 0.583 | −0.151 |
+| CASS | 0.3788 | 0.543 | −0.164 |
+| CLIPtrase (control, never uint8-affected) | 0.4550 | 0.455 | 0 |
+| SAN (control) | 0.318 | 0.318 | 0 |
+| FreeDA (control) | 0.476 | 0.476 | 0 |
+
+The 8 methods with a ~0.15-0.17 gap are *exactly* the 8 methods §2.3 found
+affected by the uint8 PNG export bug (`sclip/naclip/resclip/proxyclip/
+corrclip/scclip/trident/cass`); the 3 controls that were never touched by
+that bug show zero difference. This is a closed evidence chain, not a
+coincidence: affected-method list ↔ divergent-method list match exactly,
+and the 3-method control group shows exact agreement.
+
+**Important caveat, do not skip when writing this up:** table9's
+`mcmr_at_05` is tagged `diagnostic_source: proxy_from_dense_label_map` —
+it is a dense-argmax-confusion-matrix proxy, not real region-conditioned
+inference, the same category of number Obs 5's original four probes were
+before the real pilot in §3.1. It is the best currently-reproducible
+number (the alternative pipeline is gone, per 10.2 above), but must carry
+the same proxy disclaimer already used elsewhere in the paper, not be
+presented as an exact/verified quantity.
+
+### 10.3 Table 2's ZIoU column: the 8 methods' apparent 17-22 point gap was mostly a denominator-convention artifact, not the uint8 bug — separated and fixed
+
+Naively diffing table9's `zero_iou_class_rate` (GT-only denominator, per
+§2.4) against Table 2's ZIoU for the same 8 methods showed 17-22 point
+gaps on Context-459 — much larger than the MCMR gap, and initially
+mis-attributed entirely to the uint8 bug. Checking against an unaffected
+control (CLIPtrase) exposed the real story: CLIPtrase's GT-only ZIoU
+(40.3/58.9) differs from its unchanged Table 2 value (54.2/61.8) by
+13.9/2.9 points, even though CLIPtrase was never touched by the uint8 bug
+— confirming §2.4's finding that Table 2 uses a **union-based** denominator
+((TP+FP+FN)>0) while table9/E-12 deliberately uses a **stricter GT-only**
+denominator (`total_gt_per_class>0`). These are two different, legitimate
+metrics that happen to share a name.
+
+**Fix:** added a union-based variant to `generate_diagnostic_tables.py`
+(`zero_iou_class_rate_union`, computed from the confusion matrix's
+existing `union_per_class > 0` mask — same data already being computed,
+just a different validity mask; the GT-only column is untouched, so E-12
+and table9's own stricter convention are unaffected). Regenerated
+E2-only. Validation: CLIPtrase's union-based ZIoU now reproduces Table 2's
+value *exactly* (54.2/54.2, 61.8/61.8, diff 0.0/0.0), confirming the fix
+is correct and matches Table 2's established convention precisely. (SAN
+does not match under this convention — 47.8/53.9 vs Table 2's 31.6/51.3 —
+because SAN's Table 2 row is sourced from a fourth code path,
+`parse_san_log()` in `build_e2_filled_table.py`, which §2.4's three-path
+audit never covered; SAN was never touched by the uint8 bug and does not
+need to change, so this is noted but out of scope here.)
+
+Corrected, union-based, uint8-fixed ZIoU for the 8 affected methods
+(replaces the stale 5/26-era Table 2 values):
+
+| method | new ctx459 ZIoU | new ade847 ZIoU | old Table 2 ctx459 | old ade847 | diff |
+|---|---|---|---|---|---|
+| SCLIP | 38.1 | 37.4 | 39.7 | 39.2 | −1.6/−1.8 |
+| NACLIP | 37.0 | 34.8 | 38.6 | 37.2 | −1.6/−2.4 |
+| ResCLIP | 38.6 | 38.3 | 39.4 | 39.1 | −0.8/−0.8 |
+| SC-CLIP | 40.6 | 39.7 | 41.5 | 40.8 | −0.9/−1.1 |
+| ProxyCLIP | 41.0 | 40.2 | 42.4 | 42.0 | −1.4/−1.8 |
+| CorrCLIP | 43.0 | 47.8 | 44.2 | 49.9 | −1.2/−2.1 |
+| Trident | 43.3 | 46.0 | 44.2 | 47.1 | −0.9/−1.1 |
+| CASS | 42.1 | 44.0 | 43.2 | 44.7 | −1.1/−0.7 |
+
+Once the denominator-convention artifact is removed, the uint8 bug's real
+effect on ZIoU is small (~1-2 points), a far more plausible magnitude than
+the initial 17-22 point estimate — that larger number was mostly an
+apples-to-oranges metric-definition problem, not mostly a bug.
+
+### 10.4 MCMR aggregation-convention check — verified clean, no fix needed
+
+Table 2's caption states MCMR@0.5 is "averaged over Ctx-459 and ADE-847"
+(macro). Checked whether table9's per-method MCMR (as consumed by
+`build_e2_filled_table.py::read_table9_mcmr()`) is macro or pair-count-
+weighted (pooled): that function only ever reads the already-computed
+per-cell ratio `mcmr_at_05` (never the raw `localized_pairs_at_05`/
+`mismatch_pairs_at_05` counts), so `np.mean()` over the two per-dataset
+cells is structurally a simple average — it cannot be pooled, since it
+never has access to pair counts to weight by. Confirmed identical to
+manually computing `(context459 + ade847) / 2` per method. No caption
+conflict; MCMR values can be grafted into Table 2 directly. (This is
+*unlike* ZIoU, where the two pipelines used genuinely different
+definitions — Eq. 8's MCMR formula has no such ambiguity, per §5.6.)
+
+### 10.5 Net manuscript changes required (blocked on the `.tex` source, same as everything else in §5.2-§5.8)
+
+1. **Table 2, MCMR@0.5 column:** replace SCLIP/NACLIP/ResCLIP/SC-CLIP/
+   ProxyCLIP/CorrCLIP/Trident/CASS with the §10.2 table's `table9` column
+   (0.332/0.345/0.336/0.362/0.397/0.421/0.432/0.379). CLIPtrase/SAN/FreeDA
+   unchanged.
+2. **Table 2, ZIoU columns (Ctx459/ADE847):** replace the same 8 methods
+   with the §10.3 table's new values. CLIPtrase/SAN/FreeDA unchanged. No
+   caption change needed (union-based convention preserved).
+3. **Table 9 (Appendix D.1) family rows:** replace with mean-of-cells
+   computed from the now-fixed per-method values: Dense-map 0.366,
+   CLIP+VFM 0.407, Diffusion 0.476, Trained refs (SAN) 0.318,
+   Proposal+naming 0.744 (unchanged — still only computable as a macro
+   average of Table 2's four proposal-family values, no raw pair data
+   exists for this family; already `artifact_gap` in the underlying CSV).
+4. **Both Table 2 and Table 9 need an explicit proxy disclaimer** for
+   MCMR and ZIoU on the affected rows (`diagnostic_source:
+   proxy_from_dense_label_map` — dense-argmax-based, not real
+   region-conditioned inference), matching the disclaimer already used
+   for Obs 5's other diagnostic numbers post-§3.1.
+5. Obs 5/Obs 8's prose ranges referencing the old MCMR numbers (~0.5-0.58)
+   need updating to the new range (~0.33-0.46).
+6. `e2_missing_data_audit.csv`/`.md` should be treated as superseded/
+   deprecated — do not cite it going forward; no script reproduces it.
+
+Regenerated source files (2026-07-17): `runs/analysis/table9_diagnostic_probes.csv`,
+`table11_e2_mismatch_summary.csv`, `table12_supporting_readouts.csv` (and
+`.md` twins), all `--datasets context459 ade847` only, with the new
+`zero_iou_class_rate_union` / `n_valid_classes_union` columns added to
+`scripts/generate_diagnostic_tables.py`.
+
+## 11. Obs 5's real four-probe diagnostic expanded from CorrCLIP-only to 6 methods, full Context-459 + ADE-847, 100% coverage — background-compute hedge, DONE (2026-07-17 to 2026-07-19)
+
+Explicitly framed by the user as low-priority insurance ("这个真的有啥用么...但让它跑完吧因为我觉得后面可能会问") in case a reviewer asks whether §3.1's real-diagnostic pipeline (naming/localization/proposal-oracle/proposal-recall — CorrCLIP-only there) generalizes to other method families. Not required for the current manuscript; kept here so the evidence exists if needed.
+
+**Scope:** NACLIP, SC-CLIP, CASS, Trident (dense-map / CLIP+VFM families), FreeDA (diffusion/reference family), SAM-AMG+SigLIP (proposal+naming family) — the same four real probes as §3.1, same SAM ViT-H automatic-mask-generation parameters, same both datasets in full (Context-459 5105 images, ADE-847 2000 images).
+
+**Implementation:** `scripts/real_obs5_diagnostic_multi.py` (new `MethodBackend` subclasses per method, sharing one process/GPU) for the first 5; `scripts/real_obs5_diagnostic_freeda.py` (separate, since FreeDA needs its own py38/mmcv-0.x conda env and a raw-BGR-0-255 input convention rather than CLIP-normalized RGB) for FreeDA. Naming for NACLIP/SC-CLIP/CASS/Trident all route through a stock ViT-B/16 CLIP crop-classifier (NACLIP via its own checkpoint switched to vanilla, unmodified attention params; the other three via a second, independently-loaded stock CLIP instance) — this is intentional, not a bug: it isolates "can a generic CLIP classify a well-cropped region" from each method's own dense-localization mechanism, which is measured separately by `gt_text_localization_iou`.
+
+**Completion-rate issue found and fixed:** the first pass ran all 4 non-FreeDA methods concurrently on one GPU, which produced excellent Context-459 completion (100% for 4/5, 99.4% for FreeDA) but poor ADE-847 completion (58%-77% for the 4 concurrent methods, 93.5% for FreeDA) — OOM during the memory-heavy localization/SAM-proposal steps under 4-way contention, not a per-method bug (confirmed: naming happens first in the per-image loop and rarely OOMs, so `naming_regions`/`gt_region_naming_top1` were already computed on the full 2000-image set even for runs later marked incomplete; only localization/proposal were affected). Fixed by re-running ADE-847 solo (one method at a time, exclusive GPU) for NACLIP/SC-CLIP/CASS/Trident, and a full solo re-run of both datasets for FreeDA — all six methods now have genuine 100%/100% completion, 0 errors.
+
+**Final result — all 6 methods, both datasets, 100% coverage, 0 errors:**
+
+| Method | Dataset | Naming Top-1 | Localization IoU | Proposal-oracle IoU | Proposal Recall@0.5 |
+|---|---|---|---|---|---|
+| NACLIP | Context-459 | 0.1984 | 0.2846 | 0.6739 | 0.7201 |
+| NACLIP | ADE-847 | 0.1095 | 0.1710 | 0.5711 | 0.6064 |
+| SC-CLIP | Context-459 | 0.1983 | 0.2746 | 0.6739 | 0.7201 |
+| SC-CLIP | ADE-847 | 0.1095 | 0.1545 | 0.5711 | 0.6064 |
+| CASS | Context-459 | 0.1984 | 0.2665 | 0.6739 | 0.7201 |
+| CASS | ADE-847 | 0.1095 | 0.1415 | 0.5711 | 0.6064 |
+| Trident | Context-459 | 0.1984 | 0.2806 | 0.6739 | 0.7201 |
+| Trident | ADE-847 | 0.1091 | 0.1577 | 0.5711 | 0.6064 |
+| FreeDA | Context-459 | 0.2107 | 0.2607 | 0.6739 | 0.7200 |
+| FreeDA | ADE-847 | 0.1293 | 0.1458 | 0.5711 | 0.6064 |
+| SAM-AMG+SigLIP | Context-459 | 0.2917 | 0.1379 | 0.6739 | 0.7201 |
+| SAM-AMG+SigLIP | ADE-847 | 0.1918 | 0.1266 | 0.5711 | 0.6064 |
+
+Unweighted per-method mean (both datasets):
+
+| Method | Naming Top-1 | Localization IoU | Proposal-oracle IoU | Proposal Recall@0.5 |
+|---|---|---|---|---|
+| NACLIP | 0.1539 | 0.2278 | 0.6225 | 0.6632 |
+| SC-CLIP | 0.1539 | 0.2146 | 0.6225 | 0.6632 |
+| CASS | 0.1540 | 0.2040 | 0.6225 | 0.6632 |
+| Trident | 0.1538 | 0.2191 | 0.6225 | 0.6632 |
+| FreeDA | 0.1700 | 0.2033 | 0.6225 | 0.6632 |
+| SAM-AMG+SigLIP | 0.2418 | 0.1323 | 0.6225 | 0.6632 |
+| CorrCLIP (§3.1, for reference) | 0.1990 | 0.2850 | 0.6230 | 0.6630 |
+
+Full detail: `runs/analysis/obs5_real_diagnostic_all6_full_final.csv` (per-dataset rows) and `obs5_real_diagnostic_all6_mean_final.csv` (per-method means).
+
+**Sanity-checked, story is coherent, not just "numbers exist":**
+
+- **Proposal-oracle IoU / Recall@0.5 are identical to 4 decimal places across all 6 methods** (0.6739/0.5711 and 0.7201/0.6064 respectively, per dataset) — expected, since SAM automatic-mask-generation is method-independent, and this exactly matches §3.1's already-validated CorrCLIP numbers (0.674/0.571, 0.720/0.606). This is a strong reproducibility check on the whole pipeline, now confirmed across 7 independent method runs total.
+- **Naming Top-1 clusters by which vision-language backbone each method's naming step actually uses**, not by segmentation architecture: NACLIP/SC-CLIP/CASS/Trident (all stock ViT-B/16 CLIP) ≈ 0.154; FreeDA (ViT-L-14 openai, higher-capacity) = 0.170; SAM-AMG+SigLIP (SigLIP ViT-SO400M-14, strongest VLM here) = 0.242 — a sensible ordering by backbone strength, not noise.
+- **Localization IoU correctly varies by each method's own dense/region-scoring mechanism**: CorrCLIP (0.285, strongest in this benchmark) > NACLIP (0.228) > Trident (0.219) > SC-CLIP (0.215) > CASS (0.204) ≈ FreeDA (0.203) > SAM-AMG+SigLIP (0.132, weakest — it has no real dense per-pixel localization mechanism, just region-level SigLIP scoring). This ordering is plausible and not degenerate.
+
+No manuscript action needed unless a reviewer specifically asks Obs 5 to generalize beyond CorrCLIP — this section exists purely as ready-to-cite evidence for that scenario.

@@ -144,6 +144,15 @@ def fig_efficiency_waterfall():
         ("MaskCLIP", 12.33, 0.680),
         ("NACLIP", 43.23, 0.883),
         ("ResCLIP", 41.11, 1.179),
+        # FreeDA was missing from this hardcoded list entirely (not dropped by
+        # any computation). No clean per-image timer exists for it anywhere
+        # in runs/analysis/*.csv; sec/image below is derived from wall-clock
+        # start/end timestamps in runs/logs/mcmr_artifact_freeda_*.log,
+        # averaged over the 4 E1 datasets (voc20/context59/ade20k/coco_stuff):
+        # 1.79/1.63/1.54/1.24 s/image -> 1.49 mean. This includes one-time
+        # model/checkpoint loading inside that process, so treat as a rough
+        # stand-in pending an isolated E4 rerun (see plan.md E-4).
+        ("FreeDA", 45.40, 1.49),
         ("CASS", 42.25, 2.207),
         ("DINOv2+SAM+CLIP", 25.91, 3.507),
         ("SAM-AMG+CLIP", 24.07, 4.124),
