@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect width="100%" height="100%" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#222}.title{font-size:22px;font-weight:700}.sub{font-size:13px;fill:#666}.axis{stroke:#222;stroke-width:1.2}.grid{stroke:#e9e9e9;stroke-width:1}.tick{font-size:12px;fill:#666}.xlabel{font-size:14px;font-weight:700}.ylabel{font-size:14px;font-weight:700}.curve{fill:none;stroke-width:3.2;stroke-linecap:round}.mean{fill:none;stroke:#222;stroke-width:4.2;stroke-linecap:round}.legend{font-size:13px;font-weight:700}.anno{font-size:13px;fill:#333}.big{font-size:28px;font-weight:800;fill:#111}.small{font-size:12px;fill:#555}</style>
+<text x="58.0" y="42.0" class="title" text-anchor="start">Component-scale degradation curve</text>
+<text x="58.0" y="64.0" class="sub" text-anchor="start">Bold line: mean across five strong OVSS methods. Band: method range.</text>
+<line x1="105.0" y1="392.0" x2="725.0" y2="392.0" class="grid"/>
+<text x="91.0" y="396.0" class="tick" text-anchor="end">0.0</text>
+<line x1="105.0" y1="314.5" x2="725.0" y2="314.5" class="grid"/>
+<text x="91.0" y="318.5" class="tick" text-anchor="end">0.1</text>
+<line x1="105.0" y1="237.0" x2="725.0" y2="237.0" class="grid"/>
+<text x="91.0" y="241.0" class="tick" text-anchor="end">0.2</text>
+<line x1="105.0" y1="159.5" x2="725.0" y2="159.5" class="grid"/>
+<text x="91.0" y="163.5" class="tick" text-anchor="end">0.3</text>
+<line x1="105.0" y1="82.0" x2="725.0" y2="82.0" class="grid"/>
+<text x="91.0" y="86.0" class="tick" text-anchor="end">0.4</text>
+<line x1="105.0" y1="392.0" x2="725.0" y2="392.0" class="axis"/>
+<line x1="105.0" y1="82.0" x2="105.0" y2="392.0" class="axis"/>
+<line x1="105.0" y1="392.0" x2="105.0" y2="399.0" class="axis"/>
+<text x="105.0" y="422.0" class="tick" text-anchor="middle">large</text>
+<line x1="427.4" y1="392.0" x2="427.4" y2="399.0" class="axis"/>
+<text x="427.4" y="422.0" class="tick" text-anchor="middle">medium</text>
+<line x1="725.0" y1="392.0" x2="725.0" y2="399.0" class="axis"/>
+<text x="725.0" y="422.0" class="tick" text-anchor="middle">small</text>
+<text x="415.0" y="454.0" class="xlabel" text-anchor="middle">component scale</text>
+<text x="38" y="237.0" transform="rotate(-90 38 237.0)" class="ylabel" text-anchor="middle">mean component IoU</text>
+<path d="M 105.00 105.33 C 167.00 143.57, 308.17 251.82, 427.40 304.20 C 546.63 356.58, 667.77 363.57, 725.00 377.71 L 725.00 382.37 L 427.40 343.10 L 105.00 192.74 Z" fill="#9ecae1" opacity="0.34"/>
+<path d="M 105.00 157.77 C 167.00 190.21, 308.17 283.76, 427.40 326.47 C 546.63 369.18, 667.77 369.59, 725.00 379.86" class="mean"/>
+<circle cx="105.0" cy="157.8" r="4.2" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<circle cx="427.4" cy="326.5" r="4.2" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<circle cx="725.0" cy="379.9" r="4.2" fill="#222" stroke="#fff" stroke-width="1.5"/>
+<text x="760.0" y="130.0" class="legend" text-anchor="start">Small / large</text>
+<text x="760.0" y="164.0" class="big" text-anchor="start">0.052×</text>
+<text x="760.0" y="194.0" class="anno" text-anchor="start">mean IoU retained</text>
+<text x="760.0" y="226.0" class="small" text-anchor="start">The curve shows a</text>
+<text x="760.0" y="244.0" class="small" text-anchor="start">near-total loss on</text>
+<text x="760.0" y="262.0" class="small" text-anchor="start">small components.</text>
+</svg>

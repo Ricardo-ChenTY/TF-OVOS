@@ -1,0 +1,3 @@
+method,dataset,task,metrics_path,num_samples,num_classes,miou,pixel_accuracy,mean_class_accuracy,mcmr_05,mcmr_075,prediction_label_offset,runtime_shards,runtime_num_samples,runtime_wall_time_sec,runtime_sec_per_image
+sam_amg_clip,voc20_val,semantic,/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_clip/voc20_val/metrics.json,1449,20,0.6234203318581799,0.7548583952910546,0.8115501851662227,0.17987152034261242,0.16176470588235295,0,1,1449,4615.521523378004,3.1853150609924112
+sam_amg_siglip,voc20_val,semantic,/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_siglip/voc20_val/metrics.json,1449,20,0.6299866825183504,0.7419087248569073,0.8183193913968365,0.22270742358078602,0.22602739726027396,0,1,1449,4978.727020797029,3.435974479501055

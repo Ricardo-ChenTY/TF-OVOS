@@ -1,0 +1,42 @@
+dataset,alias,class_ids,classes,n_classes,status
+ade847,alarm,556;692,"alarm clock, alarm; alarm, warning device, alarm system",2,alias_collision_found
+ade847,bag,114;191;252,"bag; bag, traveling bag, travelling bag, grip, suitcase; bag, handbag, pocketbook, purse",3,alias_collision_found
+ade847,basket,137;371,"basket, handbasket; basket, basketball hoop, hoop",2,alias_collision_found
+ade847,board,119;768,"board, plank; control panel, instrument panel, control board, board, panel",2,alias_collision_found
+ade847,boiler,408;585,"kettle, boiler; boiler",2,alias_collision_found
+ade847,brochure,337;634,"booklet, brochure, folder, leaflet, pamphlet; brochure",2,alias_collision_found
+ade847,can,58;355,"toilet, can, commode, crapper, pot, potty, stool, throne; can, tin, tin can",2,alias_collision_found
+ade847,carriage,410;633,"baby buggy, baby carriage, carriage, perambulator, pram, stroller, go-cart, pushchair, pusher; carriage",2,alias_collision_found
+ade847,chest,68;211,"chest of drawers, chest, bureau, dresser; chest",2,alias_collision_found
+ade847,closet,46;172,"wardrobe, closet, press; closet",2,alias_collision_found
+ade847,control panel,208;768,"control panel; control panel, instrument panel, control board, board, panel",2,alias_collision_found
+ade847,counter,66;100,"counter; buffet, counter, sideboard",2,alias_collision_found
+ade847,cover,150;530,"blanket, cover; cover",2,alias_collision_found
+ade847,dog,259;796,"dog, domestic dog, canis familiaris; andiron, firedog, dog, dog-iron",2,alias_collision_found
+ade847,eyeglasses,574;746,"spectacles, specs, eyeglasses, glasses; eyeglasses",2,alias_collision_found
+ade847,fish tank,333;631,"aquarium, fish tank, marine museum; fish tank",2,alias_collision_found
+ade847,grill,229;663,"grill, grille, grillwork; grill",2,alias_collision_found
+ade847,grip,191;537,"bag, traveling bag, travelling bag, grip, suitcase; handle, grip, handgrip, hold",2,alias_collision_found
+ade847,ground,9;118,"earth, ground; land, ground, soil",2,alias_collision_found
+ade847,instrument panel,198;768,"instrument panel; control panel, instrument panel, control board, board, panel",2,alias_collision_found
+ade847,lid,249;612,"hat, chapeau, lid; lid",2,alias_collision_found
+ade847,machine,14;173,"car, auto, automobile, machine, motorcar; machine",2,alias_collision_found
+ade847,notice board,192;812,"bulletin board, notice board; notice board",2,alias_collision_found
+ade847,panel,421;768,"panel; control panel, instrument panel, control board, board, panel",2,alias_collision_found
+ade847,paper,178;379,"paper; newspaper, paper",2,alias_collision_found
+ade847,patio,235;280,"patio; patio, terrace",2,alias_collision_found
+ade847,pedestal,49;313,"base, pedestal, stand; pedestal, plinth, footstall",2,alias_collision_found
+ade847,pier,174;255,"pier, wharf, wharfage, dock; pier",2,alias_collision_found
+ade847,pipe,214;412,"pipe, pipage, piping; pipe, tube",2,alias_collision_found
+ade847,plug,441;795,"fireplug, fire hydrant, plug; plug",2,alias_collision_found
+ade847,pot,58;130;188,"toilet, can, commode, crapper, pot, potty, stool, throne; pot, flowerpot; pot",3,alias_collision_found
+ade847,screen,51;57;147;153,"blind, screen; screen door, screen; screen, crt screen; screen, silver screen, projection screen",4,alias_collision_found
+ade847,shanty,101;317,"hovel, hut, hutch, shack, shanty; shanty",2,alias_collision_found
+ade847,skirting board,393;604,"baseboard, mopboard, skirting board; skirting board",2,alias_collision_found
+ade847,stall,107;123,"booth, cubicle, stall, kiosk; stall, stand, sales booth",2,alias_collision_found
+ade847,stand,49;123,"base, pedestal, stand; stall, stand, sales booth",2,alias_collision_found
+ade847,stool,58;133,"toilet, can, commode, crapper, pot, potty, stool, throne; stool",2,alias_collision_found
+ade847,throne,58;550,"toilet, can, commode, crapper, pot, potty, stool, throne; throne",2,alias_collision_found
+ade847,ticket office,431;643,"box office, ticket office, ticket booth; ticket office",2,alias_collision_found
+ade847,tin,355;426,"can, tin, tin can; canister, cannister, tin",2,alias_collision_found
+ade847,wheel,108;372;423,"bicycle, bike, wheel, cycle; steering wheel, wheel; wheel",3,alias_collision_found

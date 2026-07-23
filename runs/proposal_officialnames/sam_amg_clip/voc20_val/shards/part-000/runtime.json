@@ -1,0 +1,13 @@
+{
+  "method": "sam_amg_clip",
+  "manifest": "/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_clip/voc20_val/manifest_shards/part-000.jsonl",
+  "vocab": "/data/tianyi/TF-OVCOS/configs/vocab/voc20_officialnames.txt",
+  "num_samples": 1449,
+  "task": "semantic",
+  "num_classes": 20,
+  "wall_time_sec": 4615.521523378004,
+  "sec_per_image": 3.1853150609924112,
+  "model_calls": null,
+  "peak_memory_mb": null,
+  "adapter": "SamAmgClipAdapter"
+}

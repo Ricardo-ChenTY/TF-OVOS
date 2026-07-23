@@ -1,0 +1,2 @@
+method,dataset,Loc@0.5,Exact@0.5,ClsErr@Loc,num_edges,top_confusions
+debug_copy_gt,ovcamo_te,1.0,1.0,0.0,0,[]

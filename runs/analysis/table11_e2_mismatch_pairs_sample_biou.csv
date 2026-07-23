@@ -1,0 +1,6 @@
+method,dataset,kind,gt_class_id,gt_class,pred_class_id,pred_class,count
+sclip,voc20,gt_region_top1_confusion,14,person,1,bicycle,1
+sclip,voc20,gt_region_top1_confusion,8,chair,17,sofa,1
+sclip,voc20,gt_region_top1_confusion,14,person,18,train,1
+sclip,voc20,proposal_oracle_confusion,14,person,1,bicycle,1
+sclip,voc20,proposal_oracle_confusion,14,person,18,train,1

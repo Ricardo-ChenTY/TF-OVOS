@@ -1,0 +1,3 @@
+method,voc20_val_mIoU,context59_val_mIoU,ade20k150_val_mIoU,coco_stuff171_val_mIoU,avg_mIoU
+sam_amg_clip,0.6234203318581799,,,,0.6234203318581799
+sam_amg_siglip,0.6299866825183504,,,,0.6299866825183504

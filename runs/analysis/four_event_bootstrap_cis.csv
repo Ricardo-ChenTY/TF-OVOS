@@ -1,0 +1,10 @@
+metric,description,estimate,ci_low,ci_high,n_units
+large_vocab_zero_iou_rate_pp,"mean over strong methods × {Context-459,ADE-847}",41.1623945817948,39.27813079964347,43.48950800409751,10
+vocab_expansion_miou_loss,paired compact→large mIoU loss over strong methods,22.134,16.365475,27.753,10
+vocab_expansion_zero_iou_increase_pp,paired compact→large zero-IoU increase,39.09572791512813,36.54352051035685,41.749297277656694,10
+miou_zero_iou_pearson,bootstrap correlation over large-vocab points,0.597286346449281,0.29626932903108977,0.9270823488126169,10
+miou_zero_iou_spearman,bootstrap rank correlation over large-vocab points,0.7212121212121212,0.0909090909090909,0.9870171495171493,10
+small_large_component_iou_ratio,small component IoU / large component IoU,0.06070151156957124,0.05259323431190455,0.0692857903878513,30
+small_component_relative_drop_pp,relative drop from large to small component IoU,93.92984884304288,93.04909104017665,94.7274490225014,30
+proposal_recall_minus_mcmr_pp,proposal recall@0.5 minus MCMR@0.5 proxy,15.565183281220229,3.3799656590708227,29.150884065139703,30
+localization_iou_minus_naming_top1_pp,GT-text localization IoU minus GT-region naming top1,-10.960914230116162,-12.220144159860402,-9.676550059971973,30

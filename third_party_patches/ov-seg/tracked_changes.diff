@@ -1,0 +1,12 @@
+diff --git a/open_vocab_seg/data/datasets/register_coco_stuff.py b/open_vocab_seg/data/datasets/register_coco_stuff.py
+index d1a0f5b..96cfe64 100644
+--- a/open_vocab_seg/data/datasets/register_coco_stuff.py
++++ b/open_vocab_seg/data/datasets/register_coco_stuff.py
+@@ -226,6 +226,7 @@ def register_all_coco_stuff(root):
+ 
+     for name, image_dirname, sem_seg_dirname in [
+         ("train", "train2017", "stuffthingmaps_detectron2/train2017"),
++        ("val", "val2017", "stuffthingmaps_detectron2/val2017"),
+     ]:
+         image_dir = os.path.join(root, image_dirname)
+         gt_dir = os.path.join(root, sem_seg_dirname)

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#222}.title{font-size:22px;font-weight:700}.sub{font-size:13px;fill:#666}.axis{stroke:#222;stroke-width:1.2}.grid{stroke:#e9e9e9;stroke-width:1}.tick{font-size:12px;fill:#666}.xlabel{font-size:14px;font-weight:700}.ylabel{font-size:14px;font-weight:700}.curve{fill:none;stroke-width:3.2;stroke-linecap:round}.mean{fill:none;stroke:#222;stroke-width:4.2;stroke-linecap:round}.legend{font-size:13px;font-weight:700}.anno{font-size:13px;fill:#333}.big{font-size:28px;font-weight:800;fill:#111}.small{font-size:12px;fill:#555}</style>
+<text x="60.0" y="42.0" class="title" text-anchor="start">Small components collapse across OVSS methods</text>
+<text x="60.0" y="64.0" class="sub" text-anchor="start">Smoothed interpolation of weighted component-IoU summaries across completed datasets.</text>
+<line x1="100.0" y1="416.0" x2="750.0" y2="416.0" class="grid"/>
+<text x="86.0" y="420.0" class="tick" text-anchor="end">0.0</text>
+<line x1="100.0" y1="333.5" x2="750.0" y2="333.5" class="grid"/>
+<text x="86.0" y="337.5" class="tick" text-anchor="end">0.1</text>
+<line x1="100.0" y1="251.0" x2="750.0" y2="251.0" class="grid"/>
+<text x="86.0" y="255.0" class="tick" text-anchor="end">0.2</text>
+<line x1="100.0" y1="168.5" x2="750.0" y2="168.5" class="grid"/>
+<text x="86.0" y="172.5" class="tick" text-anchor="end">0.3</text>
+<line x1="100.0" y1="86.0" x2="750.0" y2="86.0" class="grid"/>
+<text x="86.0" y="90.0" class="tick" text-anchor="end">0.4</text>
+<line x1="100.0" y1="416.0" x2="750.0" y2="416.0" class="axis"/>
+<line x1="100.0" y1="86.0" x2="100.0" y2="416.0" class="axis"/>
+<line x1="100.0" y1="416.0" x2="100.0" y2="423.0" class="axis"/>
+<text x="100.0" y="446.0" class="tick" text-anchor="middle">large</text>
+<line x1="438.0" y1="416.0" x2="438.0" y2="423.0" class="axis"/>
+<text x="438.0" y="446.0" class="tick" text-anchor="middle">medium</text>
+<line x1="750.0" y1="416.0" x2="750.0" y2="423.0" class="axis"/>
+<text x="750.0" y="446.0" class="tick" text-anchor="middle">small</text>
+<text x="425.0" y="481.0" class="xlabel" text-anchor="middle">component scale</text>
+<text x="35" y="251.0" transform="rotate(-90 35 251.0)" class="ylabel" text-anchor="middle">mean component IoU</text>
+<path d="M 100.00 110.84 C 165.00 151.55, 313.00 266.77, 438.00 322.53 C 563.00 378.29, 690.00 385.74, 750.00 400.79 L 750.00 405.75 L 438.00 363.94 L 100.00 203.88 Z" fill="#d9d9d9" opacity="0.28"/>
+<path d="M 100.00 203.88 C 165.00 234.66, 313.00 325.12, 438.00 363.94 C 563.00 402.76, 690.00 397.71, 750.00 405.75" stroke="#4E79A7" class="curve"/>
+<path d="M 100.00 165.67 C 165.00 199.46, 313.00 296.00, 438.00 341.37 C 563.00 386.73, 690.00 390.00, 750.00 401.57" stroke="#F28E2B" class="curve"/>
+<path d="M 100.00 182.76 C 165.00 215.32, 313.00 309.59, 438.00 352.05 C 563.00 394.51, 690.00 393.64, 750.00 403.54" stroke="#59A14F" class="curve"/>
+<path d="M 100.00 170.14 C 165.00 204.97, 313.00 306.38, 438.00 351.30 C 563.00 396.22, 690.00 393.65, 750.00 403.73" stroke="#B07AA1" class="curve"/>
+<path d="M 100.00 110.84 C 165.00 151.55, 313.00 266.77, 438.00 322.53 C 563.00 378.29, 690.00 385.74, 750.00 400.79" stroke="#E15759" class="curve"/>
+<line x1="800.0" y1="111.0" x2="832.0" y2="111.0"  stroke="#E15759"/>
+<text x="842.0" y="115.0" class="legend" text-anchor="start">CorrCLIP</text>
+<line x1="800.0" y1="139.0" x2="832.0" y2="139.0"  stroke="#F28E2B"/>
+<text x="842.0" y="143.0" class="legend" text-anchor="start">NACLIP</text>
+<line x1="800.0" y1="167.0" x2="832.0" y2="167.0"  stroke="#B07AA1"/>
+<text x="842.0" y="171.0" class="legend" text-anchor="start">ProxyCLIP</text>
+<line x1="800.0" y1="195.0" x2="832.0" y2="195.0"  stroke="#59A14F"/>
+<text x="842.0" y="199.0" class="legend" text-anchor="start">ResCLIP</text>
+<line x1="800.0" y1="223.0" x2="832.0" y2="223.0"  stroke="#4E79A7"/>
+<text x="842.0" y="227.0" class="legend" text-anchor="start">SCLIP</text>
+<text x="800.0" y="310.0" class="legend" text-anchor="start">Quantitative readout</text>
+<text x="800.0" y="338.0" class="anno" text-anchor="start">Mean small/large ratio:</text>
+<text x="800.0" y="374.0" class="big" text-anchor="start">0.052</text>
+<text x="800.0" y="402.0" class="anno" text-anchor="start">≈ 94.8% drop</text>
+</svg>

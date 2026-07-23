@@ -1,0 +1,107 @@
+diff --git a/cass_segmentor.py b/cass_segmentor.py
+index 9ed66b9..4c7ac79 100644
+--- a/cass_segmentor.py
++++ b/cass_segmentor.py
+@@ -289,10 +289,12 @@ class CASS_segmentor(BaseSegmentor):
+ 
+             num_cls, num_queries = max(self.query_idx) + 1, len(self.query_idx)
+             if num_cls != num_queries:
+-                seg_logits = seg_logits.unsqueeze(0)
+-                cls_index = nn.functional.one_hot(self.query_idx)
+-                cls_index = cls_index.T.view(num_cls, num_queries, 1, 1)
+-                seg_logits = (seg_logits * cls_index).max(1)[0]
++                # Collapse synonym queries into class logits without materializing
++                # num_cls x num_queries x H x W, which is too large for ADE847.
++                class_logits = seg_logits.new_zeros((num_cls, *seg_logits.shape[1:]))
++                index = self.query_idx.view(-1, 1, 1).expand_as(seg_logits)
++                class_logits.scatter_reduce_(0, index, seg_logits, reduce="amax", include_self=True)
++                seg_logits = class_logits
+ 
+             seg_pred = seg_logits.argmax(0, keepdim=True)
+             seg_pred[seg_logits.max(0, keepdim=True)[0] < self.prob_thd] = 0
+diff --git a/custom_datasets.py b/custom_datasets.py
+index d298dca..9e5f6a4 100644
+--- a/custom_datasets.py
++++ b/custom_datasets.py
+@@ -161,3 +161,81 @@ class PascalContext59Dataset(BaseSegDataset):
+             ann_file=ann_file,
+             reduce_zero_label=reduce_zero_label,
+             **kwargs)
++
++
++# TF-OVCOS E2 dataset extensions
++import warnings
++import numpy as np
++import mmcv
++from mmcv.transforms import LoadAnnotations as MMCV_LoadAnnotations
++from mmseg.registry import TRANSFORMS
++
++
++def _tfovos_classes(name):
++    cls_path = osp.join(osp.dirname(__file__), "configs", name)
++    with open(cls_path, "r", encoding="utf-8") as handle:
++        return tuple(line.strip() for line in handle if line.strip())
++
++
++@DATASETS.register_module()
++class ADE20K847Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_ade20k847.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            reduce_zero_label=reduce_zero_label,
++            ann_file=ann_file,
++            **kwargs,
++        )
++        assert fileio.exists(self.data_prefix["img_path"], self.backend_args) and osp.isfile(self.ann_file)
++
++
++@DATASETS.register_module()
++class PascalContext459Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_context459.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            ann_file=ann_file,
++            reduce_zero_label=reduce_zero_label,
++            **kwargs,
++        )
++
++
++@TRANSFORMS.register_module()
++class MyLoadAnnotations(MMCV_LoadAnnotations):
++    def __init__(self, reduce_zero_label=None, backend_args=None, imdecode_backend="pillow") -> None:
++        super().__init__(
++            with_bbox=False,
++            with_label=False,
++            with_seg=True,
++            with_keypoints=False,
++            imdecode_backend=imdecode_backend,
++            backend_args=backend_args,
++        )
++        self.reduce_zero_label = reduce_zero_label
++        if self.reduce_zero_label is not None:
++            warnings.warn("`reduce_zero_label` will be deprecated; set it on the dataset instead")
++        self.imdecode_backend = imdecode_backend
++
++    def _load_seg_map(self, results: dict) -> None:
++        img_bytes = fileio.get(results["seg_map_path"], backend_args=self.backend_args)
++        gt_semantic_seg = mmcv.imfrombytes(
++            img_bytes, flag="unchanged", backend=self.imdecode_backend
++        ).squeeze().astype(np.uint16)
++        if self.reduce_zero_label is None:
++            self.reduce_zero_label = results["reduce_zero_label"]
++        if self.reduce_zero_label:
++            gt_semantic_seg[gt_semantic_seg == 0] = 255
++            gt_semantic_seg = gt_semantic_seg - 1
++            gt_semantic_seg[gt_semantic_seg == 254] = 255
++        if results.get("label_map", None) is not None:
++            gt_semantic_seg_copy = gt_semantic_seg.copy()
++            for old_id, new_id in results["label_map"].items():
++                gt_semantic_seg[gt_semantic_seg_copy == old_id] = new_id
++        results["gt_seg_map"] = gt_semantic_seg
++        results["seg_fields"].append("gt_seg_map")

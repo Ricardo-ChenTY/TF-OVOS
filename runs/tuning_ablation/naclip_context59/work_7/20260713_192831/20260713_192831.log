@@ -1,0 +1,269 @@
+2026/07/13 19:28:31 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 1889291983
+    GPU 0: NVIDIA A100 80GB PCIe
+    CUDA_HOME: None
+    GCC: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+    PyTorch: 2.12.0+cu130
+    PyTorch compiling details: PyTorch built with:
+  - GCC 13.3
+  - C++ Version: 202002
+  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.11.2 (Git Hash 03c022d3ffdcee958cfacbe720048e725fdf644c)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 13.0
+  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+  - CuDNN 92.0  (built against CUDA 13.2)
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=7661cd9c6b841b62b7f411aa52ec51f05457263b, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.12.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+
+    TorchVision: 0.27.0+cu130
+    OpenCV: 4.13.0
+    MMEngine: 0.10.7
+
+Runtime environment:
+    cudnn_benchmark: True
+    dist_cfg: {'backend': 'nccl'}
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    seed: 1889291983
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+2026/07/13 19:28:31 - mmengine - INFO - Config:
+data_root = '/data/tianyi/TF-OVCOS/data/official_mmseg/context59'
+dataset_type = 'PascalContext59Dataset'
+default_hooks = dict(
+    checkpoint=dict(by_epoch=False, interval=2000, type='CheckpointHook'),
+    logger=dict(interval=50, log_metric_by_epoch=False, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    timer=dict(type='IterTimerHook'))
+default_scope = 'mmseg'
+env_cfg = dict(
+    cudnn_benchmark=True,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+load_from = None
+log_level = 'INFO'
+log_processor = dict(by_epoch=False)
+model = dict(
+    clip_path='ViT-B/16',
+    gaussian_std=7.0,
+    name_path='./configs/cls_tfovos_context59.txt',
+    type='NACLIP')
+resume = False
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='ImageSets/SegmentationContext/val_subset300.txt',
+        data_prefix=dict(
+            img_path='JPEGImages', seg_map_path='SegmentationClassContext'),
+        data_root='/data/tianyi/TF-OVCOS/data/official_mmseg/context59',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(keep_ratio=True, scale=(
+                2048,
+                336,
+            ), type='Resize'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        type='PascalContext59Dataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(
+    iou_metrics=[
+        'mIoU',
+    ],
+    output_dir=
+    '/data/tianyi/TF-OVCOS/runs/tuning_ablation/naclip_context59/preds_7',
+    type='IoUMetric')
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(keep_ratio=True, scale=(
+        2048,
+        336,
+    ), type='Resize'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(type='PackSegInputs'),
+]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    name='visualizer',
+    type='SegLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = '/data/tianyi/TF-OVCOS/runs/tuning_ablation/naclip_context59/work_7'
+
+2026/07/13 19:28:34 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+2026/07/13 19:28:34 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+2026/07/13 19:28:34 - mmengine - WARNING - The prefix is not set in metric class IoUMetric.
+2026/07/13 19:28:47 - mmengine - INFO - Iter(test) [ 50/300]    eta: 0:01:02  time: 0.2025  data_time: 0.0015  memory: 9234  
+2026/07/13 19:28:57 - mmengine - INFO - Iter(test) [100/300]    eta: 0:00:44  time: 0.1928  data_time: 0.0014  memory: 8551  
+2026/07/13 19:29:05 - mmengine - INFO - Iter(test) [150/300]    eta: 0:00:30  time: 0.2043  data_time: 0.0014  memory: 9090  
+2026/07/13 19:29:14 - mmengine - INFO - Iter(test) [200/300]    eta: 0:00:20  time: 0.1640  data_time: 0.0015  memory: 8810  
+2026/07/13 19:29:23 - mmengine - INFO - Iter(test) [250/300]    eta: 0:00:09  time: 0.1347  data_time: 0.0014  memory: 9270  
+2026/07/13 19:29:30 - mmengine - INFO - Iter(test) [300/300]    eta: 0:00:00  time: 0.1705  data_time: 0.0015  memory: 7453  
+2026/07/13 19:29:30 - mmengine - INFO - per class results:
+2026/07/13 19:29:30 - mmengine - INFO - 
++-------------+-------+-------+
+|    Class    |  IoU  |  Acc  |
++-------------+-------+-------+
+|  aeroplane  | 54.16 | 63.66 |
+|     bag     |  3.96 |  70.3 |
+|     bed     | 19.38 | 93.45 |
+|  bedclothes | 22.04 | 86.23 |
+|    bench    | 15.93 | 41.65 |
+|   bicycle   | 42.64 | 66.46 |
+|     bird    | 69.94 | 81.44 |
+|     boat    | 52.53 | 81.75 |
+|     book    | 31.74 | 35.61 |
+|    bottle   | 31.05 | 43.41 |
+|   building  | 17.41 | 17.54 |
+|     bus     | 78.59 | 87.97 |
+|   cabinet   | 25.08 |  44.5 |
+|     car     | 68.64 | 84.58 |
+|     cat     | 86.73 | 96.58 |
+|   ceiling   | 46.03 | 83.75 |
+|    chair    | 20.71 | 29.57 |
+|    cloth    |  5.1  | 33.42 |
+|   computer  |  6.46 | 14.54 |
+|     cow     | 83.66 |  92.3 |
+|     cup     |  3.74 |  5.84 |
+|   curtain   |  9.39 | 89.82 |
+|     dog     | 87.36 | 92.94 |
+|     door    |  5.16 | 56.41 |
+|    fence    | 23.19 | 50.81 |
+|    floor    | 35.39 | 78.74 |
+|    flower   |  4.75 | 10.64 |
+|     food    | 11.64 | 81.22 |
+|    grass    | 59.35 | 88.76 |
+|    ground   | 18.12 | 21.57 |
+|    horse    | 63.57 | 92.99 |
+|   keyboard  |  14.7 | 17.03 |
+|    light    |  10.2 | 43.01 |
+|  motorbike  | 49.37 |  65.0 |
+|   mountain  | 49.83 |  72.1 |
+|    mouse    |  0.0  |  0.0  |
+|    person   | 45.05 | 45.69 |
+|    plate    | 14.68 | 53.63 |
+|   platform  |  1.02 |  1.46 |
+| pottedplant | 26.41 | 74.56 |
+|     road    | 35.56 | 57.96 |
+|     rock    | 51.88 |  84.6 |
+|    sheep    | 30.42 | 64.65 |
+|   shelves   |  8.26 | 22.56 |
+|   sidewalk  |  6.28 | 56.47 |
+|     sign    | 18.89 |  41.1 |
+|     sky     | 85.64 | 88.34 |
+|     snow    | 65.04 | 88.41 |
+|     sofa    | 56.36 | 76.38 |
+|    table    | 31.16 | 65.74 |
+|    track    |  0.23 |  0.34 |
+|    train    |  54.3 | 69.25 |
+|     tree    | 48.36 | 59.17 |
+|    truck    | 19.23 |  58.3 |
+|  tvmonitor  | 16.45 | 16.96 |
+|     wall    | 29.99 | 37.74 |
+|    water    | 81.35 | 88.21 |
+|    window   | 15.82 | 37.65 |
+|     wood    |  6.43 | 39.79 |
++-------------+-------+-------+
+2026/07/13 19:29:30 - mmengine - INFO - Iter(test) [300/300]    aAcc: 56.3600  mIoU: 33.5000  mAcc: 56.6900  data_time: 0.0019  time: 0.1838

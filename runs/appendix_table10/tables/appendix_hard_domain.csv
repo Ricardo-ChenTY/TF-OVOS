@@ -1,0 +1,6 @@
+method,ovcamo_te_IoU,camo_te_IoU,cod10k_te_camo_IoU,nc4k_IoU
+maskclip,,,,
+maskclip_attn,,,,
+maskclip_attn_slide,,,,
+sam_amg_clip,,,,
+tables,,,,

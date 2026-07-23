@@ -1,0 +1,7 @@
+readout,what_to_record,current_output,status
+Per-class behavior,"Per-class IoU, pixel accuracy, mean class accuracy.",official_log_metrics.csv; proposal_novelty_metrics.csv,computed_from_official_logs
+Vocabulary ambiguity,"MCMR@0.75, top mismatch pairs, confusion communities.",table11_e2_mismatch_summary.csv; table11_e2_mismatch_pairs.csv; official_confusion_pairs.csv,computed_proxy_from_dense_label_maps
+Proposal quality,"BestIoU, Recall@0.5, Recall@0.7, number of proposals.",table9_diagnostic_probes.csv proposal_oracle_* proxy columns,proxy_from_dense_label_maps; true proposal masks still needed
+GT oracle diagnostics,GT-region naming Top-1/Top-5 and GT-text localization IoU/BIoU.,table9_diagnostic_probes.csv,Top-1 and GT-text IoU computed; Top-5 needs region score artifacts
+MCC consistency,"Before/after mIoU, before/after MCMR@0.5, qualitative examples.",,artifact_gap; needs MCC rerank outputs
+Efficiency details,"Offline time, per-image inference time, memory, model calls, input resolution.",proposal_novelty_metrics.csv; e4_isolated queue outputs,"partial; isolated queue running, peak-memory sampler/model-call instrumentation still needed"

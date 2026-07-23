@@ -1,0 +1,75 @@
+diff --git a/CutLER/cutler/config/cutler_config.py b/CutLER/cutler/config/cutler_config.py
+index 344ea05..ee3c69c 100644
+--- a/CutLER/cutler/config/cutler_config.py
++++ b/CutLER/cutler/config/cutler_config.py
+@@ -16,4 +16,9 @@ def add_cutler_config(cfg):
+     cfg.SOLVER.BASE_LR_MULTIPLIER = 1
+     cfg.SOLVER.BASE_LR_MULTIPLIER_NAMES = []
+ 
++    cfg.MODEL.ROI_BOX_HEAD.USE_FED_LOSS = False
++    cfg.MODEL.ROI_BOX_HEAD.USE_SIGMOID_CE = False
++    cfg.MODEL.ROI_BOX_HEAD.FED_LOSS_FREQ_WEIGHT_POWER = 0.5
++    cfg.MODEL.ROI_BOX_HEAD.FED_LOSS_NUM_CLASSES = 50
++
+     cfg.TEST.NO_SEGM = False
+\ No newline at end of file
+diff --git a/CutLER/cutler/modeling/meta_arch/rcnn.py b/CutLER/cutler/modeling/meta_arch/rcnn.py
+index de9f405..be5f2c0 100644
+--- a/CutLER/cutler/modeling/meta_arch/rcnn.py
++++ b/CutLER/cutler/modeling/meta_arch/rcnn.py
+@@ -9,7 +9,11 @@ from torch import nn
+ 
+ from detectron2.config import configurable
+ from detectron2.data.detection_utils import convert_image_to_rgb
+-from detectron2.layers import move_device_like
++try:
++    from detectron2.layers import move_device_like
++except ImportError:
++    def move_device_like(src, dst):
++        return src.to(dst.device)
+ from detectron2.structures import ImageList, Instances
+ from detectron2.utils.events import get_event_storage
+ from detectron2.utils.logger import log_first_n
+@@ -232,7 +236,6 @@ class GeneralizedRCNN(nn.Module):
+         images = ImageList.from_tensors(
+             images,
+             self.backbone.size_divisibility,
+-            padding_constraints=self.backbone.padding_constraints,
+         )
+         return images
+ 
+@@ -314,7 +317,6 @@ class ProposalNetwork(nn.Module):
+         images = ImageList.from_tensors(
+             images,
+             self.backbone.size_divisibility,
+-            padding_constraints=self.backbone.padding_constraints,
+         )
+         features = self.backbone(images.tensor)
+ 
+diff --git a/CutLER/cutler/modeling/roi_heads/fast_rcnn.py b/CutLER/cutler/modeling/roi_heads/fast_rcnn.py
+index 5342d62..11c1d24 100644
+--- a/CutLER/cutler/modeling/roi_heads/fast_rcnn.py
++++ b/CutLER/cutler/modeling/roi_heads/fast_rcnn.py
+@@ -8,7 +8,8 @@ from torch import nn
+ from torch.nn import functional as F
+ 
+ from detectron2.config import configurable
+-from detectron2.data.detection_utils import get_fed_loss_cls_weights
++def get_fed_loss_cls_weights(*args, **kwargs):
++    raise RuntimeError("get_fed_loss_cls_weights is unavailable in this inference-only compatibility path")
+ from detectron2.layers import ShapeSpec, batched_nms, cat, cross_entropy, nonzero_tuple
+ from detectron2.modeling.box_regression import Box2BoxTransform, _dense_box_regression_loss
+ from detectron2.structures import Instances, Boxes
+diff --git a/sd.py b/sd.py
+index 2c96efa..0004547 100644
+--- a/sd.py
++++ b/sd.py
+@@ -1191,7 +1191,7 @@ class GaussianSmoothing(torch.nn.Module):
+ 
+ def build_pipeline(device, model_key="runwayml/stable-diffusion-v1-5", disable_progbar=False, with_inpaint=False, local_only=True):
+     pipe = StableDiffusionDAAMPipeline.from_pretrained(
+-        model_key, torch_dtype=torch.float16, revision='fp16', local_files_only=local_only,
++        model_key, torch_dtype=torch.float16, local_files_only=local_only,
+     ).to(device)
+     
+     # This is now broken as the above repo got removed

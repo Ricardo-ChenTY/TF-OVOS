@@ -1,0 +1,6 @@
+method,context59_val_mIoU,context459_val_mIoU,ade20k150_val_mIoU,ade20k847_val_mIoU,delta_vocab,mcmr_05
+maskclip,,,,,,
+maskclip_attn,,,,,,
+maskclip_attn_slide,,,,,,
+sam_amg_clip,,,,,,
+tables,,,,,,

@@ -1,0 +1,275 @@
+/data/tianyi/conda_envs/tf-ovos/lib/python3.11/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  _torch_pytree._register_pytree_node(
+/data/tianyi/conda_envs/tf-ovos/lib/python3.11/site-packages/mmcv/cnn/bricks/transformer.py:33: UserWarning: Fail to import ``MultiScaleDeformableAttention`` from ``mmcv.ops.multi_scale_deform_attn``, You should install ``mmcv`` rather than ``mmcv-lite`` if you need this module. 
+  warnings.warn('Fail to import ``MultiScaleDeformableAttention`` from '
+07/13 19:27:24 - mmengine - INFO - 
+------------------------------------------------------------
+System environment:
+    sys.platform: linux
+    Python: 3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]
+    CUDA available: True
+    MUSA available: False
+    numpy_random_seed: 529578012
+    GPU 0: NVIDIA A100 80GB PCIe
+    CUDA_HOME: None
+    GCC: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+    PyTorch: 2.12.0+cu130
+    PyTorch compiling details: PyTorch built with:
+  - GCC 13.3
+  - C++ Version: 202002
+  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.11.2 (Git Hash 03c022d3ffdcee958cfacbe720048e725fdf644c)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 13.0
+  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+  - CuDNN 92.0  (built against CUDA 13.2)
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=7661cd9c6b841b62b7f411aa52ec51f05457263b, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.12.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+
+    TorchVision: 0.27.0+cu130
+    OpenCV: 4.13.0
+    MMEngine: 0.10.7
+
+Runtime environment:
+    cudnn_benchmark: True
+    dist_cfg: {'backend': 'nccl'}
+    mp_cfg: {'mp_start_method': 'fork', 'opencv_num_threads': 0}
+    seed: 529578012
+    Distributed launcher: none
+    Distributed training: False
+    GPU number: 1
+------------------------------------------------------------
+
+07/13 19:27:24 - mmengine - INFO - Config:
+data_root = '/data/tianyi/TF-OVCOS/data/official_mmseg/context59'
+dataset_type = 'PascalContext59Dataset'
+default_hooks = dict(
+    checkpoint=dict(by_epoch=False, interval=2000, type='CheckpointHook'),
+    logger=dict(interval=50, log_metric_by_epoch=False, type='LoggerHook'),
+    param_scheduler=dict(type='ParamSchedulerHook'),
+    sampler_seed=dict(type='DistSamplerSeedHook'),
+    timer=dict(type='IterTimerHook'))
+default_scope = 'mmseg'
+env_cfg = dict(
+    cudnn_benchmark=True,
+    dist_cfg=dict(backend='nccl'),
+    mp_cfg=dict(mp_start_method='fork', opencv_num_threads=0))
+load_from = None
+log_level = 'INFO'
+log_processor = dict(by_epoch=False)
+model = dict(
+    clip_path='ViT-B/16',
+    gaussian_std=5.0,
+    name_path='./configs/cls_tfovos_context59.txt',
+    type='NACLIP')
+resume = False
+test_cfg = dict(type='TestLoop')
+test_dataloader = dict(
+    batch_size=1,
+    dataset=dict(
+        ann_file='ImageSets/SegmentationContext/val_subset300.txt',
+        data_prefix=dict(
+            img_path='JPEGImages', seg_map_path='SegmentationClassContext'),
+        data_root='/data/tianyi/TF-OVCOS/data/official_mmseg/context59',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(keep_ratio=True, scale=(
+                2048,
+                336,
+            ), type='Resize'),
+            dict(reduce_zero_label=True, type='LoadAnnotations'),
+            dict(type='PackSegInputs'),
+        ],
+        reduce_zero_label=True,
+        type='PascalContext59Dataset'),
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(shuffle=False, type='DefaultSampler'))
+test_evaluator = dict(
+    iou_metrics=[
+        'mIoU',
+    ],
+    output_dir=
+    '/data/tianyi/TF-OVCOS/runs/tuning_ablation/naclip_context59/preds_5',
+    type='IoUMetric')
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(keep_ratio=True, scale=(
+        2048,
+        336,
+    ), type='Resize'),
+    dict(reduce_zero_label=True, type='LoadAnnotations'),
+    dict(type='PackSegInputs'),
+]
+vis_backends = [
+    dict(type='LocalVisBackend'),
+]
+visualizer = dict(
+    name='visualizer',
+    type='SegLocalVisualizer',
+    vis_backends=[
+        dict(type='LocalVisBackend'),
+    ])
+work_dir = '/data/tianyi/TF-OVCOS/runs/tuning_ablation/naclip_context59/work_5'
+
+07/13 19:27:27 - mmengine - INFO - Distributed training is not used, all SyncBatchNorm (SyncBN) layers in the model will be automatically reverted to BatchNormXd layers if they are used.
+07/13 19:27:27 - mmengine - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+before_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(NORMAL      ) DistSamplerSeedHook                
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) IterTimerHook                      
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_val_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_val_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+(LOW         ) ParamSchedulerHook                 
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+after_val:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_train:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(VERY_LOW    ) CheckpointHook                     
+ -------------------- 
+before_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+before_test_epoch:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+before_test_iter:
+(NORMAL      ) IterTimerHook                      
+ -------------------- 
+after_test_iter:
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test_epoch:
+(VERY_HIGH   ) RuntimeInfoHook                    
+(NORMAL      ) IterTimerHook                      
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+after_test:
+(VERY_HIGH   ) RuntimeInfoHook                    
+ -------------------- 
+after_run:
+(BELOW_NORMAL) LoggerHook                         
+ -------------------- 
+/data/tianyi/conda_envs/tf-ovos/lib/python3.11/site-packages/mmseg/datasets/transforms/loading.py:83: UserWarning: `reduce_zero_label` will be deprecated, if you would like to ignore the zero label, please set `reduce_zero_label=True` when dataset initialized
+  warnings.warn('`reduce_zero_label` will be deprecated, '
+07/13 19:27:27 - mmengine - WARNING - The prefix is not set in metric class IoUMetric.
+07/13 19:27:40 - mmengine - INFO - Iter(test) [ 50/300]    eta: 0:01:02  time: 0.2039  data_time: 0.0014  memory: 9234  
+07/13 19:27:50 - mmengine - INFO - Iter(test) [100/300]    eta: 0:00:45  time: 0.1954  data_time: 0.0014  memory: 8551  
+07/13 19:27:58 - mmengine - INFO - Iter(test) [150/300]    eta: 0:00:30  time: 0.2063  data_time: 0.0015  memory: 9090  
+07/13 19:28:07 - mmengine - INFO - Iter(test) [200/300]    eta: 0:00:20  time: 0.1673  data_time: 0.0015  memory: 8810  
+07/13 19:28:16 - mmengine - INFO - Iter(test) [250/300]    eta: 0:00:09  time: 0.1375  data_time: 0.0016  memory: 9270  
+07/13 19:28:23 - mmengine - INFO - Iter(test) [300/300]    eta: 0:00:00  time: 0.1715  data_time: 0.0014  memory: 7453  
+07/13 19:28:23 - mmengine - INFO - per class results:
+07/13 19:28:23 - mmengine - INFO - 
++-------------+-------+-------+
+|    Class    |  IoU  |  Acc  |
++-------------+-------+-------+
+|  aeroplane  | 53.75 | 63.17 |
+|     bag     |  3.97 | 71.14 |
+|     bed     | 19.46 | 92.98 |
+|  bedclothes | 21.96 | 86.14 |
+|    bench    | 16.19 | 42.61 |
+|   bicycle   | 42.54 |  66.9 |
+|     bird    | 70.02 | 81.59 |
+|     boat    | 52.18 | 81.41 |
+|     book    | 31.56 | 35.67 |
+|    bottle   | 30.51 | 43.75 |
+|   building  | 17.38 | 17.51 |
+|     bus     | 78.34 | 87.62 |
+|   cabinet   | 24.99 | 44.38 |
+|     car     | 68.46 | 84.32 |
+|     cat     | 86.79 | 96.54 |
+|   ceiling   | 46.44 | 83.87 |
+|    chair    | 20.84 | 29.77 |
+|    cloth    |  5.1  | 33.44 |
+|   computer  |  6.5  | 14.39 |
+|     cow     | 83.18 | 92.24 |
+|     cup     |  3.7  |  5.87 |
+|   curtain   |  9.51 | 90.08 |
+|     dog     | 87.33 | 92.93 |
+|     door    |  5.13 | 56.41 |
+|    fence    | 23.18 | 50.66 |
+|    floor    | 35.42 | 78.73 |
+|    flower   |  4.72 |  10.8 |
+|     food    | 11.52 | 81.79 |
+|    grass    |  59.5 | 88.56 |
+|    ground   |  18.2 | 21.61 |
+|    horse    |  63.3 | 92.96 |
+|   keyboard  | 14.68 | 17.21 |
+|    light    | 10.19 | 43.83 |
+|  motorbike  |  49.3 | 64.74 |
+|   mountain  | 49.94 | 72.58 |
+|    mouse    |  0.05 |  0.22 |
+|    person   | 45.05 | 45.68 |
+|    plate    | 14.49 | 54.31 |
+|   platform  |  1.15 |  1.66 |
+| pottedplant | 26.29 | 74.42 |
+|     road    | 35.76 | 57.95 |
+|     rock    | 51.62 | 84.51 |
+|    sheep    | 29.42 | 65.54 |
+|   shelves   |  8.46 | 23.05 |
+|   sidewalk  |  6.43 | 57.37 |
+|     sign    | 19.11 | 42.69 |
+|     sky     | 85.76 | 88.43 |
+|     snow    | 64.73 |  88.3 |
+|     sofa    | 56.34 | 76.03 |
+|    table    | 30.86 | 65.54 |
+|    track    |  0.29 |  0.44 |
+|    train    | 54.14 | 69.12 |
+|     tree    | 48.51 | 59.27 |
+|    truck    | 18.65 | 57.61 |
+|  tvmonitor  | 16.45 | 16.95 |
+|     wall    |  30.2 |  38.0 |
+|    water    | 81.48 | 88.29 |
+|    window   | 15.98 | 38.12 |
+|     wood    |  6.39 | 39.63 |
++-------------+-------+-------+
+07/13 19:28:23 - mmengine - INFO - Iter(test) [300/300]    aAcc: 56.3800  mIoU: 33.4500  mAcc: 56.8000  data_time: 0.0019  time: 0.1853

@@ -1,0 +1,139 @@
+diff --git a/clip_segmentor.py b/clip_segmentor.py
+index af92989..1334ce2 100644
+--- a/clip_segmentor.py
++++ b/clip_segmentor.py
+@@ -14,6 +14,17 @@ from mmseg.registry import MODELS
+ 
+ from pamr import PAMR
+ 
++
++def _merge_synonym_probs(seg_probs, query_idx, num_cls, num_queries):
++    if num_cls == num_queries:
++        return seg_probs
++    merged = seg_probs.new_zeros((num_cls, *seg_probs.shape[1:]))
++    for cls_id in range(num_cls):
++        query_ids = (query_idx == cls_id).nonzero(as_tuple=False).flatten()
++        if query_ids.numel() > 0:
++            merged[cls_id] = seg_probs.index_select(0, query_ids).amax(0)
++    return merged
++
+ @MODELS.register_module()
+ class CLIPForSegmentation(BaseSegmentor):
+     def __init__(self, clip_path, name_path, device=torch.device('cuda'),
+@@ -148,16 +159,18 @@ class CLIPForSegmentation(BaseSegmentor):
+     def postprocess_result(self, seg_logits, data_samples):
+         batch_size = seg_logits.shape[0]
+         for i in range(batch_size):
+-            seg_logits = seg_logits[i] * self.logit_scale
+-            seg_logits = seg_logits.softmax(0) # n_queries * w * h
+-
+             num_cls, num_queries = max(self.query_idx) + 1, len(self.query_idx)
+-            if num_cls != num_queries:
+-                seg_logits = seg_logits.unsqueeze(0)
+-                cls_index = nn.functional.one_hot(self.query_idx)
+-                cls_index = cls_index.T.view(num_cls, num_queries, 1, 1)
+-                seg_logits = (seg_logits * cls_index).max(1)[0]
+-                seg_pred = seg_logits.argmax(0, keepdim=True)
++            if self.prob_thd <= 0 and self.area_thd is None:
++                # Evaluation only needs argmax labels; skip full-res softmax to
++                # avoid ADE847 OOM on very large validation images.
++                seg_logits = seg_logits[i]
++                if num_cls != num_queries:
++                    seg_logits = _merge_synonym_probs(seg_logits, self.query_idx, num_cls, num_queries)
++            else:
++                seg_logits = seg_logits[i] * self.logit_scale
++                seg_logits = seg_logits.softmax(0) # n_queries * w * h
++                if num_cls != num_queries:
++                    seg_logits = _merge_synonym_probs(seg_logits, self.query_idx, num_cls, num_queries)
+ 
+             if self.area_thd is not None:
+                 # Force segmentations with area < self.area_thd to 0 (background)
+diff --git a/custom_datasets.py b/custom_datasets.py
+index 9671130..8b2f740 100644
+--- a/custom_datasets.py
++++ b/custom_datasets.py
+@@ -156,4 +156,82 @@ class PascalContext59Dataset(BaseSegDataset):
+             seg_map_suffix=seg_map_suffix,
+             ann_file=ann_file,
+             reduce_zero_label=reduce_zero_label,
+-            **kwargs)
+\ No newline at end of file
++            **kwargs)
++
++# TF-OVCOS E2 dataset extensions
++import warnings
++
++import mmcv
++import numpy as np
++from mmcv.transforms import LoadAnnotations as MMCVLoadAnnotations
++from mmseg.registry import TRANSFORMS
++
++
++def _tfovos_classes(name):
++    cls_path = osp.join(osp.dirname(__file__), "configs", name)
++    with open(cls_path, "r", encoding="utf-8") as handle:
++        return tuple(line.strip() for line in handle if line.strip())
++
++
++@DATASETS.register_module()
++class ADE20K847Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_ade20k847.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            reduce_zero_label=reduce_zero_label,
++            ann_file=ann_file,
++            **kwargs,
++        )
++        assert fileio.exists(self.data_prefix["img_path"], self.backend_args) and osp.isfile(self.ann_file)
++
++
++@DATASETS.register_module()
++class PascalContext459Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_context459.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            reduce_zero_label=reduce_zero_label,
++            ann_file=ann_file,
++            **kwargs,
++        )
++
++
++@TRANSFORMS.register_module()
++class MyLoadAnnotations(MMCVLoadAnnotations):
++    def __init__(self, reduce_zero_label=None, backend_args=None, imdecode_backend="pillow") -> None:
++        super().__init__(
++            with_bbox=False,
++            with_label=False,
++            with_seg=True,
++            with_keypoints=False,
++            imdecode_backend=imdecode_backend,
++            backend_args=backend_args,
++        )
++        self.reduce_zero_label = reduce_zero_label
++        self.imdecode_backend = imdecode_backend
++        if self.reduce_zero_label is not None:
++            warnings.warn("`reduce_zero_label` will be deprecated; set it on the dataset instead")
++
++    def _load_seg_map(self, results: dict) -> None:
++        img_bytes = fileio.get(results["seg_map_path"], backend_args=self.backend_args)
++        gt_semantic_seg = mmcv.imfrombytes(
++            img_bytes, flag="unchanged", backend=self.imdecode_backend
++        ).squeeze().astype(np.uint16)
++        if self.reduce_zero_label is None:
++            self.reduce_zero_label = results["reduce_zero_label"]
++        if self.reduce_zero_label:
++            gt_semantic_seg[gt_semantic_seg == 0] = 255
++            gt_semantic_seg = gt_semantic_seg - 1
++            gt_semantic_seg[gt_semantic_seg == 254] = 255
++        if results.get("label_map", None) is not None:
++            gt_semantic_seg_copy = gt_semantic_seg.copy()
++            for old_id, new_id in results["label_map"].items():
++                gt_semantic_seg[gt_semantic_seg_copy == old_id] = new_id
++        results["gt_seg_map"] = gt_semantic_seg
++        results["seg_fields"].append("gt_seg_map")

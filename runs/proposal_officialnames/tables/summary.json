@@ -1,0 +1,115 @@
+{
+  "datasets": [
+    {
+      "method": "sam_amg_clip",
+      "dataset": "voc20_val",
+      "task": "semantic",
+      "metrics_path": "/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_clip/voc20_val/metrics.json",
+      "num_samples": 1449,
+      "num_classes": 20,
+      "miou": 0.6234203318581799,
+      "pixel_accuracy": 0.7548583952910546,
+      "mean_class_accuracy": 0.8115501851662227,
+      "mcmr_05": 0.17987152034261242,
+      "mcmr_075": 0.16176470588235295,
+      "prediction_label_offset": 0,
+      "runtime_shards": 1,
+      "runtime_num_samples": 1449,
+      "runtime_wall_time_sec": 4615.521523378004,
+      "runtime_sec_per_image": 3.1853150609924112
+    },
+    {
+      "method": "sam_amg_siglip",
+      "dataset": "voc20_val",
+      "task": "semantic",
+      "metrics_path": "/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_siglip/voc20_val/metrics.json",
+      "num_samples": 1449,
+      "num_classes": 20,
+      "miou": 0.6299866825183504,
+      "pixel_accuracy": 0.7419087248569073,
+      "mean_class_accuracy": 0.8183193913968365,
+      "mcmr_05": 0.22270742358078602,
+      "mcmr_075": 0.22602739726027396,
+      "prediction_label_offset": 0,
+      "runtime_shards": 1,
+      "runtime_num_samples": 1449,
+      "runtime_wall_time_sec": 4978.727020797029,
+      "runtime_sec_per_image": 3.435974479501055
+    }
+  ],
+  "e1": [
+    {
+      "method": "sam_amg_clip",
+      "voc20_val_mIoU": 0.6234203318581799,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": 0.6234203318581799
+    },
+    {
+      "method": "sam_amg_siglip",
+      "voc20_val_mIoU": 0.6299866825183504,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": 0.6299866825183504
+    }
+  ],
+  "e2": [
+    {
+      "method": "sam_amg_clip",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    },
+    {
+      "method": "sam_amg_siglip",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    }
+  ],
+  "e2_ambiguity": [],
+  "e3": [
+    {
+      "method": "sam_amg_clip",
+      "voc20_val_mIoU": 0.6234203318581799,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": 0.6234203318581799,
+      "worst_mIoU": 0.6234203318581799
+    },
+    {
+      "method": "sam_amg_siglip",
+      "voc20_val_mIoU": 0.6299866825183504,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": 0.6299866825183504,
+      "worst_mIoU": 0.6299866825183504
+    }
+  ],
+  "appendix": [
+    {
+      "method": "sam_amg_clip",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    },
+    {
+      "method": "sam_amg_siglip",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    }
+  ]
+}

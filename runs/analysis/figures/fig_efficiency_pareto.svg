@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#222}.title{font-size:16px;font-weight:700}.label{font-size:12px}.tick{font-size:11px;fill:#555}.legend{font-size:12px}.grid{stroke:#e5e5e5;stroke-width:1}.axis{stroke:#222;stroke-width:1.2}.line{fill:none;stroke-width:2.2}.pt{stroke:white;stroke-width:1.2}</style>
+<text x="45.0" y="30.0" class="title">Efficiency-quality tradeoff</text>
+<line x1="80.0" y1="360.0" x2="640.0" y2="360.0" stroke="#222" class="axis"/>
+<line x1="80.0" y1="60.0" x2="80.0" y2="360.0" stroke="#222" class="axis"/>
+<line x1="98.6" y1="60.0" x2="98.6" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="86.6" y="380.0" class="tick">0.03</text>
+<line x1="221.6" y1="60.0" x2="221.6" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="209.6" y="380.0" class="tick">0.1</text>
+<line x1="333.9" y1="60.0" x2="333.9" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="321.9" y="380.0" class="tick">0.3</text>
+<line x1="456.9" y1="60.0" x2="456.9" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="444.9" y="380.0" class="tick">1</text>
+<line x1="569.2" y1="60.0" x2="569.2" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="557.2" y="380.0" class="tick">3</text>
+<line x1="640.0" y1="60.0" x2="640.0" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="628.0" y="380.0" class="tick">6</text>
+<line x1="80.0" y1="360.0" x2="640.0" y2="360.0" stroke="#e5e5e5" class="grid"/>
+<text x="52.0" y="364.0" class="tick">10</text>
+<line x1="80.0" y1="297.5" x2="640.0" y2="297.5" stroke="#e5e5e5" class="grid"/>
+<text x="52.0" y="301.5" class="tick">20</text>
+<line x1="80.0" y1="235.0" x2="640.0" y2="235.0" stroke="#e5e5e5" class="grid"/>
+<text x="52.0" y="239.0" class="tick">30</text>
+<line x1="80.0" y1="172.5" x2="640.0" y2="172.5" stroke="#e5e5e5" class="grid"/>
+<text x="52.0" y="176.5" class="tick">40</text>
+<line x1="80.0" y1="110.0" x2="640.0" y2="110.0" stroke="#e5e5e5" class="grid"/>
+<text x="52.0" y="114.0" class="tick">50</text>
+<text x="308.0" y="402.0" class="label">seconds / image (log scale)</text>
+<text x="32" y="210.0" transform="rotate(-90 32 210.0)" class="label">E1 average mIoU</text>
+<circle cx="417.5" cy="341.0" r="4" fill="#777" class="pt"/>
+<circle cx="98.6" cy="341.2" r="4" fill="#777" class="pt"/>
+<circle cx="340.2" cy="307.1" r="4" fill="#777" class="pt"/>
+<circle cx="235.9" cy="186.7" r="4" fill="#4c78a8" class="pt"/>
+<circle cx="444.2" cy="170.3" r="4" fill="#f58518" class="pt"/>
+<circle cx="273.4" cy="177.4" r="4" fill="#777" class="pt"/>
+<circle cx="265.8" cy="155.2" r="4" fill="#777" class="pt"/>
+<text x="271.8" y="150.2" class="legend">SC-CLIP</text>
+<circle cx="473.7" cy="177.1" r="4" fill="#54a24b" class="pt"/>
+<circle cx="274.0" cy="161.2" r="4" fill="#b279a2" class="pt"/>
+<circle cx="288.8" cy="114.9" r="4" fill="#e45756" class="pt"/>
+<text x="294.8" y="109.9" class="legend">CorrCLIP</text>
+<circle cx="198.8" cy="151.8" r="4" fill="#72b7b2" class="pt"/>
+<text x="204.8" y="146.8" class="legend">Trident</text>
+<circle cx="537.8" cy="158.4" r="4" fill="#ff9da6" class="pt"/>
+<text x="543.8" y="153.4" class="legend">CASS</text>
+<circle cx="601.7" cy="252.5" r="4" fill="#777" class="pt"/>
+<circle cx="626.1" cy="242.2" r="4" fill="#777" class="pt"/>
+<text x="632.1" y="237.2" class="legend">SAM+SigLIP</text>
+<circle cx="585.1" cy="264.6" r="4" fill="#777" class="pt"/>
+<circle cx="606.9" cy="254.8" r="4" fill="#777" class="pt"/>
+<circle cx="135.4" cy="78.9" r="4" fill="#bab0ac" class="pt"/>
+<text x="141.4" y="73.9" class="legend">SAN</text>
+</svg>

@@ -1,0 +1,246 @@
+diff --git a/open_vocabulary/voc10/evaluation_voc10.py b/open_vocabulary/voc10/evaluation_voc10.py
+index fade039..4b04e38 100755
+--- a/open_vocabulary/voc10/evaluation_voc10.py
++++ b/open_vocabulary/voc10/evaluation_voc10.py
+@@ -135,12 +135,12 @@ class Args:
+     curve=True
+     end=75
+     # path for output mat files
+-    base_dir = '/output/1207_voc10_wo_sy_norm'
++    base_dir = os.environ.get('DIFFSEG_OUTPUT', 'output/voc10')
+     image_dir = os.path.join(base_dir,'images')
+     cam_npy_dir = os.path.join(base_dir,'images')
+     # your data path
+-    gt_dir='VOCdevkit/VOC2010/SegmentationClassContext'
+-    list='VOCdevkit/VOC2010/ImageSets/SegmentationContext/val.txt'
++    gt_dir=os.environ.get('DIFFSEG_VOC10_GT', '/data/tianyi/TF-OVCOS/data/diffsegmenter_refs/VOCdevkit/VOC2010/SegmentationClassContext')
++    list=os.environ.get('DIFFSEG_VOC10_LIST', 'dataset/voc10/val.txt')
+     logfile=os.path.join(base_dir,'eval.txt')
+     num_classes=60
+     start=30
+diff --git a/open_vocabulary/voc10/ptp_stable_voc10.py b/open_vocabulary/voc10/ptp_stable_voc10.py
+index 790bdde..7d9f222 100755
+--- a/open_vocabulary/voc10/ptp_stable_voc10.py
++++ b/open_vocabulary/voc10/ptp_stable_voc10.py
+@@ -370,16 +370,16 @@ def mycopyfile(srcfile,dstpath):
+ def read_json(json_path, choice):
+     with open(json_path,"r") as tmp:
+         data=json.load(tmp)
+-    re=data[choice[0]]
+-    if len(choice)==1:
+-        return re
+-    for key in re.keys():
+-        for i in range(1,len(choice)):
+-            re[key].extend(data[choice[i]][key])
+-        re[key]=list(set(re[key]))
+-    return re 
++    re=dict(data[choice[0]])
++    if len(choice) != 1:
++        for key in list(re.keys()):
++            for i in range(1,len(choice)):
++                re[key].extend(data[choice[i]].get(key, []))
++            re[key]=list(set(re[key]))
++    # Official jsons mix absolute paths and basenames; normalize to basename for portable data roots.
++    return {os.path.basename(k): v for k, v in re.items()} 
+ if __name__ == '__main__':
+-    output_path=f'./output/voc10'
++    output_path=os.environ.get('DIFFSEG_OUTPUT', './output/voc10')
+     img_output_path = f"{output_path}/images"
+     attmap_output_path = f"{output_path}/self_att_maps"
+     for paths in [output_path,img_output_path]:
+@@ -391,7 +391,7 @@ if __name__ == '__main__':
+     args = parser.parse_args(args=[])
+     args.img_list='dataset/voc10'
+     #your data path
+-    args.data_path='/VOCdevkit/VOC2010'
++    args.data_path=os.environ.get('DIFFSEG_VOC10_ROOT', '/VOCdevkit/VOC2010')
+     
+     args.gen_attention_maps=False
+     args.data_set='VOC10seg'
+@@ -408,13 +408,14 @@ if __name__ == '__main__':
+         drop_last=True,
+     )
+     cudnn.benchmark = True
+-    blip_device = "cuda:4"
+-    diffusion_device = "cuda:4"
++    run_device = os.environ.get('DIFFSEG_DEVICE', 'cuda:0')
++    blip_device = run_device
++    diffusion_device = run_device
+ 
+     dtype = torch.float16
+     device = torch.device(diffusion_device) if torch.cuda.is_available() else torch.device('cpu')
+     device1 = torch.device(diffusion_device) if torch.cuda.is_available() else torch.device('cpu')
+-    model_key = "runwayml/stable-diffusion-v1-5"
++    model_key = os.environ.get('DIFFSEG_SD_MODEL', 'runwayml/stable-diffusion-v1-5')
+     ldm_stable = StableDiffusionPipeline.from_pretrained(model_key, local_files_only=True,torch_dtype=dtype).to(device)
+     tokenizer = ldm_stable.tokenizer
+     ldm_stable.scheduler = DDIMScheduler.from_pretrained(model_key, subfolder="scheduler")
+@@ -425,16 +426,20 @@ if __name__ == '__main__':
+     weight = [0.3,0.5,0.1,0.1]
+ 
+     
+-    processor = BlipProcessor.from_pretrained("blip/blip-image-captioning-large")
+-    model = BlipForConditionalGeneration.from_pretrained("blip/blip-image-captioning-large").to(blip_device)
++    blip_key = os.environ.get('DIFFSEG_BLIP_MODEL', 'Salesforce/blip-image-captioning-large')
++    processor = BlipProcessor.from_pretrained(blip_key, local_files_only=True)
++    model = BlipForConditionalGeneration.from_pretrained(blip_key, local_files_only=True).to(blip_device)
+     prompt_texts = []
+     # prediced image class label by clip and blip
+     json_path='dataset/voc10/predict_syn_txt_0.8_img_0.97.json'
+     pred_classes=read_json(json_path,choice=['image_similarity','text_similarity'])
+     # pred_classes=read_json(json_path,choice=['text_similarity','image_similarity'])
+ 
++    max_images = int(os.environ.get('DIFFSEG_MAX_IMAGES', '0') or '0')
+     with torch.no_grad():
+         for k,data in enumerate(data_loader_train):
++            if max_images and k >= max_images:
++                break
+           
+             img_temp = data[0].permute(0, 2, 3, 1)
+             h=data[2].shape[-2]
+@@ -454,6 +459,9 @@ if __name__ == '__main__':
+             noise = noise if dtype == torch.float32 else noise.half()
+             images = []
+             pred_class_key=data[3][0][-15:]
++            out_mat = os.path.join(img_output_path, data[3][0][-15:-4] + '.mat')
++            if os.environ.get('DIFFSEG_RESUME', '1') == '1' and os.path.exists(out_mat):
++                continue
+             try:
+                 #  read predicted label from json
+                 y=pred_classes[pred_class_key]
+@@ -526,7 +534,7 @@ if __name__ == '__main__':
+             for i in range(0,len(y)): 
+                 cam_dict[str(embs.index(y[i]))]=images[i].permute(1,2,0).cpu().numpy()[:,:,0]
+             #save result
+-            sio.savemat(os.path.join(img_output_path, img_path[-15:-4] + '.mat'),cam_dict,do_compression=True)
++            sio.savemat(out_mat,cam_dict,do_compression=True)
+ 
+     with open(os.path.join(output_path,"prompts.txt"), 'w') as f:     
+         f.writelines("\n".join(prompt_texts))
+\ No newline at end of file
+diff --git a/open_vocabulary/voc12/evaluation_voc12.py b/open_vocabulary/voc12/evaluation_voc12.py
+index 3ed8892..7d3579e 100644
+--- a/open_vocabulary/voc12/evaluation_voc12.py
++++ b/open_vocabulary/voc12/evaluation_voc12.py
+@@ -6,7 +6,6 @@ import multiprocessing
+ import scipy.io as sio
+ import argparse
+ 
+-from datasets import load_img_name_list_100
+ import sys
+ sys.path.insert(0, sys.path[0]+"/../..")
+ 
+@@ -155,11 +154,11 @@ class Args:
+     comment='train1464'
+     curve=True
+     end=75
+-    base_dir = 'output/voc12_wo_sy_norm'
++    base_dir = os.environ.get('DIFFSEG_OUTPUT', 'output/voc12_wo_sy_norm')
+     image_dir = os.path.join(base_dir,'images')
+     cam_npy_dir = os.path.join(base_dir,'images')
+-    gt_dir='/data/wjl/data/VOCdevkit/VOC2012/SegmentationClassAug'
+-    list='dataset/voc12/val_id.txt'
++    gt_dir=os.environ.get('DIFFSEG_VOC12_GT', '/data/tianyi/TF-OVCOS/data/diffsegmenter_refs/VOCdevkit/VOC2012/SegmentationClassAug')
++    list=os.environ.get('DIFFSEG_VOC12_LIST', 'dataset/voc12/val_id.txt')
+     # list='/root/autodl-tmp/wjl/ptp_diffusion/voc12/train_aug_id.txt'
+     logfile=os.path.join(base_dir,'eval.txt')
+     num_classes=21
+diff --git a/open_vocabulary/voc12/ptp_stable_best.py b/open_vocabulary/voc12/ptp_stable_best.py
+index 9dc1278..79a104d 100755
+--- a/open_vocabulary/voc12/ptp_stable_best.py
++++ b/open_vocabulary/voc12/ptp_stable_best.py
+@@ -393,16 +393,16 @@ def mycopyfile(srcfile,dstpath):                       # 复制函数
+ def read_json(json_path, choice):
+     with open(json_path,"r") as tmp:
+         data=json.load(tmp)
+-    re=data[choice[0]]
+-    if len(choice)==1:
+-        return re
+-    for key in re.keys():
+-        for i in range(1,len(choice)):
+-            re[key].extend(data[choice[i]][key])
+-        re[key]=list(set(re[key]))
+-    return re 
++    re=dict(data[choice[0]])
++    if len(choice) != 1:
++        for key in list(re.keys()):
++            for i in range(1,len(choice)):
++                re[key].extend(data[choice[i]].get(key, []))
++            re[key]=list(set(re[key]))
++    # Official jsons mix absolute paths and basenames; normalize to basename for portable data roots.
++    return {os.path.basename(k): v for k, v in re.items()} 
+ if __name__ == '__main__':
+-    output_path=f'./output/voc12_wo_sy_norm'
++    output_path=os.environ.get('DIFFSEG_OUTPUT', './output/voc12_wo_sy_norm')
+     img_output_path = f"{output_path}/images"
+     attmap_output_path = f"{output_path}/self_att_maps"
+     # prediced image class label by clip and blip
+@@ -418,7 +418,7 @@ if __name__ == '__main__':
+     # if you want to run gt label, cls_labels_val.npy file has img class label
+     args.label_file_path=None
+     # your file path
+-    args.data_path='VOCdevkit/VOC2012'
++    args.data_path=os.environ.get('DIFFSEG_VOC12_ROOT', 'VOCdevkit/VOC2012')
+     
+     args.gen_attention_maps=False
+     args.data_set='VOC12seg'
+@@ -433,13 +433,14 @@ if __name__ == '__main__':
+         drop_last=True,
+     )
+     cudnn.benchmark = True
+-    blip_device = "cuda:2"
+-    diffusion_device = "cuda:2"
++    run_device = os.environ.get('DIFFSEG_DEVICE', 'cuda:0')
++    blip_device = run_device
++    diffusion_device = run_device
+ 
+     dtype = torch.float16
+     device = torch.device(diffusion_device) if torch.cuda.is_available() else torch.device('cpu')
+     device1 = torch.device(diffusion_device) if torch.cuda.is_available() else torch.device('cpu')
+-    model_key = "runwayml/stable-diffusion-v1-5"
++    model_key = os.environ.get('DIFFSEG_SD_MODEL', 'runwayml/stable-diffusion-v1-5')
+     # model_key = "stabilityai/stable-diffusion-2-1-base"
+     # ldm_stable = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=MY_TOKEN).to(device)
+     ldm_stable = StableDiffusionPipeline.from_pretrained(model_key, local_files_only=True,torch_dtype=dtype).to(device)
+@@ -452,16 +453,20 @@ if __name__ == '__main__':
+     weight = [0.3,0.5,0.1,0.1]
+ 
+     
+-    processor = BlipProcessor.from_pretrained("blip/blip-image-captioning-large")
+-    model = BlipForConditionalGeneration.from_pretrained("blip/blip-image-captioning-large").to(blip_device)
++    blip_key = os.environ.get('DIFFSEG_BLIP_MODEL', 'Salesforce/blip-image-captioning-large')
++    processor = BlipProcessor.from_pretrained(blip_key, local_files_only=True)
++    model = BlipForConditionalGeneration.from_pretrained(blip_key, local_files_only=True).to(blip_device)
+     prompt_texts = []
+     # pred_classes=read_json(json_path,choice=['text_similarity','image_similarity','synonym_matching'])
+     pred_classes=read_json(json_path,choice=['image_similarity','text_similarity'])
+     
+ 
+     print(len(data_loader_train))
++    max_images = int(os.environ.get('DIFFSEG_MAX_IMAGES', '0') or '0')
+     with torch.no_grad():
+         for k,data in enumerate(data_loader_train):
++            if max_images and k >= max_images:
++                break
+             # if k<41:
+             #     continue
+             img_temp = data[0].permute(0, 2, 3, 1)
+@@ -485,6 +490,9 @@ if __name__ == '__main__':
+             # x,y=torch.where(data[1])
+             pred_class_key=data[3][0][-15:]
+             # import ipdb;ipdb.set_trace()
++            out_mat = os.path.join(img_output_path, data[3][0][-15:-4] + '.mat')
++            if os.environ.get('DIFFSEG_RESUME', '1') == '1' and os.path.exists(out_mat):
++                continue
+             try:
+                 y=pred_classes[pred_class_key]
+             except:
+@@ -548,7 +556,7 @@ if __name__ == '__main__':
+                 if class_emb == "buses":
+                     class_emb = "bus"
+                 cam_dict[str(embs.index(y[i]))]=images[i].permute(1,2,0).cpu().numpy()[:,:,0]
+-            sio.savemat(os.path.join(img_output_path, img_path[-15:-4] + '.mat'),cam_dict,do_compression=True)
++            sio.savemat(out_mat,cam_dict,do_compression=True)
+ 
+     with open(os.path.join(output_path,"prompts.txt"), 'w') as f:     
+         f.writelines("\n".join(prompt_texts))

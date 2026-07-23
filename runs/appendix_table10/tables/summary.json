@@ -1,0 +1,178 @@
+{
+  "datasets": [],
+  "e1": [
+    {
+      "method": "maskclip",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null
+    },
+    {
+      "method": "maskclip_attn",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null
+    },
+    {
+      "method": "maskclip_attn_slide",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null
+    },
+    {
+      "method": "sam_amg_clip",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null
+    },
+    {
+      "method": "tables",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null
+    }
+  ],
+  "e2": [
+    {
+      "method": "maskclip",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    },
+    {
+      "method": "maskclip_attn",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    },
+    {
+      "method": "maskclip_attn_slide",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    },
+    {
+      "method": "sam_amg_clip",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    },
+    {
+      "method": "tables",
+      "context59_val_mIoU": null,
+      "context459_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "ade20k847_val_mIoU": null,
+      "delta_vocab": null,
+      "mcmr_05": null
+    }
+  ],
+  "e2_ambiguity": [],
+  "e3": [
+    {
+      "method": "maskclip",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null,
+      "worst_mIoU": null
+    },
+    {
+      "method": "maskclip_attn",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null,
+      "worst_mIoU": null
+    },
+    {
+      "method": "maskclip_attn_slide",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null,
+      "worst_mIoU": null
+    },
+    {
+      "method": "sam_amg_clip",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null,
+      "worst_mIoU": null
+    },
+    {
+      "method": "tables",
+      "voc20_val_mIoU": null,
+      "context59_val_mIoU": null,
+      "ade20k150_val_mIoU": null,
+      "coco_stuff171_val_mIoU": null,
+      "avg_mIoU": null,
+      "worst_mIoU": null
+    }
+  ],
+  "e4": [],
+  "appendix": [
+    {
+      "method": "maskclip",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    },
+    {
+      "method": "maskclip_attn",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    },
+    {
+      "method": "maskclip_attn_slide",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    },
+    {
+      "method": "sam_amg_clip",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    },
+    {
+      "method": "tables",
+      "ovcamo_te_IoU": null,
+      "camo_te_IoU": null,
+      "cod10k_te_camo_IoU": null,
+      "nc4k_IoU": null
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "method": "sam_amg_siglip",
+  "manifest": "/data/tianyi/TF-OVCOS/runs/proposal_officialnames/sam_amg_siglip/voc20_val/manifest_shards/part-000.jsonl",
+  "vocab": "/data/tianyi/TF-OVCOS/configs/vocab/voc20_officialnames.txt",
+  "num_samples": 1449,
+  "task": "semantic",
+  "num_classes": 20,
+  "wall_time_sec": 4978.727020797029,
+  "sec_per_image": 3.435974479501055,
+  "model_calls": null,
+  "peak_memory_mb": null,
+  "adapter": "SamAmgSiglipAdapter"
+}

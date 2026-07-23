@@ -1,0 +1,156 @@
+method,dataset,community_id,n_classes,classes,class_ids,edge_weight,source_edges,status
+corrclip,ade20k,1,36,wall; building; sky; floor; tree; ceiling; road; windowpane; grass; cabinet; sidewalk; earth; door; table; mountain; plant; curtain; chair; house; rug; field; rock; wardrobe; chestofdrawers; counter; sand; sink; skyscraper; screendoor; hill; hovel; tower; dirttrack; land; sconce; shower,0;1;2;3;4;5;6;8;9;10;11;13;14;15;16;17;18;19;25;28;29;34;35;44;45;46;47;48;58;68;79;84;91;94;134;145,71747015.0,50,computed_from_top_confusion_pairs
+corrclip,ade20k,2,5,water; sea; river; swimmingpool; lake,21;26;60;109;128,3666734.0,50,computed_from_top_confusion_pairs
+corrclip,ade20k,3,2,people; apparel,12;92,1875741.0,50,computed_from_top_confusion_pairs
+corrclip,ade20k,4,2,shelf; bookcase,24;62,630825.0,50,computed_from_top_confusion_pairs
+corrclip,ade20k,5,2,sofa; armchair,23;30,954514.0,50,computed_from_top_confusion_pairs
+corrclip,ade20k,6,2,bed; blanket,7;131,4081801.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,1,27,"wall; building, edifice; sky; tree; ceiling; earth, ground; grass; windowpane, window; plant, flora, plant life; door; house; skyscraper; double door; bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle; hill; doorframe, doorcase; land, ground, soil; eiderdown, duvet, continental quilt; ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin; conveyer belt, conveyor belt, conveyer, conveyor, transporter; manhole; dirt track; ruins; scaffolding, staging; shower; forest; arch, archway",0;1;2;3;6;9;12;13;16;20;26;59;64;80;90;109;118;121;127;131;138;143;148;161;190;195;250,285437407.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,2,9,"road, route; floor, flooring; sidewalk, pavement; table; chair; rug, carpet, carpeting; signboard, sign; chest of drawers, chest, bureau, dresser; book",4;5;8;17;18;27;39;68;76,153458339.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,3,4,"person, individual, someone, somebody, mortal, soul; airplane, aeroplane, plane; jacket; water tower",11;94;202;228,15886601.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,4,3,"bed; arcade machine; blanket, cover",7;120;150,30468135.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,5,2,"mountain, mount; footbridge, overcrossing, pedestrian bridge",15;189,3318862.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,6,2,"curtain, drape, drapery, mantle, pall; computer, computing machine, computing device, data processor, electronic computer, information processing system",19;79,14805797.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,7,2,water; lake,24;134,3684464.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,8,2,"sofa, couch, lounge; armchair",21;29,3235569.0,50,computed_from_top_confusion_pairs
+corrclip,ade847,9,2,work surface; countertop,42;67,3640396.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,1,32,sandwich; bed; blanket; bridge; building-other; carpet; desk-stuff; floor-marble; floor-other; floor-tile; furniture-other; grass; gravel; ground-other; hill; house; paper; pillow; platform; river; salad; sky-other; snow; stone; structural-other; towel; vegetable; wall-brick; wall-concrete; wall-other; wall-stone; window-blind,48;59;81;83;84;89;98;102;103;105;111;112;113;114;115;116;127;129;132;136;141;145;147;150;152;156;158;159;160;161;163;168,149646116.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,2,3,clothes; flower; shelf,93;107;144,25854550.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,3,3,railroad; sand; wall-wood,135;142;165,6237162.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,4,2,fire hydrant; mat,10;119,1619933.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,5,2,potted plant; banner,58;80,2963904.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,6,2,bicycle; train,1;6,2430397.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,7,2,bush; counter,85;95,5415616.0,50,computed_from_top_confusion_pairs
+corrclip,coco_stuff164k,8,2,cabinet-merged; door-stuff,86;100,2943930.0,50,computed_from_top_confusion_pairs
+corrclip,context459,1,27,brick; building; ceiling; chicken; clip; clock; closet; controller; cow; door; fence; floor; forceps; glove; grass; ground; hard disk drive; heater; leaves; road; sidewalk; tree; unknown; wall; water; window; wood,38;43;67;73;75;77;78;89;97;114;143;157;163;183;186;188;197;201;228;323;353;419;430;439;444;453;457,199531968.0,50,computed_from_top_confusion_pairs
+corrclip,context459,2,9,bird nest; blackboard; broom; cap; cloth; flame; flashlight; line; person,27;28;40;57;79;155;156;234;283,58660004.0,50,computed_from_top_confusion_pairs
+corrclip,context459,3,3,comb; computer; tvmonitor,83;84;426,4839215.0,50,computed_from_top_confusion_pairs
+corrclip,context459,4,2,aeroplane; motorbike,1;257,8158806.0,50,computed_from_top_confusion_pairs
+corrclip,context459,5,2,air conditioner; mountain,2;258,3957313.0,50,computed_from_top_confusion_pairs
+corrclip,context459,6,2,camel; pottedplant,51;307,1962879.0,50,computed_from_top_confusion_pairs
+corrclip,context459,7,2,cello; rock,69;325,2466214.0,50,computed_from_top_confusion_pairs
+corrclip,context459,8,2,cooker; sheep,90;346,5072709.0,50,computed_from_top_confusion_pairs
+corrclip,context459,9,2,cup; sky,103;359,71373943.0,50,computed_from_top_confusion_pairs
+corrclip,context459,10,2,disc case; snow,109;365,4598154.0,50,computed_from_top_confusion_pairs
+corrclip,context459,11,2,dock; sofa,111;367,10993360.0,50,computed_from_top_confusion_pairs
+corrclip,context459,12,2,fan; table,140;396,7340421.0,50,computed_from_top_confusion_pairs
+corrclip,context459,13,2,fly; train,159;415,9439709.0,50,computed_from_top_confusion_pairs
+corrclip,context59,1,30,bag; bed; bedclothes; building; cabinet; ceiling; chair; cloth; curtain; door; fence; floor; grass; ground; light; motorbike; mountain; people; platform; pottedplant; road; sidewalk; sky; sofa; table; track; tree; wall; window; wood,1;2;3;10;12;15;16;17;21;23;24;25;28;29;32;33;34;36;38;39;40;44;46;48;49;50;52;55;57;58,126850132.0,50,computed_from_top_confusion_pairs
+corrclip,context59,2,2,computer; tvmonitor,18;54,3680048.0,50,computed_from_top_confusion_pairs
+corrclip,voc20,1,20,aeroplane; bicycle; bird; boat; bottle; bus; car; cat; chair; cow; diningtable; dog; horse; motorbike; person; pottedplant; sheep; sofa; train; tvmonitor,0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19,3282021.0,50,computed_from_top_confusion_pairs
+naclip,ade20k,1,36,wall; building; sky; floor; tree; ceiling; road; bed; windowpane; cabinet; sidewalk; people; door; mountain; curtain; house; rug; rock; wardrobe; lamp; column; counter; skyscraper; refrigerator; toilet; hill; kitchenisland; hovel; tower; awning; apparel; canopy; stool; step; blanket; shower,0;1;2;3;4;5;6;7;8;10;11;12;14;16;18;25;28;34;35;36;42;45;48;50;65;68;73;79;84;86;92;106;110;121;131;145,95820814.0,50,computed_from_top_confusion_pairs
+naclip,ade20k,2,4,grass; earth; plant; field,9;13;17;29,4731229.0,50,computed_from_top_confusion_pairs
+naclip,ade20k,3,3,water; river; lake,21;60;128,2400500.0,50,computed_from_top_confusion_pairs
+naclip,ade20k,4,2,table; chair,15;19,1309347.0,50,computed_from_top_confusion_pairs
+naclip,ade20k,5,2,sofa; armchair,23;30,769912.0,50,computed_from_top_confusion_pairs
+naclip,ade847,1,40,"wall; building, edifice; sky; tree; road, route; floor, flooring; ceiling; bed; sidewalk, pavement; earth, ground; cabinet; grass; windowpane, window; plant, flora, plant life; door; sea; house; rug, carpet, carpeting; rock, stone; wardrobe, closet, press; cliff, drop, drop-off; sand; toilet, can, commode, crapper, pot, potty, stool, throne; double door; bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle; hill; hovel, hut, hutch, shack, shanty; doorframe, doorcase; land, ground, soil; eiderdown, duvet, continental quilt; ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin; basket, handbasket; manhole; blanket, cover; curb, curbing, kerb; forest; jacket; jar; hat, chapeau, lid; pier",0;1;2;3;4;5;6;7;8;9;10;12;13;16;20;22;26;27;33;46;53;54;58;64;80;90;101;109;118;121;127;137;138;150;163;195;202;240;249;255,530440288.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,1,33,sink; blanket; bridge; building-other; bush; carpet; counter; desk-stuff; floor-marble; floor-other; floor-stone; furniture-other; grass; gravel; ground-other; hill; house; light; moss; paper; pillow; platform; river; sea; sky-other; stone; straw; towel; wall-brick; wall-concrete; wall-other; window-blind; window-other,71;81;83;84;85;89;95;98;102;103;104;111;112;113;114;115;116;118;122;127;129;132;136;143;145;150;151;156;159;160;161;168;169,145372525.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,2,5,skateboard; railroad; salad; sand; wall-wood,36;135;141;142;165,13834511.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,3,3,clothes; flower; shelf,93;107;144,31199185.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,4,2,frisbee; skyscraper,29;146,2354962.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,5,2,bed; structural-other,59;152,2690669.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,6,2,dining table; wall-stone,60;163,2013670.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,7,2,spoon; fog,44;108,3539111.0,50,computed_from_top_confusion_pairs
+naclip,coco_stuff164k,8,2,potted plant; banner,58;80,1909629.0,50,computed_from_top_confusion_pairs
+naclip,context459,1,36,baby carriage; bird nest; blackboard; boat; brick; building; ceiling; chicken; clock; closet; cloth; concrete; controller; cow; cushion; dock; door; drainer; earphone; earrings; flame; floor; forceps; glove; grass; ground; heater; leaves; person; road; rug; sofa; tree; unknown; wall; water,7;27;28;30;38;43;67;73;77;78;79;85;89;97;105;111;114;115;125;126;155;157;163;183;186;188;201;228;283;323;329;367;419;430;439;444,249936076.0,50,computed_from_top_confusion_pairs
+naclip,context459,2,2,aeroplane; motorbike,1;257,4602587.0,50,computed_from_top_confusion_pairs
+naclip,context459,3,2,air conditioner; mountain,2;258,3268806.0,50,computed_from_top_confusion_pairs
+naclip,context459,4,2,box; pottedplant,36;307,2953064.0,50,computed_from_top_confusion_pairs
+naclip,context459,5,2,cooker; sheep,90;346,4341046.0,50,computed_from_top_confusion_pairs
+naclip,context459,6,2,cup; sky,103;359,66620633.0,50,computed_from_top_confusion_pairs
+naclip,context459,7,2,disc case; snow,109;365,4118961.0,50,computed_from_top_confusion_pairs
+naclip,context459,8,2,fan; table,140;396,5839385.0,50,computed_from_top_confusion_pairs
+naclip,context459,9,2,card; track,59;414,2099123.0,50,computed_from_top_confusion_pairs
+naclip,context459,10,2,fly; train,159;415,6656138.0,50,computed_from_top_confusion_pairs
+naclip,context459,11,2,hard disk drive; window,197;453,2351208.0,50,computed_from_top_confusion_pairs
+naclip,context59,1,30,bag; bed; bedclothes; bicycle; building; cabinet; ceiling; chair; cloth; computer; curtain; door; fence; floor; grass; ground; people; pottedplant; road; rock; shelves; sidewalk; sky; sofa; table; tree; tvmonitor; wall; window; wood,1;2;3;5;10;12;15;16;17;18;21;23;24;25;28;29;36;39;40;41;43;44;46;48;49;52;54;55;57;58,160678238.0,50,computed_from_top_confusion_pairs
+naclip,context59,2,2,car; truck,13;53,1838553.0,50,computed_from_top_confusion_pairs
+naclip,context59,3,2,track; train,50;51,1404370.0,50,computed_from_top_confusion_pairs
+naclip,context59,4,2,boat; water,7;56,1877908.0,50,computed_from_top_confusion_pairs
+naclip,voc20,1,19,aeroplane; bicycle; bird; boat; bottle; bus; car; cat; chair; cow; diningtable; dog; horse; motorbike; person; sheep; sofa; train; tvmonitor,0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;16;17;18;19,6206051.0,50,computed_from_top_confusion_pairs
+proxyclip,ade20k,1,37,wall; building; sky; floor; tree; ceiling; road; bed; windowpane; grass; cabinet; sidewalk; earth; door; table; mountain; plant; curtain; chair; house; rug; field; rock; wardrobe; lamp; counter; skyscraper; refrigerator; toilet; hill; kitchenisland; hovel; tower; awning; booth; canopy; shower,0;1;2;3;4;5;6;7;8;9;10;11;13;14;15;16;17;18;19;25;28;29;34;35;36;45;48;50;65;68;73;79;84;86;88;106;145,107394163.0,50,computed_from_top_confusion_pairs
+proxyclip,ade20k,2,3,people; apparel; step,12;92;121,2640561.0,50,computed_from_top_confusion_pairs
+proxyclip,ade20k,3,3,water; river; lake,21;60;128,2454672.0,50,computed_from_top_confusion_pairs
+proxyclip,ade20k,4,2,sofa; armchair,23;30,900893.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,1,38,"wall; building, edifice; sky; tree; road, route; floor, flooring; ceiling; bed; sidewalk, pavement; cabinet; door; sea; house; rug, carpet, carpeting; lamp; bathtub, bathing tub, bath, tub; wardrobe, closet, press; cliff, drop, drop-off; skyscraper; double door; kitchen island; bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle; hill; booth, cubicle, stall, kiosk; arcade machine; eiderdown, duvet, continental quilt; manhole; tent, collapsible shelter; dirt track; ruins; curb, curbing, kerb; central reservation; closet; forest; jacket; roof; hat, chapeau, lid; pier",0;1;2;3;4;5;6;7;8;10;20;22;26;27;32;37;46;53;59;64;69;80;90;107;120;121;138;139;143;148;163;169;172;195;202;244;249;255,569839559.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,2,4,"earth, ground; grass; land, ground, soil; ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin",9;12;118;127,17018762.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,3,2,"car, auto, automobile, machine, motorcar; truck, motortruck",14;93,3397801.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,4,2,chair; book,18;76,4511714.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,5,2,"painting, picture; air conditioner, air conditioning",23;210,4671533.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,6,2,water; river,24;35,3481525.0,50,computed_from_top_confusion_pairs
+proxyclip,ade847,7,2,work surface; countertop,42;67,3540405.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,1,39,skateboard; surfboard; dining table; sink; blanket; bridge; building-other; bush; carpet; clothes; counter; desk-stuff; dirt; floor-marble; flower; furniture-other; grass; gravel; ground-other; hill; house; light; moss; paper; pillow; platform; railroad; river; salad; sand; shelf; straw; towel; wall-brick; wall-concrete; wall-other; wall-stone; wall-wood; window-other,36;37;60;71;81;83;84;85;89;93;95;98;99;102;107;111;112;113;114;115;116;118;122;127;129;132;135;136;141;142;144;151;156;159;160;161;163;165;169,178245458.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,2,2,floor-other; floor-stone,103;104,1864139.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,3,2,frisbee; skyscraper,29;146,2471411.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,4,2,bed; structural-other,59;152,3594511.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,5,2,spoon; fog,44;108,3408905.0,50,computed_from_top_confusion_pairs
+proxyclip,coco_stuff164k,6,2,cabinet-merged; door-stuff,86;100,1948022.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,1,29,brick; building; ceiling; chicken; clock; closet; concrete; controller; cow; cup; cutting board; dock; door; drainer; earphone; floor; forceps; glove; grass; ground; heater; leaves; road; rug; sky; sofa; tree; wall; water,38;43;67;73;77;78;85;89;97;103;106;111;114;115;125;157;163;183;186;188;201;228;323;329;359;367;419;439;444,262258236.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,2,10,baby carriage; basket; bird nest; blackboard; boat; chair; cloth; cushion; earrings; person,7;14;27;28;30;71;79;105;126;283,40580778.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,3,2,bed; bedclothes,17;18,2121017.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,4,2,aeroplane; motorbike,1;257,6527607.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,5,2,air conditioner; mountain,2;258,3605124.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,6,2,box; pottedplant,36;307,3123994.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,7,2,cooker; sheep,90;346,5144396.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,8,2,disc case; snow,109;365,4451392.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,9,2,fan; table,140;396,7176523.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,10,2,card; track,59;414,2088066.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,11,2,fly; train,159;415,8717770.0,50,computed_from_top_confusion_pairs
+proxyclip,context459,12,2,hard disk drive; window,197;453,3021497.0,50,computed_from_top_confusion_pairs
+proxyclip,context59,1,27,bed; bedclothes; bicycle; building; cabinet; ceiling; chair; cloth; curtain; door; fence; floor; grass; ground; mountain; people; pottedplant; road; rock; sidewalk; sky; sofa; table; tree; wall; window; wood,2;3;5;10;12;15;16;17;21;23;24;25;28;29;34;36;39;40;41;44;46;48;49;52;55;57;58,156126737.0,50,computed_from_top_confusion_pairs
+proxyclip,context59,2,2,car; truck,13;53,2050135.0,50,computed_from_top_confusion_pairs
+proxyclip,context59,3,2,track; train,50;51,2086365.0,50,computed_from_top_confusion_pairs
+proxyclip,context59,4,2,computer; tvmonitor,18;54,1692320.0,50,computed_from_top_confusion_pairs
+proxyclip,context59,5,2,boat; water,7;56,2505413.0,50,computed_from_top_confusion_pairs
+proxyclip,voc20,1,20,aeroplane; bicycle; bird; boat; bottle; bus; car; cat; chair; cow; diningtable; dog; horse; motorbike; person; pottedplant; sheep; sofa; train; tvmonitor,0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19,5511267.0,50,computed_from_top_confusion_pairs
+resclip,ade20k,1,36,wall; building; sky; floor; tree; ceiling; road; bed; windowpane; grass; cabinet; sidewalk; earth; door; mountain; plant; curtain; house; rug; field; rock; wardrobe; lamp; column; skyscraper; refrigerator; toilet; hill; kitchenisland; hovel; tower; awning; canopy; stool; blanket; shower,0;1;2;3;4;5;6;7;8;9;10;11;13;14;16;17;18;25;28;29;34;35;36;42;48;50;65;68;73;79;84;86;106;110;131;145,102747766.0,50,computed_from_top_confusion_pairs
+resclip,ade20k,2,3,people; apparel; step,12;92;121,2415122.0,50,computed_from_top_confusion_pairs
+resclip,ade20k,3,3,water; river; lake,21;60;128,2441572.0,50,computed_from_top_confusion_pairs
+resclip,ade20k,4,2,table; chair,15;19,1321194.0,50,computed_from_top_confusion_pairs
+resclip,ade20k,5,2,sofa; armchair,23;30,843040.0,50,computed_from_top_confusion_pairs
+resclip,ade847,1,41,"wall; building, edifice; sky; tree; road, route; floor, flooring; ceiling; bed; sidewalk, pavement; earth, ground; cabinet; grass; windowpane, window; plant, flora, plant life; door; sea; house; rug, carpet, carpeting; lamp; river; wardrobe, closet, press; cliff, drop, drop-off; skyscraper; double door; kitchen island; bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle; hill; hovel, hut, hutch, shack, shanty; doorframe, doorcase; eiderdown, duvet, continental quilt; ashcan, trash can, garbage can, wastebin, ash bin, ash-bin, ashbin, dustbin, trash barrel, trash bin; basket, handbasket; manhole; dirt track; curb, curbing, kerb; forest; jacket; jar; hat, chapeau, lid; arch, archway; pier",0;1;2;3;4;5;6;7;8;9;10;12;13;16;20;22;26;27;32;35;46;53;59;64;69;80;90;101;109;121;127;137;138;143;163;195;202;240;249;250;255,550008052.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,1,25,baseball bat; skateboard; surfboard; blanket; building-other; clothes; desk-stuff; floor-marble; flower; furniture-other; grass; ground-other; house; light; moss; pillow; platform; railroad; salad; sand; shelf; stone; towel; wall-wood; window-other,34;36;37;81;84;93;98;102;107;111;112;114;116;118;122;129;132;135;141;142;144;150;156;165;169,103530707.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,2,15,dining table; sink; bridge; bush; carpet; counter; dirt; hill; paper; river; sea; vegetable; wall-brick; wall-concrete; wall-stone,60;71;83;85;89;95;99;115;127;136;143;158;159;160;163,72558265.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,3,3,spoon; fog; rug,44;108;140,5203629.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,4,2,frisbee; skyscraper,29;146,3554545.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,5,2,bed; structural-other,59;152,3370414.0,50,computed_from_top_confusion_pairs
+resclip,coco_stuff164k,6,2,potted plant; banner,58;80,1709317.0,50,computed_from_top_confusion_pairs
+resclip,context459,1,37,baby carriage; bird nest; blackboard; brick; building; ceiling; chair; chicken; clock; closet; cloth; concrete; controller; cow; cup; cushion; dock; door; drainer; earrings; flame; floor; forceps; glove; grandstand; grass; ground; heater; leaves; person; road; rug; sky; sofa; tree; wall; water,7;27;28;38;43;67;71;73;77;78;79;85;89;97;103;105;111;114;115;126;155;157;163;183;185;186;188;201;228;283;323;329;359;367;419;439;444,290915052.0,50,computed_from_top_confusion_pairs
+resclip,context459,2,2,aeroplane; motorbike,1;257,5753907.0,50,computed_from_top_confusion_pairs
+resclip,context459,3,2,air conditioner; mountain,2;258,3332885.0,50,computed_from_top_confusion_pairs
+resclip,context459,4,2,box; pottedplant,36;307,2803630.0,50,computed_from_top_confusion_pairs
+resclip,context459,5,2,cooker; sheep,90;346,4701377.0,50,computed_from_top_confusion_pairs
+resclip,context459,6,2,disc case; snow,109;365,3943936.0,50,computed_from_top_confusion_pairs
+resclip,context459,7,2,fan; table,140;396,5548630.0,50,computed_from_top_confusion_pairs
+resclip,context459,8,2,card; track,59;414,2371271.0,50,computed_from_top_confusion_pairs
+resclip,context459,9,2,fly; train,159;415,7707344.0,50,computed_from_top_confusion_pairs
+resclip,context459,10,2,hard disk drive; window,197;453,2360652.0,50,computed_from_top_confusion_pairs
+resclip,context459,11,2,car; fox,58;167,2006362.0,50,computed_from_top_confusion_pairs
+resclip,context59,1,31,aeroplane; bag; bed; bedclothes; bicycle; building; cabinet; ceiling; chair; cloth; computer; curtain; door; fence; floor; grass; ground; horse; people; pottedplant; road; rock; sidewalk; sky; sofa; table; tree; tvmonitor; wall; window; wood,0;1;2;3;5;10;12;15;16;17;18;21;23;24;25;28;29;30;36;39;40;41;44;46;48;49;52;54;55;57;58,160132923.0,50,computed_from_top_confusion_pairs
+resclip,context59,2,2,car; truck,13;53,2107883.0,50,computed_from_top_confusion_pairs
+resclip,context59,3,2,track; train,50;51,1726259.0,50,computed_from_top_confusion_pairs
+resclip,context59,4,2,boat; water,7;56,2741242.0,50,computed_from_top_confusion_pairs
+resclip,voc20,1,20,aeroplane; bicycle; bird; boat; bottle; bus; car; cat; chair; cow; diningtable; dog; horse; motorbike; person; pottedplant; sheep; sofa; train; tvmonitor,0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19,6573311.0,50,computed_from_top_confusion_pairs
+sclip,ade20k,1,35,wall; building; sky; floor; tree; ceiling; road; bed; windowpane; grass; cabinet; sidewalk; earth; door; table; mountain; plant; curtain; chair; house; rug; desk; rock; wardrobe; lamp; skyscraper; refrigerator; pillow; toilet; kitchenisland; hovel; awning; land; canopy; shower,0;1;2;3;4;5;6;7;8;9;10;11;13;14;15;16;17;18;19;25;28;33;34;35;36;48;50;57;65;73;79;86;94;106;145,122148521.0,50,computed_from_top_confusion_pairs
+sclip,ade20k,2,3,water; river; lake,21;60;128,2488621.0,50,computed_from_top_confusion_pairs
+sclip,ade847,1,42,"wall; building, edifice; sky; tree; road, route; floor, flooring; ceiling; sidewalk, pavement; earth, ground; cabinet; person, individual, someone, somebody, mortal, soul; grass; windowpane, window; plant, flora, plant life; door; sea; house; rug, carpet, carpeting; lamp; wardrobe, closet, press; bridge, span; cliff, drop, drop-off; toilet, can, commode, crapper, pot, potty, stool, throne; chest of drawers, chest, bureau, dresser; bus, autobus, coach, charabanc, double-decker, jitney, motorbus, motorcoach, omnibus, passenger vehicle; hill; hovel, hut, hutch, shack, shanty; doorframe, doorcase; traffic light, traffic signal, stoplight; land, ground, soil; basket, handbasket; manhole; dirt track; curb, curbing, kerb; central reservation; partition, divider; forest; jacket; carport; patio; jar; hat, chapeau, lid",0;1;2;3;4;5;6;8;9;10;11;12;13;16;20;22;26;27;32;46;50;53;58;68;80;90;101;109;115;118;137;138;143;163;169;183;195;202;224;235;240;249,572527492.0,50,computed_from_top_confusion_pairs
+sclip,ade847,2,2,"bed; eiderdown, duvet, continental quilt",7;121,9045101.0,50,computed_from_top_confusion_pairs
+sclip,coco_stuff164k,1,34,baseball bat; surfboard; bed; dining table; blanket; bridge; building-other; bush; carpet; clothes; counter; desk-stuff; door-stuff; floor-marble; floor-stone; floor-tile; flower; furniture-other; gravel; hill; house; paper; pillow; platform; river; shelf; sky-other; structural-other; towel; vegetable; wall-brick; wall-concrete; wall-stone; window-other,34;37;59;60;81;83;84;85;89;93;95;98;100;102;104;105;107;111;113;115;116;127;129;132;136;144;145;152;156;158;159;160;163;169,176099744.0,50,computed_from_top_confusion_pairs
+sclip,coco_stuff164k,2,4,spoon; apple; hot dog; fog,44;47;52;108,9075823.0,50,computed_from_top_confusion_pairs
+sclip,coco_stuff164k,3,3,railroad; sand; wall-wood,135;142;165,11441212.0,50,computed_from_top_confusion_pairs
+sclip,coco_stuff164k,4,2,frisbee; skyscraper,29;146,3619357.0,50,computed_from_top_confusion_pairs
+sclip,coco_stuff164k,5,2,bus; railing,5;134,2009272.0,50,computed_from_top_confusion_pairs
+sclip,context459,1,37,baby carriage; bicycle; bird nest; blackboard; boat; brick; building; ceiling; chicken; clip; clock; closet; cloth; concrete; controller; cow; cup; cushion; dock; door; floor; forceps; glove; grandstand; grass; ground; heater; leaves; person; road; rug; sky; sofa; tree; unknown; wall; water,7;22;27;28;30;38;43;67;73;75;77;78;79;85;89;97;103;105;111;114;157;163;183;185;186;188;201;228;283;323;329;359;367;419;430;439;444,281887927.0,50,computed_from_top_confusion_pairs
+sclip,context459,2,2,aeroplane; motorbike,1;257,5958756.0,50,computed_from_top_confusion_pairs
+sclip,context459,3,2,air conditioner; mountain,2;258,2351184.0,50,computed_from_top_confusion_pairs
+sclip,context459,4,2,box; pottedplant,36;307,2746305.0,50,computed_from_top_confusion_pairs
+sclip,context459,5,2,cello; rock,69;325,2702034.0,50,computed_from_top_confusion_pairs
+sclip,context459,6,2,cooker; sheep,90;346,4334459.0,50,computed_from_top_confusion_pairs
+sclip,context459,7,2,disc case; snow,109;365,3621773.0,50,computed_from_top_confusion_pairs
+sclip,context459,8,2,fan; table,140;396,3623274.0,50,computed_from_top_confusion_pairs
+sclip,context459,9,2,fly; train,159;415,7557645.0,50,computed_from_top_confusion_pairs
+sclip,context59,1,28,aeroplane; bed; bedclothes; bicycle; building; cabinet; ceiling; chair; cloth; curtain; door; fence; floor; grass; ground; motorbike; people; road; sidewalk; sky; sofa; table; track; train; tree; wall; window; wood,0;2;3;5;10;12;15;16;17;21;23;24;25;28;29;33;36;40;44;46;48;49;50;51;52;55;57;58,163198891.0,50,computed_from_top_confusion_pairs
+sclip,context59,2,2,car; truck,13;53,1428225.0,50,computed_from_top_confusion_pairs
+sclip,context59,3,2,computer; tvmonitor,18;54,1512554.0,50,computed_from_top_confusion_pairs
+sclip,context59,4,2,boat; water,7;56,2440640.0,50,computed_from_top_confusion_pairs
+sclip,voc20,1,20,aeroplane; bicycle; bird; boat; bottle; bus; car; cat; chair; cow; diningtable; dog; horse; motorbike; person; pottedplant; sheep; sofa; train; tvmonitor,0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19,6714325.0,50,computed_from_top_confusion_pairs

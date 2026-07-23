@@ -1,0 +1,64 @@
+block,metric,proposal_group,status,result_inputs,note,tier
+E1,per-class IoU summary,Group (i); cheap,computed_when_class_table_present,official mmseg per-class table,Includes worst-class IoU and zero-IoU class collapse rate when the official log prints the class table.,exploratory
+E1,thing/stuff mIoU,Group (i); cheap,requires_taxonomy,per-class IoU plus dataset thing/stuff taxonomy,Can be computed from log class tables after adding dataset taxonomy maps.,exploratory
+E1,pixel accuracy,Group (i); cheap,computed_from_official_log,official mmseg aAcc,Parsed from the official evaluator summary.,exploratory
+E1,mean class accuracy,Group (i); cheap,computed_from_official_log,official mmseg mAcc,Parsed from the official evaluator summary.,exploratory
+E1,frequency-stratified mIoU,Group (i); cheap,requires_taxonomy,per-class IoU plus train-frequency bins,Head/mid/tail tertiles need dataset frequency metadata.,exploratory
+E1,small/medium/large object mIoU,Group (i); cheap,requires_prediction_artifacts,prediction label maps plus GT instance/region areas,Semantic mIoU logs do not include object area bins.,exploratory
+E1,BIoU,Group (i); cheap,requires_prediction_artifacts,prediction label maps plus GT boundary maps,"Boundary IoU needs saved masks, not only aggregate logs.",exploratory
+E1,proposal Recall@0.5/0.7,Group (i); cheap,requires_prediction_artifacts,class-agnostic proposal masks plus GT masks,Available only for methods exposing proposal masks.,exploratory
+E1,confidence calibration ECE,Group (i); cheap,requires_score_artifacts,per-pixel or per-region confidence and correctness,Needs confidence tensors/scores saved during official inference.,exploratory
+E1,confidence calibration Brier,Group (i); cheap,requires_score_artifacts,per-pixel or per-region confidence and correctness,Needs confidence tensors/scores saved during official inference.,exploratory
+E1,empty-prediction rate,Group (i); cheap,requires_prediction_artifacts,prediction label maps,Counts images or regions with no valid foreground / no non-ignore prediction.,exploratory
+E1,over-segmentation rate,Group (i); cheap,requires_prediction_artifacts,prediction label maps or proposal masks,Needs connected-component or proposal-count statistics.,exploratory
+E1,prediction coverage,Group (i); cheap,requires_prediction_artifacts,prediction label maps,Fraction of valid pixels receiving non-ignore predictions.,exploratory
+E2,Delta_vocab,Group (ii); novelty-driving,computed_when_pairs_complete,compact-vocab mIoU and large-vocab mIoU,mIoU drop from Context59 to Context459 and ADE150 to ADE847.,exploratory
+E2,MCMR@0.5,Group (ii); novelty-driving,requires_region_artifacts,"matched predicted regions, GT regions, predicted labels",Primary mask-category mismatch rate.,exploratory
+E2,MCMR@0.75,Group (ii); novelty-driving,requires_region_artifacts,"matched predicted regions, GT regions, predicted labels",Strict mask-category mismatch rate.,exploratory
+E2,semantic-distance-weighted mismatch,Group (ii); novelty-driving,requires_region_artifacts,mismatch pairs plus CLIP/WordNet label distances,Separates near-misses from wild semantic errors.,exploratory
+E2,hierarchical IoU,Group (ii); novelty-driving,requires_taxonomy,prediction/GT labels plus WordNet or dataset hierarchy,Gives partial credit for hypernym/hyponym predictions.,exploratory
+E2,synonym-collapsed mIoU,Group (ii); novelty-driving,requires_taxonomy,prediction/GT labels plus synonym mapping,Tests whether large-vocab drop is true ambiguity or synonym competition.,exploratory
+E2,prompt-sensitivity variance,Group (ii); novelty-driving,requires_controlled_runs,fixed prompt-template reruns per method,mIoU standard deviation across templates.,exploratory
+E2,vocabulary-size scaling curve,Group (ii); novelty-driving,requires_controlled_runs,subsampled Context/ADE vocabulary reruns,"Curve shape can become a finding: linear, saturating, or cliff-like.",exploratory
+E2,region-level Top-1 naming accuracy,Group (iii); probe,requires_score_artifacts,top-k class scores for best-matched regions,Separates absent knowledge from wrong rank ordering.,exploratory
+E2,region-level Top-3 naming accuracy,Group (iii); probe,requires_score_artifacts,top-k class scores for best-matched regions,Separates absent knowledge from wrong rank ordering.,exploratory
+E2,region-level Top-5 naming accuracy,Group (iii); probe,requires_score_artifacts,top-k class scores for best-matched regions,Separates absent knowledge from wrong rank ordering.,exploratory
+E2,GT-region naming Top-1,Group (iii); probe,requires_probe_outputs,GT-crop naming probe outputs,Naming ability with localization removed.,exploratory
+E2,GT-region naming Top-5,Group (iii); probe,requires_probe_outputs,GT-crop naming probe outputs,Naming ability with localization removed.,exploratory
+E2,GT-text localization IoU,Group (iii); probe,requires_probe_outputs,GT-class prompt localization outputs,Localization ability with naming removed.,exploratory
+E2,GT-text localization BIoU,Group (iii); probe,requires_probe_outputs,GT-class prompt localization outputs,Boundary version of GT-text localization.,exploratory
+E2,proposal-recall oracle BestIoU,Group (iii); probe,requires_region_artifacts,class-agnostic proposals plus GT regions,Upper bound for proposal-based pipelines.,exploratory
+E2,MCC consistency before/after,Group (iii); probe,requires_controlled_runs,baseline and post-hoc mask-category re-ranking outputs,Compares mIoU and MCMR before/after MCC.,exploratory
+E2,top mismatch pairs,Qualitative,requires_prediction_artifacts,confusion pairs from predicted and GT labels,Qualitative evidence for ambiguity failure modes.,exploratory
+E2,confusion communities,Qualitative,requires_prediction_artifacts,class confusion graph,Finds clusters of systematic label confusion.,exploratory
+E2,novel-vs-base class split,Qualitative,requires_taxonomy,per-class IoU plus base/novel mapping,Checks whether failures concentrate on novel classes.,exploratory
+E3,Kendall tau rank correlation,Group (ii); novelty-driving,computed_when_enough_methods_complete,method rankings across targets,Hard evidence for cross-dataset rank instability.,exploratory
+E3,Spearman rank correlation,Group (ii); novelty-driving,computed_when_enough_methods_complete,method rankings across targets,Hard evidence for cross-dataset rank instability.,exploratory
+E3,cross-target rank stability,Group (ii); novelty-driving,computed_when_enough_methods_complete,method rankings across targets,One-minus-rank-variance style summaries can be added after the table is dense.,exploratory
+E3,worst-target mIoU,Group (i),computed_when_multiple_targets_complete,completed target mIoU values,Catches methods that average well but collapse on one target.,exploratory
+E3,worst-class within target,Group (i),computed_when_class_table_present,official mmseg per-class table,Lowest per-class IoU within each target.,exploratory
+E3,source/target gap,Group (i),requires_trained_reference_scores,trained-reference source and target mIoU,Contextualizes trained-method generalization claims.,exploratory
+E3,per-target Delta vs E1,Group (ii),requires_transfer_protocol,E1 target scores and E3 transfer target scores,Measures transfer drop relative to the matched E1 target.,exploratory
+E3,per-target Delta MCMR,Group (ii),requires_region_artifacts,MCMR@0.5 on E1/E2 and E3 targets,Separates localization transfer failure from naming transfer failure.,exploratory
+E3,class-overlap-stratified mIoU,Group (ii); novelty-driving,requires_taxonomy,per-class IoU plus source-vocabulary overlap mapping,Splits target classes into source-overlapping vs source-novel.,exploratory
+E3,domain-shift sensitivity,Group (ii); novelty-driving,requires_embedding_artifacts,target mIoU drops plus CLIP/DINO dataset embedding distances,Tests whether drops track source-to-target embedding distance.,exploratory
+E3,transferability of MCMR@0.5,Group (ii),requires_region_artifacts,MCMR@0.5 across E1/E2/E3 targets,Checks whether mask-category mismatch patterns transfer.,exploratory
+E4,training time,standard cost reporting,not_applicable_for_training_free_or_requires_refs,trained-reference training logs,Training-free methods should be zero or N/A; trained refs need official training logs.,exploratory
+E4,offline preprocessing cost,standard cost reporting,requires_method_stage_logs,offline stage timing logs,"Needed for methods with prototypes, retrieval, or diffusion preprocessing.",exploratory
+E4,inference time,standard cost reporting,computed_partial_from_official_log,official mmseg per-iteration time,Current value is useful for monitoring; isolated E4 reruns are still needed for paper numbers.,exploratory
+E4,peak memory,standard cost reporting,computed_when_log_reports_memory,official mmseg memory field,"Some logs do not print memory, so nvidia-smi sampling may be needed.",exploratory
+E4,trainable parameters,standard cost reporting,requires_model_introspection,official model parameter count,Training-free rows should expose zero trainable params when true.,exploratory
+E4,model calls,standard cost reporting,requires_method_stage_logs,instrumented method call counters,"Counts CLIP, VFM, proposal, diffusion, and post-processing calls.",exploratory
+E4,mIoU per GFLOP,Group (ii); novelty-supporting,requires_flops,mIoU plus FLOPs,For Pareto-frontier plots.,exploratory
+E4,mIoU per second,Group (ii); novelty-supporting,computed_partial_from_official_log,mIoU plus official log time,Monitoring value; isolated E4 reruns are needed for final paper values.,exploratory
+E4,offline amortization curve,Group (ii); novelty-supporting,requires_method_stage_logs,"offline cost, online cost, evaluation set size N",Fair treatment of methods with high one-time preprocessing.,exploratory
+E4,per-stage memory/latency breakdown,Group (i),requires_method_stage_logs,encoder/proposal/naming/post-processing stage timings,Identifies bottleneck stage per method.,exploratory
+extra,class-IoU dispersion,extra discovery,computed_when_class_table_present,official mmseg per-class table,Std/quantile/Gini summary of per-class IoU; catches methods with the same mIoU but very different failure distribution.,extra_discovery
+extra,nonzero-class coverage,extra discovery,computed_when_class_table_present,official mmseg per-class table,Fraction of classes with IoU > 0; a simple collapse detector for large vocabularies.,extra_discovery
+extra,prediction label entropy,extra discovery,requires_prediction_artifacts,prediction label maps,Detects single-label dominance or overly diffuse predictions from saved label maps.,extra_discovery
+extra,rare-class rescue score,extra discovery,requires_taxonomy,per-class IoU plus train-frequency bins,Tail-vs-head relative gain; useful if a method is not best on mIoU but uniquely helps rare classes.,extra_discovery
+extra,near-tie robustness,extra discovery,requires_score_artifacts,top-2 class scores or logits,Fraction of pixels/regions whose top-1 and top-2 labels are close; flags ambiguous predictions that mIoU treats as hard errors.,extra_discovery
+extra,Pareto dominance flag,extra discovery,computed_when_timing_available,"mIoU, inference time, and memory",Identifies methods dominated by another method with higher mIoU and lower cost on the same dataset.,extra_discovery
+extra,method-family gap,extra discovery,computed_when_families_complete,canonical mIoU grouped by method family,Compares CLIP-dense vs CLIP+VFM families to see whether gains come from method class rather than individual implementation.,extra_discovery
+extra,artifact completeness,artifact readiness,computed,prediction artifact directory,Tracks whether each official run has enough saved prediction maps for artifact-based novelty metrics.,extra_discovery
+E1/E2/E3,mIoU,standard tier; ranking,computed_from_official_log,official evaluator summary,Primary comparable ranking metric; kept separate from novelty/exploratory readouts.,standard

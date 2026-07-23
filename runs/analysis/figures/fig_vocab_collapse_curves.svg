@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#222}.title{font-size:16px;font-weight:700}.label{font-size:12px}.tick{font-size:11px;fill:#555}.legend{font-size:12px}.grid{stroke:#e5e5e5;stroke-width:1}.axis{stroke:#222;stroke-width:1.2}.line{fill:none;stroke-width:2.2}.pt{stroke:white;stroke-width:1.2}</style>
+<text x="40.0" y="28.0" class="title">Large-vocabulary class-collapse curves</text>
+<line x1="75.0" y1="322.0" x2="435.0" y2="322.0" stroke="#222" class="axis"/>
+<line x1="75.0" y1="62.0" x2="75.0" y2="322.0" stroke="#222" class="axis"/>
+<line x1="75.0" y1="322.0" x2="435.0" y2="322.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="326.0" class="tick">0.00</text>
+<line x1="75.0" y1="270.0" x2="435.0" y2="270.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="274.0" class="tick">0.20</text>
+<line x1="75.0" y1="218.0" x2="435.0" y2="218.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="222.0" class="tick">0.40</text>
+<line x1="75.0" y1="166.0" x2="435.0" y2="166.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="170.0" class="tick">0.60</text>
+<line x1="75.0" y1="114.0" x2="435.0" y2="114.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="118.0" class="tick">0.80</text>
+<line x1="75.0" y1="62.0" x2="435.0" y2="62.0" stroke="#e5e5e5" class="grid"/>
+<text x="39.0" y="66.0" class="tick">1.00</text>
+<text x="230.0" y="364.0" class="label">vocabulary size</text>
+<text x="25.0" y="192.0" transform="rotate(-90 25.0 192.0)" class="label">zero-IoU class rate</text>
+<text x="150.0" y="44.0" class="label">Context vocabulary expansion</text>
+<line x1="75.0" y1="322.0" x2="75.0" y2="327.0" stroke="#222" class=""/>
+<text x="63.0" y="344.0" class="tick">59</text>
+<line x1="435.0" y1="322.0" x2="435.0" y2="327.0" stroke="#222" class=""/>
+<text x="423.0" y="344.0" class="tick">459</text>
+<polyline points="75.0,322.0 435.0,218.9" stroke="#4c78a8" class="line"/>
+<circle cx="75.0" cy="322.0" r="4" fill="#4c78a8" class="pt"/>
+<circle cx="435.0" cy="218.9" r="4" fill="#4c78a8" class="pt"/>
+<text x="443.0" y="222.9" class="legend">SCLIP</text>
+<polyline points="75.0,322.0 435.0,221.7" stroke="#f58518" class="line"/>
+<circle cx="75.0" cy="322.0" r="4" fill="#f58518" class="pt"/>
+<circle cx="435.0" cy="221.7" r="4" fill="#f58518" class="pt"/>
+<text x="443.0" y="225.7" class="legend">NACLIP</text>
+<polyline points="75.0,322.0 435.0,219.5" stroke="#54a24b" class="line"/>
+<circle cx="75.0" cy="322.0" r="4" fill="#54a24b" class="pt"/>
+<circle cx="435.0" cy="219.5" r="4" fill="#54a24b" class="pt"/>
+<text x="443.0" y="223.5" class="legend">ResCLIP</text>
+<polyline points="75.0,322.0 435.0,211.9" stroke="#b279a2" class="line"/>
+<circle cx="75.0" cy="322.0" r="4" fill="#b279a2" class="pt"/>
+<circle cx="435.0" cy="211.9" r="4" fill="#b279a2" class="pt"/>
+<text x="443.0" y="215.9" class="legend">ProxyCLIP</text>
+<polyline points="75.0,322.0 435.0,207.2" stroke="#e45756" class="line"/>
+<circle cx="75.0" cy="322.0" r="4" fill="#e45756" class="pt"/>
+<circle cx="435.0" cy="207.2" r="4" fill="#e45756" class="pt"/>
+<text x="443.0" y="211.2" class="legend">CorrCLIP</text>
+<line x1="550.0" y1="322.0" x2="910.0" y2="322.0" stroke="#222" class="axis"/>
+<line x1="550.0" y1="62.0" x2="550.0" y2="322.0" stroke="#222" class="axis"/>
+<line x1="550.0" y1="322.0" x2="910.0" y2="322.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="326.0" class="tick">0.00</text>
+<line x1="550.0" y1="270.0" x2="910.0" y2="270.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="274.0" class="tick">0.20</text>
+<line x1="550.0" y1="218.0" x2="910.0" y2="218.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="222.0" class="tick">0.40</text>
+<line x1="550.0" y1="166.0" x2="910.0" y2="166.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="170.0" class="tick">0.60</text>
+<line x1="550.0" y1="114.0" x2="910.0" y2="114.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="118.0" class="tick">0.80</text>
+<line x1="550.0" y1="62.0" x2="910.0" y2="62.0" stroke="#e5e5e5" class="grid"/>
+<text x="514.0" y="66.0" class="tick">1.00</text>
+<text x="705.0" y="364.0" class="label">vocabulary size</text>
+<text x="500.0" y="192.0" transform="rotate(-90 500.0 192.0)" class="label">zero-IoU class rate</text>
+<text x="625.0" y="44.0" class="label">ADE vocabulary expansion</text>
+<line x1="550.0" y1="322.0" x2="550.0" y2="327.0" stroke="#222" class=""/>
+<text x="538.0" y="344.0" class="tick">150</text>
+<line x1="910.0" y1="322.0" x2="910.0" y2="327.0" stroke="#222" class=""/>
+<text x="898.0" y="344.0" class="tick">847</text>
+<polyline points="550.0,313.3 910.0,220.2" stroke="#4c78a8" class="line"/>
+<circle cx="550.0" cy="313.3" r="4" fill="#4c78a8" class="pt"/>
+<circle cx="910.0" cy="220.2" r="4" fill="#4c78a8" class="pt"/>
+<text x="918.0" y="224.2" class="legend">SCLIP</text>
+<polyline points="550.0,309.9 910.0,225.2" stroke="#f58518" class="line"/>
+<circle cx="550.0" cy="309.9" r="4" fill="#f58518" class="pt"/>
+<circle cx="910.0" cy="225.2" r="4" fill="#f58518" class="pt"/>
+<text x="918.0" y="229.2" class="legend">NACLIP</text>
+<polyline points="550.0,309.9 910.0,220.2" stroke="#54a24b" class="line"/>
+<circle cx="550.0" cy="309.9" r="4" fill="#54a24b" class="pt"/>
+<circle cx="910.0" cy="220.2" r="4" fill="#54a24b" class="pt"/>
+<text x="918.0" y="224.2" class="legend">ResCLIP</text>
+<polyline points="550.0,308.1 910.0,212.7" stroke="#b279a2" class="line"/>
+<circle cx="550.0" cy="308.1" r="4" fill="#b279a2" class="pt"/>
+<circle cx="910.0" cy="212.7" r="4" fill="#b279a2" class="pt"/>
+<text x="918.0" y="216.7" class="legend">ProxyCLIP</text>
+<polyline points="550.0,315.1 910.0,192.3" stroke="#e45756" class="line"/>
+<circle cx="550.0" cy="315.1" r="4" fill="#e45756" class="pt"/>
+<circle cx="910.0" cy="192.3" r="4" fill="#e45756" class="pt"/>
+<text x="918.0" y="196.3" class="legend">CorrCLIP</text>
+</svg>

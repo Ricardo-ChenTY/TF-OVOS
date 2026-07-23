@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="430" viewBox="0 0 700 430">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;font-size:12px;fill:#222}.title{font-size:16px;font-weight:700}.label{font-size:12px}.tick{font-size:11px;fill:#555}.legend{font-size:12px}.grid{stroke:#e5e5e5;stroke-width:1}.axis{stroke:#222;stroke-width:1.2}.line{fill:none;stroke-width:2.2}.pt{stroke:white;stroke-width:1.2}</style>
+<text x="45.0" y="30.0" class="title">Component-scale degradation</text>
+<line x1="80.0" y1="343.0" x2="560.0" y2="343.0" stroke="#222" class="axis"/>
+<line x1="80.0" y1="58.0" x2="80.0" y2="343.0" stroke="#222" class="axis"/>
+<line x1="80.0" y1="343.0" x2="560.0" y2="343.0" stroke="#e5e5e5" class="grid"/>
+<text x="44.0" y="347.0" class="tick">0.00</text>
+<line x1="80.0" y1="271.8" x2="560.0" y2="271.8" stroke="#e5e5e5" class="grid"/>
+<text x="44.0" y="275.8" class="tick">0.10</text>
+<line x1="80.0" y1="200.5" x2="560.0" y2="200.5" stroke="#e5e5e5" class="grid"/>
+<text x="44.0" y="204.5" class="tick">0.20</text>
+<line x1="80.0" y1="129.3" x2="560.0" y2="129.3" stroke="#e5e5e5" class="grid"/>
+<text x="44.0" y="133.3" class="tick">0.30</text>
+<line x1="80.0" y1="58.0" x2="560.0" y2="58.0" stroke="#e5e5e5" class="grid"/>
+<text x="44.0" y="62.0" class="tick">0.40</text>
+<text x="295.0" y="385.0" class="label">component scale</text>
+<text x="30.0" y="200.5" transform="rotate(-90 30.0 200.5)" class="label">mean component IoU</text>
+<line x1="80.0" y1="343.0" x2="80.0" y2="348.0" stroke="#222" class=""/>
+<text x="62.0" y="365.0" class="tick">large</text>
+<line x1="320.0" y1="343.0" x2="320.0" y2="348.0" stroke="#222" class=""/>
+<text x="302.0" y="365.0" class="tick">medium</text>
+<line x1="560.0" y1="343.0" x2="560.0" y2="348.0" stroke="#222" class=""/>
+<text x="542.0" y="365.0" class="tick">small</text>
+<polyline points="80.0,159.8 320.0,298.0 560.0,334.1" stroke="#4c78a8" class="line"/>
+<circle cx="80.0" cy="159.8" r="4" fill="#4c78a8" class="pt"/>
+<circle cx="320.0" cy="298.0" r="4" fill="#4c78a8" class="pt"/>
+<circle cx="560.0" cy="334.1" r="4" fill="#4c78a8" class="pt"/>
+<text x="88.0" y="163.8" class="legend">SCLIP</text>
+<polyline points="80.0,126.8 320.0,278.5 560.0,330.5" stroke="#f58518" class="line"/>
+<circle cx="80.0" cy="126.8" r="4" fill="#f58518" class="pt"/>
+<circle cx="320.0" cy="278.5" r="4" fill="#f58518" class="pt"/>
+<circle cx="560.0" cy="330.5" r="4" fill="#f58518" class="pt"/>
+<text x="88.0" y="130.8" class="legend">NACLIP</text>
+<polyline points="80.0,141.6 320.0,287.8 560.0,332.2" stroke="#54a24b" class="line"/>
+<circle cx="80.0" cy="141.6" r="4" fill="#54a24b" class="pt"/>
+<circle cx="320.0" cy="287.8" r="4" fill="#54a24b" class="pt"/>
+<circle cx="560.0" cy="332.2" r="4" fill="#54a24b" class="pt"/>
+<text x="88.0" y="145.6" class="legend">ResCLIP</text>
+<polyline points="80.0,130.7 320.0,287.1 560.0,332.4" stroke="#b279a2" class="line"/>
+<circle cx="80.0" cy="130.7" r="4" fill="#b279a2" class="pt"/>
+<circle cx="320.0" cy="287.1" r="4" fill="#b279a2" class="pt"/>
+<circle cx="560.0" cy="332.4" r="4" fill="#b279a2" class="pt"/>
+<text x="88.0" y="134.7" class="legend">ProxyCLIP</text>
+<polyline points="80.0,79.4 320.0,262.3 560.0,329.9" stroke="#e45756" class="line"/>
+<circle cx="80.0" cy="79.4" r="4" fill="#e45756" class="pt"/>
+<circle cx="320.0" cy="262.3" r="4" fill="#e45756" class="pt"/>
+<circle cx="560.0" cy="329.9" r="4" fill="#e45756" class="pt"/>
+<text x="88.0" y="83.4" class="legend">CorrCLIP</text>
+</svg>

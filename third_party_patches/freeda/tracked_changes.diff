@@ -1,0 +1,73 @@
+diff --git a/src/segmentation/datasets/__init__.py b/src/segmentation/datasets/__init__.py
+index 321b8f5..4744621 100644
+--- a/src/segmentation/datasets/__init__.py
++++ b/src/segmentation/datasets/__init__.py
+@@ -1,2 +1,3 @@
+ from .coco_object import *
+ from .pascal_voc import *
++from .tfovos_extra import *
+diff --git a/src/us/misc.py b/src/us/misc.py
+index c49cd6c..2ae3d5d 100644
+--- a/src/us/misc.py
++++ b/src/us/misc.py
+@@ -4,12 +4,15 @@
+ from typing import Dict, List, Any
+ from datetime import datetime
+ from itertools import chain
++from pathlib import Path
++import os
+ 
+ import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import torch.distributed as dist
+ import numpy as np
++from PIL import Image
+ 
+ # ImageNet mean/std (from timm)
+ 
+@@ -24,6 +27,28 @@ DEFAULT_STD = IMAGENET_DEFAULT_STD
+ # normalization constants (https://github.com/openai/CLIP/issues/20#issuecomment-764985771).
+ 
+ 
++def _save_tfovos_prediction(dataset, batch_index, pred):
++    root = os.environ.get("FREEDA_SAVE_ROOT")
++    ds_name = os.environ.get("FREEDA_DATASET_NAME")
++    if not root or not ds_name:
++        return
++    try:
++        info = dataset.dataset.img_infos[int(batch_index) + dataset.indices.start]
++        filename = info.get("filename") or info.get("img_info", {}).get("filename") or str(batch_index)
++    except Exception:
++        filename = str(batch_index)
++    stem = Path(filename).stem
++    arr = np.asarray(pred, dtype=np.int32)
++    if ds_name in {"voc20", "context59", "ade20k", "coco_stuff164k"}:
++        arr = arr + 1
++    out_dir = Path(root) / "freeda" / ds_name
++    out_dir.mkdir(parents=True, exist_ok=True)
++    if arr.max(initial=0) > 255:
++        Image.fromarray(arr.astype(np.uint16), mode="I;16").save(out_dir / f"{stem}.png")
++    else:
++        Image.fromarray(arr.astype(np.uint8), mode="L").save(out_dir / f"{stem}.png")
++
++
+ def unnorm(x):
+     mean = torch.as_tensor(DEFAULT_MEAN, device=x.device)[None, ..., None, None]
+     std = torch.as_tensor(DEFAULT_STD, device=x.device)[None, ..., None, None]
+@@ -124,6 +149,7 @@ import warnings
+ 
+ import mmcv
+ import numpy as np
++from PIL import Image
+ import torch
+ from mmcv.engine import collect_results_cpu, collect_results_gpu
+ from mmcv.image import tensor2imgs
+@@ -278,6 +304,7 @@ def multi_gpu_test(model,
+             result = model(return_loss=False, rescale=True, **data)
+ 
+         for pred_qualitative, index in zip(result, batch_indices):
++            _save_tfovos_prediction(dataset, index, pred_qualitative)
+             pred_qualitatives.append(pred_qualitative+1)
+             seg_map_gt = dataset.dataset.get_gt_seg_map_by_idx(index + dataset.indices.start)
+             # seg_map_gt[seg_map_gt == 255] = 0

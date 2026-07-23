@@ -1,0 +1,14 @@
+diff --git a/odise/data/datasets/register_pascal.py b/odise/data/datasets/register_pascal.py
+index d1d4f28..f77a76f 100644
+--- a/odise/data/datasets/register_pascal.py
++++ b/odise/data/datasets/register_pascal.py
+@@ -584,7 +584,8 @@ def register_all_ctx59(root):
+     meta = _get_ctx59_meta()
+     for name, dirname in [("train", "training"), ("val", "validation")]:
+         image_dir = os.path.join(root, "images", dirname)
+-        gt_dir = os.path.join(root, "annotations_ctx59", dirname)
++        # TF-OVCOS: use 0..58/255 labels for Detectron2; raw mmseg labels are 1..59/0.
++        gt_dir = os.path.join(root, "annotations_ctx59_fixed", dirname)
+         name = f"ctx59_sem_seg_{name}"
+         DatasetCatalog.register(
+             name, lambda x=image_dir, y=gt_dir: load_sem_seg(y, x, gt_ext="png", image_ext="jpg")

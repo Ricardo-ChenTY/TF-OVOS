@@ -1,0 +1,881 @@
+method,dataset,kind,gt_class_id,gt_class,pred_class_id,pred_class,count
+sclip,context459,gt_region_top1_confusion,43,building,345,shed,319
+sclip,context459,gt_region_top1_confusion,419,tree,457,wood,244
+sclip,context459,gt_region_top1_confusion,188,ground,323,road,240
+sclip,context459,gt_region_top1_confusion,157,floor,329,rug,215
+sclip,context459,gt_region_top1_confusion,439,wall,78,closet,203
+sclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,185
+sclip,context459,gt_region_top1_confusion,419,tree,186,grass,184
+sclip,context459,gt_region_top1_confusion,359,sky,419,tree,176
+sclip,context459,gt_region_top1_confusion,186,grass,188,ground,135
+sclip,context459,gt_region_top1_confusion,283,person,7,baby carriage,132
+sclip,context459,gt_region_top1_confusion,43,building,85,concrete,131
+sclip,context459,gt_region_top1_confusion,283,person,441,wardrobe,129
+sclip,context459,gt_region_top1_confusion,283,person,79,cloth,129
+sclip,context459,gt_region_top1_confusion,188,ground,85,concrete,117
+sclip,context459,gt_region_top1_confusion,414,track,315,rail,116
+sclip,context459,gt_region_top1_confusion,188,ground,186,grass,110
+sclip,context459,gt_region_top1_confusion,307,pottedplant,292,plant,107
+sclip,context459,gt_region_top1_confusion,439,wall,441,wardrobe,104
+sclip,context459,gt_region_top1_confusion,419,tree,188,ground,96
+sclip,context459,gt_region_top1_confusion,430,unknown,186,grass,96
+sclip,context459,proposal_oracle_confusion,43,building,345,shed,359
+sclip,context459,proposal_oracle_confusion,419,tree,457,wood,272
+sclip,context459,proposal_oracle_confusion,439,wall,78,closet,227
+sclip,context459,proposal_oracle_confusion,188,ground,323,road,224
+sclip,context459,proposal_oracle_confusion,157,floor,329,rug,223
+sclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,216
+sclip,context459,proposal_oracle_confusion,186,grass,188,ground,143
+sclip,context459,proposal_oracle_confusion,283,person,7,baby carriage,142
+sclip,context459,proposal_oracle_confusion,283,person,79,cloth,137
+sclip,context459,proposal_oracle_confusion,414,track,315,rail,135
+sclip,context459,proposal_oracle_confusion,43,building,85,concrete,133
+sclip,context459,proposal_oracle_confusion,419,tree,186,grass,129
+sclip,context459,proposal_oracle_confusion,283,person,441,wardrobe,123
+sclip,context459,proposal_oracle_confusion,188,ground,85,concrete,121
+sclip,context459,proposal_oracle_confusion,359,sky,419,tree,117
+sclip,context459,proposal_oracle_confusion,307,pottedplant,292,plant,116
+sclip,context459,proposal_oracle_confusion,419,tree,188,ground,111
+sclip,context459,proposal_oracle_confusion,71,chair,382,stool,108
+sclip,context459,proposal_oracle_confusion,453,window,454,window blinds,96
+sclip,context459,proposal_oracle_confusion,439,wall,441,wardrobe,96
+sclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",266
+sclip,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",175
+sclip,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",164
+sclip,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",151
+sclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",129
+sclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",126
+sclip,ade847,gt_region_top1_confusion,3,tree,496,"leaf, leafage, foliage",112
+sclip,ade847,gt_region_top1_confusion,255,pier,12,grass,110
+sclip,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",107
+sclip,ade847,gt_region_top1_confusion,3,tree,195,forest,107
+sclip,ade847,gt_region_top1_confusion,56,pillow,7,bed,90
+sclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,81
+sclip,ade847,gt_region_top1_confusion,255,pier,2,sky,76
+sclip,ade847,gt_region_top1_confusion,82,"light, light source",219,"fluorescent, fluorescent fixture",74
+sclip,ade847,gt_region_top1_confusion,0,wall,393,"baseboard, mopboard, skirting board",74
+sclip,ade847,gt_region_top1_confusion,17,table,7,bed,70
+sclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",66
+sclip,ade847,gt_region_top1_confusion,0,wall,46,"wardrobe, closet, press",64
+sclip,ade847,gt_region_top1_confusion,0,wall,26,house,64
+sclip,ade847,gt_region_top1_confusion,255,pier,7,bed,62
+sclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",276
+sclip,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",172
+sclip,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",140
+sclip,ade847,proposal_oracle_confusion,3,tree,496,"leaf, leafage, foliage",129
+sclip,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",124
+sclip,ade847,proposal_oracle_confusion,3,tree,195,forest,116
+sclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",112
+sclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",103
+sclip,ade847,proposal_oracle_confusion,82,"light, light source",219,"fluorescent, fluorescent fixture",94
+sclip,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",85
+sclip,ade847,proposal_oracle_confusion,11,"person, individual, someone, somebody, mortal, soul",283,"trouser, pant",79
+sclip,ade847,proposal_oracle_confusion,56,pillow,7,bed,79
+sclip,ade847,proposal_oracle_confusion,0,wall,393,"baseboard, mopboard, skirting board",78
+sclip,ade847,proposal_oracle_confusion,0,wall,26,house,69
+sclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",69
+sclip,ade847,proposal_oracle_confusion,255,pier,393,"baseboard, mopboard, skirting board",67
+sclip,ade847,proposal_oracle_confusion,255,pier,12,grass,67
+sclip,ade847,proposal_oracle_confusion,0,wall,46,"wardrobe, closet, press",64
+sclip,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,60
+sclip,ade847,proposal_oracle_confusion,10,cabinet,68,"chest of drawers, chest, bureau, dresser",57
+naclip,context459,gt_region_top1_confusion,283,person,79,cloth,322
+naclip,context459,gt_region_top1_confusion,43,building,345,shed,298
+naclip,context459,gt_region_top1_confusion,157,floor,329,rug,231
+naclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,220
+naclip,context459,gt_region_top1_confusion,188,ground,323,road,207
+naclip,context459,gt_region_top1_confusion,43,building,439,wall,184
+naclip,context459,gt_region_top1_confusion,359,sky,419,tree,151
+naclip,context459,gt_region_top1_confusion,283,person,284,photo,149
+naclip,context459,gt_region_top1_confusion,419,tree,186,grass,145
+naclip,context459,gt_region_top1_confusion,414,track,315,rail,138
+naclip,context459,gt_region_top1_confusion,307,pottedplant,292,plant,135
+naclip,context459,gt_region_top1_confusion,419,tree,457,wood,130
+naclip,context459,gt_region_top1_confusion,439,wall,78,closet,129
+naclip,context459,gt_region_top1_confusion,188,ground,85,concrete,124
+naclip,context459,gt_region_top1_confusion,71,chair,382,stool,118
+naclip,context459,gt_region_top1_confusion,188,ground,186,grass,111
+naclip,context459,gt_region_top1_confusion,286,picture,168,frame,108
+naclip,context459,gt_region_top1_confusion,43,building,38,brick,101
+naclip,context459,gt_region_top1_confusion,188,ground,333,sand,100
+naclip,context459,gt_region_top1_confusion,188,ground,157,floor,99
+naclip,context459,proposal_oracle_confusion,43,building,345,shed,349
+naclip,context459,proposal_oracle_confusion,283,person,79,cloth,330
+naclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,232
+naclip,context459,proposal_oracle_confusion,157,floor,329,rug,230
+naclip,context459,proposal_oracle_confusion,188,ground,323,road,197
+naclip,context459,proposal_oracle_confusion,43,building,439,wall,192
+naclip,context459,proposal_oracle_confusion,283,person,284,photo,171
+naclip,context459,proposal_oracle_confusion,307,pottedplant,292,plant,148
+naclip,context459,proposal_oracle_confusion,439,wall,78,closet,147
+naclip,context459,proposal_oracle_confusion,414,track,315,rail,144
+naclip,context459,proposal_oracle_confusion,419,tree,457,wood,134
+naclip,context459,proposal_oracle_confusion,188,ground,85,concrete,129
+naclip,context459,proposal_oracle_confusion,286,picture,168,frame,123
+naclip,context459,proposal_oracle_confusion,71,chair,382,stool,121
+naclip,context459,proposal_oracle_confusion,359,sky,419,tree,113
+naclip,context459,proposal_oracle_confusion,188,ground,333,sand,104
+naclip,context459,proposal_oracle_confusion,43,building,38,brick,103
+naclip,context459,proposal_oracle_confusion,188,ground,157,floor,103
+naclip,context459,proposal_oracle_confusion,419,tree,186,grass,89
+naclip,context459,proposal_oracle_confusion,283,person,286,picture,87
+naclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",257
+naclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",191
+naclip,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,154
+naclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",145
+naclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",142
+naclip,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",141
+naclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,134
+naclip,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",134
+naclip,ade847,gt_region_top1_confusion,255,pier,12,grass,124
+naclip,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",121
+naclip,ade847,gt_region_top1_confusion,3,tree,195,forest,119
+naclip,ade847,gt_region_top1_confusion,255,pier,2,sky,107
+naclip,ade847,gt_region_top1_confusion,255,pier,0,wall,95
+naclip,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",86
+naclip,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",85
+naclip,ade847,gt_region_top1_confusion,56,pillow,7,bed,81
+naclip,ade847,gt_region_top1_confusion,0,wall,26,house,74
+naclip,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,73
+naclip,ade847,gt_region_top1_confusion,11,"person, individual, someone, somebody, mortal, soul",283,"trouser, pant",69
+naclip,ade847,gt_region_top1_confusion,3,tree,496,"leaf, leafage, foliage",64
+naclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",256
+naclip,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,157
+naclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",139
+naclip,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",135
+naclip,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",126
+naclip,ade847,proposal_oracle_confusion,3,tree,195,forest,124
+naclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",110
+naclip,ade847,proposal_oracle_confusion,11,"person, individual, someone, somebody, mortal, soul",283,"trouser, pant",84
+naclip,ade847,proposal_oracle_confusion,0,wall,26,house,79
+naclip,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",78
+naclip,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",75
+naclip,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,75
+naclip,ade847,proposal_oracle_confusion,3,tree,496,"leaf, leafage, foliage",73
+naclip,ade847,proposal_oracle_confusion,82,"light, light source",686,spotlights,72
+naclip,ade847,proposal_oracle_confusion,255,pier,12,grass,70
+naclip,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,68
+naclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",63
+naclip,ade847,proposal_oracle_confusion,6,ceiling,505,eaves,60
+naclip,ade847,proposal_oracle_confusion,17,table,68,"chest of drawers, chest, bureau, dresser",59
+naclip,ade847,proposal_oracle_confusion,56,pillow,7,bed,58
+resclip,context459,gt_region_top1_confusion,43,building,345,shed,321
+resclip,context459,gt_region_top1_confusion,157,floor,329,rug,235
+resclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,233
+resclip,context459,gt_region_top1_confusion,359,sky,419,tree,226
+resclip,context459,gt_region_top1_confusion,188,ground,323,road,189
+resclip,context459,gt_region_top1_confusion,283,person,79,cloth,165
+resclip,context459,gt_region_top1_confusion,188,ground,186,grass,145
+resclip,context459,gt_region_top1_confusion,414,track,315,rail,145
+resclip,context459,gt_region_top1_confusion,419,tree,186,grass,144
+resclip,context459,gt_region_top1_confusion,43,building,439,wall,143
+resclip,context459,gt_region_top1_confusion,71,chair,382,stool,142
+resclip,context459,gt_region_top1_confusion,439,wall,78,closet,140
+resclip,context459,gt_region_top1_confusion,307,pottedplant,292,plant,118
+resclip,context459,gt_region_top1_confusion,188,ground,85,concrete,115
+resclip,context459,gt_region_top1_confusion,283,person,7,baby carriage,109
+resclip,context459,gt_region_top1_confusion,286,picture,168,frame,107
+resclip,context459,gt_region_top1_confusion,439,wall,114,door,105
+resclip,context459,gt_region_top1_confusion,188,ground,333,sand,104
+resclip,context459,gt_region_top1_confusion,323,road,353,sidewalk,96
+resclip,context459,gt_region_top1_confusion,283,person,382,stool,95
+resclip,context459,proposal_oracle_confusion,43,building,345,shed,363
+resclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,252
+resclip,context459,proposal_oracle_confusion,157,floor,329,rug,243
+resclip,context459,proposal_oracle_confusion,188,ground,323,road,188
+resclip,context459,proposal_oracle_confusion,283,person,79,cloth,182
+resclip,context459,proposal_oracle_confusion,439,wall,78,closet,169
+resclip,context459,proposal_oracle_confusion,359,sky,419,tree,160
+resclip,context459,proposal_oracle_confusion,43,building,439,wall,155
+resclip,context459,proposal_oracle_confusion,414,track,315,rail,152
+resclip,context459,proposal_oracle_confusion,71,chair,382,stool,139
+resclip,context459,proposal_oracle_confusion,286,picture,168,frame,132
+resclip,context459,proposal_oracle_confusion,307,pottedplant,292,plant,126
+resclip,context459,proposal_oracle_confusion,188,ground,333,sand,121
+resclip,context459,proposal_oracle_confusion,188,ground,85,concrete,119
+resclip,context459,proposal_oracle_confusion,439,wall,114,door,112
+resclip,context459,proposal_oracle_confusion,283,person,7,baby carriage,110
+resclip,context459,proposal_oracle_confusion,419,tree,457,wood,104
+resclip,context459,proposal_oracle_confusion,419,tree,228,leaves,99
+resclip,context459,proposal_oracle_confusion,283,person,382,stool,98
+resclip,context459,proposal_oracle_confusion,283,person,284,photo,96
+resclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",247
+resclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",161
+resclip,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",149
+resclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,148
+resclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",130
+resclip,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,123
+resclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",121
+resclip,ade847,gt_region_top1_confusion,255,pier,12,grass,121
+resclip,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",116
+resclip,ade847,gt_region_top1_confusion,3,tree,195,forest,112
+resclip,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",103
+resclip,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",102
+resclip,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",94
+resclip,ade847,gt_region_top1_confusion,255,pier,2,sky,93
+resclip,ade847,gt_region_top1_confusion,56,pillow,7,bed,82
+resclip,ade847,gt_region_top1_confusion,255,pier,0,wall,73
+resclip,ade847,gt_region_top1_confusion,40,cushion,21,"sofa, couch, lounge",64
+resclip,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,63
+resclip,ade847,gt_region_top1_confusion,11,"person, individual, someone, somebody, mortal, soul",8,"sidewalk, pavement",63
+resclip,ade847,gt_region_top1_confusion,0,wall,26,house,62
+resclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",256
+resclip,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",147
+resclip,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,142
+resclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",131
+resclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",127
+resclip,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,115
+resclip,ade847,proposal_oracle_confusion,3,tree,195,forest,115
+resclip,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",105
+resclip,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",88
+resclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",73
+resclip,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",73
+resclip,ade847,proposal_oracle_confusion,0,wall,26,house,68
+resclip,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",68
+resclip,ade847,proposal_oracle_confusion,255,pier,12,grass,67
+resclip,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,66
+resclip,ade847,proposal_oracle_confusion,3,tree,496,"leaf, leafage, foliage",66
+resclip,ade847,proposal_oracle_confusion,56,pillow,7,bed,64
+resclip,ade847,proposal_oracle_confusion,17,table,68,"chest of drawers, chest, bureau, dresser",63
+resclip,ade847,proposal_oracle_confusion,58,"toilet, can, commode, crapper, pot, potty, stool, throne",700,plant pots,58
+resclip,ade847,proposal_oracle_confusion,40,cushion,21,"sofa, couch, lounge",57
+proxyclip,context459,gt_region_top1_confusion,43,building,345,shed,294
+proxyclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,225
+proxyclip,context459,gt_region_top1_confusion,188,ground,323,road,221
+proxyclip,context459,gt_region_top1_confusion,359,sky,419,tree,216
+proxyclip,context459,gt_region_top1_confusion,157,floor,329,rug,209
+proxyclip,context459,gt_region_top1_confusion,283,person,79,cloth,197
+proxyclip,context459,gt_region_top1_confusion,283,person,284,photo,180
+proxyclip,context459,gt_region_top1_confusion,439,wall,78,closet,166
+proxyclip,context459,gt_region_top1_confusion,307,pottedplant,292,plant,146
+proxyclip,context459,gt_region_top1_confusion,43,building,439,wall,139
+proxyclip,context459,gt_region_top1_confusion,419,tree,186,grass,130
+proxyclip,context459,gt_region_top1_confusion,414,track,315,rail,130
+proxyclip,context459,gt_region_top1_confusion,188,ground,333,sand,105
+proxyclip,context459,gt_region_top1_confusion,71,chair,396,table,103
+proxyclip,context459,gt_region_top1_confusion,439,wall,114,door,102
+proxyclip,context459,gt_region_top1_confusion,188,ground,85,concrete,100
+proxyclip,context459,gt_region_top1_confusion,43,building,38,brick,97
+proxyclip,context459,gt_region_top1_confusion,71,chair,382,stool,95
+proxyclip,context459,gt_region_top1_confusion,186,grass,188,ground,93
+proxyclip,context459,gt_region_top1_confusion,419,tree,457,wood,89
+proxyclip,context459,proposal_oracle_confusion,43,building,345,shed,330
+proxyclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,232
+proxyclip,context459,proposal_oracle_confusion,188,ground,323,road,218
+proxyclip,context459,proposal_oracle_confusion,157,floor,329,rug,217
+proxyclip,context459,proposal_oracle_confusion,283,person,79,cloth,209
+proxyclip,context459,proposal_oracle_confusion,283,person,284,photo,206
+proxyclip,context459,proposal_oracle_confusion,359,sky,419,tree,189
+proxyclip,context459,proposal_oracle_confusion,439,wall,78,closet,181
+proxyclip,context459,proposal_oracle_confusion,43,building,439,wall,150
+proxyclip,context459,proposal_oracle_confusion,414,track,315,rail,144
+proxyclip,context459,proposal_oracle_confusion,307,pottedplant,292,plant,142
+proxyclip,context459,proposal_oracle_confusion,188,ground,333,sand,109
+proxyclip,context459,proposal_oracle_confusion,188,ground,85,concrete,107
+proxyclip,context459,proposal_oracle_confusion,439,wall,114,door,101
+proxyclip,context459,proposal_oracle_confusion,43,building,38,brick,101
+proxyclip,context459,proposal_oracle_confusion,71,chair,382,stool,99
+proxyclip,context459,proposal_oracle_confusion,286,picture,168,frame,96
+proxyclip,context459,proposal_oracle_confusion,419,tree,186,grass,96
+proxyclip,context459,proposal_oracle_confusion,419,tree,457,wood,94
+proxyclip,context459,proposal_oracle_confusion,419,tree,188,ground,88
+proxyclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",263
+proxyclip,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",172
+proxyclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,149
+proxyclip,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,137
+proxyclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",128
+proxyclip,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",125
+proxyclip,ade847,gt_region_top1_confusion,0,wall,26,house,124
+proxyclip,ade847,gt_region_top1_confusion,3,tree,195,forest,124
+proxyclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",124
+proxyclip,ade847,gt_region_top1_confusion,255,pier,2,sky,109
+proxyclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",105
+proxyclip,ade847,gt_region_top1_confusion,255,pier,12,grass,101
+proxyclip,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,100
+proxyclip,ade847,gt_region_top1_confusion,255,pier,0,wall,88
+proxyclip,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",82
+proxyclip,ade847,gt_region_top1_confusion,40,cushion,21,"sofa, couch, lounge",77
+proxyclip,ade847,gt_region_top1_confusion,255,pier,3,tree,74
+proxyclip,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",69
+proxyclip,ade847,gt_region_top1_confusion,56,pillow,7,bed,67
+proxyclip,ade847,gt_region_top1_confusion,29,armchair,21,"sofa, couch, lounge",63
+proxyclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",267
+proxyclip,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",182
+proxyclip,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,146
+proxyclip,ade847,proposal_oracle_confusion,0,wall,26,house,128
+proxyclip,ade847,proposal_oracle_confusion,3,tree,195,forest,128
+proxyclip,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,121
+proxyclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",111
+proxyclip,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,105
+proxyclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",100
+proxyclip,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",89
+proxyclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",82
+proxyclip,ade847,proposal_oracle_confusion,40,cushion,21,"sofa, couch, lounge",68
+proxyclip,ade847,proposal_oracle_confusion,255,pier,12,grass,63
+proxyclip,ade847,proposal_oracle_confusion,20,door,64,double door,60
+proxyclip,ade847,proposal_oracle_confusion,0,wall,64,double door,58
+proxyclip,ade847,proposal_oracle_confusion,1,"building, edifice",565,block,58
+proxyclip,ade847,proposal_oracle_confusion,29,armchair,21,"sofa, couch, lounge",57
+proxyclip,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",54
+proxyclip,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",52
+proxyclip,ade847,proposal_oracle_confusion,255,pier,64,double door,51
+corrclip,context459,gt_region_top1_confusion,419,tree,228,leaves,356
+corrclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,263
+corrclip,context459,gt_region_top1_confusion,188,ground,323,road,204
+corrclip,context459,gt_region_top1_confusion,188,ground,157,floor,199
+corrclip,context459,gt_region_top1_confusion,430,unknown,157,floor,155
+corrclip,context459,gt_region_top1_confusion,186,grass,188,ground,135
+corrclip,context459,gt_region_top1_confusion,43,building,345,shed,133
+corrclip,context459,gt_region_top1_confusion,439,wall,67,ceiling,124
+corrclip,context459,gt_region_top1_confusion,439,wall,78,closet,117
+corrclip,context459,gt_region_top1_confusion,283,person,57,cap,110
+corrclip,context459,gt_region_top1_confusion,419,tree,186,grass,109
+corrclip,context459,gt_region_top1_confusion,439,wall,114,door,107
+corrclip,context459,gt_region_top1_confusion,283,person,234,line,100
+corrclip,context459,gt_region_top1_confusion,323,road,353,sidewalk,100
+corrclip,context459,gt_region_top1_confusion,439,wall,157,floor,97
+corrclip,context459,gt_region_top1_confusion,426,tvmonitor,84,computer,95
+corrclip,context459,gt_region_top1_confusion,359,sky,419,tree,93
+corrclip,context459,gt_region_top1_confusion,188,ground,333,sand,90
+corrclip,context459,gt_region_top1_confusion,43,building,143,fence,86
+corrclip,context459,gt_region_top1_confusion,414,track,315,rail,83
+corrclip,context459,proposal_oracle_confusion,419,tree,228,leaves,363
+corrclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,265
+corrclip,context459,proposal_oracle_confusion,188,ground,323,road,208
+corrclip,context459,proposal_oracle_confusion,188,ground,157,floor,201
+corrclip,context459,proposal_oracle_confusion,43,building,345,shed,141
+corrclip,context459,proposal_oracle_confusion,430,unknown,157,floor,140
+corrclip,context459,proposal_oracle_confusion,186,grass,188,ground,140
+corrclip,context459,proposal_oracle_confusion,439,wall,78,closet,121
+corrclip,context459,proposal_oracle_confusion,439,wall,67,ceiling,120
+corrclip,context459,proposal_oracle_confusion,283,person,234,line,119
+corrclip,context459,proposal_oracle_confusion,283,person,57,cap,115
+corrclip,context459,proposal_oracle_confusion,439,wall,114,door,107
+corrclip,context459,proposal_oracle_confusion,323,road,353,sidewalk,97
+corrclip,context459,proposal_oracle_confusion,426,tvmonitor,84,computer,95
+corrclip,context459,proposal_oracle_confusion,188,ground,333,sand,94
+corrclip,context459,proposal_oracle_confusion,419,tree,186,grass,93
+corrclip,context459,proposal_oracle_confusion,414,track,315,rail,92
+corrclip,context459,proposal_oracle_confusion,359,sky,419,tree,86
+corrclip,context459,proposal_oracle_confusion,439,wall,157,floor,85
+corrclip,context459,proposal_oracle_confusion,43,building,143,fence,83
+corrclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",260
+corrclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,217
+corrclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",208
+corrclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",207
+corrclip,ade847,gt_region_top1_confusion,3,tree,195,forest,145
+corrclip,ade847,gt_region_top1_confusion,255,pier,0,wall,116
+corrclip,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",114
+corrclip,ade847,gt_region_top1_confusion,19,"curtain, drape, drapery, mantle, pall",591,cover curtain,112
+corrclip,ade847,gt_region_top1_confusion,255,pier,2,sky,112
+corrclip,ade847,gt_region_top1_confusion,255,pier,12,grass,107
+corrclip,ade847,gt_region_top1_confusion,0,wall,6,ceiling,93
+corrclip,ade847,gt_region_top1_confusion,255,pier,1,"building, edifice",86
+corrclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",82
+corrclip,ade847,gt_region_top1_confusion,0,wall,525,first floor,82
+corrclip,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",700,plant pots,81
+corrclip,ade847,gt_region_top1_confusion,78,"streetlight, street lamp",1,"building, edifice",81
+corrclip,ade847,gt_region_top1_confusion,11,"person, individual, someone, somebody, mortal, soul",350,shirt,76
+corrclip,ade847,gt_region_top1_confusion,255,pier,6,ceiling,75
+corrclip,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,67
+corrclip,ade847,gt_region_top1_confusion,18,chair,551,chair desk,63
+corrclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",254
+corrclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",201
+corrclip,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,200
+corrclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",148
+corrclip,ade847,proposal_oracle_confusion,3,tree,195,forest,143
+corrclip,ade847,proposal_oracle_confusion,19,"curtain, drape, drapery, mantle, pall",591,cover curtain,112
+corrclip,ade847,proposal_oracle_confusion,0,wall,525,first floor,86
+corrclip,ade847,proposal_oracle_confusion,0,wall,6,ceiling,82
+corrclip,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",700,plant pots,79
+corrclip,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",79
+corrclip,ade847,proposal_oracle_confusion,11,"person, individual, someone, somebody, mortal, soul",350,shirt,78
+corrclip,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,70
+corrclip,ade847,proposal_oracle_confusion,18,chair,551,chair desk,65
+corrclip,ade847,proposal_oracle_confusion,20,door,64,double door,64
+corrclip,ade847,proposal_oracle_confusion,7,bed,150,"blanket, cover",61
+corrclip,ade847,proposal_oracle_confusion,255,pier,6,ceiling,59
+corrclip,ade847,proposal_oracle_confusion,17,table,588,tables,59
+corrclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",59
+corrclip,ade847,proposal_oracle_confusion,58,"toilet, can, commode, crapper, pot, potty, stool, throne",700,plant pots,57
+corrclip,ade847,proposal_oracle_confusion,255,pier,12,grass,57
+scclip,context459,gt_region_top1_confusion,43,building,345,shed,268
+scclip,context459,gt_region_top1_confusion,188,ground,353,sidewalk,242
+scclip,context459,gt_region_top1_confusion,359,sky,419,tree,227
+scclip,context459,gt_region_top1_confusion,157,floor,329,rug,219
+scclip,context459,gt_region_top1_confusion,419,tree,186,grass,198
+scclip,context459,gt_region_top1_confusion,283,person,284,photo,181
+scclip,context459,gt_region_top1_confusion,188,ground,323,road,161
+scclip,context459,gt_region_top1_confusion,71,chair,382,stool,151
+scclip,context459,gt_region_top1_confusion,307,pottedplant,292,plant,150
+scclip,context459,gt_region_top1_confusion,414,track,315,rail,149
+scclip,context459,gt_region_top1_confusion,283,person,79,cloth,139
+scclip,context459,gt_region_top1_confusion,188,ground,333,sand,126
+scclip,context459,gt_region_top1_confusion,43,building,439,wall,123
+scclip,context459,gt_region_top1_confusion,188,ground,85,concrete,121
+scclip,context459,gt_region_top1_confusion,439,wall,45,cabinet,108
+scclip,context459,gt_region_top1_confusion,188,ground,186,grass,100
+scclip,context459,gt_region_top1_confusion,323,road,353,sidewalk,95
+scclip,context459,gt_region_top1_confusion,439,wall,78,closet,88
+scclip,context459,gt_region_top1_confusion,188,ground,315,rail,86
+scclip,context459,gt_region_top1_confusion,286,picture,168,frame,79
+scclip,context459,proposal_oracle_confusion,43,building,345,shed,301
+scclip,context459,proposal_oracle_confusion,188,ground,353,sidewalk,255
+scclip,context459,proposal_oracle_confusion,157,floor,329,rug,225
+scclip,context459,proposal_oracle_confusion,283,person,284,photo,203
+scclip,context459,proposal_oracle_confusion,359,sky,419,tree,172
+scclip,context459,proposal_oracle_confusion,188,ground,323,road,165
+scclip,context459,proposal_oracle_confusion,419,tree,186,grass,164
+scclip,context459,proposal_oracle_confusion,71,chair,382,stool,156
+scclip,context459,proposal_oracle_confusion,414,track,315,rail,155
+scclip,context459,proposal_oracle_confusion,307,pottedplant,292,plant,147
+scclip,context459,proposal_oracle_confusion,283,person,79,cloth,145
+scclip,context459,proposal_oracle_confusion,43,building,439,wall,130
+scclip,context459,proposal_oracle_confusion,188,ground,333,sand,130
+scclip,context459,proposal_oracle_confusion,188,ground,85,concrete,120
+scclip,context459,proposal_oracle_confusion,439,wall,45,cabinet,110
+scclip,context459,proposal_oracle_confusion,439,wall,78,closet,100
+scclip,context459,proposal_oracle_confusion,186,grass,188,ground,95
+scclip,context459,proposal_oracle_confusion,286,picture,168,frame,92
+scclip,context459,proposal_oracle_confusion,323,road,353,sidewalk,88
+scclip,context459,proposal_oracle_confusion,283,person,270,pack,86
+scclip,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",257
+scclip,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",166
+scclip,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,152
+scclip,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",127
+scclip,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",126
+scclip,ade847,gt_region_top1_confusion,3,tree,496,"leaf, leafage, foliage",116
+scclip,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",113
+scclip,ade847,gt_region_top1_confusion,255,pier,12,grass,112
+scclip,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,111
+scclip,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",108
+scclip,ade847,gt_region_top1_confusion,3,tree,195,forest,100
+scclip,ade847,gt_region_top1_confusion,255,pier,2,sky,81
+scclip,ade847,gt_region_top1_confusion,255,pier,0,wall,79
+scclip,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",77
+scclip,ade847,gt_region_top1_confusion,56,pillow,7,bed,75
+scclip,ade847,gt_region_top1_confusion,29,armchair,21,"sofa, couch, lounge",69
+scclip,ade847,gt_region_top1_confusion,255,pier,1,"building, edifice",69
+scclip,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",68
+scclip,ade847,gt_region_top1_confusion,40,cushion,21,"sofa, couch, lounge",67
+scclip,ade847,gt_region_top1_confusion,17,table,588,tables,65
+scclip,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",267
+scclip,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",151
+scclip,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,125
+scclip,ade847,proposal_oracle_confusion,3,tree,496,"leaf, leafage, foliage",118
+scclip,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",117
+scclip,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",116
+scclip,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,114
+scclip,ade847,proposal_oracle_confusion,3,tree,195,forest,100
+scclip,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",85
+scclip,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",85
+scclip,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",81
+scclip,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",76
+scclip,ade847,proposal_oracle_confusion,255,pier,12,grass,72
+scclip,ade847,proposal_oracle_confusion,56,pillow,7,bed,64
+scclip,ade847,proposal_oracle_confusion,40,cushion,21,"sofa, couch, lounge",64
+scclip,ade847,proposal_oracle_confusion,29,armchair,21,"sofa, couch, lounge",62
+scclip,ade847,proposal_oracle_confusion,17,table,588,tables,60
+scclip,ade847,proposal_oracle_confusion,18,chair,588,tables,60
+scclip,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,58
+scclip,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",57
+cliptrase,context459,gt_region_top1_confusion,439,wall,78,closet,269
+cliptrase,context459,gt_region_top1_confusion,43,building,345,shed,245
+cliptrase,context459,gt_region_top1_confusion,419,tree,186,grass,221
+cliptrase,context459,gt_region_top1_confusion,283,person,441,wardrobe,185
+cliptrase,context459,gt_region_top1_confusion,359,sky,419,tree,181
+cliptrase,context459,gt_region_top1_confusion,157,floor,329,rug,176
+cliptrase,context459,gt_region_top1_confusion,188,ground,323,road,173
+cliptrase,context459,gt_region_top1_confusion,188,ground,353,sidewalk,140
+cliptrase,context459,gt_region_top1_confusion,283,person,7,baby carriage,132
+cliptrase,context459,gt_region_top1_confusion,419,tree,457,wood,124
+cliptrase,context459,gt_region_top1_confusion,414,track,415,train,111
+cliptrase,context459,gt_region_top1_confusion,188,ground,186,grass,102
+cliptrase,context459,gt_region_top1_confusion,419,tree,228,leaves,88
+cliptrase,context459,gt_region_top1_confusion,430,unknown,367,sofa,87
+cliptrase,context459,gt_region_top1_confusion,188,ground,333,sand,85
+cliptrase,context459,gt_region_top1_confusion,396,table,367,sofa,82
+cliptrase,context459,gt_region_top1_confusion,307,pottedplant,292,plant,80
+cliptrase,context459,gt_region_top1_confusion,430,unknown,186,grass,79
+cliptrase,context459,gt_region_top1_confusion,283,person,79,cloth,79
+cliptrase,context459,gt_region_top1_confusion,71,chair,396,table,77
+cliptrase,context459,proposal_oracle_confusion,439,wall,78,closet,289
+cliptrase,context459,proposal_oracle_confusion,43,building,345,shed,270
+cliptrase,context459,proposal_oracle_confusion,419,tree,186,grass,206
+cliptrase,context459,proposal_oracle_confusion,157,floor,329,rug,201
+cliptrase,context459,proposal_oracle_confusion,283,person,441,wardrobe,194
+cliptrase,context459,proposal_oracle_confusion,188,ground,323,road,193
+cliptrase,context459,proposal_oracle_confusion,188,ground,353,sidewalk,159
+cliptrase,context459,proposal_oracle_confusion,359,sky,419,tree,159
+cliptrase,context459,proposal_oracle_confusion,283,person,7,baby carriage,139
+cliptrase,context459,proposal_oracle_confusion,419,tree,457,wood,127
+cliptrase,context459,proposal_oracle_confusion,419,tree,228,leaves,95
+cliptrase,context459,proposal_oracle_confusion,188,ground,186,grass,93
+cliptrase,context459,proposal_oracle_confusion,188,ground,333,sand,89
+cliptrase,context459,proposal_oracle_confusion,414,track,415,train,86
+cliptrase,context459,proposal_oracle_confusion,283,person,79,cloth,84
+cliptrase,context459,proposal_oracle_confusion,307,pottedplant,292,plant,82
+cliptrase,context459,proposal_oracle_confusion,188,ground,331,runway,79
+cliptrase,context459,proposal_oracle_confusion,188,ground,85,concrete,78
+cliptrase,context459,proposal_oracle_confusion,43,building,85,concrete,76
+cliptrase,context459,proposal_oracle_confusion,43,building,439,wall,75
+cliptrase,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",218
+cliptrase,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",162
+cliptrase,ade847,gt_region_top1_confusion,0,wall,26,house,115
+cliptrase,ade847,gt_region_top1_confusion,3,tree,195,forest,110
+cliptrase,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",91
+cliptrase,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",90
+cliptrase,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",87
+cliptrase,ade847,gt_region_top1_confusion,6,ceiling,26,house,86
+cliptrase,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",86
+cliptrase,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",85
+cliptrase,ade847,gt_region_top1_confusion,255,pier,12,grass,83
+cliptrase,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,77
+cliptrase,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,77
+cliptrase,ade847,gt_region_top1_confusion,255,pier,26,house,70
+cliptrase,ade847,gt_region_top1_confusion,17,table,7,bed,70
+cliptrase,ade847,gt_region_top1_confusion,0,wall,46,"wardrobe, closet, press",69
+cliptrase,ade847,gt_region_top1_confusion,40,cushion,21,"sofa, couch, lounge",67
+cliptrase,ade847,gt_region_top1_confusion,255,pier,2,sky,67
+cliptrase,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",64
+cliptrase,ade847,gt_region_top1_confusion,56,pillow,7,bed,61
+cliptrase,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",254
+cliptrase,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",166
+cliptrase,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",157
+cliptrase,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",148
+cliptrase,ade847,proposal_oracle_confusion,0,wall,26,house,115
+cliptrase,ade847,proposal_oracle_confusion,3,tree,195,forest,111
+cliptrase,ade847,proposal_oracle_confusion,255,pier,12,grass,89
+cliptrase,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",82
+cliptrase,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,80
+cliptrase,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",80
+cliptrase,ade847,proposal_oracle_confusion,0,wall,46,"wardrobe, closet, press",77
+cliptrase,ade847,proposal_oracle_confusion,6,ceiling,26,house,76
+cliptrase,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",76
+cliptrase,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,72
+cliptrase,ade847,proposal_oracle_confusion,255,pier,14,"car, auto, automobile, machine, motorcar",63
+cliptrase,ade847,proposal_oracle_confusion,40,cushion,21,"sofa, couch, lounge",62
+cliptrase,ade847,proposal_oracle_confusion,17,table,7,bed,61
+cliptrase,ade847,proposal_oracle_confusion,56,pillow,7,bed,60
+cliptrase,ade847,proposal_oracle_confusion,255,pier,2,sky,59
+cliptrase,ade847,proposal_oracle_confusion,65,"coffee table, cocktail table",21,"sofa, couch, lounge",55
+trident,context459,gt_region_top1_confusion,43,building,345,shed,290
+trident,context459,gt_region_top1_confusion,359,sky,419,tree,234
+trident,context459,gt_region_top1_confusion,188,ground,353,sidewalk,217
+trident,context459,gt_region_top1_confusion,157,floor,329,rug,209
+trident,context459,gt_region_top1_confusion,188,ground,323,road,206
+trident,context459,gt_region_top1_confusion,439,wall,78,closet,183
+trident,context459,gt_region_top1_confusion,283,person,284,photo,179
+trident,context459,gt_region_top1_confusion,283,person,79,cloth,165
+trident,context459,gt_region_top1_confusion,419,tree,186,grass,146
+trident,context459,gt_region_top1_confusion,307,pottedplant,292,plant,145
+trident,context459,gt_region_top1_confusion,414,track,315,rail,130
+trident,context459,gt_region_top1_confusion,43,building,439,wall,128
+trident,context459,gt_region_top1_confusion,439,wall,114,door,116
+trident,context459,gt_region_top1_confusion,71,chair,396,table,115
+trident,context459,gt_region_top1_confusion,188,ground,333,sand,109
+trident,context459,gt_region_top1_confusion,71,chair,382,stool,98
+trident,context459,gt_region_top1_confusion,188,ground,85,concrete,91
+trident,context459,gt_region_top1_confusion,286,picture,168,frame,91
+trident,context459,gt_region_top1_confusion,188,ground,186,grass,91
+trident,context459,gt_region_top1_confusion,323,road,353,sidewalk,90
+trident,context459,proposal_oracle_confusion,43,building,345,shed,327
+trident,context459,proposal_oracle_confusion,188,ground,353,sidewalk,221
+trident,context459,proposal_oracle_confusion,157,floor,329,rug,218
+trident,context459,proposal_oracle_confusion,359,sky,419,tree,214
+trident,context459,proposal_oracle_confusion,188,ground,323,road,212
+trident,context459,proposal_oracle_confusion,439,wall,78,closet,195
+trident,context459,proposal_oracle_confusion,283,person,284,photo,190
+trident,context459,proposal_oracle_confusion,283,person,79,cloth,170
+trident,context459,proposal_oracle_confusion,43,building,439,wall,146
+trident,context459,proposal_oracle_confusion,307,pottedplant,292,plant,145
+trident,context459,proposal_oracle_confusion,414,track,315,rail,143
+trident,context459,proposal_oracle_confusion,188,ground,333,sand,120
+trident,context459,proposal_oracle_confusion,439,wall,114,door,117
+trident,context459,proposal_oracle_confusion,419,tree,186,grass,117
+trident,context459,proposal_oracle_confusion,71,chair,382,stool,110
+trident,context459,proposal_oracle_confusion,419,tree,457,wood,98
+trident,context459,proposal_oracle_confusion,186,grass,188,ground,97
+trident,context459,proposal_oracle_confusion,188,ground,85,concrete,96
+trident,context459,proposal_oracle_confusion,286,picture,168,frame,96
+trident,context459,proposal_oracle_confusion,71,chair,396,table,93
+trident,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",261
+trident,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",182
+trident,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,152
+trident,ade847,gt_region_top1_confusion,3,tree,195,forest,129
+trident,ade847,gt_region_top1_confusion,0,wall,26,house,122
+trident,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",117
+trident,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",116
+trident,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,110
+trident,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",107
+trident,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,104
+trident,ade847,gt_region_top1_confusion,255,pier,12,grass,103
+trident,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",97
+trident,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",91
+trident,ade847,gt_region_top1_confusion,255,pier,2,sky,84
+trident,ade847,gt_region_top1_confusion,255,pier,0,wall,80
+trident,ade847,gt_region_top1_confusion,40,cushion,21,"sofa, couch, lounge",77
+trident,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",76
+trident,ade847,gt_region_top1_confusion,255,pier,3,tree,73
+trident,ade847,gt_region_top1_confusion,56,pillow,7,bed,71
+trident,ade847,gt_region_top1_confusion,2,sky,3,tree,63
+trident,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",262
+trident,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",192
+trident,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,142
+trident,ade847,proposal_oracle_confusion,0,wall,26,house,129
+trident,ade847,proposal_oracle_confusion,3,tree,195,forest,129
+trident,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,126
+trident,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,115
+trident,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",108
+trident,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",105
+trident,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",95
+trident,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",82
+trident,ade847,proposal_oracle_confusion,40,cushion,21,"sofa, couch, lounge",76
+trident,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",75
+trident,ade847,proposal_oracle_confusion,0,wall,64,double door,65
+trident,ade847,proposal_oracle_confusion,56,pillow,7,bed,63
+trident,ade847,proposal_oracle_confusion,20,door,64,double door,60
+trident,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",60
+trident,ade847,proposal_oracle_confusion,255,pier,12,grass,60
+trident,ade847,proposal_oracle_confusion,1,"building, edifice",565,block,59
+trident,ade847,proposal_oracle_confusion,29,armchair,21,"sofa, couch, lounge",58
+cass,context459,gt_region_top1_confusion,283,person,284,photo,451
+cass,context459,gt_region_top1_confusion,43,building,345,shed,269
+cass,context459,gt_region_top1_confusion,188,ground,353,sidewalk,219
+cass,context459,gt_region_top1_confusion,188,ground,323,road,188
+cass,context459,gt_region_top1_confusion,157,floor,329,rug,169
+cass,context459,gt_region_top1_confusion,419,tree,457,wood,163
+cass,context459,gt_region_top1_confusion,439,wall,78,closet,145
+cass,context459,gt_region_top1_confusion,414,track,315,rail,140
+cass,context459,gt_region_top1_confusion,359,sky,419,tree,139
+cass,context459,gt_region_top1_confusion,43,building,439,wall,123
+cass,context459,gt_region_top1_confusion,188,ground,85,concrete,109
+cass,context459,gt_region_top1_confusion,283,person,79,cloth,108
+cass,context459,gt_region_top1_confusion,188,ground,333,sand,102
+cass,context459,gt_region_top1_confusion,419,tree,186,grass,98
+cass,context459,gt_region_top1_confusion,71,chair,382,stool,95
+cass,context459,gt_region_top1_confusion,430,unknown,396,table,94
+cass,context459,gt_region_top1_confusion,71,chair,396,table,91
+cass,context459,gt_region_top1_confusion,43,building,38,brick,84
+cass,context459,gt_region_top1_confusion,58,car,423,truck,80
+cass,context459,gt_region_top1_confusion,307,pottedplant,292,plant,79
+cass,context459,proposal_oracle_confusion,283,person,284,photo,496
+cass,context459,proposal_oracle_confusion,43,building,345,shed,305
+cass,context459,proposal_oracle_confusion,188,ground,353,sidewalk,228
+cass,context459,proposal_oracle_confusion,188,ground,323,road,181
+cass,context459,proposal_oracle_confusion,419,tree,457,wood,173
+cass,context459,proposal_oracle_confusion,157,floor,329,rug,171
+cass,context459,proposal_oracle_confusion,414,track,315,rail,153
+cass,context459,proposal_oracle_confusion,439,wall,78,closet,152
+cass,context459,proposal_oracle_confusion,43,building,439,wall,139
+cass,context459,proposal_oracle_confusion,283,person,79,cloth,120
+cass,context459,proposal_oracle_confusion,188,ground,85,concrete,117
+cass,context459,proposal_oracle_confusion,188,ground,333,sand,116
+cass,context459,proposal_oracle_confusion,186,grass,188,ground,102
+cass,context459,proposal_oracle_confusion,71,chair,382,stool,98
+cass,context459,proposal_oracle_confusion,359,sky,419,tree,94
+cass,context459,proposal_oracle_confusion,58,car,423,truck,88
+cass,context459,proposal_oracle_confusion,43,building,38,brick,88
+cass,context459,proposal_oracle_confusion,323,road,371,speed bump,87
+cass,context459,proposal_oracle_confusion,419,tree,188,ground,85
+cass,context459,proposal_oracle_confusion,307,pottedplant,292,plant,84
+cass,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",257
+cass,ade847,gt_region_top1_confusion,4,"road, route",163,"curb, curbing, kerb",129
+cass,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",126
+cass,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,120
+cass,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",114
+cass,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",114
+cass,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",109
+cass,ade847,gt_region_top1_confusion,3,tree,195,forest,108
+cass,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",107
+cass,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",102
+cass,ade847,gt_region_top1_confusion,23,"painting, picture",466,frame,99
+cass,ade847,gt_region_top1_confusion,255,pier,12,grass,93
+cass,ade847,gt_region_top1_confusion,255,pier,2,sky,91
+cass,ade847,gt_region_top1_confusion,255,pier,163,"curb, curbing, kerb",91
+cass,ade847,gt_region_top1_confusion,17,table,588,tables,88
+cass,ade847,gt_region_top1_confusion,3,tree,496,"leaf, leafage, foliage",77
+cass,ade847,gt_region_top1_confusion,0,wall,101,"hovel, hut, hutch, shack, shanty",75
+cass,ade847,gt_region_top1_confusion,7,bed,376,beds,75
+cass,ade847,gt_region_top1_confusion,0,wall,26,house,74
+cass,ade847,gt_region_top1_confusion,11,"person, individual, someone, somebody, mortal, soul",8,"sidewalk, pavement",64
+cass,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",268
+cass,ade847,proposal_oracle_confusion,4,"road, route",163,"curb, curbing, kerb",134
+cass,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",496,"leaf, leafage, foliage",117
+cass,ade847,proposal_oracle_confusion,23,"painting, picture",466,frame,110
+cass,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",110
+cass,ade847,proposal_oracle_confusion,3,tree,195,forest,110
+cass,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",104
+cass,ade847,proposal_oracle_confusion,17,table,588,tables,96
+cass,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,94
+cass,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",163,"curb, curbing, kerb",94
+cass,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",92
+cass,ade847,proposal_oracle_confusion,0,wall,26,house,84
+cass,ade847,proposal_oracle_confusion,3,tree,496,"leaf, leafage, foliage",79
+cass,ade847,proposal_oracle_confusion,0,wall,101,"hovel, hut, hutch, shack, shanty",75
+cass,ade847,proposal_oracle_confusion,255,pier,163,"curb, curbing, kerb",73
+cass,ade847,proposal_oracle_confusion,7,bed,376,beds,72
+cass,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",63
+cass,ade847,proposal_oracle_confusion,255,pier,12,grass,59
+cass,ade847,proposal_oracle_confusion,17,table,68,"chest of drawers, chest, bureau, dresser",56
+cass,ade847,proposal_oracle_confusion,18,chair,588,tables,55
+freeda,context459,gt_region_top1_confusion,419,tree,388,sunshade,946
+freeda,context459,gt_region_top1_confusion,439,wall,67,ceiling,268
+freeda,context459,gt_region_top1_confusion,188,ground,353,sidewalk,221
+freeda,context459,gt_region_top1_confusion,359,sky,388,sunshade,203
+freeda,context459,gt_region_top1_confusion,439,wall,251,mirror,190
+freeda,context459,gt_region_top1_confusion,43,building,345,shed,173
+freeda,context459,gt_region_top1_confusion,186,grass,388,sunshade,163
+freeda,context459,gt_region_top1_confusion,453,window,454,window blinds,157
+freeda,context459,gt_region_top1_confusion,367,sofa,105,cushion,157
+freeda,context459,gt_region_top1_confusion,43,building,196,hanger,151
+freeda,context459,gt_region_top1_confusion,283,person,284,photo,144
+freeda,context459,gt_region_top1_confusion,43,building,388,sunshade,138
+freeda,context459,gt_region_top1_confusion,286,picture,305,poster,136
+freeda,context459,gt_region_top1_confusion,186,grass,331,runway,134
+freeda,context459,gt_region_top1_confusion,188,ground,331,runway,129
+freeda,context459,gt_region_top1_confusion,188,ground,414,track,129
+freeda,context459,gt_region_top1_confusion,258,mountain,388,sunshade,120
+freeda,context459,gt_region_top1_confusion,157,floor,243,mat,119
+freeda,context459,gt_region_top1_confusion,71,chair,278,patio,118
+freeda,context459,gt_region_top1_confusion,359,sky,386,sun,117
+freeda,context459,proposal_oracle_confusion,419,tree,388,sunshade,995
+freeda,context459,proposal_oracle_confusion,439,wall,67,ceiling,266
+freeda,context459,proposal_oracle_confusion,188,ground,353,sidewalk,224
+freeda,context459,proposal_oracle_confusion,43,building,345,shed,209
+freeda,context459,proposal_oracle_confusion,439,wall,251,mirror,198
+freeda,context459,proposal_oracle_confusion,43,building,196,hanger,167
+freeda,context459,proposal_oracle_confusion,453,window,454,window blinds,156
+freeda,context459,proposal_oracle_confusion,283,person,284,photo,150
+freeda,context459,proposal_oracle_confusion,359,sky,388,sunshade,150
+freeda,context459,proposal_oracle_confusion,367,sofa,105,cushion,148
+freeda,context459,proposal_oracle_confusion,286,picture,305,poster,146
+freeda,context459,proposal_oracle_confusion,186,grass,388,sunshade,143
+freeda,context459,proposal_oracle_confusion,359,sky,386,sun,143
+freeda,context459,proposal_oracle_confusion,188,ground,414,track,136
+freeda,context459,proposal_oracle_confusion,188,ground,331,runway,125
+freeda,context459,proposal_oracle_confusion,157,floor,243,mat,123
+freeda,context459,proposal_oracle_confusion,283,person,203,helmet,122
+freeda,context459,proposal_oracle_confusion,186,grass,277,parterre,122
+freeda,context459,proposal_oracle_confusion,157,floor,329,rug,121
+freeda,context459,proposal_oracle_confusion,231,light,140,fan,118
+freeda,ade847,gt_region_top1_confusion,5,"floor, flooring",393,"baseboard, mopboard, skirting board",252
+freeda,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,194
+freeda,ade847,gt_region_top1_confusion,3,tree,195,forest,191
+freeda,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",161
+freeda,ade847,gt_region_top1_confusion,7,bed,376,beds,146
+freeda,ade847,gt_region_top1_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",131
+freeda,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",128
+freeda,ade847,gt_region_top1_confusion,8,"sidewalk, pavement",257,forecourt,127
+freeda,ade847,gt_region_top1_confusion,17,table,588,tables,122
+freeda,ade847,gt_region_top1_confusion,0,wall,6,ceiling,116
+freeda,ade847,gt_region_top1_confusion,16,"plant, flora, plant life",353,parterre,115
+freeda,ade847,gt_region_top1_confusion,255,pier,2,sky,114
+freeda,ade847,gt_region_top1_confusion,18,chair,588,tables,113
+freeda,ade847,gt_region_top1_confusion,11,"person, individual, someone, somebody, mortal, soul",399,shops,101
+freeda,ade847,gt_region_top1_confusion,32,lamp,110,sconce,95
+freeda,ade847,gt_region_top1_confusion,27,"rug, carpet, carpeting",200,"tapestry, tapis",91
+freeda,ade847,gt_region_top1_confusion,255,pier,6,ceiling,87
+freeda,ade847,gt_region_top1_confusion,0,wall,756,floor spotlight,87
+freeda,ade847,gt_region_top1_confusion,255,pier,8,"sidewalk, pavement",85
+freeda,ade847,gt_region_top1_confusion,0,wall,279,stalls,85
+freeda,ade847,proposal_oracle_confusion,5,"floor, flooring",393,"baseboard, mopboard, skirting board",262
+freeda,ade847,proposal_oracle_confusion,3,tree,195,forest,215
+freeda,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,166
+freeda,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",165
+freeda,ade847,proposal_oracle_confusion,7,bed,376,beds,144
+freeda,ade847,proposal_oracle_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",135
+freeda,ade847,proposal_oracle_confusion,16,"plant, flora, plant life",353,parterre,134
+freeda,ade847,proposal_oracle_confusion,8,"sidewalk, pavement",257,forecourt,134
+freeda,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",122
+freeda,ade847,proposal_oracle_confusion,18,chair,588,tables,110
+freeda,ade847,proposal_oracle_confusion,17,table,588,tables,108
+freeda,ade847,proposal_oracle_confusion,11,"person, individual, someone, somebody, mortal, soul",765,club,105
+freeda,ade847,proposal_oracle_confusion,0,wall,6,ceiling,104
+freeda,ade847,proposal_oracle_confusion,27,"rug, carpet, carpeting",200,"tapestry, tapis",93
+freeda,ade847,proposal_oracle_confusion,0,wall,279,stalls,89
+freeda,ade847,proposal_oracle_confusion,0,wall,756,floor spotlight,89
+freeda,ade847,proposal_oracle_confusion,73,flower,600,centerpiece,85
+freeda,ade847,proposal_oracle_confusion,32,lamp,110,sconce,85
+freeda,ade847,proposal_oracle_confusion,255,pier,257,forecourt,84
+freeda,ade847,proposal_oracle_confusion,255,pier,393,"baseboard, mopboard, skirting board",81
+san,context459,gt_region_top1_confusion,188,ground,353,sidewalk,284
+san,context459,gt_region_top1_confusion,188,ground,323,road,226
+san,context459,gt_region_top1_confusion,444,water,111,dock,198
+san,context459,gt_region_top1_confusion,43,building,345,shed,178
+san,context459,gt_region_top1_confusion,414,track,315,rail,159
+san,context459,gt_region_top1_confusion,302,pole,359,sky,156
+san,context459,gt_region_top1_confusion,430,unknown,439,wall,128
+san,context459,gt_region_top1_confusion,188,ground,333,sand,125
+san,context459,gt_region_top1_confusion,157,floor,329,rug,123
+san,context459,gt_region_top1_confusion,302,pole,419,tree,116
+san,context459,gt_region_top1_confusion,302,pole,43,building,110
+san,context459,gt_region_top1_confusion,188,ground,315,rail,110
+san,context459,gt_region_top1_confusion,188,ground,186,grass,107
+san,context459,gt_region_top1_confusion,43,building,439,wall,103
+san,context459,gt_region_top1_confusion,430,unknown,396,table,102
+san,context459,gt_region_top1_confusion,439,wall,85,concrete,98
+san,context459,gt_region_top1_confusion,188,ground,331,runway,94
+san,context459,gt_region_top1_confusion,43,building,419,tree,94
+san,context459,gt_region_top1_confusion,430,unknown,71,chair,84
+san,context459,gt_region_top1_confusion,307,pottedplant,292,plant,79
+san,context459,proposal_oracle_confusion,188,ground,353,sidewalk,291
+san,context459,proposal_oracle_confusion,188,ground,323,road,226
+san,context459,proposal_oracle_confusion,444,water,111,dock,203
+san,context459,proposal_oracle_confusion,43,building,345,shed,190
+san,context459,proposal_oracle_confusion,414,track,315,rail,162
+san,context459,proposal_oracle_confusion,188,ground,333,sand,131
+san,context459,proposal_oracle_confusion,157,floor,329,rug,125
+san,context459,proposal_oracle_confusion,302,pole,419,tree,117
+san,context459,proposal_oracle_confusion,430,unknown,284,photo,110
+san,context459,proposal_oracle_confusion,43,building,439,wall,109
+san,context459,proposal_oracle_confusion,439,wall,85,concrete,103
+san,context459,proposal_oracle_confusion,188,ground,315,rail,101
+san,context459,proposal_oracle_confusion,188,ground,186,grass,94
+san,context459,proposal_oracle_confusion,188,ground,331,runway,93
+san,context459,proposal_oracle_confusion,302,pole,43,building,88
+san,context459,proposal_oracle_confusion,430,unknown,439,wall,85
+san,context459,proposal_oracle_confusion,302,pole,359,sky,85
+san,context459,proposal_oracle_confusion,430,unknown,71,chair,85
+san,context459,proposal_oracle_confusion,307,pottedplant,292,plant,84
+san,context459,proposal_oracle_confusion,430,unknown,396,table,80
+san,ade847,gt_region_top1_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",260
+san,ade847,gt_region_top1_confusion,255,pier,0,wall,243
+san,ade847,gt_region_top1_confusion,255,pier,5,"floor, flooring",141
+san,ade847,gt_region_top1_confusion,255,pier,1,"building, edifice",140
+san,ade847,gt_region_top1_confusion,82,"light, light source",6,ceiling,135
+san,ade847,gt_region_top1_confusion,255,pier,2,sky,112
+san,ade847,gt_region_top1_confusion,20,door,64,double door,104
+san,ade847,gt_region_top1_confusion,255,pier,3,tree,104
+san,ade847,gt_region_top1_confusion,78,"streetlight, street lamp",1,"building, edifice",103
+san,ade847,gt_region_top1_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",96
+san,ade847,gt_region_top1_confusion,1,"building, edifice",26,house,94
+san,ade847,gt_region_top1_confusion,255,pier,12,grass,92
+san,ade847,gt_region_top1_confusion,39,"signboard, sign",1,"building, edifice",90
+san,ade847,gt_region_top1_confusion,255,pier,27,"rug, carpet, carpeting",87
+san,ade847,gt_region_top1_confusion,308,"wall socket, wall plug, electric outlet, electrical outlet, outlet, electric receptacle",0,wall,86
+san,ade847,gt_region_top1_confusion,56,pillow,7,bed,82
+san,ade847,gt_region_top1_confusion,4,"road, route",8,"sidewalk, pavement",81
+san,ade847,gt_region_top1_confusion,0,wall,107,"booth, cubicle, stall, kiosk",76
+san,ade847,gt_region_top1_confusion,255,pier,4,"road, route",70
+san,ade847,gt_region_top1_confusion,23,"painting, picture",0,wall,68
+san,ade847,proposal_oracle_confusion,5,"floor, flooring",27,"rug, carpet, carpeting",261
+san,ade847,proposal_oracle_confusion,255,pier,5,"floor, flooring",186
+san,ade847,proposal_oracle_confusion,255,pier,8,"sidewalk, pavement",122
+san,ade847,proposal_oracle_confusion,20,door,64,double door,115
+san,ade847,proposal_oracle_confusion,255,pier,27,"rug, carpet, carpeting",112
+san,ade847,proposal_oracle_confusion,13,"windowpane, window",231,"pane, pane of glass, window glass",103
+san,ade847,proposal_oracle_confusion,1,"building, edifice",26,house,95
+san,ade847,proposal_oracle_confusion,255,pier,12,grass,93
+san,ade847,proposal_oracle_confusion,255,pier,3,tree,92
+san,ade847,proposal_oracle_confusion,82,"light, light source",6,ceiling,88
+san,ade847,proposal_oracle_confusion,255,pier,2,sky,81
+san,ade847,proposal_oracle_confusion,56,pillow,7,bed,80
+san,ade847,proposal_oracle_confusion,0,wall,107,"booth, cubicle, stall, kiosk",79
+san,ade847,proposal_oracle_confusion,308,"wall socket, wall plug, electric outlet, electrical outlet, outlet, electric receptacle",0,wall,76
+san,ade847,proposal_oracle_confusion,4,"road, route",8,"sidewalk, pavement",75
+san,ade847,proposal_oracle_confusion,82,"light, light source",686,spotlights,72
+san,ade847,proposal_oracle_confusion,17,table,68,"chest of drawers, chest, bureau, dresser",69
+san,ade847,proposal_oracle_confusion,255,pier,0,wall,66
+san,ade847,proposal_oracle_confusion,255,pier,6,ceiling,65
+san,ade847,proposal_oracle_confusion,39,"signboard, sign",1,"building, edifice",65

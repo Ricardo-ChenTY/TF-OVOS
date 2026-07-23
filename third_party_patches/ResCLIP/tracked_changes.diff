@@ -1,0 +1,247 @@
+diff --git a/clip/model.py b/clip/model.py
+index bbef841..bc7d5cf 100644
+--- a/clip/model.py
++++ b/clip/model.py
+@@ -112,7 +112,7 @@ class VisionTransformer(nn.Module):
+         if temp_thd is not None:
+             seg_pred[seg_logit_temp.max(0, keepdim=True)[0] < temp_thd] = 0
+         else:
+-            raise NotImplemented
++            raise NotImplementedError
+ 
+         seg_pred = seg_pred.squeeze(0)
+ 
+@@ -252,7 +252,7 @@ class VisionTransformer(nn.Module):
+             x = self.custom_attn(blk.attn, blk.ln_1(x), n_patches=n_patches, attn_rcs=attn_rcs,
+                                  attn_rcs_weights=attn_rcs_weights, use_custom_attn=use_custom_attn)
+         else:
+-            raise NotImplemented
++            raise NotImplementedError
+ 
+         x = x.permute(1, 0, 2)
+ 
+@@ -359,7 +359,7 @@ class VisionTransformer(nn.Module):
+                                  attn_sfr_weights=attn_sfr_weights, attn_rcs_weights=attn_rcs_weights,
+                                  use_custom_attn=use_custom_attn)
+         else:
+-            raise NotImplemented
++            raise NotImplementedError
+ 
+         x = x.permute(1, 0, 2)  # LND -> NLD
+ 
+@@ -480,7 +480,7 @@ class VisionTransformer(nn.Module):
+                     if attn_sfr_weights is not None:
+                         tau_attn_sfr, lambda_attn_sfr = attn_sfr_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_sfr * ((1 - lambda_attn_sfr) * attn_weights + lambda_attn_sfr * attn_sfr)
+ 
+                 attn_weights += omega
+@@ -490,7 +490,7 @@ class VisionTransformer(nn.Module):
+                     if attn_rcs_weights is not None:
+                         tau_attn_rcs, lambda_attn_rcs = attn_rcs_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_rcs * ((1 - lambda_attn_rcs) * attn_weights + lambda_attn_rcs * attn_rcs)
+ 
+             elif self.attn_strategy == 'naclip':
+@@ -503,7 +503,7 @@ class VisionTransformer(nn.Module):
+                     if attn_sfr_weights is not None:
+                         tau_attn_sfr, lambda_attn_sfr = attn_sfr_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_sfr * ((1 - lambda_attn_sfr) * attn_weights + lambda_attn_sfr * attn_sfr)
+ 
+                 attn_weights += omega
+@@ -513,7 +513,7 @@ class VisionTransformer(nn.Module):
+                     if attn_rcs_weights is not None:
+                         tau_attn_rcs, lambda_attn_rcs = attn_rcs_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_rcs * ((1 - lambda_attn_rcs) * attn_weights + lambda_attn_rcs * attn_rcs)
+ 
+             elif self.attn_strategy == 'sclip':
+@@ -527,7 +527,7 @@ class VisionTransformer(nn.Module):
+                     if attn_sfr_weights is not None:
+                         tau_attn_sfr, lambda_attn_sfr = attn_sfr_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     q_attn = tau_attn_sfr * ((1 - lambda_attn_sfr) * q_attn + lambda_attn_sfr * attn_sfr)
+                     k_attn = tau_attn_sfr * ((1 - lambda_attn_sfr) * k_attn + lambda_attn_sfr * attn_sfr)
+ 
+@@ -537,7 +537,7 @@ class VisionTransformer(nn.Module):
+                     if attn_rcs_weights is not None:
+                         tau_attn_rcs, lambda_attn_rcs = attn_rcs_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_rcs * ((1 - lambda_attn_rcs) * attn_weights + lambda_attn_rcs * attn_rcs)
+ 
+             elif self.attn_strategy == 'clearclip':
+@@ -550,7 +550,7 @@ class VisionTransformer(nn.Module):
+                     if attn_sfr_weights is not None:
+                         tau_attn_sfr, lambda_attn_sfr = attn_sfr_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_sfr * ((1 - lambda_attn_sfr) * attn_weights + lambda_attn_sfr * attn_sfr)
+ 
+                 attn_weights = F.softmax(attn_weights, dim=-1)
+@@ -559,7 +559,7 @@ class VisionTransformer(nn.Module):
+                     if attn_rcs_weights is not None:
+                         tau_attn_rcs, lambda_attn_rcs = attn_rcs_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_rcs * ((1 - lambda_attn_rcs) * attn_weights + lambda_attn_rcs * attn_rcs)
+ 
+             elif self.attn_strategy == 'vanilla':
+@@ -572,7 +572,7 @@ class VisionTransformer(nn.Module):
+                     if attn_sfr_weights is not None:
+                         tau_attn_sfr, lambda_attn_sfr = attn_sfr_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_sfr * ((1 - lambda_attn_sfr) * attn_weights + lambda_attn_sfr * attn_sfr)
+ 
+                 attn_weights = F.softmax(attn_weights, dim=-1)
+@@ -581,11 +581,11 @@ class VisionTransformer(nn.Module):
+                     if attn_rcs_weights is not None:
+                         tau_attn_rcs, lambda_attn_rcs = attn_rcs_weights
+                     else:
+-                        raise NotImplemented
++                        raise NotImplementedError
+                     attn_weights = tau_attn_rcs * ((1 - lambda_attn_rcs) * attn_weights + lambda_attn_rcs * attn_rcs)
+ 
+             else:
+-                raise NotImplemented(f'attn_strategy {self.attn_strategy} is not implemented')
++                raise NotImplementedError(f'attn_strategy {self.attn_strategy} is not implemented')
+ 
+         else:  # non-last layers of Clip attention: C^2SA attention
+             attn_weights = torch.bmm(q * scale, k.transpose(1, 2))
+diff --git a/custom_datasets.py b/custom_datasets.py
+index d298dca..dd2b625 100644
+--- a/custom_datasets.py
++++ b/custom_datasets.py
+@@ -161,3 +161,82 @@ class PascalContext59Dataset(BaseSegDataset):
+             ann_file=ann_file,
+             reduce_zero_label=reduce_zero_label,
+             **kwargs)
++
++
++# TF-OVCOS E2 dataset extensions
++import warnings
++
++import mmcv
++import numpy as np
++from mmcv.transforms import LoadAnnotations as MMCVLoadAnnotations
++from mmseg.registry import TRANSFORMS
++
++
++def _tfovos_classes(name):
++    cls_path = osp.join(osp.dirname(__file__), "configs", name)
++    with open(cls_path, "r", encoding="utf-8") as handle:
++        return tuple(line.strip() for line in handle if line.strip())
++
++
++@DATASETS.register_module()
++class ADE20K847Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_ade20k847.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            reduce_zero_label=reduce_zero_label,
++            ann_file=ann_file,
++            **kwargs,
++        )
++        assert fileio.exists(self.data_prefix["img_path"], self.backend_args) and osp.isfile(self.ann_file)
++
++
++@DATASETS.register_module()
++class PascalContext459Dataset(BaseSegDataset):
++    METAINFO = dict(classes=_tfovos_classes("cls_context459.txt"))
++
++    def __init__(self, ann_file, img_suffix=".jpg", seg_map_suffix=".tif", reduce_zero_label=False, **kwargs):
++        super().__init__(
++            img_suffix=img_suffix,
++            seg_map_suffix=seg_map_suffix,
++            reduce_zero_label=reduce_zero_label,
++            ann_file=ann_file,
++            **kwargs,
++        )
++
++
++@TRANSFORMS.register_module()
++class MyLoadAnnotations(MMCVLoadAnnotations):
++    def __init__(self, reduce_zero_label=None, backend_args=None, imdecode_backend="pillow") -> None:
++        super().__init__(
++            with_bbox=False,
++            with_label=False,
++            with_seg=True,
++            with_keypoints=False,
++            imdecode_backend=imdecode_backend,
++            backend_args=backend_args,
++        )
++        self.reduce_zero_label = reduce_zero_label
++        self.imdecode_backend = imdecode_backend
++        if self.reduce_zero_label is not None:
++            warnings.warn("`reduce_zero_label` will be deprecated; set it on the dataset instead")
++
++    def _load_seg_map(self, results: dict) -> None:
++        img_bytes = fileio.get(results["seg_map_path"], backend_args=self.backend_args)
++        gt_semantic_seg = mmcv.imfrombytes(
++            img_bytes, flag="unchanged", backend=self.imdecode_backend
++        ).squeeze().astype(np.uint16)
++        if self.reduce_zero_label is None:
++            self.reduce_zero_label = results["reduce_zero_label"]
++        if self.reduce_zero_label:
++            gt_semantic_seg[gt_semantic_seg == 0] = 255
++            gt_semantic_seg = gt_semantic_seg - 1
++            gt_semantic_seg[gt_semantic_seg == 254] = 255
++        if results.get("label_map", None) is not None:
++            gt_semantic_seg_copy = gt_semantic_seg.copy()
++            for old_id, new_id in results["label_map"].items():
++                gt_semantic_seg[gt_semantic_seg_copy == old_id] = new_id
++        results["gt_seg_map"] = gt_semantic_seg
++        results["seg_fields"].append("gt_seg_map")
+diff --git a/resclip_segmentor.py b/resclip_segmentor.py
+index b04b191..1e28477 100644
+--- a/resclip_segmentor.py
++++ b/resclip_segmentor.py
+@@ -18,6 +18,17 @@ import matplotlib.pyplot as plt
+ sys.path.append("..")
+ 
+ 
++
++def _merge_synonym_probs(seg_probs, query_idx, num_cls, num_queries):
++    if num_cls == num_queries:
++        return seg_probs
++    merged = seg_probs.new_zeros((num_cls, *seg_probs.shape[1:]))
++    for cls_id in range(num_cls):
++        query_ids = (query_idx == cls_id).nonzero(as_tuple=False).flatten()
++        if query_ids.numel() > 0:
++            merged[cls_id] = seg_probs.index_select(0, query_ids).amax(0)
++    return merged
++
+ @MODELS.register_module()
+ class ResCLIPSegmentation(BaseSegmentor):
+     def __init__(self, clip_path, name_path, device=torch.device('cuda'),
+@@ -167,10 +178,7 @@ class ResCLIPSegmentation(BaseSegmentor):
+             seg_probs = torch.softmax(seg_logits[i] * self.logit_scale, dim=0)  # n_queries * w * h
+             num_cls, num_queries = max(self.query_idx) + 1, len(self.query_idx)
+             if num_cls != num_queries:
+-                seg_probs = seg_probs.unsqueeze(0)
+-                cls_index = nn.functional.one_hot(self.query_idx)
+-                cls_index = cls_index.T.view(num_cls, num_queries, 1, 1)
+-                seg_probs = (seg_probs * cls_index).max(1)[0]
++                seg_probs = _merge_synonym_probs(seg_probs, self.query_idx, num_cls, num_queries)
+ 
+             if self.area_thd is not None:  # SCLIP setting
+                 # Force segmentations with area < self.area_thd to 0 (background)

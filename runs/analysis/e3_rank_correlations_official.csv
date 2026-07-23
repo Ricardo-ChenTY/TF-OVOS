@@ -1,0 +1,7 @@
+reference,target,n_methods,spearman_rho,kendall_tau,status
+compact_E1_avg,voc20,5,0.9,0.8,computed
+compact_E1_avg,context59,5,1.0,1.0,computed
+compact_E1_avg,ade20k,5,1.0,1.0,computed
+compact_E1_avg,coco_stuff164k,5,1.0,1.0,computed
+compact_E1_avg,context459,5,1.0,1.0,computed
+compact_E1_avg,ade847,5,0.9,0.8,computed

@@ -1,0 +1,6 @@
+method,voc20_val_mIoU,context59_val_mIoU,ade20k150_val_mIoU,coco_stuff171_val_mIoU,avg_mIoU
+maskclip,,,,,
+maskclip_attn,,,,,
+maskclip_attn_slide,,,,,
+sam_amg_clip,,,,,
+tables,,,,,

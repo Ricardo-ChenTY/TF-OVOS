@@ -1,0 +1,11 @@
+metric,method,dataset,split,value,baseline_mIoU,delta_vs_baseline,n_alias_groups,status,n_classes,processed_images,missing_images
+synonym_alias_collapsed_mIoU,sclip,voc20,alias_collision_groups,0.5038047666277966,0.5038047666277966,0.0,0,no_duplicate_aliases_in_vocab,,,
+synonym_alias_collapsed_mIoU,corrclip,voc20,alias_collision_groups,0.6893698573158251,0.6893698573158251,0.0,0,no_duplicate_aliases_in_vocab,,,
+thing_stuff_mIoU,sclip,coco_stuff164k,thing,0.12698438614217158,,,,computed_from_coco_vocab_order,65,20,0
+thing_stuff_mIoU,sclip,coco_stuff164k,stuff,0.1347181305396927,,,,computed_from_coco_vocab_order,79,20,0
+synonym_alias_collapsed_mIoU,sclip,coco_stuff164k,alias_collision_groups,0.13122720424914497,0.13122720424914497,0.0,0,no_duplicate_aliases_in_vocab,,,
+thing_stuff_mIoU,corrclip,coco_stuff164k,thing,0.30183919866756637,,,,computed_from_coco_vocab_order,45,20,0
+thing_stuff_mIoU,corrclip,coco_stuff164k,stuff,0.1734034871499278,,,,computed_from_coco_vocab_order,71,20,0
+synonym_alias_collapsed_mIoU,corrclip,coco_stuff164k,alias_collision_groups,0.22322768558349446,0.22322768558349446,0.0,0,no_duplicate_aliases_in_vocab,,,
+synonym_alias_collapsed_mIoU,sclip,ade847,alias_collision_groups,0.013000055646064962,0.011642616001776438,0.0013574396442885238,41,computed_alias_collision_collapse,,,
+synonym_alias_collapsed_mIoU,corrclip,ade847,alias_collision_groups,0.02979170571022291,0.02898627985100877,0.0008054258592141393,41,computed_alias_collision_collapse,,,

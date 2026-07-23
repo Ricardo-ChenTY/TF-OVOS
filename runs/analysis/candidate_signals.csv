@@ -1,0 +1,23 @@
+type,method,datasets,value,note,dataset,margin,low_variant,high_variant
+e1_partial_average,cass,4,43.7475,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,corrclip,4,49.16,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,freeda,4,45.4,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,naclip,4,41.6225,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,proxyclip,4,41.4775,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,resclip,4,40.205,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,scclip,4,42.7925,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,sclip,4,38.7475,Partial E1 average; useful once at least two datasets are complete.,,,,
+e1_partial_average,trident,4,43.305,Partial E1 average; useful once at least two datasets are complete.,,,,
+dataset_leader,corrclip,,88.78,corrclip leads voc20 by 1.05 mIoU among completed canonical runs.,voc20,1.05,,
+dataset_leader,corrclip,,48.68,corrclip leads context59 by 5.26 mIoU among completed canonical runs.,context59,5.26,,
+dataset_leader,corrclip,,26.96,corrclip leads ade20k by 3.77 mIoU among completed canonical runs.,ade20k,3.77,,
+dataset_leader,corrclip,,32.22,corrclip leads coco_stuff164k by 3.42 mIoU among completed canonical runs.,coco_stuff164k,3.42,,
+protocol_sensitivity,naclip,,25.43,naclip/coco_stuff164k changes by 25.43 mIoU across logged protocols.,coco_stuff164k,,phase1_e1,datafix
+protocol_sensitivity,naclip,,37.86,naclip/context59 changes by 37.86 mIoU across logged protocols.,context59,,phase1_e1,datafix
+protocol_sensitivity,naclip,,82.9,naclip/voc20 changes by 82.90 mIoU across logged protocols.,voc20,,phase1_e1,officialnames
+protocol_sensitivity,proxyclip,,1.31,proxyclip/voc20 changes by 1.31 mIoU across logged protocols.,voc20,,phase1_e1,datafix
+protocol_sensitivity,resclip,,1.11,resclip/coco_stuff164k changes by 1.11 mIoU across logged protocols.,coco_stuff164k,,datafix,officialscale
+protocol_sensitivity,resclip,,3.8,resclip/voc20 changes by 3.80 mIoU across logged protocols.,voc20,,datafix,officialnames
+protocol_sensitivity,scclip,,38.0,scclip/context59 changes by 38.00 mIoU across logged protocols.,context59,,single,single
+protocol_sensitivity,sclip,,33.7,sclip/context59 changes by 33.70 mIoU across logged protocols.,context59,,phase1_e1,datafix
+protocol_sensitivity,sclip,,81.34,sclip/voc20 changes by 81.34 mIoU across logged protocols.,voc20,,phase1_e1,officialnames
