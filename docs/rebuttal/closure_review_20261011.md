@@ -4,6 +4,8 @@
 
 ## 交付内容
 
+下载：[审查包（约 17 MB）](artifacts/review_20261011_closed.tar.gz) · [SHA256](artifacts/review_20261011_closed.tar.gz.sha256)。
+
 本地审查包：`runs/rebuttal/review_20261011_closed/`；压缩包：`runs/rebuttal/review_20261011_closed.tar.gz`，旁边的 `.sha256` 文件用于检查压缩包完整性。完整保留现有约 52 MB 证据快照，包括逐图哈希、配置、结果 CSV、验证记录和实际执行代码；原始预测 PNG、数据集及模型权重仍保存在实验工作区。
 
 | 审查事项 | 包内入口 | 可检查的内容 |
@@ -21,6 +23,14 @@
 `code/` 基于清单中的 Git 提交展开，再覆盖快照保存的实际执行源码，并补入汇总与审查工具依赖。`evidence/closure/code_snapshot/` 保留未经改动的运行时来源。`changes.patch` 包含新文件及必要依赖，既有指标、标签协议等工作区修复也可能出现在差异中，不能全部解释为最后一次 DINO 修复。原生 FreeDA 外部源码保留于证据中的 `native_freeda/`，其许可证与归属按原项目处理。
 
 ## 无 GPU 核验
+
+先将压缩包与校验文件下载到同一目录：
+
+```bash
+sha256sum -c review_20261011_closed.tar.gz.sha256
+tar -xzf review_20261011_closed.tar.gz
+cd review_20261011_closed
+```
 
 在解压后的包目录运行，Python 3.10 及以上即可，无需安装第三方包：
 
@@ -56,4 +66,4 @@ python scripts/verify_closure_review.py /tmp/tf-ovos-closure-review
 
 修正后仍有 34/34 个最大候选端点下降，COCO 8/8 方法的 stuff mIoU 低于 thing。单 candidate seed、同图中的尺寸/频率差异、最终语义图诊断不能独立分离定位与命名因果等边界保持不变。E4 是既定抽样与定向配对范围，不是恢复全方法全量计划。未加入多 seed、新数据集或额外 dense 控制。
 
-审查包当前保存在本地，尚未发布修复代码和详细证据。已有公开说明文档与这一交付范围分别标记，避免把“本地可审查”写成“已公开”。论文正文、LaTeX 和 rebuttal 草稿仍待按报告修改。
+审查包现随仓库公开，包含修复代码、差异、轻量证据与核验入口。压缩包字节保持冻结时的版本，其内部说明中的“尚未公开”记录的是打包时状态；当前发布状态以本页为准。论文正文、LaTeX 和 rebuttal 草稿仍待按报告修改。
