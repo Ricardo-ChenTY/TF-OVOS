@@ -1,0 +1,15 @@
+{
+  "reason": "Prior official_predictions directory scan omitted adapter outputs indexed by runs/<method>/<manifest>/predictions.jsonl; saved maps exist and are supported 0-based uint16, not missing or truncated.",
+  "datasets": {
+    "context459": 5105,
+    "ade847": 2000
+  },
+  "methods": 3,
+  "total_predictions_validated": 21315,
+  "rescoring": "All six full datasets rescored using current released dense_class_region_max_iou_v2 and current GT; no model inference.",
+  "common_gt_pairs": {
+    "context459": 33026,
+    "ade847": 20369
+  },
+  "prior_frozen_bundle_changed": false
+}

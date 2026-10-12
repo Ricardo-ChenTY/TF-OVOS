@@ -1,0 +1,1137 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "key": "mixed_voc20_2011_000585",
+      "set": "mixed_dataset_cases",
+      "dataset": "voc20",
+      "image_id": "2011_000585",
+      "target": "person",
+      "target_id": 14,
+      "input": "cases/mixed_voc20_2011_000585/input.jpg",
+      "gt": "cases/mixed_voc20_2011_000585/gt.png",
+      "vocab": "vocab/voc20.txt",
+      "num_classes": 20,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_voc20_2011_000585/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_voc20_2011_000585/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 13,
+          "selected_class_name": "motorbike",
+          "width": 353,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_voc20_2011_000585/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 1,
+          "selected_class_name": "bicycle",
+          "width": 353,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_voc20_2011_000585/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 14,
+          "selected_class_name": "person",
+          "width": 353,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_voc20_2011_000585/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 1,
+          "selected_class_name": "bicycle",
+          "width": 353,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_voc20_2011_000585/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 1,
+          "selected_class_name": "bicycle",
+          "width": 353,
+          "height": 500,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_context59_2010_002879",
+      "set": "mixed_dataset_cases",
+      "dataset": "context59",
+      "image_id": "2010_002879",
+      "target": "table",
+      "target_id": 49,
+      "input": "cases/mixed_context59_2010_002879/input.jpg",
+      "gt": "cases/mixed_context59_2010_002879/gt.png",
+      "vocab": "vocab/context_59.txt",
+      "num_classes": 59,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_context59_2010_002879/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_context59_2010_002879/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 12,
+          "selected_class_name": "cabinet",
+          "width": 375,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_context59_2010_002879/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 12,
+          "selected_class_name": "cabinet",
+          "width": 375,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_context59_2010_002879/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 48,
+          "selected_class_name": "sofa",
+          "width": 375,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_context59_2010_002879/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 48,
+          "selected_class_name": "sofa",
+          "width": 375,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_context59_2010_002879/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 49,
+          "selected_class_name": "table",
+          "width": 375,
+          "height": 500,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_ade20k_ADE_val_00000315",
+      "set": "mixed_dataset_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000315",
+      "target": "painting",
+      "target_id": 22,
+      "input": "cases/mixed_ade20k_ADE_val_00000315/input.jpg",
+      "gt": "cases/mixed_ade20k_ADE_val_00000315/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_ade20k_ADE_val_00000315/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000315/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 0,
+          "selected_class_name": "wall",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000315/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 5,
+          "selected_class_name": "ceiling",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000315/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 0,
+          "selected_class_name": "wall",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000315/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 30,
+          "selected_class_name": "armchair",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000315/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 117,
+          "selected_class_name": "cradle",
+          "width": 683,
+          "height": 512,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_coco_stuff164k_000000033707",
+      "set": "mixed_dataset_cases",
+      "dataset": "coco_stuff164k",
+      "image_id": "000000033707",
+      "target": "flower",
+      "target_id": 107,
+      "input": "cases/mixed_coco_stuff164k_000000033707/input.jpg",
+      "gt": "cases/mixed_coco_stuff164k_000000033707/gt.png",
+      "vocab": "vocab/coco_stuff_171.txt",
+      "num_classes": 171,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "historical GT only; target is absent in current GT",
+      "historical_gt": "cases/mixed_coco_stuff164k_000000033707/historical_gt.png",
+      "warning": "Do not present this target as current GT flower: historical target ID 107 is absent from current corrected GT. Select a new COCO case or revise target after checking source annotation.",
+      "current_gt_on_historical_target": [
+        {
+          "id": 108,
+          "name": "fog",
+          "pixels": 42213
+        }
+      ],
+      "target_mask": "cases/mixed_coco_stuff164k_000000033707/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_coco_stuff164k_000000033707/corrclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 94,
+          "selected_class_name": "clouds",
+          "width": 612,
+          "height": 612,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_coco_stuff164k_000000033707/naclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 145,
+          "selected_class_name": "sky-other",
+          "width": 612,
+          "height": 612,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_coco_stuff164k_000000033707/proxyclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 115,
+          "selected_class_name": "hill",
+          "width": 612,
+          "height": 612,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_coco_stuff164k_000000033707/sclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 145,
+          "selected_class_name": "sky-other",
+          "width": 612,
+          "height": 612,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_coco_stuff164k_000000033707/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 116,
+          "selected_class_name": "house",
+          "width": 612,
+          "height": 612,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_context459_2008_002366",
+      "set": "mixed_dataset_cases",
+      "dataset": "context459",
+      "image_id": "2008_002366",
+      "target": "person",
+      "target_id": 283,
+      "input": "cases/mixed_context459_2008_002366/input.jpg",
+      "gt": "cases/mixed_context459_2008_002366/gt.png",
+      "vocab": "vocab/context_459.txt",
+      "num_classes": 459,
+      "gt_void": 65535,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_context459_2008_002366/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_context459_2008_002366/corrclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 352,
+          "selected_class_name": "sidecar",
+          "width": 331,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_context459_2008_002366/naclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 203,
+          "selected_class_name": "helmet",
+          "width": 331,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_context459_2008_002366/proxyclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 203,
+          "selected_class_name": "helmet",
+          "width": 331,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_context459_2008_002366/sclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 203,
+          "selected_class_name": "helmet",
+          "width": 331,
+          "height": 500,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_context459_2008_002366/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 203,
+          "selected_class_name": "helmet",
+          "width": 331,
+          "height": 500,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_ade847_ADE_val_00001111",
+      "set": "mixed_dataset_cases",
+      "dataset": "ade847",
+      "image_id": "ADE_val_00001111",
+      "target": "scarf",
+      "target_id": 384,
+      "input": "cases/mixed_ade847_ADE_val_00001111/input.jpg",
+      "gt": "cases/mixed_ade847_ADE_val_00001111/gt.png",
+      "vocab": "vocab/ade20k_847.txt",
+      "num_classes": 847,
+      "gt_void": 65535,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_ade847_ADE_val_00001111/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_ade847_ADE_val_00001111/corrclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 399,
+          "selected_class_name": "shops",
+          "width": 431,
+          "height": 296,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_ade847_ADE_val_00001111/naclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 107,
+          "selected_class_name": "booth, cubicle, stall, kiosk",
+          "width": 431,
+          "height": 296,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_ade847_ADE_val_00001111/proxyclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 748,
+          "selected_class_name": "scarfs",
+          "width": 431,
+          "height": 296,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_ade847_ADE_val_00001111/sclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 399,
+          "selected_class_name": "shops",
+          "width": 431,
+          "height": 296,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_ade847_ADE_val_00001111/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 315,
+          "selected_class_name": "shoe",
+          "width": 431,
+          "height": 296,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_ade20k_ADE_val_00000068",
+      "set": "mixed_dataset_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000068",
+      "target": "signboard",
+      "target_id": 43,
+      "input": "cases/mixed_ade20k_ADE_val_00000068/input.jpg",
+      "gt": "cases/mixed_ade20k_ADE_val_00000068/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_ade20k_ADE_val_00000068/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000068/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 77,
+          "selected_class_name": "bar",
+          "width": 580,
+          "height": 435,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000068/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 77,
+          "selected_class_name": "bar",
+          "width": 580,
+          "height": 435,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000068/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 77,
+          "selected_class_name": "bar",
+          "width": 580,
+          "height": 435,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000068/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 77,
+          "selected_class_name": "bar",
+          "width": 580,
+          "height": 435,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_ade20k_ADE_val_00000068/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 111,
+          "selected_class_name": "barrel",
+          "width": 580,
+          "height": 435,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "mixed_ade20k_ADE_val_00001803",
+      "set": "mixed_dataset_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00001803",
+      "target": "bus",
+      "target_id": 80,
+      "input": "cases/mixed_ade20k_ADE_val_00001803/input.jpg",
+      "gt": "cases/mixed_ade20k_ADE_val_00001803/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "whole-image semantic GT class mask",
+      "target_mask": "cases/mixed_ade20k_ADE_val_00001803/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00001803/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00001803/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00001803/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/mixed_ade20k_ADE_val_00001803/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 136,
+          "selected_class_name": "trafficlight",
+          "width": 683,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/mixed_ade20k_ADE_val_00001803/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 82,
+          "selected_class_name": "light",
+          "width": 683,
+          "height": 512,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "overview_window_ade150",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00001394",
+      "target": "windowpane",
+      "raw_name": "window",
+      "input": "cases/overview_window_ade150/input.jpg",
+      "gt": "cases/overview_window_ade150/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/overview_window_ade150/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/cultural/gun_deck__indoor/ADE_val_00001394.json",
+      "target_object_id": 7,
+      "target_id": 8,
+      "target_mask": "cases/overview_window_ade150/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/overview_window_ade150/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 76,
+          "selected_class_name": "boat",
+          "width": 480,
+          "height": 360,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/overview_window_ade150/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 76,
+          "selected_class_name": "boat",
+          "width": 480,
+          "height": 360,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/overview_window_ade150/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 76,
+          "selected_class_name": "boat",
+          "width": 480,
+          "height": 360,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/overview_window_ade150/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 76,
+          "selected_class_name": "boat",
+          "width": 480,
+          "height": 360,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/overview_window_ade150/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 27,
+          "selected_class_name": "mirror",
+          "width": 480,
+          "height": 360,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "overview_pot_ade150",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000460",
+      "target": "pot",
+      "raw_name": "pot",
+      "input": "cases/overview_pot_ade150/input.jpg",
+      "gt": "cases/overview_pot_ade150/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/overview_pot_ade150/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/home_or_hotel/kitchen/ADE_val_00000460.json",
+      "target_object_id": 24,
+      "target_id": 125,
+      "target_mask": "cases/overview_pot_ade150/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/overview_pot_ade150/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 125,
+          "selected_class_name": "pot",
+          "width": 656,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/overview_pot_ade150/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 125,
+          "selected_class_name": "pot",
+          "width": 656,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/overview_pot_ade150/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 25,
+          "selected_class_name": "house",
+          "width": 656,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/overview_pot_ade150/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 125,
+          "selected_class_name": "pot",
+          "width": 656,
+          "height": 512,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/overview_pot_ade150/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 125,
+          "selected_class_name": "pot",
+          "width": 656,
+          "height": 512,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "overview_people_ade150",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000998",
+      "target": "people",
+      "raw_name": "person",
+      "input": "cases/overview_people_ade150/input.jpg",
+      "gt": "cases/overview_people_ade150/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/overview_people_ade150/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/sports_and_leisure/volleyball_court__indoor/ADE_val_00000998.json",
+      "target_object_id": 5,
+      "target_id": 12,
+      "target_mask": "cases/overview_people_ade150/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/overview_people_ade150/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 92,
+          "selected_class_name": "apparel",
+          "width": 500,
+          "height": 333,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/overview_people_ade150/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 92,
+          "selected_class_name": "apparel",
+          "width": 500,
+          "height": 333,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/overview_people_ade150/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 92,
+          "selected_class_name": "apparel",
+          "width": 500,
+          "height": 333,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/overview_people_ade150/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 92,
+          "selected_class_name": "apparel",
+          "width": 500,
+          "height": 333,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/overview_people_ade150/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 92,
+          "selected_class_name": "apparel",
+          "width": 500,
+          "height": 333,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "overview_computer_ade150",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00001724",
+      "target": "computer",
+      "raw_name": "computer",
+      "input": "cases/overview_computer_ade150/input.jpg",
+      "gt": "cases/overview_computer_ade150/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/overview_computer_ade150/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/work_place/reception/ADE_val_00001724.json",
+      "target_object_id": 37,
+      "target_id": 74,
+      "target_mask": "cases/overview_computer_ade150/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/overview_computer_ade150/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 74,
+          "selected_class_name": "computer",
+          "width": 400,
+          "height": 300,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/overview_computer_ade150/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 33,
+          "selected_class_name": "desk",
+          "width": 400,
+          "height": 300,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/overview_computer_ade150/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 33,
+          "selected_class_name": "desk",
+          "width": 400,
+          "height": 300,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/overview_computer_ade150/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 33,
+          "selected_class_name": "desk",
+          "width": 400,
+          "height": 300,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/overview_computer_ade150/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 143,
+          "selected_class_name": "monitor",
+          "width": 400,
+          "height": 300,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "case_study_mismatch_box_bookcase",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000029",
+      "target": "box",
+      "raw_name": "boxes",
+      "input": "cases/case_study_mismatch_box_bookcase/input.jpg",
+      "gt": "cases/case_study_mismatch_box_bookcase/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/case_study_mismatch_box_bookcase/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/cultural/archive/ADE_val_00000029.json",
+      "target_object_id": 6,
+      "target_id": 41,
+      "target_mask": "cases/case_study_mismatch_box_bookcase/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/case_study_mismatch_box_bookcase/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 62,
+          "selected_class_name": "bookcase",
+          "width": 324,
+          "height": 335,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/case_study_mismatch_box_bookcase/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 10,
+          "selected_class_name": "cabinet",
+          "width": 324,
+          "height": 335,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/case_study_mismatch_box_bookcase/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 41,
+          "selected_class_name": "box",
+          "width": 324,
+          "height": 335,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/case_study_mismatch_box_bookcase/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 10,
+          "selected_class_name": "cabinet",
+          "width": 324,
+          "height": 335,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/case_study_mismatch_box_bookcase/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 62,
+          "selected_class_name": "bookcase",
+          "width": 324,
+          "height": 335,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "case_study_small_object_bus_independent",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade20k",
+      "image_id": "ADE_val_00000735",
+      "target": "bus",
+      "raw_name": "bus",
+      "input": "cases/case_study_small_object_bus_independent/input.jpg",
+      "gt": "cases/case_study_small_object_bus_independent/gt.png",
+      "vocab": "vocab/ade20k_150.txt",
+      "num_classes": 150,
+      "gt_void": 255,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/case_study_small_object_bus_independent/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/urban/roundabout/ADE_val_00000735.json",
+      "target_object_id": 3,
+      "target_id": 80,
+      "target_mask": "cases/case_study_small_object_bus_independent/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/case_study_small_object_bus_independent/corrclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 300,
+          "height": 225,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/case_study_small_object_bus_independent/naclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 300,
+          "height": 225,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/case_study_small_object_bus_independent/proxyclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 300,
+          "height": 225,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/case_study_small_object_bus_independent/sclip.png",
+          "add_to_raw_id": -1,
+          "rejection_id": -1,
+          "selected_class_id": 6,
+          "selected_class_name": "road",
+          "width": 300,
+          "height": 225,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/case_study_small_object_bus_independent/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 82,
+          "selected_class_name": "light",
+          "width": 300,
+          "height": 225,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "case_study_large_vocab_shelf_ade847",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade847",
+      "image_id": "ADE_val_00000456",
+      "target": "shelf",
+      "raw_name": "shelves",
+      "input": "cases/case_study_large_vocab_shelf_ade847/input.jpg",
+      "gt": "cases/case_study_large_vocab_shelf_ade847/gt.png",
+      "vocab": "vocab/ade20k_847.txt",
+      "num_classes": 847,
+      "gt_void": 65535,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/case_study_large_vocab_shelf_ade847/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/cultural/kindergarden_classroom/ADE_val_00000456.json",
+      "target_object_id": 5,
+      "target_id": 28,
+      "target_mask": "cases/case_study_large_vocab_shelf_ade847/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/case_study_large_vocab_shelf_ade847/corrclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 74,
+          "selected_class_name": "bookcase",
+          "width": 500,
+          "height": 375,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/case_study_large_vocab_shelf_ade847/naclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 343,
+          "selected_class_name": "drawer",
+          "width": 500,
+          "height": 375,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/case_study_large_vocab_shelf_ade847/proxyclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 74,
+          "selected_class_name": "bookcase",
+          "width": 500,
+          "height": 375,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/case_study_large_vocab_shelf_ade847/sclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 288,
+          "selected_class_name": "pantry",
+          "width": 500,
+          "height": 375,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/case_study_large_vocab_shelf_ade847/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 28,
+          "selected_class_name": "shelf",
+          "width": 500,
+          "height": 375,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    },
+    {
+      "key": "case_study_large_vocab_jacket_ade847",
+      "set": "submitted_all_ade_cases",
+      "dataset": "ade847",
+      "image_id": "ADE_val_00000255",
+      "target": "jacket",
+      "raw_name": "jacket",
+      "input": "cases/case_study_large_vocab_jacket_ade847/input.jpg",
+      "gt": "cases/case_study_large_vocab_jacket_ade847/gt.png",
+      "vocab": "vocab/ade20k_847.txt",
+      "num_classes": 847,
+      "gt_void": 65535,
+      "gt_encoding": "zero_based",
+      "target_protocol": "largest matching raw-name instance polygon from ADE source annotation",
+      "annotation": "cases/case_study_large_vocab_jacket_ade847/ade_annotation.json",
+      "annotation_archive_member": "ADE20K_2021_17_01/images/ADE/validation/home_or_hotel/closet/ADE_val_00000255.json",
+      "target_object_id": 9,
+      "target_id": 202,
+      "target_mask": "cases/case_study_large_vocab_jacket_ade847/target.png",
+      "predictions": {
+        "corrclip": {
+          "path": "cases/case_study_large_vocab_jacket_ade847/corrclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 484,
+          "selected_class_name": "coat",
+          "width": 420,
+          "height": 325,
+          "source": "historical_dense_export"
+        },
+        "naclip": {
+          "path": "cases/case_study_large_vocab_jacket_ade847/naclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 484,
+          "selected_class_name": "coat",
+          "width": 420,
+          "height": 325,
+          "source": "historical_dense_export"
+        },
+        "proxyclip": {
+          "path": "cases/case_study_large_vocab_jacket_ade847/proxyclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 484,
+          "selected_class_name": "coat",
+          "width": 420,
+          "height": 325,
+          "source": "historical_dense_export"
+        },
+        "sclip": {
+          "path": "cases/case_study_large_vocab_jacket_ade847/sclip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 484,
+          "selected_class_name": "coat",
+          "width": 420,
+          "height": 325,
+          "source": "historical_dense_export"
+        },
+        "sam_amg_siglip": {
+          "path": "cases/case_study_large_vocab_jacket_ade847/sam_amg_siglip.png",
+          "add_to_raw_id": 0,
+          "rejection_id": -1,
+          "selected_class_id": 484,
+          "selected_class_name": "coat",
+          "width": 420,
+          "height": 325,
+          "source": "corrected_seed0_evaluation"
+        }
+      }
+    }
+  ],
+  "old_hf_cache_recovered": false,
+  "annotation_replacement": "ADE source ZIP annotations; not claimed byte-identical to the missing HF cache",
+  "scope": "Selected figure assets only, not a full prediction or dataset backup. Final appendix PDF correspondence remains unverified."
+}
