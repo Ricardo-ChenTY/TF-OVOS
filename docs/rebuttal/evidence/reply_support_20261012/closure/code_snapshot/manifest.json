@@ -1,0 +1,485 @@
+{
+  "files": [
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/repair_dino_geometry_from_cache.py",
+      "snapshot": "repository/scripts/repair_dino_geometry_from_cache.py",
+      "sha256": "b3b5caa3d616fda9bdb83f970354aa7dd22251da0030b51dcbac0795e0feb80c"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/restore_freeda_coco_native.py",
+      "snapshot": "repository/scripts/restore_freeda_coco_native.py",
+      "sha256": "6180cc35a725c23b043da505ddc9c0286ba7cdec70ed5023a12226549c16d928"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/e4_special_backends.py",
+      "snapshot": "repository/scripts/e4_special_backends.py",
+      "sha256": "f300c6b4ce79c1e24db039bdd2f5134976674d0bb8c970b5707f58be05a39958"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/measure_dino_geometry_e4.py",
+      "snapshot": "repository/scripts/measure_dino_geometry_e4.py",
+      "sha256": "c428a67bff1a82a90db24ae51ebc8c3ce6bfd2596da9ff68cc5b5491d0aa2443"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/measure_e4.py",
+      "snapshot": "repository/scripts/measure_e4.py",
+      "sha256": "c6b5dbb1106e3713e1451f61ce7a622ea1dec39892dc66e1129e1cf73f83b4bf"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/python_e4",
+      "snapshot": "repository/scripts/python_e4",
+      "sha256": "8fe8d4eb264a0fc01fa2739b82867fbf0caba0e54e02de2d705fcb5b02c198a1"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/e4_full_common.py",
+      "snapshot": "repository/scripts/e4_full_common.py",
+      "sha256": "1e3df9aa6a859dee9f1de77efc9e2c0c53369750750771db69b4545aa0d2af1f"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/e4_gpu_guard.py",
+      "snapshot": "repository/scripts/e4_gpu_guard.py",
+      "sha256": "80ff2a31c10c2a5db0dd48e1ef679fb4c978970a8ab49332b57b719327822e87"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/pin_freeda_reproduction.py",
+      "snapshot": "repository/scripts/pin_freeda_reproduction.py",
+      "sha256": "70a7db1a13ba6927b3325db7feff7000d75eec0d036ee3b0aa06d69587dc61b2"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/tests/test_dino_geometry.py",
+      "snapshot": "repository/tests/test_dino_geometry.py",
+      "sha256": "cbec0730bd0ddfd941f7f9ceb8121410de6ecb7d1ba24c91a1ea75a6e83610a5"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/tests/test_rebuttal_metrics.py",
+      "snapshot": "repository/tests/test_rebuttal_metrics.py",
+      "sha256": "79dfee4d0724704ed59c45ea335cc388535e6e3fa5cceee88d4426ae7c585952"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/scripts/freeze_closure_sources.py",
+      "snapshot": "repository/scripts/freeze_closure_sources.py",
+      "sha256": "f01878a0f8ba91e5a536261946da8a93fa34405519d32a9fa7bf06ace844cdb8"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/dino_geometry.py",
+      "snapshot": "repository/src/tf_ovos/dino_geometry.py",
+      "sha256": "1399a1b70e37cf3e981478ad42a90b4cc3aeb05d7da75d3d1f01cb778d48460d"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/eval.py",
+      "snapshot": "repository/src/tf_ovos/eval.py",
+      "sha256": "84addc79e085df823e54256e2baadf8ac3e1eb2f330681024cff8a1d675ccee6"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/run_benchmark.py",
+      "snapshot": "repository/src/tf_ovos/run_benchmark.py",
+      "sha256": "de744331b7f6c09edcdf673d7f60698bd855739c4ae3f75df634dddfedac0dbb"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/make_manifest.py",
+      "snapshot": "repository/src/tf_ovos/make_manifest.py",
+      "sha256": "3073d29eda1b26d387cf9da962a3b113c9433df624157078584fe69ebbf07feb"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/__init__.py",
+      "snapshot": "repository/src/tf_ovos/__init__.py",
+      "sha256": "d8789eb2bafe01112b20baf19861ab948543c4b77c805a9f89205b43d114ad79"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/run_method.py",
+      "snapshot": "repository/src/tf_ovos/run_method.py",
+      "sha256": "55d12d6188f5487fcff4ba85ca96d7af58c9ff77982bee5e8fc49ddac3d5cbb6"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/metrics.py",
+      "snapshot": "repository/src/tf_ovos/metrics.py",
+      "sha256": "8b4cfa62870efb63ca9808fd76c5a1442496a8c6ffbbcdb8792099b5b35690bc"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/summarize_results.py",
+      "snapshot": "repository/src/tf_ovos/summarize_results.py",
+      "sha256": "aba83322bc9d8b839360529e3a0eb848a66a8f293f337aef1eeb3ea4d41e5b72"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/merge_predictions.py",
+      "snapshot": "repository/src/tf_ovos/merge_predictions.py",
+      "sha256": "4ab412baf3980fdfec270fe768a83de91b28468aaebf14880589d78bdd1323cb"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/candidate_expansion.py",
+      "snapshot": "repository/src/tf_ovos/candidate_expansion.py",
+      "sha256": "3fedb7d3bdd38939fabe03e867f3ed068ff00ccd81e7446b440c455dd2f9bf6e"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/data.py",
+      "snapshot": "repository/src/tf_ovos/data.py",
+      "sha256": "e407103787639d1b2acc2ee719f8284074d3cc80eddc9fe893d0621050cd3892"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/make_shards.py",
+      "snapshot": "repository/src/tf_ovos/make_shards.py",
+      "sha256": "a6b1e158911369ed7f44442672a88c2ea6f6da3b2826ab2ff78bc07b4d61bcc6"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/check_ready.py",
+      "snapshot": "repository/src/tf_ovos/check_ready.py",
+      "sha256": "438fa61818b7713148818d60d2fac0b5b80b81f7476423def75b7f830e44a183"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/make_ade20k_manifest.py",
+      "snapshot": "repository/src/tf_ovos/make_ade20k_manifest.py",
+      "sha256": "2f57789e820d5834817bf41a69223e6b584e68f97ad2de1c9dec92a400b46f5b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/result_sources.py",
+      "snapshot": "repository/src/tf_ovos/result_sources.py",
+      "sha256": "6e95c1df3c40b88f17ffb4c693433c0a44506c06f45b40dcc1d63257d1b52868"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/sam_amg_siglip.py",
+      "snapshot": "repository/src/tf_ovos/adapters/sam_amg_siglip.py",
+      "sha256": "a5b0220f37d6e1d9ed6e7a1bc00cc4e9a42ae04df3ac16504dde753fc3889e1b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/registry.py",
+      "snapshot": "repository/src/tf_ovos/adapters/registry.py",
+      "sha256": "548800b6e40fc397057e5fffffe9bbcedcb3505c148bc64091e19084223b58cb"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/maskclip.py",
+      "snapshot": "repository/src/tf_ovos/adapters/maskclip.py",
+      "sha256": "e1d3858c12d7b7a600daa4b172fe0a72bc7fee2b5093a96e40cef00ba647262e"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/__init__.py",
+      "snapshot": "repository/src/tf_ovos/adapters/__init__.py",
+      "sha256": "38660d5d8aa58ce678feed961583766c5d284ce5b295871e06587dd75d2f4ba8"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/maskclip_attn.py",
+      "snapshot": "repository/src/tf_ovos/adapters/maskclip_attn.py",
+      "sha256": "3615af3d6198dec2e64de38801a4c38149ae4ee7a3b1556cfc524b7882c938a7"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/sam_amg_clip.py",
+      "snapshot": "repository/src/tf_ovos/adapters/sam_amg_clip.py",
+      "sha256": "1d9e328e1a9932b94d2700516b07c46d453019bfb76ff07a082c78f5bab2193f"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/base.py",
+      "snapshot": "repository/src/tf_ovos/adapters/base.py",
+      "sha256": "fd3560ed5723b05ed89068ef8dde9d17dd15fa25b3fec613003324f35aaac1b2"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/dinov2_sam.py",
+      "snapshot": "repository/src/tf_ovos/adapters/dinov2_sam.py",
+      "sha256": "a18e3ad0e606a81f92861385c2ccfc704a53f60a6a7d3d90a3bc09d074e8351d"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/planned.py",
+      "snapshot": "repository/src/tf_ovos/adapters/planned.py",
+      "sha256": "e62766096d7f57381a525d901d97206d4de4ee690b6d72cc5f2df509ef5980d2"
+    },
+    {
+      "source": "/data/tianyi/TF-OVOS/src/tf_ovos/adapters/debug.py",
+      "snapshot": "repository/src/tf_ovos/adapters/debug.py",
+      "sha256": "fc3219b0ae61410861d9ac7fe850ed7892067914592a57e97650493481cd1e8e"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/__init__.py",
+      "snapshot": "native_freeda/models/__init__.py",
+      "sha256": "f08803e0abdfa5e2bb3815bf62b1da77cc169cdf2b3223a08a6a940843010764"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/builder.py",
+      "snapshot": "native_freeda/models/builder.py",
+      "sha256": "8f55b54ff1c04e111c275205524dc7b9da0d9803d666d4c80df92a3bc637f542"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/backbone.py",
+      "snapshot": "native_freeda/models/freeda/backbone.py",
+      "sha256": "49416d05001294e0b4fae29293b6b885a912587cf43e8fd0cb81d871864dc76d"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/freeda.py",
+      "snapshot": "native_freeda/models/freeda/freeda.py",
+      "sha256": "fbe29394408b6702902798e0a2aa3adab491aeea0c8e933558389a9af71580ab"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/__init__.py",
+      "snapshot": "native_freeda/models/freeda/__init__.py",
+      "sha256": "031b8a27128746e9a85849f1580f02beb711548f3a8eb8cbf1ee4dcbb02dc624"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/mi.py",
+      "snapshot": "native_freeda/models/freeda/mi.py",
+      "sha256": "a08173102d31b78a5489f454127f311e8f954da7076023cde965aa7b01c12171"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/pamr.py",
+      "snapshot": "native_freeda/models/freeda/pamr.py",
+      "sha256": "e43d6ee9df718ee22b21bfaa966fed530f1deea0405297e1de36c6be1a8ab77a"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/masker.py",
+      "snapshot": "native_freeda/models/freeda/masker.py",
+      "sha256": "676126a193c315ae121bc261cad38558152fef9087e4a7582720bdc7858c9cf7"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/modules.py",
+      "snapshot": "native_freeda/models/freeda/modules.py",
+      "sha256": "85ff55611ec43969ff217c6a98ae024d4c0d4b2908ec260836b0b962e6be5816"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/gumbel.py",
+      "snapshot": "native_freeda/models/freeda/gumbel.py",
+      "sha256": "1bd68c290f3501b30026020d2ed8032e1ace762faa6ff30e1df272bb6486517f"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/decoders.py",
+      "snapshot": "native_freeda/models/freeda/decoders.py",
+      "sha256": "61856b974c930cf54d07642c99d61c204f26cf31739a364debefca310d89da63"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/mask_proposer/__init__.py",
+      "snapshot": "native_freeda/models/freeda/mask_proposer/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/mask_proposer/skimage_algorithms.py",
+      "snapshot": "native_freeda/models/freeda/mask_proposer/skimage_algorithms.py",
+      "sha256": "01ff9a4d15a361979f450a85105ab9579d4d769d0b6195416283b904184875f8"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/mask_proposer/superpixel.py",
+      "snapshot": "native_freeda/models/freeda/mask_proposer/superpixel.py",
+      "sha256": "e11d7260a452c62d37425141b5035da1bb225af34e069e7eadc19b59028f8077"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/models/freeda/mask_proposer/superpixel_configs.py",
+      "snapshot": "native_freeda/models/freeda/mask_proposer/superpixel_configs.py",
+      "sha256": "7dd25f3249d29b4bb1d0b1ccf11928eda4783abd25e7e9ea39f9b3e5a7f54f13"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/__init__.py",
+      "snapshot": "native_freeda/segmentation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/evaluation/__init__.py",
+      "snapshot": "native_freeda/segmentation/evaluation/__init__.py",
+      "sha256": "cbee83774a42a5208679c25491080f1978bac7e2c8792d12f5a195a9ccddbdae"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/evaluation/freeda_builder.py",
+      "snapshot": "native_freeda/segmentation/evaluation/freeda_builder.py",
+      "sha256": "9e7edbb47233fc7ba95a8ae0833cbe5ccbce47b4467c6f09e4239a8cae45c177"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/evaluation/freeda_seg.py",
+      "snapshot": "native_freeda/segmentation/evaluation/freeda_seg.py",
+      "sha256": "ce7cc7386e5f46fb5d66ed39a8d0976d6680bcc0349b608fb9ad54243d859091"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/evaluation/builder.py",
+      "snapshot": "native_freeda/segmentation/evaluation/builder.py",
+      "sha256": "1cc399d899061bab63dfe75ce5cea2cfd7140b3bc8653c7cdaced2f044b24b50"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/datasets/__init__.py",
+      "snapshot": "native_freeda/segmentation/datasets/__init__.py",
+      "sha256": "905cafb00fcef1fb9ab58687eb5f14f948d4312d6677f50e171608a44eebedf9"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/datasets/pascal_voc.py",
+      "snapshot": "native_freeda/segmentation/datasets/pascal_voc.py",
+      "sha256": "2241674e9f8cce3708f0e1992da6ebc9c82baf0419e2ab285ecaad8738ac73f1"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/datasets/coco_object.py",
+      "snapshot": "native_freeda/segmentation/datasets/coco_object.py",
+      "sha256": "e8202764dd6a8168795b213e5e4b861025560598d4cac9cdb3c46b03d82b9757"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/datasets/tfovos_extra.py",
+      "snapshot": "native_freeda/segmentation/datasets/tfovos_extra.py",
+      "sha256": "c458ca459c50ea9505b9f4cba2e2f3fe0f05ece1475cbc08954629141bfb2dd8"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/custom_import.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/custom_import.py",
+      "sha256": "969c43961c7e5b968771168a05f5bdbfed5308a5f56581fb9a04df991436b95b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/stuff.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/stuff.py",
+      "sha256": "ccd42b33f3b213c992990c8b3b49be2e75488cb75e428878ccba6a358c358d26"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/coco.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/coco.py",
+      "sha256": "9999d0e77dfab02ba75b82143c7998e4a0820ecbcd8c0834fc1bba7b80529b4e"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/pascal_voc12_20.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/pascal_voc12_20.py",
+      "sha256": "88f45c643f89d0dbca57e85b072944ea22b20a2be29e96696209ce26aa29ca2b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/cityscapes.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/cityscapes.py",
+      "sha256": "c0902f8ff7cd99b6922ea7561bf01814846484469f01d4f1b5cc42eab5e5af68"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/pascal_context59.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/pascal_context59.py",
+      "sha256": "e704044fdcacfa0ae4bd668c14e9c10888c59fded710b8ca707fe6cda8ccbcfa"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/ade20k847.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/ade20k847.py",
+      "sha256": "a7110642e4c28f28c6a5e7a34b3c1e8050c3a675a1af6574c927a7d6c621c454"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/pascal_context.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/pascal_context.py",
+      "sha256": "2259faaf190a0241c1595c930cc63ed39156475f02ff83162b6b397e2c43fdbd"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/ade20k.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/ade20k.py",
+      "sha256": "ebd0b2251df4de2beb484b9b9541cba4a8b24ea79c3186137b8fed176f3798bd"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/pascal_voc12.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/pascal_voc12.py",
+      "sha256": "eeb62e4ded21fe44ca5226367f2ea9602684dbff68bfe22ed6e9136809ef8e28"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/pascal_context459.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/pascal_context459.py",
+      "sha256": "14d1b56a1188dadf27e8a251fe79d5193e97c3c5477a690d9e192643e96ba3bb"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/t_pascal_context59.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/t_pascal_context59.py",
+      "sha256": "542836ec024d7b13fd3bb96637f752ec9d11fb2ff0415cdd1cfce35b1e9a650b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/segmentation/configs/_base_/datasets/t_pascal_voc12_20.py",
+      "snapshot": "native_freeda/segmentation/configs/_base_/datasets/t_pascal_voc12_20.py",
+      "sha256": "9651d8191e438bd9631eeb80eeb14ecb603b57cdf21274d8e663e00bba3e8cd4"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/datasets/__init__.py",
+      "snapshot": "native_freeda/datasets/__init__.py",
+      "sha256": "505f01dbcf4ef601af99084a29c827dc5af286bbfc6c0a5e4d831cc995a39983"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/datasets/coco_diff.py",
+      "snapshot": "native_freeda/datasets/coco_diff.py",
+      "sha256": "bf92b239e253673b52fa765f9f05b2fa6bd3c3ea6d591e75f4e3a4a78d58f261"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/datasets/builder.py",
+      "snapshot": "native_freeda/datasets/builder.py",
+      "sha256": "d17b964c51566c200504ec1f6e0b6076f725ff31b227a66a767714da04b65b48"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/datasets/templates.py",
+      "snapshot": "native_freeda/datasets/templates.py",
+      "sha256": "4e135a683379bafbb8d639e2dddb62211f65b27c18a837e4668dbd1ba66cfbf8"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/datasets/collate.py",
+      "snapshot": "native_freeda/datasets/collate.py",
+      "sha256": "55eaa1490446cebd5792dfe71b3f27e8e3a3ac37413d52e808d7bd5208b26393"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/lr_scheduler.py",
+      "snapshot": "native_freeda/utils/lr_scheduler.py",
+      "sha256": "1741a6bd6b8a99eb06aa4d3355077b7e58ab048c0a3e06257c5d9761224da47a"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/misc.py",
+      "snapshot": "native_freeda/utils/misc.py",
+      "sha256": "cad6df4e70b51867f20af8d48b8c541e9de5a10f4b045843b8f563c07c62551c"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/__init__.py",
+      "snapshot": "native_freeda/utils/__init__.py",
+      "sha256": "ca69310bc1b7e56f9e2f8c1e801c097ba3968515ef041d4b82139689d8e4709b"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/optimizer.py",
+      "snapshot": "native_freeda/utils/optimizer.py",
+      "sha256": "c6ea6678861b91471a4c4db17b0a02a446cded04a1b6fbdffc18747a5742c764"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/config.py",
+      "snapshot": "native_freeda/utils/config.py",
+      "sha256": "80eae072f77ea957c443e3ff8d502d30e7e082ec56cac9aed82b66383e157410"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/utils/logger.py",
+      "snapshot": "native_freeda/utils/logger.py",
+      "sha256": "45b97a70be75d89d82cc4b232c5b01f993c68e06044d9486e60a2de4061b3094"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/us/misc.py",
+      "snapshot": "native_freeda/us/misc.py",
+      "sha256": "05a85417da47d0e980ddbac4d302c671c3527e173ada7054edc13966ea34e86c"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/us/__init__.py",
+      "snapshot": "native_freeda/us/__init__.py",
+      "sha256": "3b04b0f795db525c638e479a88dd43ebc2746068ad6a4346d6f6202e31752e0c"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/third_party/official_methods/freeda/src/us/dist_utils.py",
+      "snapshot": "native_freeda/us/dist_utils.py",
+      "sha256": "fd4fa2a26191d558cfb765b6601860d4d35099c9d4f4a753ef2644a0ef9c9c51"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/runs/freeda/coco_stuff171/config.json",
+      "snapshot": "freeda_coco_config.yaml",
+      "sha256": "c60d27b4b5d71bfe01abc07e335080392574d012f506f938d397bed4a08b9e1f"
+    },
+    {
+      "source": "/data/tianyi/TF-OVCOS/runs/freeda_artifact/coco_stuff171/config.json",
+      "snapshot": "freeda_artifact_coco_config.yaml",
+      "sha256": "f47b0f5a981907bab1bf9ac426aca3202feac0e5e3df1ab87a9c75d596e515b7"
+    }
+  ],
+  "runtime_versions": {
+    "dino": {
+      "python": "3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]",
+      "torch": "2.12.0",
+      "torchvision": "0.27.0",
+      "timm": "1.0.27",
+      "open-clip-torch": "3.3.0",
+      "transformers": "4.36.2",
+      "mmsegmentation": "1.2.2",
+      "numpy": "2.4.4",
+      "Pillow": "12.2.0",
+      "scikit-image": "0.26.0",
+      "omegaconf": "2.3.0"
+    },
+    "freeda": {
+      "python": "3.8.20 (default, Oct  3 2024, 15:24:27) \n[GCC 11.2.0]",
+      "torch": "1.12.1+cu113",
+      "torchvision": "0.13.1+cu113",
+      "timm": "0.9.5",
+      "open-clip-torch": "2.18.0",
+      "transformers": "4.28.1",
+      "mmcv-full": "1.6.2",
+      "mmsegmentation": "0.27.0",
+      "numpy": "1.23.5",
+      "Pillow": "9.3.0",
+      "scikit-image": "0.20.0",
+      "faiss-cpu": "1.7.4",
+      "omegaconf": "2.3.0"
+    }
+  },
+  "scope": "Actual local repair code and native FreeDA model/configuration sources; external weights/index/prototypes pinned separately."
+}

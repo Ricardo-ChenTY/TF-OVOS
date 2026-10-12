@@ -1,0 +1,5 @@
+method,voc20,context59,ade150,coco_stuff171,mean_miou_percent,worst_miou_percent,worst_dataset,scope
+sam_amg_clip,67.47200848167867,17.067081916830514,11.666227148067259,11.628113218501007,26.958357691269363,11.628113218501007,coco_stuff171,four compact native targets; candidate seed0; DINO geometry corrected
+sam_amg_siglip,67.48472260144351,20.547503485150777,16.759006476871093,15.721901332765079,30.12828347405761,15.721901332765079,coco_stuff171,four compact native targets; candidate seed0; DINO geometry corrected
+dinov2_sam_clip,62.00558547408945,16.347321942360395,11.36380509520243,11.202154016318447,25.22971663199268,11.202154016318447,coco_stuff171,four compact native targets; candidate seed0; DINO geometry corrected
+dinov2_sam_siglip,62.13876607268733,19.64780988774547,16.460027224123802,15.462087768834834,28.42717273834786,15.462087768834834,coco_stuff171,four compact native targets; candidate seed0; DINO geometry corrected

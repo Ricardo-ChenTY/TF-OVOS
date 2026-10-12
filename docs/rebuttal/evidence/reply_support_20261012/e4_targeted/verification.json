@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "completed_jobs": 20,
+  "paired_images": 400,
+  "exact_matches": 400,
+  "mismatch_requires_review": false,
+  "full_quality_for_online_variant": "corrclip_online/latency_by_dataset.csv",
+  "proposal_subset_quality_NOT_full_score": "proposal_same_recipe/latency_by_dataset.csv",
+  "limitation": "Old and restored timings use different cuDNN TF32 recipes; distinguish protocol-strict timing from native-recipe paired timing."
+}

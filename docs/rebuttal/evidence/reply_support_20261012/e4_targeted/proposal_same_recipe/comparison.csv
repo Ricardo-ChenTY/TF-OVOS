@@ -1,0 +1,5 @@
+method,images,macro_online_seconds,pooled_online_seconds,macro_miou_percent,peak_allocated_gib,peak_reserved_gib,timing_scope,quality_geometry
+sam_amg_clip,100,3.1400059957546187,3.1400059957546183,21.785170863119372,8.503746509552002,12.59375,online_after_class_setup,original_frame
+sam_amg_siglip,100,3.410393409766257,3.410393409766257,27.219957544590336,9.378101348876953,11.92578125,online_after_class_setup,original_frame
+dinov2_sam_clip,100,3.197253366031218,3.197253366031218,21.53021973514211,8.826554775238037,12.94921875,online_after_class_setup,original_frame
+dinov2_sam_siglip,100,3.460530536241131,3.460530536241131,25.05107806762711,9.707467079162598,12.189453125,online_after_class_setup,original_frame

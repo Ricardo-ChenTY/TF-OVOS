@@ -1,0 +1,510 @@
+{
+  "source_archive": "../../artifacts/review_20261011_closed.tar.gz",
+  "source_archive_sha256": "352f9200df173cb5d08d7ef1ee9423f22e0c3294cc1ef3c2ef766bd102d941a3",
+  "scope": "Browsable frozen evidence subset, two pre-existing baseline sources, CPU figure audit, and arithmetic summaries; no new model runs",
+  "files": [
+    {
+      "file": "ade847_corrected/table9_diagnostic_probes.csv",
+      "sha256": "d62916ead84f7d5137140661af3cb520e6b30f84995eb4353c449a7bb46cb7bf",
+      "bytes": 6671,
+      "source": "review_20261011_closed/evidence/ade847_corrected/table9_diagnostic_probes.csv"
+    },
+    {
+      "file": "closure/code_snapshot/manifest.json",
+      "sha256": "f010194353414dc96d8026b0fbb7853b93fad7dbb2d4ec6083ada26a1447b936",
+      "bytes": 24138,
+      "source": "review_20261011_closed/evidence/closure/code_snapshot/manifest.json"
+    },
+    {
+      "file": "closure/dino_e4/verification.json",
+      "sha256": "594b73a32c61c7b5fa72f6cbde050d113fe9bc5bfc0bf9137abc070dede75506",
+      "bytes": 475,
+      "source": "review_20261011_closed/evidence/closure/dino_e4/verification.json"
+    },
+    {
+      "file": "closure/dino_geometry/full/complete.json",
+      "sha256": "8588fdee796d8e3213cd12123ebf6d78e356b522560642fdd6c63bff6de5c95c",
+      "bytes": 122,
+      "source": "review_20261011_closed/evidence/closure/dino_geometry/full/complete.json"
+    },
+    {
+      "file": "closure/dino_geometry/full/protocol.json",
+      "sha256": "741c0e615bca1bad70bc5a0cdd73cdb314121476a17abb79649574cab941efd7",
+      "bytes": 1540,
+      "source": "review_20261011_closed/evidence/closure/dino_geometry/full/protocol.json"
+    },
+    {
+      "file": "closure/dino_geometry/full/summary.json",
+      "sha256": "e1a17d483695a466aa979d57eb2dff494b2fb74bc0b5dfe87f15d422af59c342",
+      "bytes": 10826,
+      "source": "review_20261011_closed/evidence/closure/dino_geometry/full/summary.json"
+    },
+    {
+      "file": "closure/freeda_e4_pairing.json",
+      "sha256": "05e28d7135ee05c343a312761fb7867673770affc7ebdf385ba5387cd0d19308",
+      "bytes": 7129,
+      "source": "review_20261011_closed/evidence/closure/freeda_e4_pairing.json"
+    },
+    {
+      "file": "closure/freeda_full/protocol.json",
+      "sha256": "4ee5c5c8b9bd3abdcb5ca9e06e6bbc9ae7bf6889a4f78cfbd7662144ce63160a",
+      "bytes": 7861,
+      "source": "review_20261011_closed/evidence/closure/freeda_full/protocol.json"
+    },
+    {
+      "file": "closure/freeda_full/verification.json",
+      "sha256": "d00ff13f0d482eac37249afd046d4995efa87103cd837c71b07e4d3abcbb2db0",
+      "bytes": 4461,
+      "source": "review_20261011_closed/evidence/closure/freeda_full/verification.json"
+    },
+    {
+      "file": "closure/freeda_label_corruption_audit.json",
+      "sha256": "fb5d715cd48ad6a348514bd89490a1ac1f71481ba7a3fdc281da3d4b315393db",
+      "bytes": 9319,
+      "source": "review_20261011_closed/evidence/closure/freeda_label_corruption_audit.json"
+    },
+    {
+      "file": "component_min128/component_metric_audit.csv",
+      "sha256": "41685aa5ec471137ff44ec388bd9f932d35d49b5152754b1f2bf05d354666696",
+      "bytes": 2606,
+      "source": "review_20261011_closed/evidence/component_min128/component_metric_audit.csv"
+    },
+    {
+      "file": "component_min64/component_metric_audit.csv",
+      "sha256": "35d3dc43d84184f32551a2255be5a65fdd6abcb41df188d70f8164cfa09756d0",
+      "bytes": 2589,
+      "source": "review_20261011_closed/evidence/component_min64/component_metric_audit.csv"
+    },
+    {
+      "file": "component_perfect_prediction_control.json",
+      "sha256": "9f7f9b2836fb2eec874c1cae57dfbbe40d343bd49f0d07f7b506e90cde99d430",
+      "bytes": 233,
+      "source": "review_20261011_closed/evidence/component_perfect_prediction_control.json"
+    },
+    {
+      "file": "diagnostics/coco_intersection_provenance.json",
+      "sha256": "087ed53eb43968d0388c504370f4c53df4fff0b6a98a0df2b57dfe84531d3aa3",
+      "bytes": 102319,
+      "source": "review_20261011_closed/evidence/diagnostics/coco_intersection_provenance.json"
+    },
+    {
+      "file": "diagnostics/coco_thing_stuff_intersection.csv",
+      "sha256": "d3521a151ce7e80c8b0a7d277039ba7a3e262d43c5842f38064dfa3ad530db06",
+      "bytes": 4339,
+      "source": "review_20261011_closed/evidence/diagnostics/coco_thing_stuff_intersection.csv"
+    },
+    {
+      "file": "diagnostics/coco_thing_stuff_intersection.pdf",
+      "sha256": "08f55ccb354bf7b55a81b0ba42e34d9e4929d9cefacb8a9d49aa7eb8310b059e",
+      "bytes": 18476,
+      "source": "review_20261011_closed/evidence/diagnostics/coco_thing_stuff_intersection.pdf"
+    },
+    {
+      "file": "diagnostics/coco_thing_stuff_intersection.png",
+      "sha256": "1f79e21322867a62a56d3795bd80aa676fb393843f078f79970853e203c32e73",
+      "bytes": 99750,
+      "source": "review_20261011_closed/evidence/diagnostics/coco_thing_stuff_intersection.png"
+    },
+    {
+      "file": "diagnostics/common_gt_counts.csv",
+      "sha256": "dc7a97bbd8f75c526e4a0a52f88ff5e4b66e46416da94c3bb2c4c878afcc3673",
+      "bytes": 20035,
+      "source": "review_20261011_closed/evidence/diagnostics/common_gt_counts.csv"
+    },
+    {
+      "file": "diagnostics/compact_mean_worst.csv",
+      "sha256": "222f76649e1597db8d1945b370bd17846dc14619126f21213b395fee0118ae20",
+      "bytes": 951,
+      "source": "review_20261011_closed/evidence/diagnostics/compact_mean_worst.csv"
+    },
+    {
+      "file": "diagnostics/submitted_comparison.csv",
+      "sha256": "8196cc86607f80b2a1533d282f4187111ddab0b3939df58df77687127d7eed0b",
+      "bytes": 4579,
+      "source": "review_20261011_closed/evidence/diagnostics/submitted_comparison.csv"
+    },
+    {
+      "file": "diagnostics/ziou_split.csv",
+      "sha256": "5f3747f2db3b47e492cb73c7df2b3937eca4293085352fdac38c07a115a28226",
+      "bytes": 6385,
+      "source": "review_20261011_closed/evidence/diagnostics/ziou_split.csv"
+    },
+    {
+      "file": "dino_geometry_changes.csv",
+      "sha256": "efd07917ab1b80e2d11f24f5b1795e9b7e4a9b5e64364d52143fb22f58da9477",
+      "bytes": 5901,
+      "source": "review_20261011_closed/evidence/dino_geometry_changes.csv"
+    },
+    {
+      "file": "e4_sample/latency_by_dataset.csv",
+      "sha256": "d0a16e22cb4a1ef99bfdc63918bca198e886d63a05192a2dc2ea37b6dd8ce42c",
+      "bytes": 7393,
+      "source": "review_20261011_closed/evidence/e4_sample/latency_by_dataset.csv"
+    },
+    {
+      "file": "e4_sample/latency_memory.pdf",
+      "sha256": "5eabdef7c0a253aff37b275dc5169a8c499274f8eaec162625a99a98fa4c0eb2",
+      "bytes": 19499,
+      "source": "review_20261011_closed/evidence/e4_sample/latency_memory.pdf"
+    },
+    {
+      "file": "e4_sample/latency_summary.csv",
+      "sha256": "2b8c7303893c2f1d9bc5a3cf3c5cbacdc2d7e3689ab0f6a32dfb48216e696b7b",
+      "bytes": 4027,
+      "source": "review_20261011_closed/evidence/e4_sample/latency_summary.csv"
+    },
+    {
+      "file": "e4_sample/protocol.json",
+      "sha256": "b5603e62a868eaa1f40f6c18af4662279f8ba5945da323033d7ec10fd10b95f8",
+      "bytes": 44090,
+      "source": "review_20261011_closed/evidence/e4_sample/protocol.json"
+    },
+    {
+      "file": "e4_sample/scope_exceptions.json",
+      "sha256": "bc630057410a08ea6cacc87040a34b804f6fd2f782fc625fac88e6199160d7ff",
+      "bytes": 1444,
+      "source": "review_20261011_closed/evidence/e4_sample/scope_exceptions.json"
+    },
+    {
+      "file": "e4_sample/settings_all.json",
+      "sha256": "5e04b932e4c82b5dba05f3632dc27b8ddf7a3d851f34a48544de4986092177d7",
+      "bytes": 270947,
+      "source": "review_20261011_closed/evidence/e4_sample/settings_all.json"
+    },
+    {
+      "file": "e4_sample/verification.json",
+      "sha256": "4738123e74a3b5abf0de92e5e002ef641ceee043b89df3dbdf5b024fa66b79ea",
+      "bytes": 12852,
+      "source": "review_20261011_closed/evidence/e4_sample/verification.json"
+    },
+    {
+      "file": "e4_targeted/corrclip_online/latency_by_dataset.csv",
+      "sha256": "012b4c60a52f9ec857ff608d5be6d0bd619707ecaec0e4c2865fabee61ddf430",
+      "bytes": 1136,
+      "source": "review_20261011_closed/evidence/e4_targeted/corrclip_online/latency_by_dataset.csv"
+    },
+    {
+      "file": "e4_targeted/proposal_same_recipe/comparison.csv",
+      "sha256": "70eb8058fd034f4bfb6fd1d5211bcbf91ff720ea62c6b53c79207bc13bb8eb05",
+      "bytes": 724,
+      "source": "review_20261011_closed/evidence/e4_targeted/proposal_same_recipe/comparison.csv"
+    },
+    {
+      "file": "e4_targeted/proposal_same_recipe/latency_by_dataset.csv",
+      "sha256": "ca5d1473c86de711c3feea166356dc1a4af37039eafaf4428bf0b1eb386f2f7b",
+      "bytes": 3775,
+      "source": "review_20261011_closed/evidence/e4_targeted/proposal_same_recipe/latency_by_dataset.csv"
+    },
+    {
+      "file": "e4_targeted/scope_decisions.csv",
+      "sha256": "ce16f1c0043d02ebd2e6036c12d5bf76ef3e201a17ecaca964691434f9738192",
+      "bytes": 3252,
+      "source": "review_20261011_closed/evidence/e4_targeted/scope_decisions.csv"
+    },
+    {
+      "file": "e4_targeted/verification.json",
+      "sha256": "7a5e45b544ba05996a0acc9cdd6801a33f60c89a5d84121db4063c24b7a07236",
+      "bytes": 453,
+      "source": "review_20261011_closed/evidence/e4_targeted/verification.json"
+    },
+    {
+      "file": "fixed_gt/coverage.csv",
+      "sha256": "564d6119c8fdeb5a203f6bfc618e76e81b708553a8d971d129b7404799616eaf",
+      "bytes": 1329,
+      "source": "review_20261011_closed/evidence/fixed_gt/coverage.csv"
+    },
+    {
+      "file": "fixed_gt/curves.csv",
+      "sha256": "fecd6e5690ed2210bc5c69821d59c02a7e9c537c5828f64687a0d4f7713e62af",
+      "bytes": 45628,
+      "source": "review_20261011_closed/evidence/fixed_gt/curves.csv"
+    },
+    {
+      "file": "fixed_gt/endpoints.csv",
+      "sha256": "000394c2800a0cb7c0a290244340f789024b4590401078d7486644c86f46385b",
+      "bytes": 12728,
+      "source": "review_20261011_closed/evidence/fixed_gt/endpoints.csv"
+    },
+    {
+      "file": "fixed_gt/nonmonotonic_steps.csv",
+      "sha256": "10694b50cda66408cd6815cdcc128b7f2a2c6e8b4db033fb7771d09a7ce82c7b",
+      "bytes": 293,
+      "source": "review_20261011_closed/evidence/fixed_gt/nonmonotonic_steps.csv"
+    },
+    {
+      "file": "fixed_gt/proposal_seed0_curves.csv",
+      "sha256": "06f6d0ec27c466018195270ba3de7c165a74071b087b83b8cb408853f908e555",
+      "bytes": 11011,
+      "source": "review_20261011_closed/evidence/fixed_gt/proposal_seed0_curves.csv"
+    },
+    {
+      "file": "fixed_gt/proposal_seed0_endpoints.csv",
+      "sha256": "56f1e2df383c1ac1286e3f41ae3b0702099f0363fed3534a1952ead1aeb10232",
+      "bytes": 3067,
+      "source": "review_20261011_closed/evidence/fixed_gt/proposal_seed0_endpoints.csv"
+    },
+    {
+      "file": "fixed_gt/verification.json",
+      "sha256": "3077766c341db0f9c7593518776972023c0ef155da70a7ac9852a4c723e486bd",
+      "bytes": 33032,
+      "source": "review_20261011_closed/evidence/fixed_gt/verification.json"
+    },
+    {
+      "file": "submitted_pdf_baseline.json",
+      "sha256": "1484e72d364becb2e5dce83fa0a835a21486bf651fb85ac6f26c81a71ee9c571",
+      "bytes": 11043,
+      "source": "review_20261011_closed/evidence/submitted_pdf_baseline.json"
+    },
+    {
+      "file": "verification.json",
+      "sha256": "41beeb0e1c7f81f609af59a0286cf63e37946b25cda0d28cf21b8e6b159d0a0f",
+      "bytes": 33131,
+      "source": "review_20261011_closed/evidence/verification.json"
+    },
+    {
+      "file": "baseline_sources/corrclip_ade150_base.json",
+      "sha256": "f6f671855f26e36b0000386586a585b92dc14d3bbc3c9893c430cd442ab7c803",
+      "bytes": 6522,
+      "source": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/all_fixed_gt_20261009/methods/corrclip/jobs/ade150_base/jobs/corrclip/ade150/result.json",
+      "scope": "Existing full fixed-GT run; matches frozen curve source_sha256"
+    },
+    {
+      "file": "baseline_sources/corrclip_context59_base.json",
+      "sha256": "f43feaa4c170042bfec831cdd3e44ce30d6edc9e085aad640ba417a0867cc7a2",
+      "bytes": 4427,
+      "source": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/all_fixed_gt_20261009/methods/corrclip/jobs/context59_base/jobs/corrclip/context59/result.json",
+      "scope": "Existing full fixed-GT run; matches frozen curve source_sha256"
+    },
+    {
+      "file": "figure_audit/prediction_comparison.json",
+      "sha256": "c17cf06c9c00aa632821666d47cb712dbc2d86686b85b35f9f8e44012e1b0808",
+      "bytes": 8131,
+      "source": "/data/tianyi/TF-OVOS/runs/rebuttal/figure_audit_20261012/prediction_comparison.json",
+      "scope": "CPU audit of existing archived panels and final predictions"
+    },
+    {
+      "file": "derived/sam_siglip_mcmr_aggregation.csv",
+      "sha256": "13a26512b42eb5577b565eb91e32b3cedf0e8775dd99bdbf2910d235ed541536",
+      "bytes": 214,
+      "source": "Derived from included CSV/JSON without inference"
+    },
+    {
+      "file": "derived/current_quality_latency_pairs.csv",
+      "sha256": "e31a9b4307a452f43159a1f295397bd1968492e8485049cdd507a70b936eb50d",
+      "bytes": 829,
+      "source": "Derived from included CSV/JSON without inference"
+    }
+  ],
+  "published_runtime_code": [
+    {
+      "file": "src/tf_ovos/adapters/base.py",
+      "sha256": "fd3560ed5723b05ed89068ef8dde9d17dd15fa25b3fec613003324f35aaac1b2",
+      "source": "review_20261011_closed/code/src/tf_ovos/adapters/base.py"
+    },
+    {
+      "file": "src/tf_ovos/adapters/dinov2_sam.py",
+      "sha256": "a18e3ad0e606a81f92861385c2ccfc704a53f60a6a7d3d90a3bc09d074e8351d",
+      "source": "review_20261011_closed/code/src/tf_ovos/adapters/dinov2_sam.py"
+    },
+    {
+      "file": "src/tf_ovos/adapters/sam_amg_clip.py",
+      "sha256": "1d9e328e1a9932b94d2700516b07c46d453019bfb76ff07a082c78f5bab2193f",
+      "source": "review_20261011_closed/code/src/tf_ovos/adapters/sam_amg_clip.py"
+    },
+    {
+      "file": "src/tf_ovos/adapters/sam_amg_siglip.py",
+      "sha256": "a5b0220f37d6e1d9ed6e7a1bc00cc4e9a42ae04df3ac16504dde753fc3889e1b",
+      "source": "review_20261011_closed/code/src/tf_ovos/adapters/sam_amg_siglip.py"
+    },
+    {
+      "file": "src/tf_ovos/candidate_expansion.py",
+      "sha256": "3fedb7d3bdd38939fabe03e867f3ed068ff00ccd81e7446b440c455dd2f9bf6e",
+      "source": "review_20261011_closed/code/src/tf_ovos/candidate_expansion.py"
+    },
+    {
+      "file": "src/tf_ovos/dino_geometry.py",
+      "sha256": "1399a1b70e37cf3e981478ad42a90b4cc3aeb05d7da75d3d1f01cb778d48460d",
+      "source": "review_20261011_closed/code/src/tf_ovos/dino_geometry.py"
+    },
+    {
+      "file": "src/tf_ovos/eval.py",
+      "sha256": "84addc79e085df823e54256e2baadf8ac3e1eb2f330681024cff8a1d675ccee6",
+      "source": "review_20261011_closed/code/src/tf_ovos/eval.py"
+    },
+    {
+      "file": "src/tf_ovos/make_ade20k_manifest.py",
+      "sha256": "2f57789e820d5834817bf41a69223e6b584e68f97ad2de1c9dec92a400b46f5b",
+      "source": "review_20261011_closed/code/src/tf_ovos/make_ade20k_manifest.py"
+    },
+    {
+      "file": "src/tf_ovos/metrics.py",
+      "sha256": "8b4cfa62870efb63ca9808fd76c5a1442496a8c6ffbbcdb8792099b5b35690bc",
+      "source": "review_20261011_closed/code/src/tf_ovos/metrics.py"
+    },
+    {
+      "file": "src/tf_ovos/result_sources.py",
+      "sha256": "6e95c1df3c40b88f17ffb4c693433c0a44506c06f45b40dcc1d63257d1b52868",
+      "source": "review_20261011_closed/code/src/tf_ovos/result_sources.py"
+    },
+    {
+      "file": "src/tf_ovos/run_method.py",
+      "sha256": "55d12d6188f5487fcff4ba85ca96d7af58c9ff77982bee5e8fc49ddac3d5cbb6",
+      "source": "review_20261011_closed/code/src/tf_ovos/run_method.py"
+    },
+    {
+      "file": "scripts/audit_freeda_saved_coco.py",
+      "sha256": "40585ab0d692e25a5e7a9251db3a4f9eceadf700b0f5ed2fb7bf7fcaccc98162",
+      "source": "review_20261011_closed/code/scripts/audit_freeda_saved_coco.py"
+    },
+    {
+      "file": "scripts/build_closure_review.py",
+      "sha256": "a1a1e3dd67b47a769f7b032bd0c5184cd1d71670f73a9a7e6ec853f5aaf110d8",
+      "source": "review_20261011_closed/code/scripts/build_closure_review.py"
+    },
+    {
+      "file": "scripts/build_e2_filled_table.py",
+      "sha256": "9f3f39e04982ee744975b56456292b28371b95d376d3ef77c03c78f63a543aad",
+      "source": "review_20261011_closed/code/scripts/build_e2_filled_table.py"
+    },
+    {
+      "file": "scripts/e4_full_common.py",
+      "sha256": "1e3df9aa6a859dee9f1de77efc9e2c0c53369750750771db69b4545aa0d2af1f",
+      "source": "review_20261011_closed/code/scripts/e4_full_common.py"
+    },
+    {
+      "file": "scripts/e4_gpu_guard.py",
+      "sha256": "80ff2a31c10c2a5db0dd48e1ef679fb4c978970a8ab49332b57b719327822e87",
+      "source": "review_20261011_closed/code/scripts/e4_gpu_guard.py"
+    },
+    {
+      "file": "scripts/e4_special_backends.py",
+      "sha256": "f300c6b4ce79c1e24db039bdd2f5134976674d0bb8c970b5707f58be05a39958",
+      "source": "review_20261011_closed/code/scripts/e4_special_backends.py"
+    },
+    {
+      "file": "scripts/finalize_geometry_closure.py",
+      "sha256": "fb17085d6c3bea2e1b12155808fdee5064b6ad873317d410a9f24e7be9b59fe3",
+      "source": "review_20261011_closed/code/scripts/finalize_geometry_closure.py"
+    },
+    {
+      "file": "scripts/freeze_closure_sources.py",
+      "sha256": "f01878a0f8ba91e5a536261946da8a93fa34405519d32a9fa7bf06ace844cdb8",
+      "source": "review_20261011_closed/code/scripts/freeze_closure_sources.py"
+    },
+    {
+      "file": "scripts/generate_diagnostic_tables.py",
+      "sha256": "22650e0ed307ea503dd29b638f143fc403990017fded746dc8eddde8b26f6d66",
+      "source": "review_20261011_closed/code/scripts/generate_diagnostic_tables.py"
+    },
+    {
+      "file": "scripts/generate_exploratory_light_metrics.py",
+      "sha256": "1b27e9a57e63579afcaae09fdddb22eb35a5260301176f537e2bf6ea4d88522f",
+      "source": "review_20261011_closed/code/scripts/generate_exploratory_light_metrics.py"
+    },
+    {
+      "file": "scripts/measure_dino_geometry_e4.py",
+      "sha256": "c428a67bff1a82a90db24ae51ebc8c3ce6bfd2596da9ff68cc5b5491d0aa2443",
+      "source": "review_20261011_closed/code/scripts/measure_dino_geometry_e4.py"
+    },
+    {
+      "file": "scripts/measure_e4.py",
+      "sha256": "c6b5dbb1106e3713e1451f61ce7a622ea1dec39892dc66e1129e1cf73f83b4bf",
+      "source": "review_20261011_closed/code/scripts/measure_e4.py"
+    },
+    {
+      "file": "scripts/pin_freeda_reproduction.py",
+      "sha256": "70a7db1a13ba6927b3325db7feff7000d75eec0d036ee3b0aa06d69587dc61b2",
+      "source": "review_20261011_closed/code/scripts/pin_freeda_reproduction.py"
+    },
+    {
+      "file": "scripts/postprocess_official_predictions.py",
+      "sha256": "012f56f0cf6a26fb66026cf9be50410e54d5d922685a3e421ac7bdcddf56e0c0",
+      "source": "review_20261011_closed/code/scripts/postprocess_official_predictions.py"
+    },
+    {
+      "file": "scripts/prepare_manifests.py",
+      "sha256": "7ae888d1572c1f7b68ed04b137a6d0b10ca9963289dca4968827bc684d78ccd5",
+      "source": "review_20261011_closed/code/scripts/prepare_manifests.py"
+    },
+    {
+      "file": "scripts/probe_freeda_reproducibility.py",
+      "sha256": "c70296933fa5d5f72b37395c3478cbeb22a5a25255c13274f5f5173d1b54db18",
+      "source": "review_20261011_closed/code/scripts/probe_freeda_reproducibility.py"
+    },
+    {
+      "file": "scripts/python_e4",
+      "sha256": "8fe8d4eb264a0fc01fa2739b82867fbf0caba0e54e02de2d705fcb5b02c198a1",
+      "source": "review_20261011_closed/code/scripts/python_e4"
+    },
+    {
+      "file": "scripts/real_obs5_diagnostic_multi.py",
+      "sha256": "29ba63348261a20082119c55cf735ae54779c62b7f6f45e2614ff714c3ab977b",
+      "source": "review_20261011_closed/code/scripts/real_obs5_diagnostic_multi.py"
+    },
+    {
+      "file": "scripts/render_geometry_closure_report.py",
+      "sha256": "64b611c902e267a25ac26b540a03db1e2c7652b6aa90981cc118540800717300",
+      "source": "review_20261011_closed/code/scripts/render_geometry_closure_report.py"
+    },
+    {
+      "file": "scripts/repair_dino_geometry_from_cache.py",
+      "sha256": "b3b5caa3d616fda9bdb83f970354aa7dd22251da0030b51dcbac0795e0feb80c",
+      "source": "review_20261011_closed/code/scripts/repair_dino_geometry_from_cache.py"
+    },
+    {
+      "file": "scripts/report_fixed_gt_seed0.py",
+      "sha256": "cede7e45e2f6ffbdac3ea79a0b8411d0a772f434dcd580b8f88c91904a4207b5",
+      "source": "review_20261011_closed/code/scripts/report_fixed_gt_seed0.py"
+    },
+    {
+      "file": "scripts/rescore_candidate_only_expansion.py",
+      "sha256": "359bc673a2fbe787707a4e7c6ffed7150b17fe1a9c487980a9a20d73b36b9015",
+      "source": "review_20261011_closed/code/scripts/rescore_candidate_only_expansion.py"
+    },
+    {
+      "file": "scripts/restore_freeda_coco_native.py",
+      "sha256": "6180cc35a725c23b043da505ddc9c0286ba7cdec70ed5023a12226549c16d928",
+      "source": "review_20261011_closed/code/scripts/restore_freeda_coco_native.py"
+    },
+    {
+      "file": "scripts/run_dino_closure_e4_queue.py",
+      "sha256": "4b51501c3ddf26e45ad895fe2f57d34606d32697f3624e8065e1c1029df63d6f",
+      "source": "review_20261011_closed/code/scripts/run_dino_closure_e4_queue.py"
+    },
+    {
+      "file": "scripts/snapshot_geometry_closure.py",
+      "sha256": "e19c09f560152e3a82c3800a9f29bd212c9f477d0b89684559b023d7b1168829",
+      "source": "review_20261011_closed/code/scripts/snapshot_geometry_closure.py"
+    },
+    {
+      "file": "scripts/validate_geometry_closure_report.py",
+      "sha256": "d033a2cc2c20593190d61557094c8ae7651d865f64ea52f99052e08a27bf281e",
+      "source": "review_20261011_closed/code/scripts/validate_geometry_closure_report.py"
+    },
+    {
+      "file": "scripts/verify_closure_review.py",
+      "sha256": "31c5ef3a09b6471d37f1a89cb0b1c6fa17b8aa3d4baedfff8176058ccdb98864",
+      "source": "review_20261011_closed/code/scripts/verify_closure_review.py"
+    },
+    {
+      "file": "tests/test_dino_geometry.py",
+      "sha256": "cbec0730bd0ddfd941f7f9ceb8121410de6ecb7d1ba24c91a1ea75a6e83610a5",
+      "source": "review_20261011_closed/code/tests/test_dino_geometry.py"
+    },
+    {
+      "file": "tests/test_make_ade20k_manifest.py",
+      "sha256": "22ed39f883f3ba59814885ad7160dafaad5e604faf1adb5fe3db38caabd7ae61",
+      "source": "review_20261011_closed/code/tests/test_make_ade20k_manifest.py"
+    },
+    {
+      "file": "tests/test_rebuttal_metrics.py",
+      "sha256": "79dfee4d0724704ed59c45ea335cc388535e6e3fa5cceee88d4426ae7c585952",
+      "source": "review_20261011_closed/code/tests/test_rebuttal_metrics.py"
+    },
+    {
+      "file": "configs/label_maps/ade20k847_official_ids.json",
+      "sha256": "6fbc2f93fa67a30f154c9334dd300c4711ab952b641b02010521f0f2d9f32de5",
+      "source": "review_20261011_closed/code/configs/label_maps/ade20k847_official_ids.json"
+    }
+  ]
+}

@@ -11,15 +11,16 @@ predictions (context459 / ade847), remaps them into the COMPACT class
 space via a name-normalized crosswalk (any predicted class with no match
 in the compact vocabulary is treated as "off-vocabulary", i.e. wrong for
 whatever pixel it covers), and rescores against the ORIGINAL compact GT
-(context59 / ade20k150). This isolates "the model had to compete against
-hundreds of extra candidate names" from "the GT/annotation scheme itself
-changed", using zero new inference -- only already-saved artifacts.
+(context59 / ade20k150). This is a descriptive endpoint comparison using saved artifacts. It does not
+strictly isolate candidate competition: the base strings/groupings may differ
+and the crosswalk may not preserve every compact class identity.
 
 Usage:
     python scripts/rescore_candidate_only_expansion.py
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import re
 from pathlib import Path
@@ -63,7 +64,7 @@ PAIRS = [
     },
 ]
 
-METHODS = sorted(p.name for p in ARTIFACT_ROOT.iterdir() if p.is_dir())
+
 
 
 def _norm(s: str) -> str:
@@ -145,14 +146,15 @@ def _rescore_method_pair(method: str, pair: dict) -> dict | None:
         base = _base_id(sample.image_id)
         pred_path = pred_dir / f"{base}.png"
         if not pred_path.exists():
-            missing += 1
-            continue
+            raise FileNotFoundError(f"Missing prediction: {pred_path}")
 
         gt = load_label_map(str(sample.mask_path), pair["compact_void_label"])
         raw_pred = np.asarray(Image.open(pred_path), dtype=np.int32)
         raw_pred = _resize_like(raw_pred, gt.shape)
 
         valid_pred_mask = (raw_pred >= 0) & (raw_pred < pair["large_num_classes"])
+        if not valid_pred_mask.all():
+            raise ValueError(f"Unexpected prediction IDs in {pred_path}")
         compact_pred = np.where(valid_pred_mask, lut[np.clip(raw_pred, 0, lut_size - 1)], -1)
 
         valid_gt = (gt >= 0) & (gt != pair["compact_void_label"]) & (gt < n)
@@ -186,15 +188,31 @@ def _rescore_method_pair(method: str, pair: dict) -> dict | None:
         "large_vocab_size": pair["large_num_classes"],
         "compact_vocab_size": n,
         "crosswalk_matched": len(crosswalk),
+        "compact_classes_retained": len(set(crosswalk.values())),
+        "interpretation": "historical_endpoint_not_causal_decomposition",
         "crosswalk_unmatched": unmatched,
         "candidate_only_rescored_mIoU": round(miou, 4) if miou is not None else None,
     }
 
 
 def main() -> None:
+    global ARTIFACT_ROOT, OUT_DIR
+    parser = argparse.ArgumentParser(description="Historical endpoint rescoring; not a strict causal decomposition")
+    parser.add_argument("--artifact-root", type=Path, default=ARTIFACT_ROOT)
+    parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
+    parser.add_argument("--pairs", nargs="+", choices=["context", "ade"], default=["context", "ade"])
+    parser.add_argument("--methods", nargs="+")
+    args = parser.parse_args()
+    ARTIFACT_ROOT, OUT_DIR = args.artifact_root, args.out_dir
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    methods = args.methods or sorted(p.name for p in ARTIFACT_ROOT.iterdir() if p.is_dir())
+    if "cliptrase" in methods:
+        raise ValueError("CLIPtrase saved maps have center-crop coordinates; cannot score them on full-image compact GT")
     rows = []
     for pair in PAIRS:
-        for method in METHODS:
+        if pair["name"] not in args.pairs:
+            continue
+        for method in methods:
             row = _rescore_method_pair(method, pair)
             if row is not None:
                 rows.append(row)

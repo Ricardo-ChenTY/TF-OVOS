@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "model": "facebook/dinov2-base",
+    "weights": {
+      "/data/tianyi/TF-OVOS/.cache/dinov2/models--facebook--dinov2-base/snapshots/f9e44c814b77203eaa57a6bdbbd535f21ede1415/model.safetensors": "d73036b56966966d07975d696bde331762f37297e2f095de8cea0040c3aa0841"
+    },
+    "processor": {
+      "_processor_class": null,
+      "image_processor_type": "BitImageProcessor",
+      "do_resize": true,
+      "size": {
+        "shortest_edge": 256
+      },
+      "resample": 3,
+      "do_center_crop": true,
+      "crop_size": {
+        "height": 224,
+        "width": 224
+      },
+      "do_rescale": true,
+      "rescale_factor": 0.00392156862745098,
+      "do_normalize": true,
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "do_convert_rgb": true
+    },
+    "source_sha256": {
+      "/data/tianyi/TF-OVOS/scripts/repair_dino_geometry_from_cache.py": "b3b5caa3d616fda9bdb83f970354aa7dd22251da0030b51dcbac0795e0feb80c",
+      "/data/tianyi/TF-OVOS/src/tf_ovos/dino_geometry.py": "1399a1b70e37cf3e981478ad42a90b4cc3aeb05d7da75d3d1f01cb778d48460d"
+    },
+    "torch": "2.12.0+cu130",
+    "tf32": false,
+    "cudnn_tf32": true
+  },
+  "scope": "full",
+  "limit": 0,
+  "change": "SAM mask projected through identical DINO resize and center crop before token selection",
+  "retained": "SAM masks, naming crop features/text, mask ordering, SAM confidences, DINO weights, uncovered class0 rule; original outputs immutable"
+}

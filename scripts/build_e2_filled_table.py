@@ -12,6 +12,7 @@ from PIL import Image
 
 from tf_ovos.data import load_manifest
 from tf_ovos.metrics import load_label_map
+from tf_ovos.result_sources import read_unique_diagnostics
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -92,15 +93,10 @@ def read_official_best() -> dict[tuple[str, str], dict[str, str]]:
 
 def read_table9_mcmr() -> dict[str, float]:
     vals: dict[str, list[float]] = {}
-    for path in [OUT_DIR / "table9_diagnostic_probes.csv", OUT_DIR / "san_diag" / "table9_diagnostic_probes.csv"]:
-        if not path.exists():
-            continue
-        with path.open(newline="") as handle:
-            for row in csv.DictReader(handle):
-                if row["dataset"] not in {"context459", "ade847"}:
-                    continue
-                if row.get("mcmr_at_05"):
-                    vals.setdefault(row["method"], []).append(float(row["mcmr_at_05"]))
+    paths = [OUT_DIR / "table9_diagnostic_probes.csv", OUT_DIR / "san_diag" / "table9_diagnostic_probes.csv"]
+    for row in read_unique_diagnostics(paths):
+        if row["dataset"] in {"context459", "ade847"} and row.get("mcmr_at_05"):
+            vals.setdefault(row["method"], []).append(float(row["mcmr_at_05"]))
     return {method: float(np.mean(v)) for method, v in vals.items()}
 
 

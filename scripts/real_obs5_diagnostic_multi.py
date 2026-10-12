@@ -658,7 +658,7 @@ class SamAmgSiglipBackend(MethodBackend):
             stability_score_thresh=0.92,
             min_mask_region_area=400,
         )
-        self.siglip_model, self.siglip_preprocess, _ = _stock_open_clip.create_model_and_transforms(
+        self.siglip_model, _, self.siglip_preprocess = _stock_open_clip.create_model_and_transforms(
             "ViT-SO400M-14-SigLIP", pretrained="webli"
         )
         self.siglip_model.eval().to(device)

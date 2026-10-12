@@ -1,0 +1,575 @@
+{
+  "status": "full_verified",
+  "archived_full_images": 5000,
+  "archived_miou_percent": 27.024438079624467,
+  "missing_native_classes": [
+    0,
+    11,
+    24,
+    26,
+    40,
+    60,
+    61,
+    62,
+    73,
+    80
+  ],
+  "probe_images": 5,
+  "probe_pixels": 1525120,
+  "probe_old_255": 166517,
+  "probe_changed_non255": 0,
+  "observations": [
+    {
+      "native_label": 0,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 75442
+    },
+    {
+      "native_label": 1,
+      "archive_labels": [
+        1
+      ],
+      "pixels": 4198
+    },
+    {
+      "native_label": 2,
+      "archive_labels": [
+        2
+      ],
+      "pixels": 411
+    },
+    {
+      "native_label": 9,
+      "archive_labels": [
+        9
+      ],
+      "pixels": 83414
+    },
+    {
+      "native_label": 11,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 21938
+    },
+    {
+      "native_label": 12,
+      "archive_labels": [
+        12
+      ],
+      "pixels": 1743
+    },
+    {
+      "native_label": 36,
+      "archive_labels": [
+        36
+      ],
+      "pixels": 121
+    },
+    {
+      "native_label": 39,
+      "archive_labels": [
+        39
+      ],
+      "pixels": 394
+    },
+    {
+      "native_label": 45,
+      "archive_labels": [
+        45
+      ],
+      "pixels": 61
+    },
+    {
+      "native_label": 46,
+      "archive_labels": [
+        46
+      ],
+      "pixels": 168657
+    },
+    {
+      "native_label": 58,
+      "archive_labels": [
+        58
+      ],
+      "pixels": 1074
+    },
+    {
+      "native_label": 60,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 18882
+    },
+    {
+      "native_label": 62,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 35727
+    },
+    {
+      "native_label": 63,
+      "archive_labels": [
+        63
+      ],
+      "pixels": 45543
+    },
+    {
+      "native_label": 65,
+      "archive_labels": [
+        65
+      ],
+      "pixels": 4985
+    },
+    {
+      "native_label": 66,
+      "archive_labels": [
+        66
+      ],
+      "pixels": 9716
+    },
+    {
+      "native_label": 67,
+      "archive_labels": [
+        67
+      ],
+      "pixels": 1406
+    },
+    {
+      "native_label": 68,
+      "archive_labels": [
+        68
+      ],
+      "pixels": 182
+    },
+    {
+      "native_label": 69,
+      "archive_labels": [
+        69
+      ],
+      "pixels": 3512
+    },
+    {
+      "native_label": 71,
+      "archive_labels": [
+        71
+      ],
+      "pixels": 34
+    },
+    {
+      "native_label": 72,
+      "archive_labels": [
+        72
+      ],
+      "pixels": 2890
+    },
+    {
+      "native_label": 73,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 971
+    },
+    {
+      "native_label": 74,
+      "archive_labels": [
+        74
+      ],
+      "pixels": 317
+    },
+    {
+      "native_label": 75,
+      "archive_labels": [
+        75
+      ],
+      "pixels": 2142
+    },
+    {
+      "native_label": 80,
+      "archive_labels": [
+        255
+      ],
+      "pixels": 13557
+    },
+    {
+      "native_label": 84,
+      "archive_labels": [
+        84
+      ],
+      "pixels": 700
+    },
+    {
+      "native_label": 85,
+      "archive_labels": [
+        85
+      ],
+      "pixels": 54828
+    },
+    {
+      "native_label": 88,
+      "archive_labels": [
+        88
+      ],
+      "pixels": 33656
+    },
+    {
+      "native_label": 89,
+      "archive_labels": [
+        89
+      ],
+      "pixels": 16904
+    },
+    {
+      "native_label": 90,
+      "archive_labels": [
+        90
+      ],
+      "pixels": 70870
+    },
+    {
+      "native_label": 92,
+      "archive_labels": [
+        92
+      ],
+      "pixels": 39
+    },
+    {
+      "native_label": 93,
+      "archive_labels": [
+        93
+      ],
+      "pixels": 9183
+    },
+    {
+      "native_label": 94,
+      "archive_labels": [
+        94
+      ],
+      "pixels": 3
+    },
+    {
+      "native_label": 95,
+      "archive_labels": [
+        95
+      ],
+      "pixels": 24022
+    },
+    {
+      "native_label": 96,
+      "archive_labels": [
+        96
+      ],
+      "pixels": 13828
+    },
+    {
+      "native_label": 98,
+      "archive_labels": [
+        98
+      ],
+      "pixels": 44303
+    },
+    {
+      "native_label": 101,
+      "archive_labels": [
+        101
+      ],
+      "pixels": 3865
+    },
+    {
+      "native_label": 102,
+      "archive_labels": [
+        102
+      ],
+      "pixels": 1270
+    },
+    {
+      "native_label": 103,
+      "archive_labels": [
+        103
+      ],
+      "pixels": 12809
+    },
+    {
+      "native_label": 106,
+      "archive_labels": [
+        106
+      ],
+      "pixels": 30032
+    },
+    {
+      "native_label": 107,
+      "archive_labels": [
+        107
+      ],
+      "pixels": 405
+    },
+    {
+      "native_label": 109,
+      "archive_labels": [
+        109
+      ],
+      "pixels": 163
+    },
+    {
+      "native_label": 110,
+      "archive_labels": [
+        110
+      ],
+      "pixels": 43473
+    },
+    {
+      "native_label": 111,
+      "archive_labels": [
+        111
+      ],
+      "pixels": 35982
+    },
+    {
+      "native_label": 116,
+      "archive_labels": [
+        116
+      ],
+      "pixels": 70282
+    },
+    {
+      "native_label": 117,
+      "archive_labels": [
+        117
+      ],
+      "pixels": 14981
+    },
+    {
+      "native_label": 118,
+      "archive_labels": [
+        118
+      ],
+      "pixels": 2407
+    },
+    {
+      "native_label": 119,
+      "archive_labels": [
+        119
+      ],
+      "pixels": 42790
+    },
+    {
+      "native_label": 120,
+      "archive_labels": [
+        120
+      ],
+      "pixels": 732
+    },
+    {
+      "native_label": 121,
+      "archive_labels": [
+        121
+      ],
+      "pixels": 11092
+    },
+    {
+      "native_label": 127,
+      "archive_labels": [
+        127
+      ],
+      "pixels": 931
+    },
+    {
+      "native_label": 128,
+      "archive_labels": [
+        128
+      ],
+      "pixels": 118073
+    },
+    {
+      "native_label": 130,
+      "archive_labels": [
+        130
+      ],
+      "pixels": 1239
+    },
+    {
+      "native_label": 131,
+      "archive_labels": [
+        131
+      ],
+      "pixels": 11773
+    },
+    {
+      "native_label": 134,
+      "archive_labels": [
+        134
+      ],
+      "pixels": 24118
+    },
+    {
+      "native_label": 137,
+      "archive_labels": [
+        137
+      ],
+      "pixels": 36678
+    },
+    {
+      "native_label": 139,
+      "archive_labels": [
+        139
+      ],
+      "pixels": 3597
+    },
+    {
+      "native_label": 140,
+      "archive_labels": [
+        140
+      ],
+      "pixels": 12999
+    },
+    {
+      "native_label": 144,
+      "archive_labels": [
+        144
+      ],
+      "pixels": 20152
+    },
+    {
+      "native_label": 145,
+      "archive_labels": [
+        145
+      ],
+      "pixels": 113588
+    },
+    {
+      "native_label": 149,
+      "archive_labels": [
+        149
+      ],
+      "pixels": 1775
+    },
+    {
+      "native_label": 150,
+      "archive_labels": [
+        150
+      ],
+      "pixels": 9612
+    },
+    {
+      "native_label": 152,
+      "archive_labels": [
+        152
+      ],
+      "pixels": 358
+    },
+    {
+      "native_label": 153,
+      "archive_labels": [
+        153
+      ],
+      "pixels": 1062
+    },
+    {
+      "native_label": 155,
+      "archive_labels": [
+        155
+      ],
+      "pixels": 910
+    },
+    {
+      "native_label": 157,
+      "archive_labels": [
+        157
+      ],
+      "pixels": 42009
+    },
+    {
+      "native_label": 158,
+      "archive_labels": [
+        158
+      ],
+      "pixels": 82
+    },
+    {
+      "native_label": 159,
+      "archive_labels": [
+        159
+      ],
+      "pixels": 186
+    },
+    {
+      "native_label": 160,
+      "archive_labels": [
+        160
+      ],
+      "pixels": 762
+    },
+    {
+      "native_label": 161,
+      "archive_labels": [
+        161
+      ],
+      "pixels": 9843
+    },
+    {
+      "native_label": 162,
+      "archive_labels": [
+        162
+      ],
+      "pixels": 6035
+    },
+    {
+      "native_label": 165,
+      "archive_labels": [
+        165
+      ],
+      "pixels": 1620
+    },
+    {
+      "native_label": 167,
+      "archive_labels": [
+        167
+      ],
+      "pixels": 727
+    },
+    {
+      "native_label": 168,
+      "archive_labels": [
+        168
+      ],
+      "pixels": 56411
+    },
+    {
+      "native_label": 169,
+      "archive_labels": [
+        169
+      ],
+      "pixels": 14341
+    },
+    {
+      "native_label": 170,
+      "archive_labels": [
+        170
+      ],
+      "pixels": 303
+    }
+  ],
+  "interpretation": "Native model has 171 classes and with_bg=False: 255 is not a native rejection output. The archive erases ten valid class IDs. Their indices exactly match the holes induced by confusing COCO category_id with PNG category_id-1.",
+  "causal_limit": "Full native rerun establishes lost legitimate class labels in archived PNGs. The exact historical destructive conversion command is not recovered; its category-ID offset origin is inferred from the exact hole signature.",
+  "restored_miou_percent": 28.796316822156953,
+  "full_images": 5000,
+  "full_changed_non255_pixels": 0,
+  "full_old_255_pixels": 94228064,
+  "erased_native_classes": [
+    0,
+    11,
+    24,
+    26,
+    40,
+    60,
+    61,
+    62,
+    73,
+    80
+  ],
+  "unexpected_archive_labels": 0,
+  "reproduces_submitted_to_two_decimals": true
+}

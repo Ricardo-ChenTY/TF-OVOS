@@ -1,0 +1,161 @@
+{
+  "status": "complete",
+  "scope": "Four historical case IDs; submitted 15-page pdf.pdf has no Figures 6-8; final appendix correspondence remains unverified",
+  "new_gpu_runs": 0,
+  "records": [
+    {
+      "image_id": "2008_002366",
+      "dataset": "context459",
+      "target": "person",
+      "target_pixels": 9558,
+      "image_pixels": 165500,
+      "changed_class_pixels": 70981,
+      "changed_class_percent": 42.88882175226586,
+      "selected_mask_changed_pixels": 20823,
+      "old": {
+        "predicted_label_id": 203,
+        "predicted_name": "helmet",
+        "mask_pixels": 29970,
+        "target_overlap_pixels": 5743,
+        "target_iou": 0.16998668047950274
+      },
+      "current": {
+        "predicted_label_id": 203,
+        "predicted_name": "helmet",
+        "mask_pixels": 9147,
+        "target_overlap_pixels": 5743,
+        "target_iou": 0.4430643419225428
+      },
+      "paths": {
+        "old_prediction": "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/context459_val/shards/part-000/pred_masks/2008_002366.png",
+        "new_prediction": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/context459_sam_amg_siglip_native/candidates_459/000612.png",
+        "gt": "/data/tianyi/TF-OVOS/data/raw/context459_labels/2008_002366.png"
+      },
+      "sha256": {
+        "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/context459_val/shards/part-000/pred_masks/2008_002366.png": "253947f248810ca3be493b3e3dba2888855207151138360f3b0382f2b3197e3f",
+        "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/context459_sam_amg_siglip_native/candidates_459/000612.png": "015b25e0a5b290d7073eb518c259340f0a69303205c45ad92843326dc25a0d02",
+        "/data/tianyi/TF-OVOS/data/raw/context459_labels/2008_002366.png": "d97774e1008f07af3be4f5113b5707e3a11d7d9f067b1be1481aaabeb6df6a8e",
+        "/data/tianyi/TF-OVOS/configs/vocab/context_459.txt": "57ca42f50d0cd1cd5999b6e2da43d6524db9a47e2a247c8a7103aea7de43e304"
+      }
+    },
+    {
+      "image_id": "urban/bazaar__outdoor/ADE_val_00001111",
+      "dataset": "ade847",
+      "target": "scarf",
+      "target_pixels": 682,
+      "image_pixels": 127576,
+      "changed_class_pixels": 73616,
+      "changed_class_percent": 57.7036433184925,
+      "selected_mask_changed_pixels": 1101,
+      "old": {
+        "predicted_label_id": 413,
+        "predicted_name": "cup",
+        "mask_pixels": 759,
+        "target_overlap_pixels": 653,
+        "target_iou": 0.8286802030456852
+      },
+      "current": {
+        "predicted_label_id": 315,
+        "predicted_name": "shoe",
+        "mask_pixels": 1860,
+        "target_overlap_pixels": 653,
+        "target_iou": 0.3456855479089465
+      },
+      "paths": {
+        "old_prediction": "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k847_val/shards/part-000/pred_masks/urban_bazaar__outdoor_ADE_val_00001111.png",
+        "new_prediction": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade847_sam_amg_siglip_native/candidates_847/001339.png",
+        "gt": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/ade847_protocol_audit/official_ids/ADE_val_00001111.png"
+      },
+      "sha256": {
+        "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k847_val/shards/part-000/pred_masks/urban_bazaar__outdoor_ADE_val_00001111.png": "9836ab0debb739fdfc65548be3ceeabf90ee10bfdd38b1d0c107385f5f1247c3",
+        "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade847_sam_amg_siglip_native/candidates_847/001339.png": "f9cd60839e82a4179360a1e7f8ca7f04d28f1beead926c6f399d69ebbf1d21f7",
+        "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/ade847_protocol_audit/official_ids/ADE_val_00001111.png": "c5f2a707b8c8ce64f919b558d3389eb68d850dc05fc11446767846c822361e74",
+        "/data/tianyi/TF-OVOS/configs/vocab/ade20k_847.txt": "ba5eb1ad91c7d57938a9862fd1bef906ffb0012914c42837c2b37f8d7de6e0cd"
+      }
+    },
+    {
+      "image_id": "ADE_val_00000068",
+      "dataset": "ade150",
+      "target": "signboard",
+      "target_pixels": 3787,
+      "image_pixels": 252300,
+      "changed_class_pixels": 80354,
+      "changed_class_percent": 31.848592944906855,
+      "selected_mask_changed_pixels": 0,
+      "old": {
+        "predicted_label_id": 111,
+        "predicted_name": "barrel",
+        "mask_pixels": 3798,
+        "target_overlap_pixels": 3650,
+        "target_iou": 0.9275730622617535
+      },
+      "current": {
+        "predicted_label_id": 111,
+        "predicted_name": "barrel",
+        "mask_pixels": 3798,
+        "target_overlap_pixels": 3650,
+        "target_iou": 0.9275730622617535
+      },
+      "paths": {
+        "old_prediction": "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k150_val/shards/part-000/pred_masks/ADE_val_00000068.png",
+        "new_prediction": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade150_sam_amg_siglip_s0/candidates_150/000067.png",
+        "gt": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000068.png"
+      },
+      "sha256": {
+        "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k150_val/shards/part-000/pred_masks/ADE_val_00000068.png": "6520dc5343478cb2569922a04ed1b7e0fe31c3bad8074bdd00acaea667efa1c6",
+        "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade150_sam_amg_siglip_s0/candidates_150/000067.png": "4f0d25378ac9895470a0217f2386eed94ebec11261aa0b89f73ab412cf478ade",
+        "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000068.png": "dda7bc45cdcaefb8f850e77c1d82c496574eed962376243389bfc99127a9a431",
+        "/data/tianyi/TF-OVOS/configs/vocab/ade20k_150.txt": "db0a5766ffd3586c73fdb686b10d72fa3949bc6c4350f30fcc1f3fe0b70b102b"
+      },
+      "archived_panel_verified": {
+        "path": "/data/tianyi/TF-OVCOS/runs/analysis/case_study_mismatch_signboard.png",
+        "sha256": "0fc20c07d069ac937d066574732737b537180f8933c9ed313bacf61f4fcd3831",
+        "full_scene_selected_mask_matches_exactly": true,
+        "displayed_mask_pixels": 629,
+        "scope": "archived PNG full-scene SAM+SigLIP tile; final appendix PDF unavailable"
+      }
+    },
+    {
+      "image_id": "ADE_val_00001803",
+      "dataset": "ade150",
+      "target": "bus",
+      "target_pixels": 90,
+      "image_pixels": 349696,
+      "changed_class_pixels": 55755,
+      "changed_class_percent": 15.943848371156664,
+      "selected_mask_changed_pixels": 7484,
+      "old": {
+        "predicted_label_id": 82,
+        "predicted_name": "light",
+        "mask_pixels": 13267,
+        "target_overlap_pixels": 88,
+        "target_iou": 0.006631999397090964
+      },
+      "current": {
+        "predicted_label_id": 82,
+        "predicted_name": "light",
+        "mask_pixels": 7569,
+        "target_overlap_pixels": 88,
+        "target_iou": 0.011623299432043323
+      },
+      "paths": {
+        "old_prediction": "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k150_val/shards/part-000/pred_masks/ADE_val_00001803.png",
+        "new_prediction": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade150_sam_amg_siglip_s0/candidates_150/001802.png",
+        "gt": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001803.png"
+      },
+      "sha256": {
+        "/data/tianyi/TF-OVCOS/runs/sam_amg_siglip/ade20k150_val/shards/part-000/pred_masks/ADE_val_00001803.png": "ec47176f1dd601f78378d82af70bef956b8324ce414f8d85930f1104b9e2175f",
+        "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/rebuttal/full/ade150_sam_amg_siglip_s0/candidates_150/001802.png": "c65688f3560a151526d1a90b78599d99bf14c5381d2d1f1b3fd09761f1d94ff9",
+        "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001803.png": "0425dfef8863f288907050c4f6e75113e816934576ad57354f9455023fbe78b7",
+        "/data/tianyi/TF-OVOS/configs/vocab/ade20k_150.txt": "db0a5766ffd3586c73fdb686b10d72fa3949bc6c4350f30fcc1f3fe0b70b102b"
+      },
+      "archived_panel_verified": {
+        "path": "/data/tianyi/TF-OVCOS/runs/analysis/case_study_small_object_bus.png",
+        "sha256": "619b4e8c04037db522b9bb8ec09e89e3191ba65ec1b59a7704436979b767a906",
+        "full_scene_selected_mask_matches_exactly": true,
+        "displayed_mask_pixels": 1595,
+        "scope": "archived PNG full-scene SAM+SigLIP tile; final appendix PDF unavailable"
+      }
+    }
+  ]
+}

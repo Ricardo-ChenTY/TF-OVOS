@@ -1,0 +1,18 @@
+{
+  "corrclip": {
+    "scope": "supplementary cached-mask consumer timing, NOT end-to-end",
+    "reason": "The original E1 implementation reads official pre-generated SAM2 image masks. Their construction cost was not logged.",
+    "measurement": "Masks preloaded outside timing to match the decoded-RGB input convention; mask transfer and full consumer inference remain timed.",
+    "followup": "corrclip_online measures the native online SAM2-8 path on the same 100 images; do not pair this variant with the original cached-mask E1 quality or call it the same recipe."
+  },
+  "freeda": {
+    "scope": "online inference after class-specific prototype retrieval; offline corpus construction unavailable",
+    "reason": "Pre-existing index and prototype corpus are method artifacts. Class retrieval/setup is measured separately; corpus generation time is unknown, not zero."
+  },
+  "cliptrase": {
+    "scope": "native 336x336 center-cropped output",
+    "reason": "Its original E1 evaluation used center-cropped GT. Does not imply full-frame spatial coverage."
+  },
+  "software": "FreeDA uses its original Torch 1.12.1 environment; other methods use Torch 2.12. Same GPU, batch size, CPU threads, synchronization and sample set; native model dtype/geometry retained.",
+  "cpu_thread_scope": "cpu_threads=4 denotes torch intra/inter-op and OMP_NUM_THREADS/MKL_NUM_THREADS/OPENBLAS_NUM_THREADS. Other native library settings are not overridden."
+}

@@ -1,0 +1,5 @@
+aggregation,mcmr,correct,wrong
+context459,0.6933314555313006,4355,9846
+ade847,0.6562795089707271,3276,6255
+equal_target_mean,0.6748054822510139,,
+pooled_counts_distinct_statistic,0.6784510365750885,7631,16101

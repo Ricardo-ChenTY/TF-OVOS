@@ -1,0 +1,6 @@
+method,full_four_target_mean_miou_percent,mean_online_seconds,timed_images,quality_scope,timing_scope
+sam_amg_clip,26.958357691269363,3.1400059957546183,100,full native compact targets,"recipe-matched sample; matmul TF32 off, cuDNN TF32 on"
+sam_amg_siglip,30.12828347405761,3.410393409766257,100,full native compact targets,"recipe-matched sample; matmul TF32 off, cuDNN TF32 on"
+dinov2_sam_clip,25.22971663199268,3.1835773586505094,100,full native compact targets,"recipe-matched sample; matmul TF32 off, cuDNN TF32 on"
+dinov2_sam_siglip,28.42717273834786,3.458968979725614,100,full native compact targets,"recipe-matched sample; matmul TF32 off, cuDNN TF32 on"
+corrclip_online_sam2_8,48.35491454982702,0.17375327244720695,13554,own full native compact targets; equal-target mean,own full run; image-weighted mean latency

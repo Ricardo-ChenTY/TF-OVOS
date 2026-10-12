@@ -1,0 +1,762 @@
+{
+  "samples": {
+    "voc20": {
+      "warmup": [
+        {
+          "image_id": "2008_000657",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_000657.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_000657.png",
+          "image_sha256": "bc73d502ffd3656a3caa9f99e9f5611cd827d77588b2cbf442f331d0bc6e4245"
+        },
+        {
+          "image_id": "2008_006216",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_006216.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_006216.png",
+          "image_sha256": "d865fabd84df580ab82decb6f46cb8a424bdcb1fb0fceee749136b318f8d39fc"
+        },
+        {
+          "image_id": "2010_003764",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_003764.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_003764.png",
+          "image_sha256": "2d126aef1f8ee2322d3b1e5e4e7872a427e65eda0b96c5965cae94cc9617c6d9"
+        },
+        {
+          "image_id": "2009_002150",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_002150.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_002150.png",
+          "image_sha256": "2755220767ef2e16767171029b6259385c70562ee6e3f767983c280b00c3b7fc"
+        },
+        {
+          "image_id": "2008_007350",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_007350.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_007350.png",
+          "image_sha256": "1b9000a8a4cf35889a2c4beb486979db8a9ea977fddd99ca3e1084bdf8d7ee2a"
+        }
+      ],
+      "measure": [
+        {
+          "image_id": "2010_000738",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_000738.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_000738.png",
+          "image_sha256": "6726616964f145ddd001d602a90853e06dbd4b67d5e65c6237bcc2389b8c2205"
+        },
+        {
+          "image_id": "2011_001110",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2011_001110.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2011_001110.png",
+          "image_sha256": "7012bbbbed9101dc5ad5660f4d222050c6c3f17a6cdd4b5b6ce26b7389822d6c"
+        },
+        {
+          "image_id": "2007_005304",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_005304.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_005304.png",
+          "image_sha256": "bc0d4f12487d613505642a5275880cf91396ba836e3e8716eb9891b667ae47a1"
+        },
+        {
+          "image_id": "2010_005706",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_005706.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_005706.png",
+          "image_sha256": "a89c6d99781a49a006a0cfd7274732d1ed6632c7325657356a1784aec98fe41d"
+        },
+        {
+          "image_id": "2009_002604",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_002604.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_002604.png",
+          "image_sha256": "eb639314dcea4c5b83ee43e69f37f09cebac9a5d3400dde2261d207ab4c6199a"
+        },
+        {
+          "image_id": "2009_001363",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_001363.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_001363.png",
+          "image_sha256": "80216f4a5c3a4c3827444ff66cc50d4bd8efa51ad46a615a3525341c92f534e2"
+        },
+        {
+          "image_id": "2009_000924",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_000924.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_000924.png",
+          "image_sha256": "94ee134d614168604d01e02ecb0b411ff7a199cb5fe7609feed0887dce525100"
+        },
+        {
+          "image_id": "2008_000234",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_000234.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_000234.png",
+          "image_sha256": "664afb75d959164a58a7239e851c41e34587984da5fda823319d81313b13fbb6"
+        },
+        {
+          "image_id": "2010_000342",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_000342.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_000342.png",
+          "image_sha256": "d918c0f2edffd89084c95e35c22901d16cf685150ea02fb35ca2d24894b2921d"
+        },
+        {
+          "image_id": "2007_002852",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_002852.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_002852.png",
+          "image_sha256": "2abb80b14a4de65b830365114b3d1439fd68efcd42a301aca6259176e450a763"
+        },
+        {
+          "image_id": "2007_005689",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_005689.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_005689.png",
+          "image_sha256": "7715aec4c304aafea73cd728113f88b8b23d5d84033215193d604cc5aa20676c"
+        },
+        {
+          "image_id": "2011_000396",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2011_000396.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2011_000396.png",
+          "image_sha256": "c4f339f5c7f1ddfe52abcbba45816c69a40f95a0d2d82fdc73b7a980258e59ce"
+        },
+        {
+          "image_id": "2007_001239",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_001239.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_001239.png",
+          "image_sha256": "d799806d41a1c0fa4fe0affe0a769c07213e5c38723a40a8bfb48ada235f8f7e"
+        },
+        {
+          "image_id": "2007_005058",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_005058.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_005058.png",
+          "image_sha256": "e1a1c589703aadcec97992ecf4b2254b66bac0a5440f760814b9db241453a44f"
+        },
+        {
+          "image_id": "2010_000941",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_000941.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_000941.png",
+          "image_sha256": "45898f481065d6140817566d7203434ad6a4b6373281c672395ef139fc3a3b3f"
+        },
+        {
+          "image_id": "2010_003758",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_003758.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_003758.png",
+          "image_sha256": "600459e63c1a1bbb511b5b2c38bac6865d9182ce74c5a4d0a961a777a15d7e58"
+        },
+        {
+          "image_id": "2010_005206",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2010_005206.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2010_005206.png",
+          "image_sha256": "f98eb63fa3520897dcc9943c70ee21f0b092b5d101578dd539122ecbb65c1594"
+        },
+        {
+          "image_id": "2009_001644",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_001644.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_001644.png",
+          "image_sha256": "5fdfdcfee7e3ab065a38bc6271d4aa9dc8cda4e522d57eb6e33e646328d24d51"
+        },
+        {
+          "image_id": "2008_003003",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_003003.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_003003.png",
+          "image_sha256": "56ca32e8a391f72d49ada7c38e8f9329ba6aa8adc6ab4bd910a5f9ca0e71bf0d"
+        },
+        {
+          "image_id": "2009_003481",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2009_003481.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2009_003481.png",
+          "image_sha256": "dd53049e54c5130de9db752444a1b91d771b42372e7048fce26c785a3dad5b62"
+        },
+        {
+          "image_id": "2007_008374",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_008374.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_008374.png",
+          "image_sha256": "bf327100bbad9ccf6bb94f74eb4e09634a969f42f252033c8992744000546ca5"
+        },
+        {
+          "image_id": "2011_002644",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2011_002644.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2011_002644.png",
+          "image_sha256": "900a95b370fa09ac23870e3d4d80df3f2670be6e050b603a87b461d80c00fe6f"
+        },
+        {
+          "image_id": "2008_006981",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_006981.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_006981.png",
+          "image_sha256": "ba84d056a6d729e2c61b5ce73b1312884e92719bc1e6ba784d1d72bf2552b6b6"
+        },
+        {
+          "image_id": "2007_009458",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2007_009458.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2007_009458.png",
+          "image_sha256": "488908dde43a03e792e80a45f6740e4214a619e8c344637a258f2fbb040e1a59"
+        },
+        {
+          "image_id": "2008_000123",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/VOCdevkit/VOC2012/JPEGImages/2008_000123.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/voc20_labels/2008_000123.png",
+          "image_sha256": "42a386ffe14fe69c1774a8c2e99f05d769d3500e6dbbb82c33001ebbf039034a"
+        }
+      ]
+    },
+    "context59": {
+      "warmup": [
+        {
+          "image_id": "2009_004947",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_004947.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_004947.png",
+          "image_sha256": "ba638cf207dbc8505c2023cd7bb44dc19c715bd2e2418a1d68c132275f9903fa"
+        },
+        {
+          "image_id": "2009_004876",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_004876.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_004876.png",
+          "image_sha256": "2112665d93d6179baf390c5daf069d95756bf62ae007c481b3e0b1bd33009ff6"
+        },
+        {
+          "image_id": "2008_004688",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_004688.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_004688.png",
+          "image_sha256": "914c04883ab92b6cf50fc8a6b0724fa02a9944c0506ca74309d2952653ffd0b5"
+        },
+        {
+          "image_id": "2010_003187",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_003187.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_003187.png",
+          "image_sha256": "795f475dd77917e180f83985496caf354fface5d9f90ae245891ba8be03238aa"
+        },
+        {
+          "image_id": "2008_007768",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_007768.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_007768.png",
+          "image_sha256": "07bd6ea041041d7c8b770652aeeee49f5f4447fd6e41ada5e433f868debd8061"
+        }
+      ],
+      "measure": [
+        {
+          "image_id": "2009_005302",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_005302.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_005302.png",
+          "image_sha256": "9ef12920c78f95e8f3c27ff083246bd96c7289def87cf418427ea02d745a7956"
+        },
+        {
+          "image_id": "2008_000972",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_000972.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_000972.png",
+          "image_sha256": "23d203a6418e282c56babb23791481de4411cc4d92a59811b6193ef509e41cae"
+        },
+        {
+          "image_id": "2008_003222",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_003222.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_003222.png",
+          "image_sha256": "623dd1031743ded00687c7390c8de7ed2bcdfd0f4d10aae03e06446078b1c165"
+        },
+        {
+          "image_id": "2010_004054",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_004054.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_004054.png",
+          "image_sha256": "683f365de14d325f0eaf5d0789add762f345f05a64f289fb070466aa16d24cf6"
+        },
+        {
+          "image_id": "2010_005894",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_005894.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_005894.png",
+          "image_sha256": "c5269e9a62111b038d4585dc07f9711ed371ff3ad6f8473c533d71080be1717b"
+        },
+        {
+          "image_id": "2009_000169",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_000169.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_000169.png",
+          "image_sha256": "be612f53522d416b8bf0bf14d425f3ccbb612513da15072738c32f86f0b2656b"
+        },
+        {
+          "image_id": "2009_000045",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_000045.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_000045.png",
+          "image_sha256": "87f8b8f700d44ab9df029167a39d0e2fa93a41d8ba3536a573f3650b995b9309"
+        },
+        {
+          "image_id": "2010_005059",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_005059.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_005059.png",
+          "image_sha256": "dbb0e4cf157113783fc3391f8086fb5fe5a4d8e81c5d6a207d0a2b8ad2f83bcd"
+        },
+        {
+          "image_id": "2009_005288",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_005288.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_005288.png",
+          "image_sha256": "c954f55ba080d2b39dd03a9c0541cc7682b80974076b1a7556937b1bd9cc6f5a"
+        },
+        {
+          "image_id": "2009_001266",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_001266.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_001266.png",
+          "image_sha256": "88d645ac05ee0a0d4d3f08cb50cd127cf4d6a8b494db9a51e48758575c18540f"
+        },
+        {
+          "image_id": "2010_005562",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_005562.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_005562.png",
+          "image_sha256": "5829bf1cb371afe66f224e5d7676a6c3eef9fcf9441e05106fb2c3d913c2bf96"
+        },
+        {
+          "image_id": "2010_001294",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_001294.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_001294.png",
+          "image_sha256": "43f21aacc38e3a984acf0ef3ae4094ce65793601c511695a2c45262e547f6dee"
+        },
+        {
+          "image_id": "2008_004498",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_004498.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_004498.png",
+          "image_sha256": "cf683acaaa8b59901bd6c09d89b925888986fdf836a993b7eaa9a471a8419254"
+        },
+        {
+          "image_id": "2008_004670",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_004670.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_004670.png",
+          "image_sha256": "5185623f28bd2f601ab6cf6d7bb01d922cafc3228e6608271464bedd0d87d96f"
+        },
+        {
+          "image_id": "2010_004735",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_004735.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_004735.png",
+          "image_sha256": "0bb8b97b7c2ee01395b939f1c859e42d6a347fdcf5267e41f873e22b12210527"
+        },
+        {
+          "image_id": "2008_000328",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_000328.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_000328.png",
+          "image_sha256": "6341c6e7e5e23da53c8f87104237cd8d70a99c6943a687372ac74d189e1bff3f"
+        },
+        {
+          "image_id": "2009_004849",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_004849.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_004849.png",
+          "image_sha256": "65af47ede4637437d58cc00177448b744559cabfc60eb6e420f047fbf161ef96"
+        },
+        {
+          "image_id": "2008_007048",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_007048.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_007048.png",
+          "image_sha256": "de565533f5282a9e44017435909f1db89978ddc3662fbc484a91c9fc1d3a5bb1"
+        },
+        {
+          "image_id": "2010_001292",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_001292.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_001292.png",
+          "image_sha256": "fbb4839186488567d0898249e21f5978a13dc21d3bad1dc9183a501087dca03f"
+        },
+        {
+          "image_id": "2010_004067",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_004067.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_004067.png",
+          "image_sha256": "938ae06f17b5ae3e8122df7535a2bebb2aeb314fb818f9c3f95a00770a3d6966"
+        },
+        {
+          "image_id": "2009_000158",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2009_000158.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2009_000158.png",
+          "image_sha256": "efc34f479636a9c834a36898893a8178ab863cc2bbac54465ef8e433a04bf43a"
+        },
+        {
+          "image_id": "2010_005901",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_005901.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_005901.png",
+          "image_sha256": "542cd14fa0795c5b8eaf5b6511c761991cc1e0376905fead7f6fbd2210fbaf33"
+        },
+        {
+          "image_id": "2008_007704",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_007704.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_007704.png",
+          "image_sha256": "62bfe4ea28c3dd9643917f63f4d28772bf422722a7d516599fd066896ed225a0"
+        },
+        {
+          "image_id": "2008_005588",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2008_005588.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2008_005588.png",
+          "image_sha256": "454c4bf24ea6356680d09adea6a0e6b3fdea08dec88e57e7d1b0115703163c57"
+        },
+        {
+          "image_id": "2010_003956",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/VOCdevkit/VOC2010/JPEGImages/2010_003956.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/context59_labels/2010_003956.png",
+          "image_sha256": "44378a2bd22a89b26a51124a616f92ae152adc9f625c45622b2a94127ee6d843"
+        }
+      ]
+    },
+    "ade150": {
+      "warmup": [
+        {
+          "image_id": "ADE_val_00001323",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001323.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001323.png",
+          "image_sha256": "ed26711da3ce005069128dcbcd113ddd76745b112ad9c3ced6d78cde76f7fcaa"
+        },
+        {
+          "image_id": "ADE_val_00001832",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001832.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001832.png",
+          "image_sha256": "11cea2bb248e95aa1313d843e4721b1e5bf9df33acf52063fedff72c852f7e35"
+        },
+        {
+          "image_id": "ADE_val_00001554",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001554.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001554.png",
+          "image_sha256": "ec6198be83b93a2669903a08b867ace3f6a06a06f4a29e91c9e9d656e40f2c3b"
+        },
+        {
+          "image_id": "ADE_val_00001170",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001170.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001170.png",
+          "image_sha256": "d5f2dcfb08a7b9a25ad16377700e764bc83564baf555f8ea498ec16c0595ac88"
+        },
+        {
+          "image_id": "ADE_val_00001510",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001510.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001510.png",
+          "image_sha256": "8d44a47c92f0a1aa0adf5db9711dea01607c099603d68f9ba2ff245c79014d1f"
+        }
+      ],
+      "measure": [
+        {
+          "image_id": "ADE_val_00000144",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000144.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000144.png",
+          "image_sha256": "1a3ca99e414db5cd640d1fe36e5d30cd252d57b40fc3a716baf7762337844d26"
+        },
+        {
+          "image_id": "ADE_val_00001682",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001682.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001682.png",
+          "image_sha256": "80509abd06208b35d155ac7d8c53f42e72169c47a38d2113dd0024505c261530"
+        },
+        {
+          "image_id": "ADE_val_00000651",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000651.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000651.png",
+          "image_sha256": "d343f494dbe3073bfd651709cd0921516b2a590ba779ac51e0def9290fa729ea"
+        },
+        {
+          "image_id": "ADE_val_00001982",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001982.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001982.png",
+          "image_sha256": "c837e4a557b8416bbc0fd066c632af77ec9093c7e72651023023c9e29ffcb6c0"
+        },
+        {
+          "image_id": "ADE_val_00000869",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000869.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000869.png",
+          "image_sha256": "43643391f2008219513d4593adf40c30d17afd8695e960e2647f7d37b9e6fe62"
+        },
+        {
+          "image_id": "ADE_val_00000280",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000280.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000280.png",
+          "image_sha256": "c41f9296155e92a59d1121b7b7d678626479f2150749b4360f188058ff59b156"
+        },
+        {
+          "image_id": "ADE_val_00001710",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001710.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001710.png",
+          "image_sha256": "5a03b34bdcad11fbdde70e82aa448363a97cf1142f2632d6bf6cdd35c2151b7e"
+        },
+        {
+          "image_id": "ADE_val_00001324",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001324.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001324.png",
+          "image_sha256": "8b08168ef8cf67f566b9e17abeab3b429376c0464f88139720ae243d80e972f2"
+        },
+        {
+          "image_id": "ADE_val_00000649",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000649.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000649.png",
+          "image_sha256": "647b6afd5f84a732fbb3e4c1dcda6ba733a0ec34ce00dd0b7be824fe91562129"
+        },
+        {
+          "image_id": "ADE_val_00000139",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000139.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000139.png",
+          "image_sha256": "4918ff7deead1cc8e742d31fdf34b1aadddec5e6032fa335b6ee1b75ee54a3c2"
+        },
+        {
+          "image_id": "ADE_val_00000541",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000541.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000541.png",
+          "image_sha256": "5f36ad61545e95ef8efcf7167fb90cde7142ea3254785a6fb9095b1f3fd8c40b"
+        },
+        {
+          "image_id": "ADE_val_00001759",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001759.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001759.png",
+          "image_sha256": "a452b0b2156e66fa38c3b73683616becd59425761ffa02e7cc85c58a74787798"
+        },
+        {
+          "image_id": "ADE_val_00000643",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000643.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000643.png",
+          "image_sha256": "a1de74d1d6739ae619b671c733f282a8c1773c0af4d1a20fb5ec7220b67aaf5c"
+        },
+        {
+          "image_id": "ADE_val_00001573",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001573.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001573.png",
+          "image_sha256": "3053bbee925cebca720c3e381fceaf01192850e99c7e1b31e8c1e99fd208c9d6"
+        },
+        {
+          "image_id": "ADE_val_00000571",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000571.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000571.png",
+          "image_sha256": "e2066c19bd61a060eb033acc9514777f0a4cf9e4f3307dfc216de0f252321334"
+        },
+        {
+          "image_id": "ADE_val_00000414",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000414.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000414.png",
+          "image_sha256": "5c67337c1187dbec5d0fc058dcfbb41156eb0c6b2c109aacdd7d13217553e51e"
+        },
+        {
+          "image_id": "ADE_val_00001379",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001379.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001379.png",
+          "image_sha256": "517bd2274a5a73f9da0635f38434f1f570f9769f1a4653d55ce4073a76202279"
+        },
+        {
+          "image_id": "ADE_val_00000528",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000528.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000528.png",
+          "image_sha256": "3e94781e0f7d901f6b9cd72085d2bf93e7a02b510a5b101e8b4692252878a28f"
+        },
+        {
+          "image_id": "ADE_val_00000718",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000718.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000718.png",
+          "image_sha256": "6768149368cd98176f818419d2f516b7be08c84d5fc65ec79e0df5676b266f3c"
+        },
+        {
+          "image_id": "ADE_val_00001073",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001073.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001073.png",
+          "image_sha256": "e9f9deba986ad9ac765a62d7409689c8253e96257ed05044870accc45b1bb16f"
+        },
+        {
+          "image_id": "ADE_val_00000606",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000606.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000606.png",
+          "image_sha256": "25704e95e9acc60e4b1508f69cefa83a567a2083fba0bdbdf4af05a037e13ef7"
+        },
+        {
+          "image_id": "ADE_val_00001117",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001117.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001117.png",
+          "image_sha256": "457f80a9c1662919894c9468b55ecc88208ecc78fe7445aad5d3f577db462fc5"
+        },
+        {
+          "image_id": "ADE_val_00001060",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001060.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001060.png",
+          "image_sha256": "aede1ec68f5d5ff7afd62cc5f3d608e4d22888f0b5cd3c1c901b00083a9e6265"
+        },
+        {
+          "image_id": "ADE_val_00001871",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00001871.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00001871.png",
+          "image_sha256": "418f9ad39de10c7ca53c922f79649a4fcfec35b08266b4664673ede3b52387c8"
+        },
+        {
+          "image_id": "ADE_val_00000406",
+          "image_path": "/data/tianyi/TF-OVOS/data/raw/ADEChallengeData2016/images/validation/ADE_val_00000406.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/ade20k150_labels/ADE_val_00000406.png",
+          "image_sha256": "8f66e06438e8ea5176beeb33ab4ff73b4883efb5ae1d911e4ca81dd71e220dc3"
+        }
+      ]
+    },
+    "coco_stuff171": {
+      "warmup": [
+        {
+          "image_id": "000000278006",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000278006.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000278006.png",
+          "image_sha256": "ef8e3f61038b2252bf0f7c7321a69ed9bc1b885844b28df1554a8b05d06e30f7"
+        },
+        {
+          "image_id": "000000141821",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000141821.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000141821.png",
+          "image_sha256": "f17f03224e399c8bcdbbf847ff5ee107bd55e64bfbf185a1443d82816edcd5be"
+        },
+        {
+          "image_id": "000000136355",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000136355.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000136355.png",
+          "image_sha256": "ffeafa119aa16cc556697fbc5f7a5e3c484672550fc4d397ec25e597158a2218"
+        },
+        {
+          "image_id": "000000180560",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000180560.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000180560.png",
+          "image_sha256": "b485d64a3c769704ecabd162d63788b07069c3fe3b2bd4658857658d58bc2fc7"
+        },
+        {
+          "image_id": "000000429281",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000429281.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000429281.png",
+          "image_sha256": "c52b59812cdbebaef4755007cfbcaf59165c437ca09724113c352905d38b1e4e"
+        }
+      ],
+      "measure": [
+        {
+          "image_id": "000000323151",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000323151.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000323151.png",
+          "image_sha256": "29228060eb9d01c28a6ee0f1424e9cdc5935e963e46e077133f538470c9858ac"
+        },
+        {
+          "image_id": "000000437239",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000437239.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000437239.png",
+          "image_sha256": "30eb9bda4b4485519145c7ddb39522126b23b3e9235927448a0e9c66ae37aebc"
+        },
+        {
+          "image_id": "000000424545",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000424545.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000424545.png",
+          "image_sha256": "fb150820945eb63433c79bbaee3b7394eb120ed1ef82df690e24209851abe7d3"
+        },
+        {
+          "image_id": "000000054628",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000054628.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000054628.png",
+          "image_sha256": "59a36063d39f73283c1825712303d6ebc5e208dd4708eaf98f974f7acf48b00a"
+        },
+        {
+          "image_id": "000000246968",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000246968.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000246968.png",
+          "image_sha256": "5f7990e5edb8b8ab72faeef5ad6391976b24c2ab14d1c05d178fba70fadfd435"
+        },
+        {
+          "image_id": "000000192716",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000192716.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000192716.png",
+          "image_sha256": "9a3223f94d7aaf079d3831b10c07ee5a84f36071c55c633394dd5c93a67c9c07"
+        },
+        {
+          "image_id": "000000295478",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000295478.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000295478.png",
+          "image_sha256": "dcf0e6d6e71ad7a861775298d4d8e2a207cffe3082da5c71c59b31c1a36d84d1"
+        },
+        {
+          "image_id": "000000110999",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000110999.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000110999.png",
+          "image_sha256": "e8e70c3fdd467c107305e0739820ade04cfe3c2960bff547a9bb304c72b07a9a"
+        },
+        {
+          "image_id": "000000223090",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000223090.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000223090.png",
+          "image_sha256": "ad04ec5fe73ad79767e3e29e5602a08c7ff161072d767ce42442adf96e1a1303"
+        },
+        {
+          "image_id": "000000511453",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000511453.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000511453.png",
+          "image_sha256": "f8c47ad4f72d1ba8eb936d94bc54179806b0c22d10dde3491f82a5072034566d"
+        },
+        {
+          "image_id": "000000463527",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000463527.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000463527.png",
+          "image_sha256": "8482a64ac54c58148b18f322dee3bf51a9f8ff0f268484c0426679e8b9682304"
+        },
+        {
+          "image_id": "000000539962",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000539962.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000539962.png",
+          "image_sha256": "9c03f8050c99b23fd029103327791fc554d645abbec3604c1bcfdb626bfd8727"
+        },
+        {
+          "image_id": "000000402118",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000402118.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000402118.png",
+          "image_sha256": "9929f3551f62916f162403544a23cd69e152eab8e01f0f88f9a82384dd93f6bb"
+        },
+        {
+          "image_id": "000000034873",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000034873.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000034873.png",
+          "image_sha256": "376dbffac6db0b092cc07b43dfc34886725682d8e641caeff54710ac8f61ffb6"
+        },
+        {
+          "image_id": "000000180188",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000180188.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000180188.png",
+          "image_sha256": "5701a8885f34bf7171b9c134cec932e4c79b2ddb35c989b3c5ac09c0112f53d2"
+        },
+        {
+          "image_id": "000000076416",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000076416.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000076416.png",
+          "image_sha256": "f21eb87831efba38ef9ccea8a5699b222b614fddf716e1486653ce79ffaef463"
+        },
+        {
+          "image_id": "000000007991",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000007991.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000007991.png",
+          "image_sha256": "63c6fae2e3defd4bc1c6f346806aef03eb11ccbd7c6bda3e479d1fbafd486db1"
+        },
+        {
+          "image_id": "000000575187",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000575187.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000575187.png",
+          "image_sha256": "f616c7a8935cc9f0fc38c78d58a7bf64d5f8453cf1c2169ad702c0ccd2d79e2a"
+        },
+        {
+          "image_id": "000000323751",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000323751.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000323751.png",
+          "image_sha256": "4e6a71a1c12501bd64d086a9c22f07540e0e7cc7f2721071b331371f4b24fbd4"
+        },
+        {
+          "image_id": "000000006012",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000006012.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000006012.png",
+          "image_sha256": "7cd0d627b15c09f373aa613d013fb2d8ae6bd20bcce0d98aa31b963e6bcca495"
+        },
+        {
+          "image_id": "000000052017",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000052017.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000052017.png",
+          "image_sha256": "7190d285796bad80a5949d171b6c05b8ad354c1b418981c55ed85376c624d48b"
+        },
+        {
+          "image_id": "000000481582",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000481582.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000481582.png",
+          "image_sha256": "9a0b2de17f1899dcbad5bfd9a65f28f489b512e3c2e5dbe93aa88af38ef965ff"
+        },
+        {
+          "image_id": "000000307145",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000307145.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000307145.png",
+          "image_sha256": "74de35efa219ad138add25da4682981fa8a7b41edd2b33c9ea808c3a3342074c"
+        },
+        {
+          "image_id": "000000359677",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000359677.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000359677.png",
+          "image_sha256": "b9767ebb38fe98ed310fc064966b07d8530ea471f3057026f1b319a4c46292a9"
+        },
+        {
+          "image_id": "000000180487",
+          "image_path": "/data/sdd/tianyi/TF-OVOS-rebuttal/data/raw/coco_stuff171/val2017/000000180487.jpg",
+          "mask_path": "/data/tianyi/TF-OVOS/data/raw/coco_stuff171_labels_official/000000180487.png",
+          "image_sha256": "b3e52b7701025765b73ecc9c1ce216db714b42e6f1a4a14c920ac1787ded0e20"
+        }
+      ]
+    }
+  },
+  "selection": "seed20261009 fixed shuffle; disjoint 5 warmup and 25 measured images per E1 dataset",
+  "images_per_method": 100,
+  "batch_size": 1,
+  "hardware": "NVIDIA A100 80GB PCIe",
+  "cpu_threads": 4,
+  "vision_cache": false,
+  "precision": "native method weight precision, no added autocast; all dtypes recorded",
+  "tf32": false,
+  "cudnn_benchmark": false,
+  "timing": "decoded RGB in RAM -> native preprocessing -> H2D -> model incl online VFM/proposals/refinement -> native postprocessing -> CPU label map; CUDA synchronized before/after each image",
+  "excluded": "file decode/read, model and class-specific text/prototype setup, PNG writes, metrics; setup reported separately",
+  "resolution": "same original images for all methods; native resize/crop/slide recipe retained and disclosed to keep connection to E1",
+  "source": "reviewer Z3 and submitted E4 Figure4, 17 training-free rows; SAN not in Figure4",
+  "offline": "FreeDA prebuilt index/prototype corpus separately disclosed, never counted as zero-cost generation"
+}

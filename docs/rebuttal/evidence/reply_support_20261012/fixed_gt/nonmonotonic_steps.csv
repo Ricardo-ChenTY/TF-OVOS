@@ -1,0 +1,5 @@
+method,dataset,candidate_seed,from_candidates,to_candidates,increase_pp
+sam_amg_clip,context59,0,59,150,0.19587865444485786
+sam_amg_siglip,context59,0,59,150,0.3497516092414301
+dinov2_sam_clip,context59,0,59,150,0.1824658285783869
+dinov2_sam_siglip,context59,0,59,150,0.33532491754218086

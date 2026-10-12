@@ -1,0 +1,15 @@
+{
+  "control": "perfect_prediction_two_disconnected_same_class_regions",
+  "areas": [
+    10000,
+    64
+  ],
+  "legacy_iou": [
+    0.9936406995230525,
+    0.006359300476947536
+  ],
+  "matched_component_iou": [
+    1.0,
+    1.0
+  ]
+}

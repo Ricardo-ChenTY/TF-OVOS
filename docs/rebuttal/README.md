@@ -9,3 +9,5 @@
 修复代码及轻量证据随[审查包](artifacts/review_20261011_closed.tar.gz)一起公开，附[SHA256 校验文件](artifacts/review_20261011_closed.tar.gz.sha256)。当前本地证据快照为 `docs/rebuttal/evidence/20261011_closed/`，含修正表格、配置、来源和 SHA256；`20261011_final/` 与 `20261011/` 保留作历史版本。原审稿转录位于 `docs/rebuttal/reviewer_comments.txt`。原始预测 PNG、数据集和模型权重保留在实验工作区。
 
 修复代码与证据现已整理为可下载的审查包，使用方法和范围见[修复与证据审查入口](closure_review_20261011.md)。包内提供无需 GPU 的完整性、表格一致性核验及回归测试入口。结果冻结为 `20261011_closed`，后续变更另建版本。
+
+**2026-10-12 补充发布：** [回复材料直达索引](reply_materials_20261012.md)提供可浏览的完整计时、固定 GT、共同 GT、同图 COCO、修复核验和图稿检查材料；实际运行修复代码也已同步至仓库顶层，不再需要先解压才能阅读。

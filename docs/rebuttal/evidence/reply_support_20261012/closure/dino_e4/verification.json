@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "jobs": 8,
+  "paired_images": 200,
+  "exact_matches": 200,
+  "methods": [
+    {
+      "method": "dinov2_sam_clip",
+      "images": 100,
+      "exact_matches": 100,
+      "mean_seconds": 3.1835773586505094,
+      "peak_allocated_mib": 9038.39208984375
+    },
+    {
+      "method": "dinov2_sam_siglip",
+      "images": 100,
+      "exact_matches": 100,
+      "mean_seconds": 3.458968979725614,
+      "peak_allocated_mib": 9940.4462890625
+    }
+  ]
+}
