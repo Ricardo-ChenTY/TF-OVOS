@@ -1,0 +1,4357 @@
+{
+  "scope": "Five dense methods, six targets; defaults resolved from release constructor. Latest completed historical quality log per dataset family, not proof of every published cell linkage.",
+  "sources": {
+    "sclip": {
+      "commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream": "https://github.com/wangf3014/SCLIP",
+      "constructor_defaults_match_release": true,
+      "native_code_matches_release": false
+    },
+    "naclip": {
+      "commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream": "https://github.com/sinahmr/NACLIP",
+      "constructor_defaults_match_release": true,
+      "native_code_matches_release": false
+    },
+    "resclip": {
+      "commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream": "https://github.com/yvhangyang/ResCLIP",
+      "constructor_defaults_match_release": true,
+      "native_code_matches_release": false
+    },
+    "trident": {
+      "commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream": "https://github.com/YuHengsss/Trident",
+      "constructor_defaults_match_release": true,
+      "native_code_matches_release": true
+    },
+    "cass": {
+      "commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream": "https://github.com/MICV-yonsei/CASS",
+      "constructor_defaults_match_release": true,
+      "native_code_matches_release": false
+    }
+  },
+  "records": [
+    {
+      "method": "sclip",
+      "dataset": "voc20",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_voc20.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_voc20.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_voc20.py",
+      "project_sha256": "a2a7712c312786a6fb164449a2ba38ffc97f5f375bd80770845c3ea6dce1c013",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_voc20.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/voc20_officialnames/20260515_204646/vis_data/config.py",
+      "quality_config_sha256": "430d14095c9741e3bbc1791d0b6fd87d13f84936d6ae060175fe578a9201643d",
+      "quality_log": "runs/official/sclip/voc20_officialnames/20260515_204646/20260515_204646.log",
+      "quality_log_sha256": "f4825ce534f1e04fe736fedc54f82ecde1eb51d4eff19a532db44404f59ea564"
+    },
+    {
+      "method": "sclip",
+      "dataset": "context59",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_context59.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_context59.py",
+      "project_sha256": "abfab55b0ac6371f610e27041851a21a5040e2f0cbe45af6d9bda7c5ffd2904a",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_context59.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/context59_datafix/20260514_170641/vis_data/config.py",
+      "quality_config_sha256": "44d0053d5780fceb6608668af12ab1b6d167063922c97e7ea71bb6d580dbcc3a",
+      "quality_log": "runs/official/sclip/context59_datafix/20260514_170641/20260514_170641.log",
+      "quality_log_sha256": "d315a70e4cf100311bbf5ab09ad776d2ea008fd5348dc5f87511bea1e35c220d"
+    },
+    {
+      "method": "sclip",
+      "dataset": "ade20k",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_ade20k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_ade20k.py",
+      "project_sha256": "19fcea2f5cc4d0455f76335a1fd3907d3d75885eea53d8297ac3aa12096ed1c7",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_ade20k.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/ade20k_datafix/20260514_171119/vis_data/config.py",
+      "quality_config_sha256": "b7e08d146ed53d9b75b3dad3324bbd1e77333d2a30f86ed6c77576968f32e730",
+      "quality_log": "runs/official/sclip/ade20k_datafix/20260514_171119/20260514_171119.log",
+      "quality_log_sha256": "e237b5828ddd6d4748d64c6a449f8e0c3a0621ad9dd830fcfb72b89b2eef6c7e"
+    },
+    {
+      "method": "sclip",
+      "dataset": "coco_stuff164k",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_coco_stuff164k.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_coco_stuff164k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_coco_stuff164k.py",
+      "project_sha256": "68d8311a12791ccb514ed7b2c127a8a31960838ba2e57998f27314544eb3237a",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_coco_stuff164k.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/coco_stuff164k_datafix/20260514_194211/vis_data/config.py",
+      "quality_config_sha256": "2643090973e1958a89643c84b3867666667326113490da8fcb62a39c6fa0d93d",
+      "quality_log": "runs/official/sclip/coco_stuff164k_datafix/20260514_194211/20260514_194211.log",
+      "quality_log_sha256": "63858d2cfb18b7f1d1478748748626dccf66362dbb25ebce4b5add2f7e1872e9"
+    },
+    {
+      "method": "sclip",
+      "dataset": "context459",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_context59.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_context459_e2.py",
+      "project_sha256": "5422cf85ffdb811a6648b8252d2a9e4c5bfbc346e554dd068c669508283d26c8",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/context459_e2/20260714_211404/vis_data/config.py",
+      "quality_config_sha256": "b4146829b5bfd31ff119a443bb9ff1692219b20dae6aa66f764705eee1aa0925",
+      "quality_log": "runs/official/sclip/context459_e2/20260714_211404/20260714_211404.log",
+      "quality_log_sha256": "74da5404c3fa7f14de688610821a20847d30b39be90d1ccbbdb9ff1bce0b1044"
+    },
+    {
+      "method": "sclip",
+      "dataset": "ade847",
+      "upstream_commit": "b56bd3014b9e8a3ee3450bcfc53700a67d627b7a",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/wangf3014/SCLIP/blob/b56bd3014b9e8a3ee3450bcfc53700a67d627b7a/configs/cfg_ade20k.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/SCLIP/configs/cfg_tfovos_ade847_e2.py",
+      "project_sha256": "5b3a6a3cecd041ae859fa749b7ca9aed474340fe80c8a73d57fcc84047b361b8",
+      "release_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "type": "CLIPForSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt"
+      },
+      "quality_model": {
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "area_thd": null,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt",
+        "type": "CLIPForSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/sclip/ade847_e2/20260714_212558/vis_data/config.py",
+      "quality_config_sha256": "3c77eeb23969303dbf11863fad5b771ac2065a0da35d02801433bf45f599b0d1",
+      "quality_log": "runs/official/sclip/ade847_e2/20260714_212558/20260714_212558.log",
+      "quality_log_sha256": "2cbc4141b69e871acad73417d0cd53e6db61422e2ef24f52c19d0cd3f42c220e"
+    },
+    {
+      "method": "naclip",
+      "dataset": "voc20",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_voc20.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_voc20.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_voc20.py",
+      "project_sha256": "86c74e69c99eab8aa00c152d9ba51f090029cef99102bd1dc97084e0ad313491",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 0,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 0,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_voc20.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 0,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/voc20_officialnames_fixed/20260515_234434/vis_data/config.py",
+      "quality_config_sha256": "ea82090ffc17512348eabfdbe41cb9cf2f632373e6a3c6cb191c6fb9e58582c4",
+      "quality_log": "runs/official/naclip/voc20_officialnames_fixed/20260515_234434/20260515_234434.log",
+      "quality_log_sha256": "ea3f73951f9114ec2f7957b2bad005fc95cd0f76d0032e7cd4184390d415edc2"
+    },
+    {
+      "method": "naclip",
+      "dataset": "context59",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_context59.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_context59.py",
+      "project_sha256": "d45bbdd19706683b5de77800938d6c77b4c0e2a02e302f88a601100f051d14e5",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_context59.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/context59_datafix/20260514_172550/vis_data/config.py",
+      "quality_config_sha256": "dd87455567dd6b7b98402a33369aaa8657d874b5124d9edbca77b863651ec577",
+      "quality_log": "runs/official/naclip/context59_datafix/20260514_172550/20260514_172550.log",
+      "quality_log_sha256": "7c7842becedf30d643638fe55210fbfb5e782202aac5f8366251ad6e757a77bd"
+    },
+    {
+      "method": "naclip",
+      "dataset": "ade20k",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_ade20k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_ade20k.py",
+      "project_sha256": "a708a3f65d936ead7af4461e74496a45e0ff5acf7156250681f129ff5dfa9310",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_ade20k.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/ade20k_datafix/20260514_173747/vis_data/config.py",
+      "quality_config_sha256": "3a20c215f8fb004742a582241bf3576777dbb7def1cc49039f1a34e91ae3bd1c",
+      "quality_log": "runs/official/naclip/ade20k_datafix/20260514_173747/20260514_173747.log",
+      "quality_log_sha256": "af9d5d77be4b1e6379840859e7d685906e920a642dcbcc7681725302ea77f3de"
+    },
+    {
+      "method": "naclip",
+      "dataset": "coco_stuff164k",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_coco_stuff164k.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_coco_stuff164k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_coco_stuff164k.py",
+      "project_sha256": "29f520da4d650a9723a27eeab11c6518a2a19531f70458681fd2bff9f10381db",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_coco_stuff164k.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/coco_stuff164k_datafix/20260514_195149/vis_data/config.py",
+      "quality_config_sha256": "a94c80ab1e11cce261e18dd0ef89c8b85061b9fb30faacca98e12d2b2fdc1e5a",
+      "quality_log": "runs/official/naclip/coco_stuff164k_datafix/20260514_195149/20260514_195149.log",
+      "quality_log_sha256": "3b534d421fc347b9201277ea45f84fb4271ca504f7728480473ea92122ada993"
+    },
+    {
+      "method": "naclip",
+      "dataset": "context459",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_context59.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_context459_e2.py",
+      "project_sha256": "f3914b383868e9e074044b283cebc8c6d4f7125b671951ac0eee755040e3e977",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/context459_e2/20260714_213613/vis_data/config.py",
+      "quality_config_sha256": "6a194c502bac3314563d32eb5bae681f7bc0b161fe29ccfc05b3a93258599313",
+      "quality_log": "runs/official/naclip/context459_e2/20260714_213613/20260714_213613.log",
+      "quality_log_sha256": "b57196e70b3a5fa4f6ad21b9f65354af1a8591a5f58f53277f347b9dd9fd9c1c"
+    },
+    {
+      "method": "naclip",
+      "dataset": "ade847",
+      "upstream_commit": "0cac3a651f753b11315ea799cfbfabf79da1bd76",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/sinahmr/NACLIP/blob/0cac3a651f753b11315ea799cfbfabf79da1bd76/configs/cfg_ade20k.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/NACLIP/configs/cfg_tfovos_ade847_e2.py",
+      "project_sha256": "463c40abde0adfd1262fde420f4f875e2972c0f408bfeb15877ddcf2c7590cc0",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "type": "NACLIP",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "naclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt",
+        "type": "NACLIP"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/naclip/ade847_e2/20260715_201518/vis_data/config.py",
+      "quality_config_sha256": "692bb301273d50826f87acd6a6fdb2489f5e0cbd60a7c8cfd13e718c64583a10",
+      "quality_log": "runs/official/naclip/ade847_e2/20260715_201518/20260715_201518.log",
+      "quality_log_sha256": "db118ed5f4bfadc48d40d5321f7b1a30539988876d76cec3bf89bf681184855a"
+    },
+    {
+      "method": "resclip",
+      "dataset": "voc20",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_voc20.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_voc20.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_voc20.py",
+      "project_sha256": "bacf34ec0c4fdb3c452cadc84b17444cb9389df286d69c537f62d6bb35a2f089",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 0,
+        "temp_thd": 0.1,
+        "attn_sfr_weights": [
+          2.1,
+          0.6
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.6
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.1,
+        "attn_sfr_weights": [
+          2.1,
+          0.6
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.6
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_voc20.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.1,
+        "attn_sfr_weights": [
+          2.1,
+          0.6
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.6
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {
+        "slide_crop": {
+          "release": 0,
+          "project_config": 224,
+          "quality_record": 224
+        }
+      },
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/voc20_officialnames/20260515_205138/vis_data/config.py",
+      "quality_config_sha256": "5e675fdc531820ec797d10c1ba311972553e58b48f551cb4ca13975dd9fc3725",
+      "quality_log": "runs/official/resclip/voc20_officialnames/20260515_205138/20260515_205138.log",
+      "quality_log_sha256": "1790ace23a09b73f3455d1064576faecf0f43be93affa6c0cf6697cec9320edf"
+    },
+    {
+      "method": "resclip",
+      "dataset": "context59",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_context59.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_context59.py",
+      "project_sha256": "8448815b3cb130c288ea804356e9c49fc511001e4646c0d2f87b5396d29d4fe0",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_context59.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/context59_datafix/20260514_183058/vis_data/config.py",
+      "quality_config_sha256": "062768b20a9eecac20ecb804cdb6262819aadaf2d4e2aab36c0e3ffa1f6fafde",
+      "quality_log": "runs/official/resclip/context59_datafix/20260514_183058/20260514_183058.log",
+      "quality_log_sha256": "9dae502afd98e65b87a27042a2e3f35072cefd45076f4a86472fca94cac6dad9"
+    },
+    {
+      "method": "resclip",
+      "dataset": "ade20k",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_ade20k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_ade20k.py",
+      "project_sha256": "911658f00fee460adde179bbf365ac9baafee69b3086e978472d3d26fb532a4c",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_ade20k.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/ade20k_datafix/20260514_184459/vis_data/config.py",
+      "quality_config_sha256": "537449401c159c4b0b2cabe1025252780a31842f7af24c8053123cfbf9b58da5",
+      "quality_log": "runs/official/resclip/ade20k_datafix/20260514_184459/20260514_184459.log",
+      "quality_log_sha256": "a16da65992562cd7f573bb536c0396c42db2976865ab1a26e45a7f76face4274"
+    },
+    {
+      "method": "resclip",
+      "dataset": "coco_stuff164k",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_coco_stuff164k.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_coco_stuff164k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_coco_stuff164k.py",
+      "project_sha256": "1b4174c8fa5244332031d6b351c7de8ce9445ff4d17ea7b3ed1a852467c8fa7e",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.11,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.11,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.11,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_tfovos_coco_stuff164k.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/coco_stuff164k_datafix/20260514_185435/vis_data/config.py",
+      "quality_config_sha256": "b7f84a318ebedcc3e8c01539d13135e3160daa286d2ccb45579a48dfb8646875",
+      "quality_log": "runs/official/resclip/coco_stuff164k_datafix/20260514_185435/20260514_185435.log",
+      "quality_log_sha256": "64dbe85cdf9d3dfaf95bce0006cbf39186b703698a9835594fb6f7e36a6b39fb"
+    },
+    {
+      "method": "resclip",
+      "dataset": "context459",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_context59.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_context459_e2.py",
+      "project_sha256": "25a5d78f7f5ed1020d5461439f33d3190ed84bc4c444c847955dd87c9e815d2a",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          1.8,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.4
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/context459_e2/20260714_235124/vis_data/config.py",
+      "quality_config_sha256": "fcd4c2fd677c787e12979d8f730c0b5039c4881fba01cf6f17afb3a7a8a10729",
+      "quality_log": "runs/official/resclip/context459_e2/20260714_235124/20260714_235124.log",
+      "quality_log_sha256": "82098b39690c749ede48b562b960f1a94186d5594b4162a5fde1be4bff9ef751"
+    },
+    {
+      "method": "resclip",
+      "dataset": "ade847",
+      "upstream_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/yvhangyang/ResCLIP/blob/0e085f7f52f06098b383599e9653cd28cc665a8c/configs/cfg_ade20k.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/ResCLIP/configs/cfg_tfovos_ade847_e2.py",
+      "project_sha256": "5e7000e80cf167b502bc45281e67e1f8e74733948085128235dc586da14085fb",
+      "release_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "type": "ResCLIPSegmentation",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt"
+      },
+      "quality_model": {
+        "arch": "wo_resi",
+        "attn_strategy": "resclip",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "use_rcs": true,
+        "use_sfr": true,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "prob_thd": 0.0,
+        "area_thd": null,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "temp_thd": 0.25,
+        "attn_sfr_weights": [
+          2.1,
+          0.7
+        ],
+        "attn_rcs_weights": [
+          2.0,
+          0.3
+        ],
+        "delete_same_entity": true,
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt",
+        "type": "ResCLIPSegmentation"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/resclip/ade847_e2/20260715_030456/vis_data/config.py",
+      "quality_config_sha256": "0480e93ca6094d1d921abbbda8638b0db5cf58d96680a5c680b7e0c0ab98df09",
+      "quality_log": "runs/official/resclip/ade847_e2/20260715_030456/20260715_030456.log",
+      "quality_log_sha256": "cd6a6e18f6d474c3df6bac7b5d70c1cc1442ec13febb3537e574773dd7dabf7a"
+    },
+    {
+      "method": "trident",
+      "dataset": "voc20",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_voc20.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_voc20.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_voc20.py",
+      "project_sha256": "eaa4912f426e9237688411b8e9a99da459813ebb6efbd5b772fbffc2612ce067",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 112,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 0.0,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_voc20.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 112,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 0.0,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_voc20.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 112,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 0.0,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_voc20.txt",
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/voc20/20260522_225409/vis_data/config.py",
+      "quality_config_sha256": "c62e753979d4178f12306e87060299d0e1365ec975510db6fac83dfbac21b665",
+      "quality_log": "runs/official/trident/voc20/20260522_225409/20260522_225409.log",
+      "quality_log_sha256": "0836d2b8cf2131c47742ba64d35bcacdfce3bcfb1d39e933ea18e9979acb4e6b"
+    },
+    {
+      "method": "trident",
+      "dataset": "context59",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_context59.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_context59.py",
+      "project_sha256": "e0bf50396824485fc9294c6922d0a3116b5c931d18807b44a584a7554dfc9244",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.15,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.15,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_context59.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.15,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 1.2,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_context59.txt",
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            576
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            576
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            576
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/context59/20260522_234259/vis_data/config.py",
+      "quality_config_sha256": "d551141bc84b67695f0af97b546189f271c993fbaf72fef3b1c3a3e5a4b020c1",
+      "quality_log": "runs/official/trident/context59/20260522_234259/20260522_234259.log",
+      "quality_log_sha256": "294b1d2211c9fd38e32a6861a26bd83570045d5f5ee7c3d3f1f3a8c18f85d36f"
+    },
+    {
+      "method": "trident",
+      "dataset": "ade20k",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_ade20k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_ade20k.py",
+      "project_sha256": "a680c849a74ddbc0c34c76e07dcffd7c5398613ddbec2f066782005e4faebddb",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": false,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": false,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_ade20k.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 1.2,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_ade20k.txt",
+        "refine_neg_cos": false,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            576
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            576
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            576
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/ade20k/20260523_024218/vis_data/config.py",
+      "quality_config_sha256": "328a6b5b9eb314fff99c032c53141a048229ebbed26c0cbf4e2e1025a7856367",
+      "quality_log": "runs/official/trident/ade20k/20260523_024218/20260523_024218.log",
+      "quality_log_sha256": "8f44177bc1f12c157d19004afa55d3654283b61f21cc5ccadf9b0cf8b7c7453f"
+    },
+    {
+      "method": "trident",
+      "dataset": "coco_stuff164k",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_coco_stuff164k.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_coco_stuff164k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_coco_stuff164k.py",
+      "project_sha256": "4804500360f2ededc518c261705c187e9caa74a963e92c720c254db8c364057d",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.05,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 1.2,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt",
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/coco_stuff164k/20260523_035457/vis_data/config.py",
+      "quality_config_sha256": "10a09d94fd25080af868d33c302d70bfc55243d5e62cd92b95102acd6f3b2c22",
+      "quality_log": "runs/official/trident/coco_stuff164k/20260523_035457/20260523_035457.log",
+      "quality_log_sha256": "9a7fb94098c3442684c02e8f79423feaefe4c9aa1fcd295c8aa28f1310669b92"
+    },
+    {
+      "method": "trident",
+      "dataset": "context459",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_context459.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_context459.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_context459.py",
+      "project_sha256": "e3256534cc4c03e928b0ba52b6c2ad45240e38c13b9167a013a61fb14145d054",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_context459.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_context459.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 1.2,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_context459.txt",
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/context459/20260715_180057/vis_data/config.py",
+      "quality_config_sha256": "48f1158ace3cdd983379400342c05ab462dac5418fab6718abb32e66d06fadf2",
+      "quality_log": "runs/official/trident/context459/20260715_180057/20260715_180057.log",
+      "quality_log_sha256": "684e431f9286ffdb70d61321165325f858ee99949a6efbf536174bd0a098acb7"
+    },
+    {
+      "method": "trident",
+      "dataset": "ade847",
+      "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+      "upstream_config": "configs/cfg_ade847.py",
+      "upstream_url": "https://github.com/YuHengsss/Trident/blob/7feea10222bf15d5aabdeabefde5902a62584d94/configs/cfg_ade847.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/Trident/configs/cfg_tfovos_ade847.py",
+      "project_sha256": "c60f672bd435217296509f9996cbb557991018f56fbb2507c2c09ba2efa772e9",
+      "release_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_ade20k847.txt"
+      },
+      "project_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "type": "Trident",
+        "clip_type": "openai",
+        "model_type": "ViT-B/16",
+        "vfm_model": "dino",
+        "checkpoint": null,
+        "cos_fac": 1.2,
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "name_path": "cls_ade20k847.txt"
+      },
+      "quality_model": {
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "beta": 1.2,
+        "gamma": 3.0,
+        "slide_stride": 224,
+        "slide_crop": 336,
+        "debug": false,
+        "sam_refinement": false,
+        "sam_model_type": "vit_b",
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "sam_ckpt": "sam_vit_b_01ec64.pth",
+        "coarse_thresh": 0.2,
+        "minimal_area": 225,
+        "sam_mask_coff": 0.005,
+        "checkpoint": null,
+        "clip_type": "openai",
+        "cos_fac": 1.2,
+        "model_type": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt",
+        "refine_neg_cos": true,
+        "sam_iou_thresh": 0.8,
+        "type": "Trident",
+        "vfm_model": "dino"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            448
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            448
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {},
+      "quality_config": "runs/official/trident/ade847/20260715_183139/vis_data/config.py",
+      "quality_config_sha256": "4df1b121c866f54294bc2c934f663c68c2db767b438825e1140d9effd988df86",
+      "quality_log": "runs/official/trident/ade847/20260715_183139/20260715_183139.log",
+      "quality_log_sha256": "1ac4aecdf553b81e30188cd9282cf9e33e018ef47a3f9dbef64f627eda81aa84"
+    },
+    {
+      "method": "cass",
+      "dataset": "voc20",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_voc20.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_voc20.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_voc20.py",
+      "project_sha256": "d79b259af69e5da2366de4811629e87356c597baa8617755f3459d992c61b3bd",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.4,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.1,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.4,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.1,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.4,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.1,
+        "dataset": "configs/cfg_tfovos_voc20.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_voc20.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/voc20/20260522_225755/vis_data/config.py",
+      "quality_config_sha256": "7b80bb717aa0018e409a44f3660f6b86491091decf3c9eed5af628b4401542fa",
+      "quality_log": "runs/official/cass/voc20/20260522_225755/20260522_225755.log",
+      "quality_log_sha256": "85af9b8761d4f58b036cb734447c64bdbd3dcd81bc2cc7c55b57f0fb01ea8b15"
+    },
+    {
+      "method": "cass",
+      "dataset": "context59",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_context59.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_context59.py",
+      "project_sha256": "8ebffa8560c17975af4981f5cbbdb2bf34a3b3cd3327d323c6fcb828e8dfe330",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "configs/cfg_tfovos_context59.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/context59/20260522_235609/vis_data/config.py",
+      "quality_config_sha256": "7a636151a4af2562da17d43f6e67c4ceddf76c4b4f323c57ba40df9cd53970fa",
+      "quality_log": "runs/official/cass/context59/20260522_235609/20260522_235609.log",
+      "quality_log_sha256": "18a41f100453ca97b5239b3b3824f00ab956a364ba605a6181163aae294a2728"
+    },
+    {
+      "method": "cass",
+      "dataset": "ade20k",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_ade20k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_ade20k.py",
+      "project_sha256": "21c61e375a12d8f72f0f7e2a42411d83238481b96fce6c7b99144c82b4170aac",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "configs/cfg_tfovos_ade20k.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": true,
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/ade20k/20260523_024751/vis_data/config.py",
+      "quality_config_sha256": "0cc7280424524070531b783be9ea018c16cd664436650b47f0d312b7a9215190",
+      "quality_log": "runs/official/cass/ade20k/20260523_024751/20260523_024751.log",
+      "quality_log_sha256": "37b2b156584f3a4bb116e3ba94774f7329df9d60a35098e014a88edac716d439"
+    },
+    {
+      "method": "cass",
+      "dataset": "coco_stuff164k",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_coco_stuff164k.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_coco_stuff164k.py",
+      "source_relation": "direct_dataset_release",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_coco_stuff164k.py",
+      "project_sha256": "6761197db49b1caff0badaa3f270938787c4a8b4aba23f1f30550808efb09bd8",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.2,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.02,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.2,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.02,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.2,
+        "mean_vector_weight": 0.02,
+        "h_threshold": 0.02,
+        "dataset": "configs/cfg_tfovos_coco_stuff164k.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_coco_stuff.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "type": "LoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/coco_stuff164k/20260523_040831/vis_data/config.py",
+      "quality_config_sha256": "08ef4a44f6cb476b13fabba8cf6860c0627062a1d2c8006a19a17ed1006f1af0",
+      "quality_log": "runs/official/cass/coco_stuff164k/20260523_040831/20260523_040831.log",
+      "quality_log_sha256": "7a9aa28bb84bd89d94c9b8a8d0ff6b7e0739816e14c768eebeb46c2440ca29da"
+    },
+    {
+      "method": "cass",
+      "dataset": "context459",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_context59.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_context59.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_context459.py",
+      "project_sha256": "bb0764df4004a4f4bca1229b4ff8700f3d0892ef36dfb9455ce13ded67ef80f1",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context59.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.25,
+        "mean_vector_weight": 0.04,
+        "h_threshold": 0.09,
+        "dataset": "configs/cfg_tfovos_context459.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_context459.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/context459/20260715_060132/vis_data/config.py",
+      "quality_config_sha256": "5916df6a8e7e66e114ea864e91e00497b3be90efae8a556951fefea0579ca182",
+      "quality_log": "runs/official/cass/context459/20260715_060132/20260715_060132.log",
+      "quality_log_sha256": "ffe8a4a2d45a2e4b588b64aeacde806ca88aedb69d188662ace5e2a33977fdc6"
+    },
+    {
+      "method": "cass",
+      "dataset": "ade847",
+      "upstream_commit": "228ecdd8273e269d1b955f5ad7f9558346036e22",
+      "upstream_config": "configs/cfg_ade20k.py",
+      "upstream_url": "https://github.com/MICV-yonsei/CASS/blob/228ecdd8273e269d1b955f5ad7f9558346036e22/configs/cfg_ade20k.py",
+      "source_relation": "project_large_vocabulary_adaptation_from_compact_preset",
+      "project_config": "third_party/official_methods/CASS/configs/cfg_tfovos_ade847.py",
+      "project_sha256": "b5362c00da9c9714587c4bc16b2de63194c2f28c7edd93c22bea6496f8aab028",
+      "release_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k.txt"
+      },
+      "project_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 10,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "./configs/cfg_voc20.py",
+        "type": "CASS_segmentor",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt"
+      },
+      "quality_model": {
+        "arch": "reduced",
+        "attn_strategy": "spectral",
+        "gaussian_std": 5.0,
+        "pamr_steps": 0,
+        "pamr_stride": [
+          8,
+          16
+        ],
+        "dino_type": "dino_vitb8",
+        "scale_up": false,
+        "prob_thd": 0.0,
+        "logit_scale": 40,
+        "slide_stride": 112,
+        "slide_crop": 224,
+        "global_semantics_weight": 0.3,
+        "mean_vector_weight": 0.05,
+        "h_threshold": 0.06,
+        "dataset": "configs/cfg_tfovos_ade847.py",
+        "clip_path": "ViT-B/16",
+        "name_path": "cls_ade20k847.txt",
+        "type": "CASS_segmentor"
+      },
+      "release_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "LoadAnnotations",
+          "reduce_zero_label": true
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "project_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "type": "Resize",
+          "scale": [
+            2048,
+            336
+          ],
+          "keep_ratio": true
+        },
+        {
+          "type": "MyLoadAnnotations",
+          "reduce_zero_label": false
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "quality_pipeline": [
+        {
+          "type": "LoadImageFromFile"
+        },
+        {
+          "keep_ratio": true,
+          "scale": [
+            2048,
+            336
+          ],
+          "type": "Resize"
+        },
+        {
+          "reduce_zero_label": false,
+          "type": "MyLoadAnnotations"
+        },
+        {
+          "type": "PackSegInputs"
+        }
+      ],
+      "model_differences": {},
+      "release_cli_defaults_applied": {
+        "pamr_steps": 0
+      },
+      "quality_config": "runs/official/cass/ade847/20260715_090741/vis_data/config.py",
+      "quality_config_sha256": "1e979da56b12f07a8d5ae8f56887ba73c1a7417de43efeb5e131419b30b36203",
+      "quality_log": "runs/official/cass/ade847/20260715_090741/20260715_090741.log",
+      "quality_log_sha256": "64ce754e206abedd13d1f05cc7114a6013859ed098485cd5d5de4e2a35d9f563"
+    }
+  ]
+}

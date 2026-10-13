@@ -1,0 +1,31 @@
+method,dataset,resize,slide_crop,slide_stride,temp_thd,h_threshold,global_semantics_weight,mean_vector_weight,sam_model_type,sam_refinement,source_relation,model_differences,quality_config
+sclip,voc20,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/sclip/voc20_officialnames/20260515_204646/vis_data/config.py
+sclip,context59,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/sclip/context59_datafix/20260514_170641/vis_data/config.py
+sclip,ade20k,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/sclip/ade20k_datafix/20260514_171119/vis_data/config.py
+sclip,coco_stuff164k,"[2048, 448]",224,112,,,,,,,direct_dataset_release,{},runs/official/sclip/coco_stuff164k_datafix/20260514_194211/vis_data/config.py
+sclip,context459,"[2048, 448]",224,112,,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/sclip/context459_e2/20260714_211404/vis_data/config.py
+sclip,ade847,"[2048, 448]",224,112,,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/sclip/ade847_e2/20260714_212558/vis_data/config.py
+naclip,voc20,"[2048, 336]",0,112,,,,,,,direct_dataset_release,{},runs/official/naclip/voc20_officialnames_fixed/20260515_234434/vis_data/config.py
+naclip,context59,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/naclip/context59_datafix/20260514_172550/vis_data/config.py
+naclip,ade20k,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/naclip/ade20k_datafix/20260514_173747/vis_data/config.py
+naclip,coco_stuff164k,"[2048, 336]",224,112,,,,,,,direct_dataset_release,{},runs/official/naclip/coco_stuff164k_datafix/20260514_195149/vis_data/config.py
+naclip,context459,"[2048, 448]",224,112,,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/naclip/context459_e2/20260714_213613/vis_data/config.py
+naclip,ade847,"[2048, 448]",224,112,,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/naclip/ade847_e2/20260715_201518/vis_data/config.py
+resclip,voc20,"[2048, 336]",224,112,0.1,,,,,,direct_dataset_release,"{""slide_crop"": {""project_config"": 224, ""quality_record"": 224, ""release"": 0}}",runs/official/resclip/voc20_officialnames/20260515_205138/vis_data/config.py
+resclip,context59,"[2048, 336]",224,112,0.25,,,,,,direct_dataset_release,{},runs/official/resclip/context59_datafix/20260514_183058/vis_data/config.py
+resclip,ade20k,"[2048, 336]",224,112,0.25,,,,,,direct_dataset_release,{},runs/official/resclip/ade20k_datafix/20260514_184459/vis_data/config.py
+resclip,coco_stuff164k,"[2048, 336]",224,112,0.11,,,,,,direct_dataset_release,{},runs/official/resclip/coco_stuff164k_datafix/20260514_185435/vis_data/config.py
+resclip,context459,"[2048, 448]",224,112,0.25,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/resclip/context459_e2/20260714_235124/vis_data/config.py
+resclip,ade847,"[2048, 448]",224,112,0.25,,,,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/resclip/ade847_e2/20260715_030456/vis_data/config.py
+trident,voc20,"[2048, 336]",336,112,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/voc20/20260522_225409/vis_data/config.py
+trident,context59,"[2048, 576]",336,224,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/context59/20260522_234259/vis_data/config.py
+trident,ade20k,"[2048, 576]",336,224,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/ade20k/20260523_024218/vis_data/config.py
+trident,coco_stuff164k,"[2048, 448]",336,224,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/coco_stuff164k/20260523_035457/vis_data/config.py
+trident,context459,"[2048, 448]",336,224,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/context459/20260715_180057/vis_data/config.py
+trident,ade847,"[2048, 448]",336,224,,,,,vit_b,False,direct_dataset_release,{},runs/official/trident/ade847/20260715_183139/vis_data/config.py
+cass,voc20,"[2048, 336]",224,112,,0.1,0.4,0.02,,,direct_dataset_release,{},runs/official/cass/voc20/20260522_225755/vis_data/config.py
+cass,context59,"[2048, 336]",224,112,,0.09,0.25,0.04,,,direct_dataset_release,{},runs/official/cass/context59/20260522_235609/vis_data/config.py
+cass,ade20k,"[2048, 336]",224,112,,0.06,0.3,0.05,,,direct_dataset_release,{},runs/official/cass/ade20k/20260523_024751/vis_data/config.py
+cass,coco_stuff164k,"[2048, 336]",224,112,,0.02,0.2,0.02,,,direct_dataset_release,{},runs/official/cass/coco_stuff164k/20260523_040831/vis_data/config.py
+cass,context459,"[2048, 336]",224,112,,0.09,0.25,0.04,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/cass/context459/20260715_060132/vis_data/config.py
+cass,ade847,"[2048, 336]",224,112,,0.06,0.3,0.05,,,project_large_vocabulary_adaptation_from_compact_preset,{},runs/official/cass/ade847/20260715_090741/vis_data/config.py

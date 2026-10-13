@@ -1,0 +1,70 @@
+{
+  "upstream_commit": "7feea10222bf15d5aabdeabefde5902a62584d94",
+  "official_sam_model_type": "vit_b",
+  "official_sam_filename": "sam_vit_b_01ec64.pth",
+  "official_sam_refinement": false,
+  "quality_runs": [
+    {
+      "dataset": "voc20",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/voc20/20260522_225409/vis_data/config.py",
+      "sha256": "c62e753979d4178f12306e87060299d0e1365ec975510db6fac83dfbac21b665"
+    },
+    {
+      "dataset": "context59",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/context59/20260522_234259/vis_data/config.py",
+      "sha256": "d551141bc84b67695f0af97b546189f271c993fbaf72fef3b1c3a3e5a4b020c1"
+    },
+    {
+      "dataset": "ade20k",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/ade20k/20260523_024218/vis_data/config.py",
+      "sha256": "328a6b5b9eb314fff99c032c53141a048229ebbed26c0cbf4e2e1025a7856367"
+    },
+    {
+      "dataset": "coco_stuff164k",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/coco_stuff164k/20260523_035457/vis_data/config.py",
+      "sha256": "10a09d94fd25080af868d33c302d70bfc55243d5e62cd92b95102acd6f3b2c22"
+    },
+    {
+      "dataset": "context459",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/context459/20260715_180057/vis_data/config.py",
+      "sha256": "48f1158ace3cdd983379400342c05ab462dac5418fab6718abb32e66d06fadf2"
+    },
+    {
+      "dataset": "ade847",
+      "sam_model_type": "vit_b",
+      "sam_checkpoint": "sam_vit_b_01ec64.pth",
+      "sam_refinement": false,
+      "quality_config": "runs/official/trident/ade847/20260715_183139/vis_data/config.py",
+      "sha256": "4df1b121c866f54294bc2c934f663c68c2db767b438825e1140d9effd988df86"
+    }
+  ],
+  "cached_checkpoint": {
+    "filename": "sam_vit_b_01ec64.pth",
+    "bytes": 375042383,
+    "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+    "matches_20261009_pinned_hash": true
+  },
+  "implementation_sha256": "0924813e951f96cd7698a4aeb90d568202d14444a97a364c63e57ce770f525ce",
+  "native_implementation_matches_upstream": true,
+  "sam_usage": "SAM encoder features, last attention and value tensors are used even with optional final SAM refinement disabled.",
+  "declared_backbones": "CLIP ViT-B/16 (OpenAI), DINO ViT-B/16, SAM ViT-B; final SAM refinement disabled",
+  "limitations": [
+    "Historical May checkpoint path no longer exists; log proves model type and filename, not byte identity of the lost historical file.",
+    "Official README example enables --sam_refine; the evaluated no-refinement configuration is the released code default, not an assertion of identity to every README/paper result."
+  ]
+}

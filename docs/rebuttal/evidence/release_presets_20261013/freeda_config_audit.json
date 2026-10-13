@@ -1,0 +1,70 @@
+[
+  {
+    "dataset": "voc20",
+    "commit": "5ba8c510bee01e8d3f00849d56d0cc9b9f62332f",
+    "upstream_config": "src/configs/pascal20/freeda_pascal20.yml",
+    "upstream_url": "https://github.com/aimagelab/freeda/blob/5ba8c510bee01e8d3f00849d56d0cc9b9f62332f/src/configs/pascal20/freeda_pascal20.yml",
+    "quality_config": "runs/freeda/voc20/config.json",
+    "quality_config_sha256": "1940ec93e39e1543ecf1dcfa65d33dcddbeb112ecc341ec42144bb456895fba2",
+    "model_fields_compared": 27,
+    "model_differences": {},
+    "superpixel": {
+      "algorithm": "felzenszwalb",
+      "min_size": 20,
+      "scale": 100,
+      "sigma": 0.7
+    },
+    "scope": "Compares every field in released model section; not a proof of historical preset-selection procedure or all dataset/evaluator changes."
+  },
+  {
+    "dataset": "context59",
+    "commit": "5ba8c510bee01e8d3f00849d56d0cc9b9f62332f",
+    "upstream_config": "src/configs/pascal59/freeda_pascal59.yml",
+    "upstream_url": "https://github.com/aimagelab/freeda/blob/5ba8c510bee01e8d3f00849d56d0cc9b9f62332f/src/configs/pascal59/freeda_pascal59.yml",
+    "quality_config": "runs/freeda/context59/config.json",
+    "quality_config_sha256": "520f9c2a111afdcd285d9deed3ca73b585f84c0ba3e18f30b181280c00e46865",
+    "model_fields_compared": 27,
+    "model_differences": {},
+    "superpixel": {
+      "algorithm": "felzenszwalb",
+      "min_size": 20,
+      "scale": 100,
+      "sigma": 1.0
+    },
+    "scope": "Compares every field in released model section; not a proof of historical preset-selection procedure or all dataset/evaluator changes."
+  },
+  {
+    "dataset": "ade20k150",
+    "commit": "5ba8c510bee01e8d3f00849d56d0cc9b9f62332f",
+    "upstream_config": "src/configs/ade/freeda_ade.yml",
+    "upstream_url": "https://github.com/aimagelab/freeda/blob/5ba8c510bee01e8d3f00849d56d0cc9b9f62332f/src/configs/ade/freeda_ade.yml",
+    "quality_config": "runs/freeda/ade20k150/config.json",
+    "quality_config_sha256": "a249a54578d3c9c8601a31bf4a1951ccc706c9899cc6066497ab8230970a2c07",
+    "model_fields_compared": 27,
+    "model_differences": {},
+    "superpixel": {
+      "algorithm": "felzenszwalb",
+      "min_size": 20,
+      "scale": 100,
+      "sigma": 1.0
+    },
+    "scope": "Compares every field in released model section; not a proof of historical preset-selection procedure or all dataset/evaluator changes."
+  },
+  {
+    "dataset": "coco_stuff171",
+    "commit": "5ba8c510bee01e8d3f00849d56d0cc9b9f62332f",
+    "upstream_config": "src/configs/cocostuff/freeda_cocostuff.yml",
+    "upstream_url": "https://github.com/aimagelab/freeda/blob/5ba8c510bee01e8d3f00849d56d0cc9b9f62332f/src/configs/cocostuff/freeda_cocostuff.yml",
+    "quality_config": "runs/freeda/coco_stuff171/config.json",
+    "quality_config_sha256": "c60d27b4b5d71bfe01abc07e335080392574d012f506f938d397bed4a08b9e1f",
+    "model_fields_compared": 27,
+    "model_differences": {},
+    "superpixel": {
+      "algorithm": "felzenszwalb",
+      "min_size": 100,
+      "scale": 100,
+      "sigma": 1.0
+    },
+    "scope": "Compares every field in released model section; not a proof of historical preset-selection procedure or all dataset/evaluator changes."
+  }
+]
