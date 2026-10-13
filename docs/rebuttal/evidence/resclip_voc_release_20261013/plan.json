@@ -1,0 +1,23 @@
+{
+  "method": "resclip",
+  "dataset": "voc20",
+  "images": 1449,
+  "changed_parameter": {
+    "slide_crop": [
+      224,
+      0
+    ]
+  },
+  "official_commit": "0e085f7f52f06098b383599e9653cd28cc665a8c",
+  "official_source": "configs/cfg_voc20.py",
+  "source_log": "runs/logs/official_resclip_voc20_datafix.log",
+  "submitted_voc20_miou": 78.51,
+  "benchmark_vocabulary": "configs/cls_tfovos_voc20.txt",
+  "vocabulary_sha256": "f14861775969fd006b382e005f96dc811ef062ea4a37356efb70d7775e90f743",
+  "official_vocabulary_difference": "The released cls_voc20.txt differs from benchmark names; those names are intentionally unchanged to isolate the window correction.",
+  "source_quality_config_sha256": "93eca3e5fedfec643165716f07dfb031ef765b43146e1cc101d2f2f30b016e62",
+  "check": "Replay first 10 manifest images under historical slide_crop=224 and compare archived PNGs before accepting correction",
+  "large_vocabulary": "No new inference; project extensions require explicit documentation, not automatic replacement by a nonexistent official config.",
+  "paired_control": "Historical replay differs by 2759 pixels in the first 10 images under the current software stack; run full slide_crop=224 AND slide_crop=0 in the same current environment. Do not attribute historical-to-current differences solely to slide_crop.",
+  "total_new_full_predictions": 2898
+}

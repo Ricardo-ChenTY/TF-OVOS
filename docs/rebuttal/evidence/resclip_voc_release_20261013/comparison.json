@@ -1,0 +1,59 @@
+{
+  "status": "verified",
+  "images_per_variant": 1449,
+  "changed_model_parameters": {
+    "slide_crop": [
+      224,
+      0
+    ]
+  },
+  "historical_submitted_miou": 78.51,
+  "historical_png_rescored_miou": 78.51122630182401,
+  "same_runtime_control": {
+    "images": 1449,
+    "miou_percent": 78.51135014633624,
+    "online_mean_seconds": 0.09368244497235793,
+    "online_total_seconds": 135.74586276494665,
+    "setup_seconds_by_session": [
+      4.914297338000324,
+      13.45342009900196
+    ],
+    "source_result_sha256": "7af4df0b144b6cfa5cd4ae7b8eb3f9232fb131449de7e66db8ebaa9561cb78a6"
+  },
+  "release_correction": {
+    "images": 1449,
+    "miou_percent": 82.13321070739819,
+    "online_mean_seconds": 0.03754507385991815,
+    "online_total_seconds": 54.4028120230214,
+    "setup_seconds_by_session": [
+      4.951076454999566
+    ],
+    "source_result_sha256": "048e203edf712c53679dc20eb892977700d884acdb1edb61ea7fbf9976e61f83"
+  },
+  "paired_slide_crop_effect_pp": 3.6218605610619505,
+  "historical_to_current_control_pp": 0.00012384451223113047,
+  "corrected_vs_historical_pp": 3.6219844055741817,
+  "changed_prediction_pixels": 66275600,
+  "total_prediction_pixels": 259119702,
+  "scope": "VOC only; official slide_crop restored, benchmark class names retained. Paired effect isolates window setting in same current runtime; historic comparison also includes runtime differences.",
+  "not_changed": "Other target scores, large-vocabulary adaptation, fixed-GT experiments; no full unified-recipe experiment",
+  "preprocessing": [
+    {
+      "type": "LoadImageFromFile"
+    },
+    {
+      "type": "Resize",
+      "scale": [
+        2048,
+        336
+      ],
+      "keep_ratio": true
+    },
+    {
+      "type": "LoadAnnotations"
+    },
+    {
+      "type": "PackSegInputs"
+    }
+  ]
+}

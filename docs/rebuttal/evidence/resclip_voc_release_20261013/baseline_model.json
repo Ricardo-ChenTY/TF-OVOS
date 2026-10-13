@@ -1,0 +1,65 @@
+{
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "torch_version": "2.12.0+cu130",
+  "python_version": "3.11.15",
+  "native_parameter_dtypes": {
+    "torch.float32": 107,
+    "torch.float16": 195
+  },
+  "cudnn_tf32": true,
+  "matmul_tf32": false,
+  "settings": {
+    "implementation": "official_repository",
+    "repo": "third_party/official_methods/ResCLIP",
+    "model": {
+      "type": "ResCLIPSegmentation",
+      "clip_path": "ViT-B/16",
+      "use_rcs": true,
+      "use_sfr": true,
+      "name_path": "./configs/cls_tfovos_voc20.txt",
+      "temp_thd": 0.1,
+      "delete_same_entity": true,
+      "attn_rcs_weights": [
+        2.0,
+        0.6
+      ],
+      "attn_sfr_weights": [
+        2.1,
+        0.6
+      ],
+      "arch": "wo_resi",
+      "attn_strategy": "resclip",
+      "gaussian_std": 5.0,
+      "slide_crop": 224
+    },
+    "test_pipeline": [
+      {
+        "type": "LoadImageFromFile"
+      },
+      {
+        "type": "Resize",
+        "scale": [
+          2048,
+          336
+        ],
+        "keep_ratio": true
+      },
+      {
+        "type": "LoadAnnotations"
+      },
+      {
+        "type": "PackSegInputs"
+      }
+    ],
+    "config_sha256": "bacf34ec0c4fdb3c452cadc84b17444cb9389df286d69c537f62d6bb35a2f089",
+    "class_vocabulary_sha256": "f14861775969fd006b382e005f96dc811ef062ea4a37356efb70d7775e90f743",
+    "output_geometry": "native_preprocessing_and_postprocessing",
+    "correction": {
+      "parameter": "slide_crop",
+      "historical": 224,
+      "official": 0,
+      "applied": false,
+      "scope": "VOC only; benchmark vocabulary unchanged"
+    }
+  }
+}

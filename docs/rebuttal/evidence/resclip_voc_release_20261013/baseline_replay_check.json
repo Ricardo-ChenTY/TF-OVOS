@@ -1,0 +1,57 @@
+{
+  "images": 10,
+  "exact_matches": 0,
+  "changed_pixels": 2759,
+  "records": [
+    {
+      "image_id": "2007_000033",
+      "pixels": 183000,
+      "changed_pixels": 261
+    },
+    {
+      "image_id": "2007_000042",
+      "pixels": 167500,
+      "changed_pixels": 155
+    },
+    {
+      "image_id": "2007_000061",
+      "pixels": 166500,
+      "changed_pixels": 298
+    },
+    {
+      "image_id": "2007_000123",
+      "pixels": 187500,
+      "changed_pixels": 144
+    },
+    {
+      "image_id": "2007_000129",
+      "pixels": 167000,
+      "changed_pixels": 84
+    },
+    {
+      "image_id": "2007_000175",
+      "pixels": 166000,
+      "changed_pixels": 571
+    },
+    {
+      "image_id": "2007_000187",
+      "pixels": 187500,
+      "changed_pixels": 581
+    },
+    {
+      "image_id": "2007_000323",
+      "pixels": 187500,
+      "changed_pixels": 78
+    },
+    {
+      "image_id": "2007_000332",
+      "pixels": 166500,
+      "changed_pixels": 177
+    },
+    {
+      "image_id": "2007_000346",
+      "pixels": 187500,
+      "changed_pixels": 410
+    }
+  ]
+}

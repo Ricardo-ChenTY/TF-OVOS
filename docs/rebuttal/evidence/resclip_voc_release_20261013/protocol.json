@@ -1,0 +1,45 @@
+{
+  "created_utc": "2026-10-13",
+  "methods": [
+    "resclip"
+  ],
+  "datasets": {
+    "voc20": {
+      "manifest": "manifests/voc20.jsonl",
+      "sha256": "28a3590a4bd11f02551138827b5de9c9a660fac35afb98f8fc8bdd170ca9ce27",
+      "images": 1449,
+      "classes": 20,
+      "warmup_ids": [
+        "2008_000657",
+        "2008_006216",
+        "2010_003764",
+        "2009_002150",
+        "2008_007350"
+      ]
+    }
+  },
+  "sampling": false,
+  "images_per_method": 1449,
+  "total_jobs": 1,
+  "total_timed_predictions": 1449,
+  "batch_size": 1,
+  "warmup_policy": "5 per dataset per process; warmup images ALSO timed in full pass",
+  "cuda_synchronize": true,
+  "tf32": false,
+  "cudnn_benchmark": false,
+  "threads": 4,
+  "online_timer": "after disk read/RGB decode through native preprocessing, inference and CPU labels; CUDA synchronized",
+  "read_to_labels_timer": "includes input read/decode and cached-mask read where applicable; excludes output writes, GT and scoring",
+  "setup_timer": "model load plus class text/prototype setup, separately per process; historical offline index cost unknown",
+  "cache_policy": "no prediction or cross-method visual-feature reuse; native CorrCLIP cached-mask row explicitly supplemental",
+  "quality": "mIoU computed from the exact timed predictions; canonical compact GT, void=255",
+  "geometry": "native method recipes retained; CLIPtrase uses native 336 center crop and is not full-frame comparable",
+  "environment": "FreeDA uses native Torch 1.12.1; others Torch 2.12; native resolutions and dtypes disclosed per job",
+  "aggregation": "per-dataset numbers primary; macro mean over four dataset means and pooled per-image mean both exported",
+  "concurrency": "one method/dataset process; other observed GPU users pause/reject measurement; no other process killed",
+  "contention_detection": "NVML before/after each inference plus 250 ms polling; shorter transient processes may evade detection",
+  "cudnn_tf32": true,
+  "measurement_scope": "targeted_release_VOC_slide_crop_fix_full_quality",
+  "numerics": "seed0; matmul TF32 off; cuDNN TF32 on; benchmark off",
+  "source_snapshot_note": "Runtime code is in code/, external native source hashes in native_source_hashes.json; original data/weight mounts required for inference."
+}

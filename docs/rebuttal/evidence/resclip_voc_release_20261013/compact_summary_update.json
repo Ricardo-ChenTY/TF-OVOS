@@ -1,0 +1,9 @@
+{
+  "voc20": 82.13321070739819,
+  "context59": 36.85,
+  "ade150": 18.07,
+  "coco_stuff171": 23.59,
+  "mean": 40.16080267684955,
+  "worst": 18.07,
+  "scope": "VOC full precision; other three cells retained from rounded submitted values. Update final report card from full-precision sources when available."
+}

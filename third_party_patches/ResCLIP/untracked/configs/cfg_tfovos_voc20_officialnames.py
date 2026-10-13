@@ -1,6 +1,7 @@
 _base_ = './base_config.py'
 
 model = dict(name_path='./configs/cls_voc20.txt',
+    slide_crop=0,
     temp_thd=0.1,
     delete_same_entity=True,
     attn_rcs_weights=[2.0, 0.6],

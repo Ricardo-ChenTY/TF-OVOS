@@ -15,3 +15,5 @@
 **2026-10-12 关机交接补充：** [16 案例离线素材与 MaskCLIP 缺项补齐](server_handoff_20261012.md)。三个 MaskCLIP 变体已完成保存预测的全量 CPU 重评分，补充表取代旧 n.a.；原冻结包不改写。完整预测、数据集和权重仍需保留原硬盘。
 
 **2026-10-13 配置来源核查：** [Trident SAM、官方预设及回复措辞修正](release_preset_audit_20261013.md)。Trident 的 SAM ViT-B 与所核对官方提交一致；必须补列 SAM，并区分官方按目标预设、项目扩展及 ResCLIP VOC 滑窗偏离。按最新决定不启动统一超参重跑，E3 收窄为已声明配置下的跨数据集表现。
+
+**2026-10-13 ResCLIP 定向修正：** [VOC 官方滑窗设置恢复及全量成对证据](resclip_voc_release_fix_20261013.md)。VOC由78.51更新为82.13；同环境只改slide_crop提升3.621861个百分点。更新Table 1与Mean/Worst，旧E4抽样行须标为历史配置；大词表与fixed-GT结果未因本次修正改变。

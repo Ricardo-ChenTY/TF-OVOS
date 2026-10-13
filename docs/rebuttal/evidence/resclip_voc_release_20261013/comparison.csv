@@ -1,0 +1,4 @@
+variant,images,miou_percent,online_mean_seconds
+historical_saved_png,1449,78.51122630182401,
+same_runtime_slide224,1449,78.51135014633624,0.09368244497235793
+release_slide0,1449,82.13321070739819,0.03754507385991815
