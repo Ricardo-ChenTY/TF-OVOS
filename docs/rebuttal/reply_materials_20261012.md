@@ -96,3 +96,5 @@ python scripts/verify_reply_support.py
 **2026-10-13 配置来源核查：** [Trident SAM、官方预设及回复措辞修正](release_preset_audit_20261013.md)。Trident 的 SAM ViT-B 与所核对官方提交一致；必须补列 SAM，并区分官方按目标预设、项目扩展及 ResCLIP VOC 滑窗偏离。按最新决定不启动统一超参重跑，E3 收窄为已声明配置下的跨数据集表现。
 
 **2026-10-13 ResCLIP 定向修正：** [VOC 官方滑窗设置恢复及全量成对证据](resclip_voc_release_fix_20261013.md)。VOC由78.51更新为82.13；同环境只改slide_crop提升3.621861个百分点。更新Table 1与Mean/Worst，旧E4抽样行须标为历史配置；大词表与fixed-GT结果未因本次修正改变。
+
+**2026-10-13 Figure 4 聚合更正：** [统一四目标权重及计时范围说明](figure4_timing_scope_20261013.md)。online CorrCLIP 改用等权 0.172468 秒/张，四种 proposal 数值不变；后者仍为每目标 25 张抽样，前者为全量，不能称为统一全量效率复测。新表替代旧配对表的聚合展示，未新增 GPU 推理。

@@ -1,0 +1,33 @@
+{
+  "source_sha256": {
+    "docs/rebuttal/evidence/reply_support_20261012/derived/current_quality_latency_pairs.csv": "e31a9b4307a452f43159a1f295397bd1968492e8485049cdd507a70b936eb50d",
+    "docs/rebuttal/evidence/reply_support_20261012/e4_targeted/proposal_same_recipe/latency_by_dataset.csv": "ca5d1473c86de711c3feea166356dc1a4af37039eafaf4428bf0b1eb386f2f7b",
+    "docs/rebuttal/evidence/reply_support_20261012/e4_targeted/corrclip_online/latency_by_dataset.csv": "012b4c60a52f9ec857ff608d5be6d0bd619707ecaec0e4c2865fabee61ddf430",
+    "docs/rebuttal/artifacts/review_20261011_closed.tar.gz": "352f9200df173cb5d08d7ef1ee9423f22e0c3294cc1ef3c2ef766bd102d941a3",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_clip/voc20/result.json": "9441ca8424690fe7de2f360b2861019d2e69d391016ec662fe9c6821fe5931aa",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_clip/context59/result.json": "95e05bef3375b24e1ebd3d60284af76d379af74169137b4832846095ef44c0de",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_clip/ade150/result.json": "093f984e74bfa83aef951a4758fa0d88cfc755363c38e0381ddbf4d21a5d85a6",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_clip/coco_stuff171/result.json": "91f2b9ec068f990730fd4ef1717b8041406e9c5e335b818d7e92e871dec69f8e",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_siglip/voc20/result.json": "1821bb473db84efa1e9e5b4f6421b989cbd8c6349c441ca9c3657560959ed7ab",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_siglip/context59/result.json": "3308328544a33ad7ffdefa3d81438cb784b6ceb05a7864cb268279d9d0427552",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_siglip/ade150/result.json": "99ee000936fa61bb1220bb81cc4097cf98312660a802551b3daaf4e4df7727c7",
+    "review_20261011_closed.tar.gz:review_20261011_closed/evidence/closure/dino_e4/dinov2_sam_siglip/coco_stuff171/result.json": "fc97c8b5668abc4386b5fecd281fb7be2482a62b26346cb9417b2779c3e06e05"
+  },
+  "dataset_rows": 20,
+  "methods": 5,
+  "formula": "equal_target_online_seconds = sum(mean online seconds for each of four targets) / 4",
+  "checks": [
+    "Previous aggregates reproduced from dataset means and image counts",
+    "Corrected DINO means recomputed from all 200 archived per-image records",
+    "Quality values copied unchanged from configuration-matched full-run summary"
+  ],
+  "limitations": [
+    "Equal target weights do not equalize sample sizes or sampled images",
+    "Not a universal end-to-end Pareto ranking; excludes offline preparation",
+    "No new inference; historical frozen evidence preserved"
+  ],
+  "output_sha256": {
+    "latency_by_dataset.csv": "86375629e546dfd74671d53f9c5ce6f270e3afa72dfeeb36e50c8ccf57fbaffe",
+    "quality_latency_pairs.csv": "7eb382c8cc76c336f3d1813c027743696acd2aa9208d772229f99389a55fd7d4"
+  }
+}
