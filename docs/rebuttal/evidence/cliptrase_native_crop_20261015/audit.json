@@ -1,0 +1,37 @@
+{
+  "images": 2000,
+  "geometry": "native Resize(336, nearest) + CenterCrop(336) on GT; predictions unchanged",
+  "prediction_encoding": "zero-based semantic IDs; no subtraction",
+  "official": {
+    "native_gt_supported_miou_percent": 5.891524577331012,
+    "gt_supported_miou_no_epsilon_percent": 5.891525484273271,
+    "union_supported_miou_percent": 5.82138827612716,
+    "ziou_gt_percent": 59.27710843373494,
+    "ziou_union_percent": 59.76190476190476,
+    "gt_supported_classes": 830,
+    "union_supported_classes": 840
+  },
+  "historical": null,
+  "changed_crop_gt_pixels": null,
+  "changed_crop_gt_images": null,
+  "vocabulary_differences": [
+    {
+      "index": 300,
+      "native": "altar, communion table, lord's table",
+      "benchmark": "altar, communion table, lords table"
+    }
+  ],
+  "source_sha256": {
+    "/data/tianyi/TF-OVCOS/third_party/official_methods/CLIPtrase/clip_self_correlation.py": "22100a9deee46bf9e6f09145252908c1ece2979d8d830c63908ae5bd34b0d0a0",
+    "/data/tianyi/TF-OVCOS/third_party/official_methods/CLIPtrase/configs/dataset_cfg.py": "b53a2e291a3dd04d49435b8bd586ae7b6efe967be81679c0897622952665074f",
+    "/data/tianyi/TF-OVOS/data/manifests/ade20k847_official_ids_audit.jsonl": "6876dadacf40dca34c9a27af1e64fc4d82948b70175c39caca6bba62186a5859",
+    "/data/tianyi/TF-OVOS/scripts/rescore_cliptrase_native_crop.py": "811ba880498f40510bb789d1eed6af753c674ad64d51d050540203f076af6830"
+  },
+  "status": "complete",
+  "total_rescored_predictions": 14210,
+  "no_new_gpu_inference": true,
+  "historical_gt_limitation": "Old native ADEfull GT paths are absent; no byte-level historical/new GT comparison is claimed. Official-ID native-crop rescore reproduces submitted mIoU after rounding.",
+  "skipped_reason": "Generic ADE847 rescorer explicitly rejects CLIPtrase to avoid stretching a center crop to full image; saved predictions were present.",
+  "common_full_image_gt_eligible": false,
+  "verification": "All four union-supported mIoUs independently agree with repository metrics.miou_from_confusion; 14210 unique per-target prediction/GT hash records."
+}

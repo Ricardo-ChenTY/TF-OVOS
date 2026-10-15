@@ -1,0 +1,13 @@
+{
+  "files": {
+    "audit.json": "9939d7c667442f3b1c8d6eea2b7ef81efaf56335163a46ab8691dc9836ea7dd5",
+    "confusion_matrices.npz": "6753e3b5c5aa725f4ae2697cb3d2521069cc0918e9ed2fbf8e408595e48802ab",
+    "native_crop_and_export.txt": "7fc04a58b4324d9b0bed1fdcdbeb4acc5d5a4026ea56e605412e275909bc6627",
+    "native_metric.py": "ca9a344764dd6cb73061b540256f66f895e8872b5f4548ddde0b2fa9a509a33f",
+    "pair_drops.json": "6275737cbe1d13716a0082f493b78eb081e57e8be28b702119a2c0fcc56f64f6",
+    "scores.csv": "69039e921a406585323fc90f60d3d5727fcfa757a6556fee1dbf817bdfeba32f"
+  },
+  "archive": "docs/rebuttal/artifacts/cliptrase_native_crop_20261015.tar.gz",
+  "archive_sha256": "33679f60ff06720f90d20e4d6c83d4f03828de224f68aed81567df7a4541590a",
+  "script_sha256": "811ba880498f40510bb789d1eed6af753c674ad64d51d050540203f076af6830"
+}

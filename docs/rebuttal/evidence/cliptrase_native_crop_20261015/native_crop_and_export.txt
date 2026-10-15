@@ -1,0 +1,23 @@
+def _save_tfovos_prediction(dataset, image_name, pred):
+    root = os.environ.get("CLIPTRASE_SAVE_ROOT")
+    if not root:
+        return
+    out_dataset = CLIPTRASE_DATASET_MAP.get(dataset, dataset)
+    out_dir = os.path.join(root, "cliptrase", out_dataset)
+    os.makedirs(out_dir, exist_ok=True)
+    stem = os.path.splitext(os.path.basename(str(image_name)))[0]
+    arr = pred.detach().cpu().numpy() if torch.is_tensor(pred) else np.asarray(pred)
+    # The diagnostic loader subtracts one for compact mmseg-style datasets.
+    if out_dataset in {"voc20", "context59", "ade20k", "coco_stuff164k"}:
+        arr = arr.astype(np.int32) + 1
+    if arr.max(initial=0) > 255:
+        Image.fromarray(arr.astype(np.uint16), mode="I;16").save(os.path.join(out_dir, f"{stem}.png"))
+    else:
+        Image.fromarray(arr.astype(np.uint8), mode="L").save(os.path.join(out_dir, f"{stem}.png"))
+
+def gt_transform(n_px):
+    return Compose([
+        Resize(n_px, interpolation=NEAREST),
+        CenterCrop(n_px),
+        # ToTensor(),
+    ])

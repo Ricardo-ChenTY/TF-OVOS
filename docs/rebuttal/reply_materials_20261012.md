@@ -98,3 +98,5 @@ python scripts/verify_reply_support.py
 **2026-10-13 ResCLIP 定向修正：** [VOC 官方滑窗设置恢复及全量成对证据](resclip_voc_release_fix_20261013.md)。VOC由78.51更新为82.13；同环境只改slide_crop提升3.621861个百分点。更新Table 1与Mean/Worst，旧E4抽样行须标为历史配置；大词表与fixed-GT结果未因本次修正改变。
 
 **2026-10-13 Figure 4 聚合更正：** [统一四目标权重及计时范围说明](figure4_timing_scope_20261013.md)。online CorrCLIP 改用等权 0.172468 秒/张，四种 proposal 数值不变；后者仍为每目标 25 张抽样，前者为全量，不能称为统一全量效率复测。新表替代旧配对表的聚合展示，未新增 GPU 推理。
+
+**2026-10-15 CLIPtrase 缺项补齐：** [原生中心裁剪重评分与两组差值](cliptrase_native_crop_20261015.md)。已用保存预测完成14,210张CPU重评分；官方GT下原生ADE-847=5.8915，不能称旧5.89已证实标签错误。按统一union-supported口径，Context-459=7.5418、ADE-847=5.8214、平均下降=19.1274pp。四种proposal全量效率队列按最新指示取消，未启动GPU推理。

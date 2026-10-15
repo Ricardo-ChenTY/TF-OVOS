@@ -1,0 +1,18 @@
+{
+  "native_gt_supported_miou_percent": {
+    "context_drop_pp": 24.627838809539845,
+    "ade_drop_pp": 11.146067663471687,
+    "mean_drop_pp": 17.886953236505768,
+    "context_relative_drop_percent": 71.21907123927548,
+    "ade_relative_drop_percent": 65.42043914385029,
+    "mean_pair_relative_drop_percent": 68.31975519156288
+  },
+  "union_supported_miou_percent": {
+    "context_drop_pp": 27.038569625812304,
+    "ade_drop_pp": 11.216204324863376,
+    "mean_drop_pp": 19.127386975337842,
+    "context_relative_drop_percent": 78.19045057376532,
+    "ade_relative_drop_percent": 65.83209604513777,
+    "mean_pair_relative_drop_percent": 72.01127330945154
+  }
+}
