@@ -100,3 +100,5 @@ python scripts/verify_reply_support.py
 **2026-10-13 Figure 4 聚合更正：** [统一四目标权重及计时范围说明](figure4_timing_scope_20261013.md)。online CorrCLIP 改用等权 0.172468 秒/张，四种 proposal 数值不变；后者仍为每目标 25 张抽样，前者为全量，不能称为统一全量效率复测。新表替代旧配对表的聚合展示，未新增 GPU 推理。
 
 **2026-10-15 CLIPtrase 缺项补齐：** [原生中心裁剪重评分与两组差值](cliptrase_native_crop_20261015.md)。已用保存预测完成14,210张CPU重评分；官方GT下原生ADE-847=5.8915，不能称旧5.89已证实标签错误。按统一union-supported口径，Context-459=7.5418、ADE-847=5.8214、平均下降=19.1274pp。四种proposal全量效率队列按最新指示取消，未启动GPU推理。
+
+**2026-10-15 E4 新授权：** [每目标1,000张扩大抽样协议](proposal_e4_expanded_20261015.md)。四种proposal合计16,000张次，单卡串行，时间加95%区间并核对旧预测；不替换Table 1精度。完成前继续使用已核验旧时间并披露其样本数。

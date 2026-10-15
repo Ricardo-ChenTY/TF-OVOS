@@ -1,0 +1,9 @@
+{
+  "scope": "Frozen protocol and inputs; no completed timing results claimed",
+  "files": {
+    "sample_ids.csv": "abbb2037753afa324f766692e6db3d2930731ab2212e57961707e65fa45a4b51",
+    "protocol.json": "9c318a7660cc00923d74c15f890a3973aa7c7ff0fc894952241060f84d97412e"
+  },
+  "archive": "docs/rebuttal/artifacts/proposal_e4_expanded_protocol_20261015.tar.gz",
+  "archive_sha256": "aee0de5b36d87bcd6b4014efa3a0dc193584868ccf8dcf36b6a8344ab14681dd"
+}
