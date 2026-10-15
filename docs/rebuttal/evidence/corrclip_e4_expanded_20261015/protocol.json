@@ -1,0 +1,98 @@
+{
+  "created_utc": "2026-10-15T18:40:38Z",
+  "methods": [
+    "corrclip_online"
+  ],
+  "datasets": {
+    "voc20": {
+      "manifest": "manifests/voc20.jsonl",
+      "sha256": "91a5118c73c65f62d27f87f325301b4b71ec9491e589d895326df9b0a83b2fb6",
+      "images": 1000,
+      "classes": 20,
+      "warmup_ids": [
+        "2008_000657",
+        "2008_006216",
+        "2010_003764",
+        "2009_002150",
+        "2008_007350"
+      ],
+      "warmup_manifest": "manifests/voc20_warmup.jsonl",
+      "warmup_sha256": "fd015b6aa2952aba9f2ee7f046030892108612eb2c753f1633fc1fd9f2f45082"
+    },
+    "context59": {
+      "manifest": "manifests/context59.jsonl",
+      "sha256": "f553a8ea93e951daf885e751edb9ac46a0b44712b23bdd0d47bd93d455d2bba8",
+      "images": 1000,
+      "classes": 59,
+      "warmup_ids": [
+        "2009_004947",
+        "2009_004876",
+        "2008_004688",
+        "2010_003187",
+        "2008_007768"
+      ],
+      "warmup_manifest": "manifests/context59_warmup.jsonl",
+      "warmup_sha256": "cfb6c17951983a285ea66a4e5729202f17bc8454863bb453d6d09785f2f9f3f0"
+    },
+    "ade150": {
+      "manifest": "manifests/ade150.jsonl",
+      "sha256": "3df65610713388f2ee5d3e980918d99252cc352b0c5879b57d0a6cd25480b60d",
+      "images": 1000,
+      "classes": 150,
+      "warmup_ids": [
+        "ADE_val_00001323",
+        "ADE_val_00001832",
+        "ADE_val_00001554",
+        "ADE_val_00001170",
+        "ADE_val_00001510"
+      ],
+      "warmup_manifest": "manifests/ade150_warmup.jsonl",
+      "warmup_sha256": "5d57754ea3bf6e654d8e26acf42921c05caf5f091fb75d07ef3be5776425eb93"
+    },
+    "coco_stuff171": {
+      "manifest": "manifests/coco_stuff171.jsonl",
+      "sha256": "1b337f34772d02eec3c664b1ba5857087f27cba191ebd93745916c4dde3aaa46",
+      "images": 1000,
+      "classes": 171,
+      "warmup_ids": [
+        "000000278006",
+        "000000141821",
+        "000000136355",
+        "000000180560",
+        "000000429281"
+      ],
+      "warmup_manifest": "manifests/coco_stuff171_warmup.jsonl",
+      "warmup_sha256": "02bf9ac30a8388dbc2cbd79f7b61a0dd99cd665621743e4b3b641e6771b00f94"
+    }
+  },
+  "sampling": true,
+  "images_per_method": 4000,
+  "total_jobs": 4,
+  "total_timed_predictions": 4000,
+  "batch_size": 1,
+  "warmup_policy": "5 fixed images per target per process; excluded from measured sample",
+  "cuda_synchronize": true,
+  "tf32": "matmul off; cuDNN off, matching existing online CorrCLIP quality run",
+  "cudnn_benchmark": false,
+  "threads": 4,
+  "online_timer": "after disk read/RGB decode through native preprocessing, inference and CPU labels; CUDA synchronized",
+  "read_to_labels_timer": "includes input read/decode and cached-mask read where applicable; excludes output writes, GT and scoring",
+  "setup_timer": "model load plus class text/prototype setup, separately per process; historical offline index cost unknown",
+  "cache_policy": "no prediction reuse or visual-stage caching; text features initialized before online timing",
+  "quality": "Compare against this online variant own full predictions; retain its existing full-run mean 48.35491454982702, never cached CorrCLIP quality",
+  "geometry": "original frame; native online CorrCLIP SAM2-8 variant",
+  "environment": "Torch 2.12; fixed four-thread runtime; frozen current adapter package",
+  "aggregation": "four-target equal-weight latency primary; report 95% stratified image-bootstrap interval; retain original full-quality values",
+  "concurrency": "one method/dataset process; other observed GPU users pause/reject measurement; no other process killed",
+  "contention_detection": "NVML before/after each inference plus 250 ms polling; shorter transient processes may evade detection",
+  "sampling_seed": 20261015,
+  "samples_per_target": 1000,
+  "cudnn_tf32": false,
+  "measurement_scope": "online_CorrCLIP_SAM2_8_same_1000_images_per_target_as_proposals",
+  "sampling_policy": "uniform without replacement from sorted full manifest excluding 5 warmups; identical IDs and order for all methods",
+  "confidence_intervals": "10000 stratified image bootstrap draws, seed 20261015; percentile 95%; paired images for DINO-minus-SAM contrasts; conditional on measured sessions, not repeated-run uncertainty",
+  "prior_full_e4_not_reused": "Remeasure same selected images; prior full predictions used only for consistency checks",
+  "references_sha256": "cc50d862f9aca081665dcd68b9849785c0e4cfef8fb2909343d479cf7b70d667",
+  "primary_run": "/data/sdd/tianyi/TF-OVOS-rebuttal/runs/proposal_e4_1000_per_target_20261015",
+  "primary_protocol_sha256": "9c318a7660cc00923d74c15f890a3973aa7c7ff0fc894952241060f84d97412e"
+}

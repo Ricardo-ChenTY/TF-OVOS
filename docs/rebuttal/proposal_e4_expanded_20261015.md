@@ -37,3 +37,20 @@ DINO−SAM 差值在相同命名骨干下按相同 image ID 配对，报告配�
 旧全量准备目录与误解成每目标 250 张的准备目录均已标记取消，未启动 GPU 推理；本次是用户重新授权的每目标 1,000 张任务。
 
 冻结证据：[协议](evidence/proposal_e4_expanded_20261015/protocol.json)、[每目标1,000张的ID与输入哈希](evidence/proposal_e4_expanded_20261015/sample_ids.csv)、[运行代码及输入/参考预测清单包](artifacts/proposal_e4_expanded_protocol_20261015.tar.gz)。协议包不含权重或原始图像。队列于2026-10-15 18:36 UTC在tmux `tfovos-e4-1000`启动；完成状态以运行目录中的实际记录为准。
+
+
+## 同批图像的 online CorrCLIP 补测
+
+用户进一步授权将 **online CorrCLIP SAM2-8** 加入比较，在与 proposal **逐字节相同的四个输入清单**上重新计时：每目标 1,000 张，总计 4,000 张。五种配置合计 20,000 张次。
+
+CorrCLIP 使用独立伴随队列 `tfovos-e4-corr1000`，等待 proposal 队列全部通过并退出 GPU worker 后再启动；若主队列失败则停止等待并报错，不竞争同一张卡。预计额外在线推理约 12 分钟，加上初始化和核验为十几分钟左右。
+
+- 使用该在线变体自己的原全量预测作逐图一致性对照，保留其全量 Mean=48.35491455%；不借用缓存 CorrCLIP 的质量。
+- 同图像、同目标权重、同硬件和同计时边界；各自已核验的原生配置仍保留。proposal 的 cuDNN TF32 为 on，online CorrCLIP 为 off；matmul TF32 均 off。这是明确披露的精度设置差异，不声称所有配置的数值精度设置一致。
+- 完成后输出 `latency_ci_five_configurations.csv`，包含五配置每目标及等权均值的 95% image-bootstrap 区间。原全量 13,554 张 CorrCLIP 时间保留作历史证据，新的同图比较使用本次 4,000 张计时。
+
+伴随运行目录：`/data/sdd/tianyi/TF-OVOS-rebuttal/runs/corrclip_e4_1000_per_target_20261015`。
+
+[伴随队列代码](../../scripts/run_corrclip_e4_expanded.py)、[冻结协议](evidence/corrclip_e4_expanded_20261015/protocol.json)、[代码及清单包](artifacts/corrclip_e4_expanded_protocol_20261015.tar.gz)。准备时已核对官方 CorrCLIP 的 201 个历史源码文件、四目标配置和词表哈希，以及4,000张旧预测的文件哈希。
+
+2026-10-15 18:40 UTC，四种 proposal 的 8 张预检全部逐像素一致，主计时队列已进入 SAM-AMG+CLIP / VOC 的扩大抽样；18:41 UTC，CorrCLIP 伴随队列已挂起等待主队列。以上是启动状态，不代表测量已完成。

@@ -1,0 +1,10 @@
+{
+  "scope": "Companion timing protocol only; waiting for proposal queue; not completed results",
+  "images_per_target": 1000,
+  "identical_input_manifests": true,
+  "files": {
+    "protocol.json": "1f504f4c34f78795626968737f1c6ed219bcb96579682cb024a922967917d0e9"
+  },
+  "archive": "docs/rebuttal/artifacts/corrclip_e4_expanded_protocol_20261015.tar.gz",
+  "archive_sha256": "73b4d2b09302eb2aacccd87090a47eb7991ab6c396a85d10026db26fb1b81ec6"
+}

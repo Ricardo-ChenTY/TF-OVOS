@@ -102,3 +102,5 @@ python scripts/verify_reply_support.py
 **2026-10-15 CLIPtrase 缺项补齐：** [原生中心裁剪重评分与两组差值](cliptrase_native_crop_20261015.md)。已用保存预测完成14,210张CPU重评分；官方GT下原生ADE-847=5.8915，不能称旧5.89已证实标签错误。按统一union-supported口径，Context-459=7.5418、ADE-847=5.8214、平均下降=19.1274pp。四种proposal全量效率队列按最新指示取消，未启动GPU推理。
 
 **2026-10-15 E4 新授权：** [每目标1,000张扩大抽样协议](proposal_e4_expanded_20261015.md)。四种proposal合计16,000张次，单卡串行，时间加95%区间并核对旧预测；不替换Table 1精度。完成前继续使用已核验旧时间并披露其样本数。
+
+**同批图像补充：** online CorrCLIP SAM2-8 也已加入[扩大抽样计划](proposal_e4_expanded_20261015.md#同批图像的-online-corrclip-补测)，在相同4,000张图像上重新计时并核对自己的全量预测，串行等待proposal结束。五配置共20,000张次，完成后统一给出时间及95%区间。
