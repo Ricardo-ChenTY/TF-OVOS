@@ -60,3 +60,16 @@ online CorrCLIP在这五个声明配置中仍具有更高的全量平均质量�
 - [冻结运行协议与代码入口](proposal_e4_expanded_20261015.md)、[导出和数字复核脚本](../../scripts/export_expanded_e4_results.py)。
 
 导出时重新核对20项任务状态、逐图记录与清单顺序、配对报告零差异、统计来源哈希，并从逐图时间复算目标均值及五个等权均值。全部通过。
+
+
+## 仓库顶层代码补齐（2026-10-16）
+
+已补入本轮入口实际依赖的 [measure_e4_full.py](../../scripts/measure_e4_full.py) 和 [run_e4_full.py](../../scripts/run_e4_full.py)，以及历史配对核验的 [run_e4_targeted.py](../../scripts/run_e4_targeted.py) 与 [断点恢复/评分/预测差异测试](../../tests/test_e4_full.py)。这两项底层计时文件此前已在冻结审查包中，现在可以直接浏览和导入。
+
+本轮使用的11个脚本/启动器及25个包内Python文件，共36个文件，均与两份冻结运行代码包逐字节一致。无需GPU可检查：
+
+```bash
+python scripts/verify_expanded_e4_code.py
+```
+
+另在只复制Git已跟踪文件的独立目录中验证了入口导入和7项评分、恢复、配对及bootstrap测试；未依赖工作区未跟踪脚本。本次仅补公开代码，不重跑GPU任务或改变实验结果。实际重新推理仍需要协议指定的数据、模型、第三方环境和本地运行目录。
