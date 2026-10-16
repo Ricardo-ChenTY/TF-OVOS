@@ -1,3 +1,11 @@
+> **Current TMLR revision / reproducibility:** use the
+> [2026-10-16 reproduction handoff](docs/rebuttal/reproduction/README.md) and
+> [reviewer evidence index](docs/rebuttal/reply_materials_20261012.md).
+> The historical skeleton below uses the old `tf_ovcos` name; the current package
+> is `tf_ovos`. Its old quickstart is not the reproduction protocol for the
+> corrected experiments. GPU dependencies and external assets are documented in
+> the handoff; the lightweight environment alone does not install all methods.
+
 # TF-OVCOS Benchmark Skeleton
 
 This repository is a lightweight harness for the TF-OVCOS proposal:
